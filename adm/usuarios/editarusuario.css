@@ -1,0 +1,67 @@
+/* Estilos gerais */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+/* Estilos do formulário */
+form {
+    background-color: #1F3A50;
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Título do formulário */
+label {
+    color: #fff;
+    font-size: 16px;
+    margin-bottom: 8px;
+    display: block;
+}
+
+/* Estilos do select e input */
+select, input[type="submit"] {
+    width: 98%;
+    padding: 10px;
+    margin: 10px 0 15px 0; /* Espaço inferior entre os elementos */
+    background-color: #2A4A64;
+    color: white;
+    border: 1px solid #406E96;
+    border-radius: 2%; /* Border-radius aplicado a todos os inputs e select */
+    font-size: 14px;
+}
+
+/* Estilos do botão de envio */
+input[type="submit"] {
+    background-color: #406E96;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+/* Efeito de hover no botão */
+input[type="submit"]:hover {
+    background-color: #2A4A64;
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+    form {
+        padding: 15px;
+    }
+
+    label {
+        font-size: 14px;
+    }
+
+    select, input[type="submit"] {
+        font-size: 14px;
+        padding: 8px;
+    }
+}

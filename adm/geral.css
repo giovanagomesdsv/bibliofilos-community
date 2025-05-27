@@ -1,0 +1,278 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Flex:opsz,wght@8..144,100..1000&family=Roboto:ital,wght@0,100..900;1,100..900&family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+* {
+
+    font-family: 'Roboto', sans-serif;
+    text-decoration: none;
+    list-style-type: none;
+    color: var(--text);
+    scroll-behavior: smooth;
+
+}
+
+:root {
+    padding: 1rem;
+
+    --bg: #DEDEDE;
+    --text: #f5f5f5;
+    --principal: #406E96;
+    --secundaria: #2A4A64;
+    --terciaria: #1F3A50;
+
+
+    /* Transições */
+    --transition-fast: 0.2s ease;
+    --transition-base: 0.3s ease;
+
+    --padding: 1rem;
+
+    /* Controla a síntese de fontes (negrito, itálico) pelo navegador */
+    font-synthesis: none;
+    /* Otimiza a renderização do texto para melhor legibilidade */
+    text-rendering: optimizeLegibility;
+    /* Melhora a renderização de fontes em navegadores baseados em WebKit (Chrome, Safari) */
+    -webkit-font-smoothing: antialiased;
+    /* Melhora a renderização de fontes em navegadores Firefox no macOS */
+    -moz-osx-font-smoothing: grayscale;
+
+    text-decoration: none;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    /* Define o tamanho da fonte base como 10px (para facilitar o uso de rem) */
+    font-size: 62.5%;
+    /* Garante que o elemento html não seja maior que a largura da viewport */
+    max-width: 100vw;
+}
+
+body {
+
+    /* Define a fonte primária usando uma variável CSS */
+    background-color: var(--bg);
+    color: var(--color-text);
+    font-size: 1.6rem;
+
+    /* Garante uma largura mínima de 320px para evitar layouts quebrados em telas pequenas */
+    min-height: 100vh;
+
+    /* Adiciona um preenchimento ao redor do conteúdo do body usando uma variável CSS */
+
+
+    /* Força a exibição da barra de rolagem vertical, evitando o deslocamento de elementos quando o conteúdo se torna longo o suficiente para precisar da barra */
+    overflow-y: scroll;
+
+    margin: 0 auto;
+    text-align: center;
+    width: 100%;
+}
+
+main {
+    height: 100vh;
+    width: 80%;
+    border: solid 1px red;
+    margin: 0 10%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    position: absolute;
+    padding: var(--padding);
+}
+
+
+::-webkit-scrollbar {
+    height: 0;
+    width: 0.5rem;
+
+}
+
+::-webkit-scrollbar-track {
+    background: var(--terciaria);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--text);
+    border-radius: .5rem;
+}
+
+
+/* header bc administrador*/
+header {
+    display: flex;
+    align-items: center;
+    height: 1.5rem;
+    background-color: var(--terciaria);
+    padding-left: 20rem;
+}
+
+/*menu*/
+.sidebar {
+    height: 100vh;
+    width: 5rem;
+    background: var(--secundaria);
+    top: 0;
+    position: fixed;
+    z-index: 1000;
+
+}
+
+.nome {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+
+}
+
+.menu {
+    margin-top: 1rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+
+}
+
+.menu:hover {
+    border: 1px solid;
+    border-radius: 30%;
+}
+
+.nav-list li a {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    width: 100%;
+    /* <- isso é importante */
+}
+
+.logo_name {
+    background-color: var(--principal);
+    color: var(--text);
+    padding: 1rem;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    width: 100%;
+    text-align: center;
+    display: none;
+    text-decoration: underline;
+    text-decoration-color: var(--text);
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.logo_name:hover {
+    width: 100%;
+    color: var(--text);
+    text-decoration: underline;
+    text-decoration-color: var(--text);
+}
+.sidebar ul {
+    height: 100%;
+    font-size: 1rem;
+    margin-top: 1rem;
+    padding-left: 2rem;
+}
+.sidebar ul li {
+    margin-bottom: 5rem;
+    width: 100%;
+}
+.sidebar ul li a .link_name {
+    margin-left: 1.4rem;
+    display: none;
+}
+.sidebar ul li a:hover {
+    width: 100%;
+    color: var(--text);
+    border-bottom: 1px solid var(--text);
+}
+.sidebar ul .fix {
+    background: var(--principal);
+    padding: 0.1rem 0.5rem;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
+
+
+/* classe js -> abrir e fechar menu*/
+.sidebar.abrir {
+    width: 15rem;
+}
+.sidebar.abrir .logo_name {
+    display: flex;
+}
+.sidebar.abrir .link_name {
+    display: block;
+}
+.sidebar.abrir .sair {
+    border: 1px solid;
+    width: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 2.5rem;
+    border-radius: 30%;
+    transition: 0.2s;
+    color: var(--secundaria)
+}
+.sidebar.abrir .sair:hover {
+    background-color: #406E96;
+}
+.sidebar.abrir ul li {
+    margin-top: 1rem;
+}
+
+
+/* padrao de pesquisa */
+.busca-container {
+    display: flex;
+    justify-content: flex-end;
+    float: right;
+    padding-top: 1rem;
+    width: 100%;
+}
+.busca-form {
+    display: flex;
+    align-items: center;
+    border-radius: 0.5rem;
+    justify-content: flex-end;
+    background-color: var(--pesquisa);
+    margin-bottom: 2rem;
+    gap: 1rem;
+    border: 1px solid #000;
+}
+.busca-form input[type="text"] {
+    border: none;
+    /* remove a borda preta */
+    outline: none;
+    /* remove o contorno ao focar */
+    padding: 0.8rem 1rem;
+    font-size: 1rem;
+    background-color: var(--pesquisa);
+    border-radius: 0.5rem 0 0 0.5rem;
+    /* arredonda o lado esquerdo */
+}
+.busca-form button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+.busca-form button i {
+    padding: 0 1rem;
+    font-size: 1.4rem;
+    cursor: pointer;
+    color: #000000;
+}
+.botao {
+    background-color: #2A4A64;
+    color: #f5f5f5;
+    width: 10rem;
+    height: 2rem;
+}

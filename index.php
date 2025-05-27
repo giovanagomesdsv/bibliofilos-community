@@ -1,6 +1,5 @@
 <?php
 include "conexao.php";
-include "protecao.php";
 
 session_start();
 
@@ -31,7 +30,7 @@ session_start();
     <div class='nome'>
 
         <li class='logo_name'>
-            <a href='perfil/perfil.php'>
+            <a href='adm/perfil/perfil.php'>
                  <span class='link_name'>" . $_SESSION['nome'] . "</span>
             </a>
         </li>
@@ -42,6 +41,7 @@ session_start();
 
     </div>
     <ul class='nav-list'>
+    
         <li class='fix'>
             <a href='adm/home.php'>
                 <i class='bx bx-home-alt-2'></i>
@@ -72,7 +72,7 @@ session_start();
                 <span class='link_name'>Usuarios</span>
             </a>
         </li>
-        <li class='adm/sair'>
+        <li class='sair' style='background-color: #000'>
             <a href='adm/logout.php'><i class='bx bx-log-out'></i></a>
         </li>
     </ul>
