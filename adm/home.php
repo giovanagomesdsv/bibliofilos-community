@@ -14,7 +14,7 @@ include "../conexao.php";
     <link rel="stylesheet" href="home.css">
     <link rel="stylesheet" href="geral.css">
 
-    <title>ADM BC - Home</title>
+    <title>Home - BACKSTAGECommunity</title>
 
 </head>
 <style>
@@ -119,7 +119,7 @@ include "../conexao.php";
                     $foto = htmlspecialchars($res['livro_foto']);
 
                     echo "
-        <div class='card1'>
+        <div class='card card1'>
             <div class='imagem'>
                 <img class='imglivro' src='imagens/livros/{$foto}' alt=''>
             </div>
@@ -157,7 +157,7 @@ include "../conexao.php";
                     $foto = htmlspecialchars($liv['liv_foto']);
 
                     echo "
-        <div class='card'>
+        <div class='card card1'>
             <div class='imagem'>
                 <img class='imglivro' src='../administrador/imagens/livrarias/{$foto}' alt=''>
             </div>

@@ -64,7 +64,7 @@ if ($result->num_rows > 0) {
     <head>
         <meta charset='UTF-8'>
         <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-        <title>Avaliar Resenha</title>
+        <title>Avaliar resenha - BACKSTAGECommunity</title>
         <link rel='stylesheet' href='../home.css'>
         <link rel='stylesheet' href='../geral.css'>
        
