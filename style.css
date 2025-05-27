@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+* {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+    text-decoration: none;
+    transition: .2s linear;
+}
+
+html {
+    overflow-x: hidden;
+    font-size: 62.5%;
+    scroll-padding-top: 9rem;
+    scroll-behavior: smooth;
+}
+
+
+html::-webkit-scrollbar{
+    width: 0.8rem;
+}
+html::-webkit-scrollbar-track{
+    background: transparent;
+}
+html::-webkit-scrollbar-thumb{
+    background: #56070C;
+    border-radius: 5rem;
+}
+section {
+    border: 1px solid red;
+    height: 100vh;
+    width: 100%;
+}
+
+nav {
+    font-size: 1.6rem;
+}
+
+.change-text {
+    border: 1px solid;
+    width: 100%;
+    height: auto; 
+    font-size: 1.6rem;
+    font-weight: 600;
+}
+.change-text h3 {
+    display: inline-flex;
+    margin: 0;
+    font-weight: 300;
+    vertical-align: top;
+  
+}
+
+.change-text h3 .word {
+    position: absolute;
+    display: flex;
+    opacity: 0;
+}
+
+/*js letras*/
+/*saida das letras*/
+.change-text h3 .word .letter {
+    transform-origin: center center 25px;
+}
+
+.change-text h3 .word .letter.out{
+    transform: rotateX(90deg);
+    transition: 0.32s cubic-bezier(0.6, 0, 0.7, 0.2);
+}
+
+/*entrada das letras*/
+
+.change-text h3 .word .letter.in {
+    transition: .38s ease;
+}
+
+.change-text h3 .word .letter.behind {
+    transform: rotateX(-90deg);
+}

@@ -1,0 +1,151 @@
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Layout principal */
+body {
+  background-color: #ddd;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  display: flex;
+  width: 800px;
+  height: 450px;
+  background-color: #003366;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+/* Lado esquerdo */
+.left {
+  width: 35%;
+  background-color: #264760;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.logo {
+  width: 200px;
+  height:200px;
+  border-radius:50%;
+  outline-style: solid;
+  outline-width:5px;
+  outline-color:#406C91
+}
+
+/* Lado direito */
+.right {
+  width: 65%;
+  background-color: #406C91;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+}
+
+/* Título */
+.right h2,
+.form-container h1 {
+  background-color: #2c4e6e;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 4px;
+  margin-bottom: 25px;
+  font-size: 20px;
+}
+
+/* Campos de input e select */
+select,
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  max-width: 300px;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: none;
+  border-radius: 2px;
+  font-size: 14px;
+}
+
+/* Botão padrão */
+.btn {
+  background-color: #2c4e6e;
+  color: white;
+  border: none;
+  padding: 10px 25px;
+  cursor: pointer;
+  border-radius: 2px;
+  font-size: 14px;
+  transition: background-color 0.3s;
+  margin-top: 10px;
+}
+
+.btn:hover {
+  background-color: #1b354d;
+}
+
+/* Formulários */
+.form-container {
+  width: 100%;
+  padding: 30px;
+  display: none;
+}
+
+#selectType {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+/* Login visível após selecionar tipo de usuário */
+#loginContainer {
+  display: none;
+  width: 65%;
+  background-color: #406C91;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Formulário de login */
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+form input {
+  margin-bottom: 15px;
+}
+
+form a {
+  text-decoration: none;
+  font-size: 13px;
+  margin-top: 5px;
+  color: white;
+  transition: color 0.2s;
+}
+
+form a:hover {
+  color: #ccc;
+}
+
+/* Links adicionais */
+#cadastro-link,
+#resenhista-link {
+  font-size: 13px;
+  text-align: center;
+}
