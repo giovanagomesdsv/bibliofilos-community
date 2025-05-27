@@ -51,11 +51,12 @@ flex-direction: column;
 
 .cardimgsinopse{
     display: flex;
-    border: solid red;
+    
 }
 
 .cardimgsinopse p{
 margin: 2rem;
+
 }
 
 .cardresenha{
