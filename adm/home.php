@@ -120,9 +120,9 @@ include "../conexao.php";
 
                     echo "
         <div class='card card1'>
-            <div class='imagem'>
-                <img class='imglivro' src='imagens/livros/{$foto}' alt=''>
-            </div>
+            
+                <img class='imagem' src='imagens/livros/{$foto}' alt=''>
+           
             <div class='info'>
                 <p>{$titulo}</p>
                 <p>- {$autor}</p>
@@ -158,9 +158,9 @@ include "../conexao.php";
 
                     echo "
         <div class='card card1'>
-            <div class='imagem'>
-                <img class='imglivro' src='../administrador/imagens/livrarias/{$foto}' alt=''>
-            </div>
+            
+                <img class='imagem' src='../administrador/imagens/livrarias/{$foto}' alt=''>
+            
             <div class='info'>
                 <p>{$livraria}</p>
                 <p>- {$usuario}</p>
