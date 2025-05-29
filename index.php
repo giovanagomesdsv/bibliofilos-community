@@ -11,6 +11,7 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <link rel="stylesheet" type="text/css" href="geral.css">
     <link rel="stylesheet" type="text/css" href="style.css">
     <title>BIBLIÓFILOS Community - HOME</title>
 </head>
@@ -90,7 +91,6 @@ session_start();
             <a href="livros/livros.php">Livros</a>
             <a href="sobre/sobre.php">Sobre</a>
         </nav>
-        <h1><?php echo $_SESSION['nome']; ?></h1>
 
         <div class="change-text">
             <h3>

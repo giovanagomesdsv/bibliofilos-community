@@ -74,6 +74,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastrar Livraria</title>
     <link rel="stylesheet" href="administrador/usuarios/cadastrarusuario.css">
+    <link rel="stylesheet" type="text/css" href="../geral.css">
+
 </head>
 
 <body style="background-color:#DEDEDE">

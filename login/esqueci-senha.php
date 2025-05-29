@@ -51,6 +51,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['email'], $_POST['tipo
 <head>
     <meta charset="UTF-8">
     <title>Recuperar Senha</title>
+
+    <link rel="stylesheet" type="text/css" href="../geral.css">
+
     <style>
         body {
             font-family: Arial, sans-serif;

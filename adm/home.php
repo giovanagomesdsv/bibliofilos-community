@@ -120,9 +120,7 @@ include "../conexao.php";
 
                     echo "
         <div class='card card1'>
-            
                 <img class='imagem' src='imagens/livros/{$foto}' alt=''>
-           
             <div class='info'>
                 <p>{$titulo}</p>
                 <p>- {$autor}</p>
@@ -134,23 +132,23 @@ include "../conexao.php";
             </div>
         </div>
         ";
-                }
-                $stmt->close();
+                }  
             }
+            $stmt->close();
 
             // --------------------- LIVRARIAS ---------------------
             //uma forma difernte de fazer a mesma coisa acima
-            $stmt2 = $conn->prepare("
+            $stmt = $conn->prepare("
     SELECT usu_id, usu_nome, liv_nome, liv_foto 
     FROM usuarios 
     INNER JOIN livrarias ON livrarias.liv_id = usuarios.usu_id 
     WHERE usu_tipo_usuario = 1 AND usu_status = 0
 ");
 
-            if ($stmt2 && $stmt2->execute()) {  //Verifica se a variável existe e não é falsa e executa em seguida
-                $result2 = $stmt2->get_result();
+            if ($stmt && $stmt->execute()) {  //Verifica se a variável existe e não é falsa e executa em seguida
+                $result = $stmt->get_result();
 
-                while ($liv = $result2->fetch_assoc()) {
+                while ($liv = $result->fetch_assoc()) {
                     $id = (int) $liv['usu_id'];
                     $livraria = htmlspecialchars($liv['liv_nome']);
                     $usuario = htmlspecialchars($liv['usu_nome']);
@@ -173,7 +171,7 @@ include "../conexao.php";
         </div>
         ";
                 }
-                $stmt2->close();
+                $stmt->close();
             }
             ?>
 
