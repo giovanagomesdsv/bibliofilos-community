@@ -29,12 +29,12 @@
     display: flex;
     flex-direction: row; /* Alinhar horizontalmente */
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
     border: 1px solid #ccc;
     padding: 1rem;
     margin-bottom: 2rem;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  
+    height: 15rem;
 }
 
 /* texto de informaçao dos resenhsotas */
@@ -44,34 +44,32 @@
 display: flex;
 flex-direction: column;
     color: var(--text);
-    border: solid red;
+ 
 
 }
-/* Card Principal */
+/* css do avaliar________________________________________________________________________ */
 
 .cardimgsinopse{
     display: flex;
+    flex-direction: column;
     border: solid red;
 }
 
 .cardimgsinopse p{
 margin: 2rem;
+
 }
 
 .cardresenha{
     display: flex;
+    
 }
 
 .cardresenha p{
 margin: 2rem;
+
 }
-/* Imagem do livro */
-.card img {
-    width: 20%;
-    float: left;
-    margin-right: 1rem;
-    height:9rem
-}
+
 /* Seções internas */
 .card section {
     background-color: var(--content-bg);
@@ -79,6 +77,7 @@ margin: 2rem;
     padding: 1rem;
     margin-top: 1rem;
     border-radius: 5px;
+    border: solid 10px red;
 }
 /* Títulos das seções */
 .card h3 {

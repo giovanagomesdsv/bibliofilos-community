@@ -307,9 +307,11 @@ header {
     background-color: var(--principal);
     width: 100%;
     color: var(--text);
-    height: 15rem;
     border-radius: 1.6rem;
 }
+/* altura do card pequeno height: 15rem; a altura precisa pra por em cards menores */
+
+
 
 .textnotificaçao {
     width: 100%;
@@ -325,7 +327,7 @@ header {
 .imagem {
     width: 10rem;
     height: 15rem;
-    border: solid red;
+  border: solid red;
 }
 .imagem IMG{
     width: 100%;

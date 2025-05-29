@@ -40,7 +40,7 @@ $SELECT = "
     INNER JOIN 
         RESENHISTAS ON resenhistas.res_id = resenhas.res_id 
     WHERE 
-        resenha_id = ?
+        resenha_id = ?f
 ";
 
 // Prepara e executa a consulta para obter os dados da resenha
@@ -59,61 +59,67 @@ if ($result->num_rows > 0) {
 
     echo "
 -->
-    <!DOCTYPE html>
-    <html lang='pt-br'>
-    <head>
-        <meta charset='UTF-8'>
-        <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-        <title>Avaliar resenha - BACKSTAGECommunity</title>
-        <link rel='stylesheet' href='../home.css'>
-        <link rel='stylesheet' href='../geral.css'>
-       
-    </head>
-    <body>
+<!DOCTYPE html>
+<html lang='pt-br'>
 
-        <header>
-            Administrador BC
-        </header>
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Avaliar resenha - BACKSTAGECommunity</title>
+    <link rel='stylesheet' href='../home.css'>
+    <link rel='stylesheet' href='../geral.css'>
+
+</head>
+
+<body>
+
+    <header>
+        Administrador BC
+    </header>
+    <main>
         <p class='avaliar'>AVALIAR RESENHA</p>
-    </div>
+        </div>
 
-    <div class='card'>
-        <div class='cardimgsinopse'>
-                <img src='../imagens/livros/{$foto}' alt=''>
+        <div class='card'>
+            <div class='cardimgsinopse'>
+                <img class='imagem'src='../imagens/livros/{$foto}' alt=''>
                 <div class='sinopse'>
-                 <p>{$titulo}</p>
-                 <p>Sinopse</p>
-                 <p>{$sinopse}</p>
-               
+                    <p>{$titulo}</p>
+                    <p>Sinopse</p>
+                    <p>{$sinopse}</p>
+
+                </div>
             </div>
-        </div>  
 
-        <div class='cardresenha'>
-            <div class='resenha'>
-                <p>RESENHA</p>
-                <p>{$texto}</p>
-                <p>{$autor}</p>
+            <div class='cardresenha'>
+                <div class='resenha'>
+                    <p>RESENHA</p>
+                    <p>{$texto}</p>
+                    <p>{$autor}</p>
+                </div>
             </div>
-        </div>  
 
-        <form action='?id={$dado}' method='post' class='cardforms'>
-            <select class= 'notas' name='avaliar' required>
-                
-                <option class='resultado' value=''>Avaliar</option>
-                <option class='resultado' value='1'>Reprovada</option>
-                <option class='resultado' value='3'>Corrigir</option>
-                <option class='resultado' value='2'>Aprovada</option>
-            </select>
+            <form action='?id={$dado}' method='post' class='cardforms'>
+                <select class='notas' name='avaliar' required>
 
-            <input class='teste' type='submit' value='Enviar'>
-        </form>
-    </div>
-    </body>
-    </html>
-    ";
+                    <option class='resultado' value=''>Avaliar</option>
+                    <option class='resultado' value='1'>Reprovada</option>
+                    <option class='resultado' value='3'>Corrigir</option>
+                    <option class='resultado' value='2'>Aprovada</option>
+                </select>
+
+                <input class='teste' type='submit' value='Enviar'>
+            </form>
+        </div>
+    </main>
+    <script src="script.js"></script>
+</body>
+
+</html>
+";
 
 } else {
-    echo "<p>Resenha não encontrada.</p>";
+echo "<p>Resenha não encontrada.</p>";
 }
 
 $stmt->close();
