@@ -80,6 +80,7 @@
     background-color: var(--text);
     color: #000;
     font-size: 16px;
+    text-indent: 1rem;
 }
 
 .form-group input::placeholder {
