@@ -11,7 +11,7 @@ include "../protecao.php";
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
     <title>ADM BC - Usuarios</title>
@@ -26,7 +26,9 @@ include "../protecao.php";
 
             <li class="logo_name">
                 <a href="perfil/perfil.php">
-                    <span class="link_name"><?php echo $_SESSION['nome']; ?></span>
+                    <span class="link_name">
+                        <?php echo $_SESSION['nome']; ?>
+                    </span>
                 </a>
             </li>
 
@@ -107,40 +109,39 @@ include "../protecao.php";
 
                         if ($dados['usu_tipo_usuario'] == 0) {
                             echo "
-                        <div class='containerInput'>
-                        <text>NOME DE USUARIO</text>
+                <div class='containerInput'>
+                        <text class='inputText'>NOME DE USUARIO</text>
                          <p class='inputNome'>Usuário: {$dados['usu_nome']}</p>
-                         <text>RESENHISTA</text>
-                         <text>ID</text>
-                        <div class='containerBtnInput'>
+                         <text class="inputText">TIPO DE USUARIO</text>
+                    <div class='containerBtnInput'>
                          <p class='inputID'>Id: {$dados['usu_id']}</p>
-                          <a href='editarusuario.php?id={$dados['usu_id']}'><div class='botao'>ATUALIZAR</div></a>
-                        </div>
-                       </div>
+                          <a href='editarusuario.php?id={$dados['usu_id']}'><div class='atualizarBotao'>ATUALIZAR</div></a>
+                    </div>
+                </div>
                      ";
                         } else if ($dados['usu_tipo_usuario'] == 1) {
                             echo "
-                        <div class='containerInput'>
-                        <text>NOME DE USUARIO</text>
+                <div class='containerInput'>
+                        <text class='inputText'>NOME DE USUARIO</text>
                          <p class='inputNome'>Usuário: {$dados['usu_nome']}</p>
-                         <text>ID</text>
-                        <div class='containerBtnInput'>
-                         <p class='inputID'>LIVRARIA</p>
-                          <a href='editarusuario.php?id={$dados['usu_id']}'><div class='botao'>ATUALIZAR</div></a>
-                        </div>
-                       </div>
+                         <text class='inputText'>TIPO DE USUARIO</text>
+                         <div class='containerBtnInput'>
+                         <p class='inputID'>Id: {$dados['usu.id']</p>
+                          <a href='editarusuario.php?id={$dados['usu_id']}'><div class='atualizarBotao'>ATUALIZAR</div></a>
+                    </div>
+                </div>
                      ";
                         } else {
                             echo "
-                            <div class='containerInput'>
-                            <text>NOME DE USUARIO</text>
+                    <div class='containerInput'>
+                            <text class='inputText'>NOME DE USUARIO</text>
                              <p class='inputNome'>Usuário: {$dados['usu_nome']}</p>
-                             <text>ID</text>
-                            <div class='containerBtnInput'>
-                             <p class='inputID'></p>
-                              <a href='editarusuario.php?id={$dados['usu_id']}'><div class='botao'>ATUALIZAR</div></a>
-                            </div>
-                           </div>
+                             <text class='inputText'>TIPO DE USUARIO</text>
+                             <div class='containerBtnInput'>
+                             <p class='inputID'>Id: {$dados['usu.id']</p>
+                              <a href='editarusuario.php?id={$dados['usu_id']}'><div class='atualizarBotao'>ATUALIZAR</div></a>
+                        </div>
+                    </div>
                          ";
                         }
                     }
