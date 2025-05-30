@@ -27,7 +27,7 @@
 /* Card de avaliar */
 .card1 {
     display: flex;
-    flex-direction: column; /* Alinhar horizontalmente */
+    flex-direction: row; /* Alinhar horizontalmente */
     align-items: center;
     justify-content: space-around;
     border: 1px solid #ccc;
