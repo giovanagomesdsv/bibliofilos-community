@@ -83,9 +83,9 @@ include "../protecao.php";
             </div>
 
             <!-- BARRA DE PESQUISA -->
-            <div class="busca">
-                <form action="" method="GET" class="search-form">
-                    <input type="text" name="busca" placeholder="PESQUISAR USUARIOS" class="search-input">
+            <div class='busca'>
+                <form action="" method="GET" class='search-form'>
+                    <input type="text" name="busca" placeholder="PESQUISAR USUARIOS" class='search-input'>
                 </form>
             </div>
         </div>
@@ -112,7 +112,7 @@ include "../protecao.php";
                 <div class='containerInput'>
                         <text class='inputText'>NOME DE USUARIO</text>
                          <p class='inputNome'>Usuário: {$dados['usu_nome']}</p>
-                         <text class="inputText">TIPO DE USUARIO</text>
+                         <text class='inputText'>TIPO DE USUARIO</text>
                     <div class='containerBtnInput'>
                          <p class='inputID'>Id: {$dados['usu_id']}</p>
                           <a href='editarusuario.php?id={$dados['usu_id']}'><div class='atualizarBotao'>ATUALIZAR</div></a>
