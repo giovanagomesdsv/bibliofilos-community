@@ -78,16 +78,31 @@ include "../../protecao.php";
         </ul>
     </nav>
 
+<<<<<<< Updated upstream
     <!--EXIBE OS CARDS DAS LIVRARIAS-->
     <div class="busca-container">
+=======
+<!--EXIBE OS CARDS DAS LIVRARIAS-->
+<div class="busca-container">
+>>>>>>> Stashed changes
             <form action="" method="GET" class="busca-form">
                 <input type="text" name="busca" placeholder="nome do resenhista">
                 <button type="submit"><i class='bx bx-search'></i></button>
             </form>
     </div>
 
+<<<<<<< Updated upstream
     <div class="pesquisa">
         <?php
+=======
+
+       
+        <!-- <div class="pesquisa">
+            <?php
+            if (!isset($_GET['busca']) || empty($_GET['busca'])) {
+                echo "<div class='resultados'></div>";
+            } else {
+>>>>>>> Stashed changes
 
 if (!isset($_GET['busca']) || empty(trim($_GET['busca']))) {
     echo "<div class='resultados'></div>";
