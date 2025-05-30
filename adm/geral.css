@@ -323,7 +323,9 @@ header {
     text-align: center;
 }
 
-
+p{
+    font-size: 1.6rem;
+}
 .imagem {
     width: 10rem;
     height: 15rem;

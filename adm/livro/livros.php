@@ -71,7 +71,7 @@ include "../protecao.php";
             </li>
         </ul>
     </nav> 
-
+<main>
     <div class="busca-container">
         <form action="" method="GET">
             <input type="text" name="busca" placeholder="Busque as livrarias...">
@@ -116,7 +116,7 @@ INNER JOIN autores ON livro_autores.aut_id = autores.aut_id
            <img src='../imagens/livros/{$dados['livro_foto']}'>
         </div>
         <div>
-           <p>{$dados['livro_titulo']}</p>
+           <p class=''>{$dados['livro_titulo']}</p>
            <p>{$dados['aut_nome']}</p>
            <p>R$ {$dados['liv_livro_preco']}</p>
            <p>{$dados['liv_nome']}</p>
@@ -181,7 +181,7 @@ if ($tabela = mysqli_query($conn, $sql_code)) {
 
 
 
-
+</main>
     <script src="../script.js"></script>
 </body>
 
