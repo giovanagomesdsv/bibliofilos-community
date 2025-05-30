@@ -1,4 +1,3 @@
-
 .perfil-container {
     background-color: var(--principal);
     width: 50%;
@@ -6,7 +5,6 @@
     padding: 3rem;
     border-radius: 10px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-   
 }
 
 .perfil-container h1 {
@@ -18,22 +16,20 @@
 
 .perfil-container p {
     font-size: 1.6rem;
-    color:var(--text);
+    color: var(--text);
     margin: 2rem;
-    border: solid 1px red;
     text-align: start;
-
 }
 
-.perfil-container a{
+.perfil-container a {
     color: var(--text);
     display: flex;
     justify-content: center;
     margin-top: 20px;
-    background-color:var(--terciaria); 
-    color: var(--text); 
-    padding: 10px 20px; 
-    text-decoration: none; 
+    background-color: var(--terciaria);
+    color: var(--text);
+    padding: 10px 20px;
+    text-decoration: none;
     border-radius: 5px;
 }
 
@@ -46,13 +42,11 @@
     width: 100%;
     text-align: center;
     display: none;
-
 }
-
 
 /* inicio editar perfil -----------------------------------------------------------------------------------------------------------------------------------*/
 .editar-perfil-container {
-    width:60%;
+    width: 60%;
     margin: 3rem auto;
     padding: 2rem;
     background-color: var(--principal);
@@ -65,13 +59,10 @@
     text-align: center;
     margin-bottom: 2rem;
     color: var(--text);
-
 }
 
 .form-group {
     margin-bottom: 1.5rem;
-    
-
 }
 
 .form-group label {
@@ -79,18 +70,16 @@
     margin-bottom: 0.5rem;
     font-weight: bold;
     color: var(--text);
-    border: solid 1px red;
-text-align: start;
+    text-align: start;
 }
 
 .form-group input {
     width: 100%;
-   padding: 1rem 0;
+    padding: 1rem 0;
     border-radius: 5px;
     background-color: var(--text);
     color: #000;
     font-size: 16px;
-    border:solid 1px red;
 }
 
 .form-group input::placeholder {
@@ -106,7 +95,6 @@ button[type="submit"] {
     border-radius: 5px;
     font-size: 16px;
     cursor: pointer;
- 
 }
 
 button[type="submit"]:hover {
