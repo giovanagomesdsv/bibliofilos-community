@@ -94,11 +94,6 @@ include "../conexao.php";
 
 
             <?php
-            // Verificar conexão
-            if (!$conn) {
-                die("Conexão falhou: " . mysqli_connect_error());
-            }
-
             // --------------------- RESENHAS ---------------------
             $sql = "SELECT resenha_titulo, res_nome_fantasia, resenha_id, livro_foto 
     FROM RESENHAS 

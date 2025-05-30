@@ -104,7 +104,7 @@ if ($result->num_rows > 0) {
         <h2>Informações dao administrador</h2>
 
         <p><strong>Nome:</strong>{$nome}</p>
-        <p><strong>Nome:</strong>{email}</p>
+        <p><strong>Nome:</strong>{$email}</p>
 
         <h2>Informações da Livraria</h2>
 

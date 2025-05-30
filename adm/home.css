@@ -8,52 +8,57 @@
     align-items: center;
     width: 100%;
     height: 8rem;
-    margin-top: 2rem;
+    margin: 2rem 0 0;
 }
+
 /*texto bem vindo do adm */
 .titulo h3 {
     font-size: 2rem;
     color: #000;
 }
+
 /*submenu */
 .avaliar {
     position: relative;
-    margin-top: 3rem;
+    margin: 2rem 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
 }
+
 /* Card de avaliar */
 .card1 {
     display: flex;
-    flex-direction: row; /* Alinhar horizontalmente */
+    flex-direction: row;
+    /* Alinhar horizontalmente */
     align-items: center;
     justify-content: space-around;
     border: 1px solid #ccc;
     padding: 1rem;
     margin-bottom: 2rem;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     height: 15rem;
 }
 
 /* texto de informaçao dos resenhsotas */
 
 .card1 .info {
-
-display: flex;
-flex-direction: column;
+    display: flex;
+    flex-direction: column;
     color: var(--text);
- 
-
+    border: 1PX SOLID RED;
+    width: 25%;
 }
+
 /* css do avaliar________________________________________________________________________ */
 
-.cardimgsinopse{
+.cardimgsinopse {
     display: flex;
     flex-direction: row;
     border: solid red;
 }
+<<<<<<< Updated upstream
 .imgavaliar{
     margin:2rem;
     border: solid red;
@@ -63,11 +68,17 @@ flex-direction: column;
 margin:3rem;
 border: solid red;
 font-size: 1.6rem;
+=======
+
+.cardimgsinopse p {
+    margin: 2rem;
+>>>>>>> Stashed changes
 
 }
 
-.cardresenha{
+.cardresenha {
     display: flex;
+<<<<<<< Updated upstream
     border: solid red;
 height: auto;
 
@@ -76,6 +87,13 @@ height: auto;
 .cardresenha p{
 margin: 2rem;
 font-size: 1.6rem;
+=======
+
+}
+
+.cardresenha p {
+    margin: 2rem;
+>>>>>>> Stashed changes
 
 }
 
@@ -88,11 +106,13 @@ font-size: 1.6rem;
     border-radius: 5px;
     border: solid 10px red;
 }
+
 /* Títulos das seções */
 .card h3 {
     color: var(--text-light);
     margin-top: 1.5rem;
 }
+
 /* Autor */
 .card .autor {
     margin-top: 1rem;
@@ -100,19 +120,23 @@ font-size: 1.6rem;
     font-size: 0.9rem;
     color: var(--text-light);
 }
-.cardforms{
+
+.cardforms {
     display: flex;
     justify-content: center;
     padding: 2rem;
 }
-.notas{
+
+.notas {
     color: #000;
     width: 50%;
 }
-.resultado{
+
+.resultado {
     color: #000;
 }
-.teste{
+
+.teste {
     color: #000;
     width: 25%;
 }

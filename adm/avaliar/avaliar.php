@@ -1,4 +1,4 @@
-<!--<?php
+<?php
 include "../../conexao.php";
 
 // Verifica se o ID foi passado via GET
@@ -24,6 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['avaliar'])) {
         exit();
     } else {
         echo "<script>alert('Erro ao avaliar a resenha.'); window.location.href = '../home.php';</script>";
+        exit();
     }
     $stmt->close();
 }
@@ -40,10 +41,9 @@ $SELECT = "
     INNER JOIN 
         RESENHISTAS ON resenhistas.res_id = resenhas.res_id 
     WHERE 
-        resenha_id = ?f
+        resenha_id = ?
 ";
 
-// Prepara e executa a consulta para obter os dados da resenha
 $stmt = $conn->prepare($SELECT);
 $stmt->bind_param("i", $dado);
 $stmt->execute();
@@ -51,13 +51,14 @@ $result = $stmt->get_result();
 
 if ($result->num_rows > 0) {
     $row = $result->fetch_assoc();
-    $titulo = htmlspecialchars($row['resenha_titulo']); // Previne XSS
-    $sinopse = htmlspecialchars($row['livro_sinopse']); // Previne XSS
-    $texto = htmlspecialchars($row['resenha_texto']); // Previne XSS
-    $foto = htmlspecialchars($row['livro_foto']); // Previne XSS
-    $autor = htmlspecialchars($row['res_nome_fantasia']); // Previne XSS
+    $titulo = htmlspecialchars($row['resenha_titulo']);
+    $sinopse = htmlspecialchars($row['livro_sinopse']);
+    $texto = htmlspecialchars($row['resenha_texto']);
+    $foto = htmlspecialchars($row['livro_foto']);
+    $autor = htmlspecialchars($row['res_nome_fantasia']);
 
     echo "
+<<<<<<< Updated upstream
 -->
 <!DOCTYPE html>
 <html lang='pt-br'>
@@ -87,39 +88,59 @@ if ($result->num_rows > 0) {
                     <p>{$titulo}</p>
                     <p>Sinopse</p>
                     <p>{$sinopse}</p>
+=======
+>>>>>>> Stashed changes
 
+    <!DOCTYPE html>
+    <html lang='pt-br'>
+    <head>
+        <meta charset='UTF-8'>
+        <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+        <title>Avaliar resenha - BACKSTAGECommunity</title>
+        <link rel='stylesheet' href='../home.css'>
+        <link rel='stylesheet' href='../geral.css'>
+    </head>
+    <body>
+        <header>
+            Administrador BC
+        </header>
+        <main>
+            <p class='avaliar'>AVALIAR RESENHA</p>
+            <div class='card'>
+                <div class='cardimgsinopse'>
+                    <img class='imagem' src='../imagens/livros/{$foto}' alt=''>
+                    <div class='sinopse'>
+                        <p>{$titulo}</p>
+                        <p>Sinopse</p>
+                        <p><?php echo $sinopse; ?></p>
+                    </div>
                 </div>
-            </div>
 
-            <div class='cardresenha'>
-                <div class='resenha'>
-                    <p>RESENHA</p>
-                    <p>{$texto}</p>
-                    <p>{$autor}</p>
+                <div class='cardresenha'>
+                    <div class='resenha'>
+                        <p>RESENHA</p>
+                        <p><?php echo $texto; ?></p>
+                        <p><?php echo $autor; ?></p>
+                    </div>
                 </div>
+
+                <form action='?id=<?php echo $dado; ?>' method='post' class='cardforms'>
+                    <select class='notas' name='avaliar' required>
+                        <option class='resultado' value=''>Avaliar</option>
+                        <option class='resultado' value='1'>Reprovada</option>
+                        <option class='resultado' value='3'>Corrigir</option>
+                        <option class='resultado' value='2'>Aprovada</option>
+                    </select>
+                    <input class='teste' type='submit' value='Enviar'>
+                </form>
             </div>
-
-            <form action='?id={$dado}' method='post' class='cardforms'>
-                <select class='notas' name='avaliar' required>
-
-                    <option class='resultado' value=''>Avaliar</option>
-                    <option class='resultado' value='1'>Reprovada</option>
-                    <option class='resultado' value='3'>Corrigir</option>
-                    <option class='resultado' value='2'>Aprovada</option>
-                </select>
-
-                <input class='teste' type='submit' value='Enviar'>
-            </form>
-        </div>
-    </main>
-    <script src="script.js"></script>
-</body>
-
-</html>
-";
+        </main>
+        <script src='script.js'></script>
+    </body>
+    </html>";
 
 } else {
-echo "<p>Resenha não encontrada.</p>";
+    echo "<p>Resenha não encontrada.</p>";
 }
 
 $stmt->close();

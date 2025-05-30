@@ -7,8 +7,9 @@ include "../protecao.php";
 <html lang="en">
 
 <head>
+<link rel="stylesheet" href="../geral.css">
 <link rel="stylesheet" href="../resenhistas.css">
-    <link rel="stylesheet" href="../geral.css">
+
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -79,9 +80,6 @@ include "../protecao.php";
             </li>
         </ul>
     </nav>
-
-
-
     <!--EXIBE OS CARDS DAS LIVRARIAS-->
     <main>
         <div class="busca-container">
@@ -90,8 +88,6 @@ include "../protecao.php";
                 <button type="submit"><i class='bx bx-search'></i></button>
             </form>
         </div>
-
-
         <div class="pesquisa">
             <?php
             if (!isset($_GET['busca']) || empty($_GET['busca'])) {
@@ -115,14 +111,17 @@ LEFT JOIN
     resenhas ON resenhistas.res_id = resenhas.res_id
 LEFT JOIN 
     titulo ON resenhistas.tit_id = titulo.tit_id
-LEFT JOIN usuarios ON  usuarios.usu_id = resenhistas.res_id
+LEFT JOIN 
+    usuarios ON usuarios.usu_id = resenhistas.res_id
+WHERE 
+    resenhistas.res_nome_fantasia LIKE '%$pesquisa%'
 GROUP BY 
-    usuarios.usu_nome,
     resenhistas.res_id,
     resenhistas.res_nome_fantasia,
     resenhistas.res_telefone,
     titulo.tit_nome,
-    resenhistas.res_foto
+    resenhistas.res_foto,
+    usuarios.usu_nome
 ";
                 $sql_query = $conn->query($sql_code) or die("Erro ao consultar: " . $conn->error);
 
@@ -146,7 +145,6 @@ GROUP BY
                                  <div class='resenha-contador'>
                                     <p><strong>Total de Resenhas:</strong> {$dados['total_resenhas']}</p>
                                 </div> 
-                          
                         </div>
             ";
                     }

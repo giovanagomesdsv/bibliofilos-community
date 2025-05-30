@@ -296,7 +296,8 @@ header {
     font-weight: bold;
     background-color: #2A4A64;
     width: 10rem;
-    height: 2rem;
+    height: 3rem;
+    
 }
 
 .botao:hover {
@@ -312,7 +313,7 @@ header {
 /* altura do card pequeno height: 15rem; a altura precisa pra por em cards menores */
 
 
-
+/*card*/
 .textnotificaçao {
     width: 100%;
     border-bottom: 2px solid var(--terciaria);
@@ -330,7 +331,7 @@ p{
     width: 10rem;
     height: 15rem;
 }
-.imagem IMG{
+.imagem img{
     width: 100%;
     height: 100%;
 }
