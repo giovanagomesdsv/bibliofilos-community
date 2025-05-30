@@ -59,6 +59,7 @@ if ($result->num_rows > 0) {
 
     echo "
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 -->
 <!DOCTYPE html>
 <html lang='pt-br'>
@@ -88,6 +89,8 @@ if ($result->num_rows > 0) {
                     <p>{$titulo}</p>
                     <p>Sinopse</p>
                     <p>{$sinopse}</p>
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 
