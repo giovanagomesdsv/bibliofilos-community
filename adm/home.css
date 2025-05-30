@@ -51,22 +51,31 @@ flex-direction: column;
 
 .cardimgsinopse{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     border: solid red;
 }
-
+.imgavaliar{
+    margin:2rem;
+    border: solid red;
+}
+/* texto de sinopse */
 .cardimgsinopse p{
-margin: 2rem;
+margin:3rem;
+border: solid red;
+font-size: 1.6rem;
 
 }
 
 .cardresenha{
     display: flex;
-    
+    border: solid red;
+height: auto;
+
 }
 
 .cardresenha p{
 margin: 2rem;
+font-size: 1.6rem;
 
 }
 
@@ -94,6 +103,7 @@ margin: 2rem;
 .cardforms{
     display: flex;
     justify-content: center;
+    padding: 2rem;
 }
 .notas{
     color: #000;
