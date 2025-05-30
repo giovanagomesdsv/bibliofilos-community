@@ -77,19 +77,18 @@ include "../protecao.php";
 
     <main>
         <!--Botão de cadastro de usuário-->
-        <div class='container'>
             <div class="botao">
                 <a href="cadastrarusuario.php">Cadastrar usuário</a>
             </div>
 
             <!-- BARRA DE PESQUISA -->
-            <div class='busca'>
-                <form action="" method="GET" class='search-form'>
-                    <input type="text" name="busca" placeholder="PESQUISAR USUARIOS" class='search-input'>
-                </form>
-            </div>
+        <div class="busca-container">
+            <form action="" method="GET" class="busca-form">
+                <input type="text" name="busca" placeholder="nome do usuário">
+                <button type="submit"><i class='bx bx-search'></i></button>
+            </form>
         </div>
-        <div> <!-- DIV DA CAIXA ONDE DENTRO APARECERÁ OS CARDS DO RESULTADO DA BUSCA-->
+        <div class="pesquisa"> <!-- DIV DA CAIXA ONDE DENTRO APARECERÁ OS CARDS DO RESULTADO DA BUSCA-->
             <?php
             if (!isset($_GET['busca']) || empty($_GET['busca'])) {
                 echo "<div class='resultados'></div>";
@@ -126,7 +125,7 @@ include "../protecao.php";
                          <p class='inputNome'>Usuário: {$dados['usu_nome']}</p>
                          <text class='inputText'>TIPO DE USUARIO</text>
                          <div class='containerBtnInput'>
-                         <p class='inputID'>Id: {$dados['usu.id']</p>
+                         <p class='inputID'>Id: {$dados['usu.id']}</p>
                           <a href='editarusuario.php?id={$dados['usu_id']}'><div class='atualizarBotao'>ATUALIZAR</div></a>
                     </div>
                 </div>
@@ -138,7 +137,7 @@ include "../protecao.php";
                              <p class='inputNome'>Usuário: {$dados['usu_nome']}</p>
                              <text class='inputText'>TIPO DE USUARIO</text>
                              <div class='containerBtnInput'>
-                             <p class='inputID'>Id: {$dados['usu.id']</p>
+                             <p class='inputID'>Id: {$dados['usu.id']}</p>
                               <a href='editarusuario.php?id={$dados['usu_id']}'><div class='atualizarBotao'>ATUALIZAR</div></a>
                         </div>
                     </div>

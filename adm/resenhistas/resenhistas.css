@@ -1,36 +1,32 @@
-
-
 /* Container geral do card */
 .resenhista-box {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
-    background-color: var(--principal); /* tom azul escuro */
-    padding: 2rem;
-    margin: 2rem ;
+    background-color: var(--principal);
+    /* tom azul escuro */
+    padding: 1rem;
+    margin: 2rem;
     border-radius: 6px;
     color: var(--text);
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
     font-family: Arial, sans-serif;
     width: 100%;
-    border: solid 1px red;
 }
-.cardtext{
+
+.cardtext {
     display: flex;
     align-items: center;
-   justify-content: center;
-   flex-direction: column;
-   border: solid 1px red;
-
+    justify-content: center;
+    flex-direction: column;
 }
 
 /* Informações alinhadas à esquerda */
 .resenhista-info a {
     display: flex;
- align-items: center;
-flex-direction: row;
+    align-items: center;
+    flex-direction: row;
     gap: 2rem;
-    border: solid 1px red;
 }
 
 /* Contador de resenhas à direita */
@@ -39,13 +35,15 @@ flex-direction: row;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color:var(--bg);
+    background-color: var(--bg);
     color: #000;
 
     border-radius: 4px;
     font-weight: bold;
-    height: 100%;
-    border: solid 1px red;
+    height: 50%;
 
 }
 
+.resenha-contador p {
+    color: #000;
+}

@@ -74,29 +74,14 @@ include "../protecao.php";
                 <a href="../logout.php"><i class='bx bx-log-out'></i></a>
             </li>
         </ul>
-<<<<<<< Updated upstream
     </nav> 
 <main>
-    <div class="busca-container">
-        <form action="" method="GET">
-            <input type="text" name="busca" placeholder="Busque as livrarias...">
-            <button type="submit">Pesquisar</button>
-        </form>
-    </div>
-=======
-    </nav>
-    <main>
-
-        <!--BARRA DE PESQUISA------------------------------------------------------------------>
-        <div class="busca-container">
+<div class="busca-container">
             <form action="" method="GET" class="busca-form">
-                <input type="text" name="busca" placeholder="nome do resenhista">
+                <input type="text" name="busca" placeholder="nome do usuário">
                 <button type="submit"><i class='bx bx-search'></i></button>
             </form>
         </div>
->>>>>>> Stashed changes
-
-
         <div class="pesquisa">
             <?php
         if (!isset($_GET['busca']) || empty($_GET['busca'])) {
@@ -129,32 +114,18 @@ INNER JOIN autores ON livro_autores.aut_id = autores.aut_id
                 while ($dados = $sql_query->fetch_assoc()) {
                     echo "
                          <div>
-<<<<<<< Updated upstream
-        <div>
-           <img src='../imagens/livros/{$dados['livro_foto']}'>
-        </div>
-        <div>
-           <p class=''>{$dados['livro_titulo']}</p>
-           <p>{$dados['aut_nome']}</p>
-           <p>R$ {$dados['liv_livro_preco']}</p>
-           <p>{$dados['liv_nome']}</p>
-        </div>
-    </div>
-=======
                             <div class='card card-livro'>
                                 <div class='imagem'>
                                     <img src='../imagens/livros/{$dados['livro_foto']}'>
                                 </div>
                                 <div class='informacoes'>
-                                    <p class="inputNome"><strong>" . htmlspecialchars($linha['livro_titulo']) . "</strong></p>
-                                    <p class="inputNome">Autor: " . htmlspecialchars($linha['aut_nome']) . "</p>
-                                    <p class="inputNome">Preço: R$ " . number_format($linha['liv_livro_preco'], 2, ',', '.') . "</p>
-                                    <p class="inputNome">Livraria: " . htmlspecialchars($linha['liv_nome']) . "</p>
+                                    <p class='inputNome'><strong>" . htmlspecialchars($dados['livro_titulo']) . "</strong></p>
+                                    <p class='inputNome'>Autor: " . htmlspecialchars($dados['aut_nome']) . "</p>
+                                    <p class='inputNome'>Preço: R$ " . number_format($dados['liv_livro_preco'], 2, ',', '.') . "</p>
+                                    <p class='inputNome'>Livraria: " . htmlspecialchars($dados['liv_nome']) . "</p>
                                 </div>
                             </div>";
->>>>>>> Stashed changes
          
-            ";
                 }
             }
         }
@@ -192,10 +163,10 @@ if ($tabela = mysqli_query($conn, $sql_code)) {
                     <img src='../imagens/livros/{$linha['livro_foto']}' alt='" . htmlspecialchars($linha['livro_titulo']) . "'>
                 </div>
                 <div class='informacoes'>
-                    <p class="inputNome"><strong>" . htmlspecialchars($linha['livro_titulo']) . "</strong></p>
-                    <p class="inputNome">Autor: " . htmlspecialchars($linha['aut_nome']) . "</p>
-                    <p class="inputNome">Preço: R$ " . number_format($linha['liv_livro_preco'], 2, ',', '.') . "</p>
-                    <p class="inputNome">Livraria: " . htmlspecialchars($linha['liv_nome']) . "</p>
+                    <p class='inputNome'><strong>" . htmlspecialchars($linha['livro_titulo']) . "</strong></p>
+                    <p class='inputNome'>Autor: " . htmlspecialchars($linha['aut_nome']) . "</p>
+                    <p class='inputNome'>Preço: R$ " . number_format($linha['liv_livro_preco'], 2, ',', '.') . "</p>
+                    <p class='inputNome'>Livraria: " . htmlspecialchars($linha['liv_nome']) . "</p>
                 </div>
             </div>";
         }

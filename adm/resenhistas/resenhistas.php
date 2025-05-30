@@ -84,7 +84,7 @@ include "../protecao.php";
     <main>
         <div class="busca-container">
             <form action="" method="GET" class="busca-form">
-                <input type="text" name="busca" placeholder="nome do resenhista">
+                <input type="text" name="busca" placeholder="pseudonimo do resenhista">
                 <button type="submit"><i class='bx bx-search'></i></button>
             </form>
         </div>
@@ -130,22 +130,43 @@ GROUP BY
                 } else {
 
                     while ($dados = $sql_query->fetch_assoc()) {
+
+                        $nomeFantasia = htmlspecialchars($dados['res_nome_fantasia']);
+                        $telefone = preg_replace('/[^0-9]/', '', $dados['res_telefone']); // só números
+                        $titulo = htmlspecialchars($dados['tit_nome']);
+                        $foto = htmlspecialchars($dados['res_foto']);
+                        $nomeUsuario = htmlspecialchars($dados['usu_nome']);
+                        $totalResenhas = (int) $dados['total_resenhas']; 
+
+                        
+                // Mensagem para o WhatsApp
+                $mensagem = urlencode("Olá, aqui fala a administradora do site Bibliófilos Community!");
+
+                // Verifica se a imagem existe
+                $caminhoImagem = "../imagens/resenhistas/" . $foto;
+                $imgTag = file_exists($caminhoImagem)
+                    ? "<img src='$caminhoImagem' alt='Foto do Resenhista' style='width:100px;'>"
+                    : "<div style='width:100px; height:100px; background:#ccc;'>Sem imagem</div>";
+ 
                         echo "
 
-                        <div class='resenhista-box'>
-                            <div class='resenhista-info'>
-                                  <a href=\"https://wa.me/{$dados['res_telefone']}?text=$mensagem\" target=\"_blank\"><img src='../imagens/resenhistas/{$dados['res_foto']}' alt='Foto do Resenhista'></a>
-                                </div>
-                                  <div class='cardtext'>
-                                 <h3>{$dados['usu_nome']}</h3>
-                                 <p><strong>Pseudônimo:</strong> {$dados['res_nome_fantasia']}</p>
-                                 <p><strong>Titulo:</strong> {$dados['tit_nome']}</p>
-                                 </div>
-                                 
-                                 <div class='resenha-contador'>
-                                    <p><strong>Total de Resenhas:</strong> {$dados['total_resenhas']}</p>
-                                </div> 
+                       <div class='resenhista-box'>
+                        <div class='resenhista-info'>
+                            <a href='https://wa.me/{$telefone}?text={$mensagem}' target='_blank'>
+                                $imgTag
+                            </a>
                         </div>
+                            <div class='cardtext'>
+                                <h3>$nomeUsuario</h3>
+                                <p><strong>Pseudônimo:</strong> $nomeFantasia</p>
+                                <p><strong>Título:</strong> $titulo</p>
+                            </div>
+                       
+                        <div class='resenha-contador'>
+                            <p>Total de resenhas:</p>
+                            $totalResenhas
+                        </div>
+                    </div>
             ";
                     }
                 }
@@ -211,7 +232,7 @@ GROUP BY
                             </div>
                        
                         <div class='resenha-contador'>
-                            <p>Total de resenhas</p>
+                            <p>Total de resenhas:</p>
                             $totalResenhas
                         </div>
                     </div>

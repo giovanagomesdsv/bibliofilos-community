@@ -44,19 +44,6 @@
 /* texto de informaçao dos resenhsotas */
 
 .card1 .info {
-<<<<<<< Updated upstream
-=======
-    display: flex;
-    flex-direction: column;
-    color: var(--text);
-    border: 1PX SOLID RED;
-    width: 25%;
-}
-
-/* css do avaliar________________________________________________________________________ */
-
-.cardimgsinopse {
->>>>>>> Stashed changes
     display: flex;
     flex-direction: column;
     color: var(--text);
@@ -71,57 +58,45 @@
     flex-direction: row;
     border: solid red;
 }
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-.imgavaliar{
-    margin:2rem;
+
+.imgavaliar {
+    margin: 2rem;
     border: solid red;
 }
+
 /* texto de sinopse */
-.cardimgsinopse p{
-margin:3rem;
-border: solid red;
-font-size: 1.6rem;
-=======
+.cardimgsinopse p {
+    margin: 3rem;
+    border: solid red;
+    font-size: 1.6rem;
+}
 
 .cardimgsinopse p {
     margin: 2rem;
->>>>>>> Stashed changes
-=======
+}
 
 .cardimgsinopse p {
     margin: 2rem;
->>>>>>> Stashed changes
-
 }
 
 .cardresenha {
     display: flex;
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
     border: solid red;
-height: auto;
-
-}
-
-.cardresenha p{
-margin: 2rem;
-font-size: 1.6rem;
-=======
+    height: auto;
 
 }
 
 .cardresenha p {
     margin: 2rem;
->>>>>>> Stashed changes
-=======
-
+    font-size: 1.6rem;
 }
 
 .cardresenha p {
     margin: 2rem;
->>>>>>> Stashed changes
+}
 
+.cardresenha p {
+    margin: 2rem;
 }
 
 /* Seções internas */
@@ -131,7 +106,6 @@ font-size: 1.6rem;
     padding: 1rem;
     margin-top: 1rem;
     border-radius: 5px;
-    border: solid 10px red;
 }
 
 /* Títulos das seções */

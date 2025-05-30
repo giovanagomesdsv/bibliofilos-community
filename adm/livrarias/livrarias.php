@@ -77,32 +77,18 @@ include "../../protecao.php";
             </li>
         </ul>
     </nav>
+    <main>
 
-<<<<<<< Updated upstream
     <!--EXIBE OS CARDS DAS LIVRARIAS-->
     <div class="busca-container">
-=======
-<!--EXIBE OS CARDS DAS LIVRARIAS-->
-<div class="busca-container">
->>>>>>> Stashed changes
             <form action="" method="GET" class="busca-form">
                 <input type="text" name="busca" placeholder="nome do resenhista">
                 <button type="submit"><i class='bx bx-search'></i></button>
             </form>
     </div>
 
-<<<<<<< Updated upstream
     <div class="pesquisa">
         <?php
-=======
-
-       
-        <!-- <div class="pesquisa">
-            <?php
-            if (!isset($_GET['busca']) || empty($_GET['busca'])) {
-                echo "<div class='resultados'></div>";
-            } else {
->>>>>>> Stashed changes
 
 if (!isset($_GET['busca']) || empty(trim($_GET['busca']))) {
     echo "<div class='resultados'></div>";
@@ -113,18 +99,25 @@ if (!isset($_GET['busca']) || empty(trim($_GET['busca']))) {
     // Query de busca
     $sql_code = "
         SELECT 
-            liv_nome, liv_cidade, liv_estado, liv_endereco, liv_email, liv_foto, liv_telefone, livrarias.liv_id,
-            COUNT(livrarias_livros.liv_livro_id) AS total_livros 
-        FROM 
-            livrarias
-        LEFT JOIN 
-            livrarias_livros ON livrarias.liv_id = livrarias_livros.liv_id
-        WHERE 
-            liv_nome LIKE '%$pesquisa%'
-        GROUP BY
-            livrarias.liv_id
-    ";
+    livrarias.liv_id,
+    liv_nome,
+    liv_cidade,
+    liv_estado,
+    liv_endereco,
+    liv_email,
+    liv_foto,
+    liv_telefone,
+    COUNT(livrarias_livros.liv_livro_id) AS total_livros 
+FROM 
+    livrarias
+LEFT JOIN 
+    livrarias_livros ON livrarias.liv_id = livrarias_livros.liv_id
+WHERE 
+    liv_nome LIKE '%$pesquisa%'
+GROUP BY
+    livrarias.liv_id, liv_nome, liv_cidade, liv_estado, liv_endereco, liv_email, liv_foto, liv_telefone
 
+    ";
     $sql_query = $conn->query($sql_code) or die("Erro ao consultar: " . $conn->error);
 
     if ($sql_query->num_rows == 0) {
@@ -150,15 +143,9 @@ if (!isset($_GET['busca']) || empty(trim($_GET['busca']))) {
 }
 ?>
     </div>
-
-
     <div>
-        <main>
-
-            <!--TODAS AS LIVRARIAS <H2>-->
+            <!--TODAS AS LIVRARIAS-->
             <h2>TODAS LIVRARIAS</h2>
-            <div class='linha-horizontal'></div>
-
             <?php
         // Consulta SQL preparada
         $consulta = "
