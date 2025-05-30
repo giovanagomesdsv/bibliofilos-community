@@ -8,6 +8,8 @@ include "../protecao.php";
 <head>
     <link rel="stylesheet" href="livros.css">
     <link rel="stylesheet" href="../geral.css">
+   
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -17,15 +19,17 @@ include "../protecao.php";
 </head>
 
 <body>
-    <header>       
+    <header>
         Administrador BC
     </header>
-    <nav class="sidebar" id="sidebar"> 
-       <div class="nome">
+    <nav class="sidebar" id="sidebar">
+        <div class="nome">
 
             <li class="logo_name">
                 <a href="perfil/perfil.php">
-                    <span class="link_name"><?php echo $_SESSION['nome']; ?></span>
+                    <span class="link_name">
+                        <?php echo $_SESSION['nome']; ?>
+                    </span>
                 </a>
             </li>
 
@@ -36,7 +40,7 @@ include "../protecao.php";
 
         </div>
         <ul class="nav-list">
-            <li >
+            <li>
                 <a href="../home.php">
                     <i class='bx bx-home-alt-2'></i>
                     <span class="link_name">Home</span>
@@ -70,6 +74,7 @@ include "../protecao.php";
                 <a href="../logout.php"><i class='bx bx-log-out'></i></a>
             </li>
         </ul>
+<<<<<<< Updated upstream
     </nav> 
 <main>
     <div class="busca-container">
@@ -78,10 +83,22 @@ include "../protecao.php";
             <button type="submit">Pesquisar</button>
         </form>
     </div>
+=======
+    </nav>
+    <main>
+
+        <!--BARRA DE PESQUISA------------------------------------------------------------------>
+        <div class="busca-container">
+            <form action="" method="GET" class="busca-form">
+                <input type="text" name="busca" placeholder="nome do resenhista">
+                <button type="submit"><i class='bx bx-search'></i></button>
+            </form>
+        </div>
+>>>>>>> Stashed changes
 
 
-    <div class="pesquisa">
-        <?php
+        <div class="pesquisa">
+            <?php
         if (!isset($_GET['busca']) || empty($_GET['busca'])) {
             echo "<div class='resultados'></div>";
         } else {
@@ -112,6 +129,7 @@ INNER JOIN autores ON livro_autores.aut_id = autores.aut_id
                 while ($dados = $sql_query->fetch_assoc()) {
                     echo "
                          <div>
+<<<<<<< Updated upstream
         <div>
            <img src='../imagens/livros/{$dados['livro_foto']}'>
         </div>
@@ -122,19 +140,31 @@ INNER JOIN autores ON livro_autores.aut_id = autores.aut_id
            <p>{$dados['liv_nome']}</p>
         </div>
     </div>
+=======
+                            <div class='card card-livro'>
+                                <div class='imagem'>
+                                    <img src='../imagens/livros/{$dados['livro_foto']}'>
+                                </div>
+                                <div class='informacoes'>
+                                    <p class="inputNome"><strong>" . htmlspecialchars($linha['livro_titulo']) . "</strong></p>
+                                    <p class="inputNome">Autor: " . htmlspecialchars($linha['aut_nome']) . "</p>
+                                    <p class="inputNome">Preço: R$ " . number_format($linha['liv_livro_preco'], 2, ',', '.') . "</p>
+                                    <p class="inputNome">Livraria: " . htmlspecialchars($linha['liv_nome']) . "</p>
+                                </div>
+                            </div>";
+>>>>>>> Stashed changes
          
             ";
                 }
             }
         }
         ?>
-    </div>
 
 
 
 
-    <div>
-    <?php
+
+            <?php
 // Consulta segura utilizando Prepared Statements
 $sql_code = "
     SELECT 
@@ -157,15 +187,15 @@ if ($tabela = mysqli_query($conn, $sql_code)) {
         while ($linha = mysqli_fetch_assoc($tabela)) {
             // Exibindo os resultados de forma estruturada
             echo "
-            <div class='livro'>
+            <div class='card card-livro'>
                 <div class='imagem'>
                     <img src='../imagens/livros/{$linha['livro_foto']}' alt='" . htmlspecialchars($linha['livro_titulo']) . "'>
                 </div>
                 <div class='informacoes'>
-                    <p><strong>" . htmlspecialchars($linha['livro_titulo']) . "</strong></p>
-                    <p>Autor: " . htmlspecialchars($linha['aut_nome']) . "</p>
-                    <p>Preço: R$ " . number_format($linha['liv_livro_preco'], 2, ',', '.') . "</p>
-                    <p>Livraria: " . htmlspecialchars($linha['liv_nome']) . "</p>
+                    <p class="inputNome"><strong>" . htmlspecialchars($linha['livro_titulo']) . "</strong></p>
+                    <p class="inputNome">Autor: " . htmlspecialchars($linha['aut_nome']) . "</p>
+                    <p class="inputNome">Preço: R$ " . number_format($linha['liv_livro_preco'], 2, ',', '.') . "</p>
+                    <p class="inputNome">Livraria: " . htmlspecialchars($linha['liv_nome']) . "</p>
                 </div>
             </div>";
         }
@@ -177,9 +207,9 @@ if ($tabela = mysqli_query($conn, $sql_code)) {
 }
 ?>
 
-    </div>
 
 
+    </main>
 
 </main>
     <script src="../script.js"></script>

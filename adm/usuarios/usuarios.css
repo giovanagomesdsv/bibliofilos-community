@@ -106,6 +106,7 @@
     margin-bottom: 5px;
 }
 
+<<<<<<< Updated upstream
 .inputText{
     margin-right:36rem;
 }
@@ -119,6 +120,9 @@
     background-color: white; /* Cor de fundo do input */
     
 }
+=======
+
+>>>>>>> Stashed changes
 
 .inputID {
     width: 50%; /* Largura total do input */
