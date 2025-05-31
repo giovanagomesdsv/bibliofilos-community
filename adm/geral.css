@@ -271,6 +271,7 @@ header {
     background-color: var(--pesquisa);
     border-radius: 0.5rem 0 0 0.5rem;
     /* arredonda o lado esquerdo */
+    color: #000;
 }
 
 .busca-form button {
@@ -288,6 +289,10 @@ header {
 
 /* Botão estilizado */
 .botao {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: .5rem;
     background-color: var(--secundaria);
     color: var(--text);
     border: none;
@@ -304,16 +309,14 @@ header {
     background-color: var(--terciaria);
 }
 
+/*card*/
 .card {
     background-color: var(--principal);
     width: 100%;
     color: var(--text);
-    border-radius: 1.6rem;
+    border-radius: .8rem;
 }
 /* altura do card pequeno height: 15rem; a altura precisa pra por em cards menores */
-
-
-/*card*/
 .textnotificaçao {
     width: 100%;
     border-bottom: 2px solid var(--terciaria);
@@ -336,14 +339,12 @@ p{
     height: 100%;
 }
 
-/*input branco*/
-
-.inputNome {
-     /* Largura total do input */
+.input {
+    width: 96%; /* Largura total do input */
     padding: 1rem;
     border: none;
     border-radius: 4px; 
-    margin: 1rem;
+    margin:1rem;
     background-color: white; /* Cor de fundo do input */
     color: #000;
 }

@@ -8,25 +8,23 @@ include "../../protecao.php";
 <html lang="pt-br">
 
 <head>
-    <link rel="stylesheet" href="../geral.css">
-    <link rel="stylesheet" href="livrarias.css">
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
-    <title>ADM BC - Livrarias</title>
+    <link rel="stylesheet" href="../geral.css">
+    <link rel="stylesheet" href="livrarias.css">
+
+    <title>Livrarias - BACKSTAGE Community</title>
 </head>
 
 <body>
     <header>
-        Administrador BC
+        BACKSTAGE Community
     </header>
     <nav class="sidebar" id="sidebar">
         <div class="nome">
-
             <li class="logo_name">
                 <a href="perfil/perfil.php">
                     <span class="link_name">
@@ -34,12 +32,9 @@ include "../../protecao.php";
                     </span>
                 </a>
             </li>
-
-
             <div class="menu" id="menu">
                 <i class="bx bx-menu"></i>
             </div>
-
         </div>
         <ul class="nav-list">
             <li>
@@ -79,131 +74,112 @@ include "../../protecao.php";
     </nav>
     <main>
 
-    <!--EXIBE OS CARDS DAS LIVRARIAS-->
-    <div class="busca-container">
+        <!--EXIBE OS CARDS DAS LIVRARIAS-->
+        <div class="busca-container">
             <form action="" method="GET" class="busca-form">
                 <input type="text" name="busca" placeholder="nome do resenhista">
                 <button type="submit"><i class='bx bx-search'></i></button>
             </form>
-    </div>
-
-    <div class="pesquisa">
-        <?php
-
-if (!isset($_GET['busca']) || empty(trim($_GET['busca']))) {
-    echo "<div class='resultados'></div>";
-} else {
-    // Proteção contra SQL Injection
-    $pesquisa = $conn->real_escape_string($_GET['busca']);
-
-    // Query de busca
-    $sql_code = "
-        SELECT 
-    livrarias.liv_id,
-    liv_nome,
-    liv_cidade,
-    liv_estado,
-    liv_endereco,
-    liv_email,
-    liv_foto,
-    liv_telefone,
-    COUNT(livrarias_livros.liv_livro_id) AS total_livros 
-FROM 
-    livrarias
-LEFT JOIN 
-    livrarias_livros ON livrarias.liv_id = livrarias_livros.liv_id
-WHERE 
-    liv_nome LIKE '%$pesquisa%'
-GROUP BY
-    livrarias.liv_id, liv_nome, liv_cidade, liv_estado, liv_endereco, liv_email, liv_foto, liv_telefone
-
-    ";
-    $sql_query = $conn->query($sql_code) or die("Erro ao consultar: " . $conn->error);
-
-    if ($sql_query->num_rows == 0) {
-        echo "<div class='resultados'><h3>Nenhum resultado encontrado!</h3></div>";
-    } else {
-        while ($dados = $sql_query->fetch_assoc()) {
-            // Mensagem opcional para WhatsApp (pode personalizar)
-            $mensagem = urlencode("Olá, gostaria de saber mais sobre sua livraria!");
-
-            echo "
-                <div class='livraria-card'>
-                    <a href='https://wa.me/{$dados['liv_telefone']}?text={$mensagem}' target='_blank'>
-                        <img src='../imagens/livrarias/{$dados['liv_foto']}' alt='Logo da livraria' class='livraria-card'>
-                    </a>
-                    <p>{$dados['liv_nome']}</p>
-                    <p>{$dados['liv_email']}</p>
-                    <p>{$dados['liv_cidade']} ({$dados['liv_estado']})</p>
-                    <div>Total de livros: {$dados['total_livros']}</div>
-                </div>
-            ";
-        }
-    }
-}
-?>
-    </div>
-    <div>
-            <!--TODAS AS LIVRARIAS-->
-            <h2>TODAS LIVRARIAS</h2>
-            <?php
-        // Consulta SQL preparada
-        $consulta = "
-    SELECT 
-        liv_nome,
-        liv_cidade,
-        liv_estado,
-        liv_endereco,
-        liv_email,
-        liv_foto,
-        liv_telefone,
-        livrarias.liv_id,
-        COUNT(livrarias_livros.liv_livro_id) AS total_livros 
-    FROM 
-        livrarias
-    LEFT JOIN 
-        livrarias_livros ON livrarias.liv_id = livrarias_livros.liv_id
-    GROUP BY 
-        liv_nome, liv_cidade, liv_estado, liv_endereco, liv_email, liv_foto, liv_telefone
-";
-
-        if ($stmt = $conn->prepare($consulta)) {
-            // Executa a consulta
-            $stmt->execute();
-
-            // Associa os resultados
-            $stmt->bind_result($liv_nome, $liv_cidade, $liv_estado, $liv_endereco, $liv_email, $liv_foto, $liv_telefone, $liv_id, $total_livros);
-
-            // Loop para exibir os resultados
-            while ($stmt->fetch()) {
-                // Mensagem personalizada para o WhatsApp
-                $mensagem = urlencode("Olá, aqui fala a administradora do site Bibliófilos Community, gostaria de solicitar mais informações sobre sua livraria/ movimentações no nosso site!");
-
-                // Exibindo os dados das livrarias de maneira segura
-                echo "
-        <div class='card'>
-            <a href=\"https://wa.me/{$liv_telefone}?text=$mensagem\" target=\"_blank\">
-                <img src=\"../imagens/livrarias/{$liv_foto}\" alt=''>
-            </a>
-            <p>" . htmlspecialchars($liv_nome, ENT_QUOTES, 'UTF-8') . "</p>
-            <p>" . htmlspecialchars($liv_email, ENT_QUOTES, 'UTF-8') . "</p>
-            <p>" . htmlspecialchars($liv_cidade, ENT_QUOTES, 'UTF-8') . " ({$liv_estado})</p>
-            <div class='total_livros'>Total de Livros: {$total_livros}</div>
         </div>
-        ";
+
+        <div class="pesquisa">
+            <?php
+
+            if (!isset($_GET['busca']) || empty(trim($_GET['busca']))) {
+                echo "<div class='resultados'></div>";
+            } else {
+                // Proteção contra SQL Injection
+                $pesquisa = $conn->real_escape_string($_GET['busca']);
+
+                // Query de busca
+                $sql_code = "
+        SELECT livrarias.liv_id, liv_nome, liv_cidade, liv_estado, liv_endereco, liv_email, liv_foto, liv_telefone,
+        COUNT(livrarias_livros.liv_livro_id) AS total_livros 
+         FROM  livrarias
+    LEFT JOIN  livrarias_livros ON livrarias.liv_id = livrarias_livros.liv_id
+        WHERE  liv_nome LIKE '%$pesquisa%'
+     GROUP BY livrarias.liv_id, liv_nome, liv_cidade, liv_estado, liv_endereco, liv_email, liv_foto, liv_telefone";
+                $sql_query = $conn->query($sql_code) or die("Erro ao consultar: " . $conn->error);
+
+                if ($sql_query->num_rows == 0) {
+                    echo "<div class='resultados'><h3>Nenhum resultado encontrado!</h3></div>";
+                } else {
+                    while ($dados = $sql_query->fetch_assoc()) {
+                        $mensagem = urlencode("Olá, aqui fala a administradora do site Bibliófilos Community, gostaria de solicitar mais informações sobre sua livraria/ movimentações no nosso site!");
+
+                        $nome = htmlspecialchars($dados['liv_nome']);
+                        $email = htmlspecialchars($dados['liv_email']);
+                        $cidade = htmlspecialchars($dados['liv_cidade']);
+                        $estado = htmlspecialchars($dados['liv_estado']);
+                        $telefone = htmlspecialchars($dados['liv_telefone']);
+                        $total = (int) $dados['total_livros'];
+                        $foto = htmlspecialchars($dados['liv_foto']);
+
+                        echo "
+          <div class='card-liv'>
+              <a href=\"https://wa.me/{$telefone}?text=$mensagem\" target=\"_blank\">
+                 <img src=\"../imagens/livrarias/{$foto}\" alt=''>
+              </a>
+              <p>{$nome}</p>
+              <p>{$email}</p>
+              <p>{$cidade} ({$estado})</p>
+              <div class='input'>Total de Livros: {$total}</div>
+          </div>";
+                    }
+                }
             }
 
+            ?>
+        </div>
+        <h2>TODAS LIVRARIAS</h2>
+        <div class="livrarias">
+            <!--TODAS AS LIVRARIAS----------------------------------------------------->
 
+            <?php
+            $consulta = "
+    SELECT  liv_nome, liv_cidade, liv_estado, liv_endereco, liv_email, liv_foto, liv_telefone, livrarias.liv_id,
+     COUNT(livrarias_livros.liv_livro_id) AS total_livros 
+      FROM  livrarias
+ LEFT JOIN livrarias_livros ON livrarias.liv_id = livrarias_livros.liv_id
+  GROUP BY liv_nome, liv_cidade, liv_estado, liv_endereco, liv_email, liv_foto, liv_telefone";
 
-            // Fecha o statement
+            $stmt = $conn->prepare($consulta);
+            $stmt->execute();
+            $result = $stmt->get_result();
+
+            if ($result->num_rows > 0) {
+                // Loop para exibir os resultados
+                while ($res = $result->fetch_assoc()) {
+                    // Mensagem personalizada para o WhatsApp
+                    $mensagem = urlencode("Olá, aqui fala a administradora do site Bibliófilos Community, gostaria de solicitar mais informações sobre sua livraria/ movimentações no nosso site!");
+
+                    $nome = htmlspecialchars($res['liv_nome']);
+                    $email = htmlspecialchars($res['liv_email']);
+                    $cidade = htmlspecialchars($res['liv_cidade']);
+                    $estado = htmlspecialchars($res['liv_estado']);
+                    $telefone = htmlspecialchars($res['liv_telefone']);
+                    $total = htmlspecialchars($res['total_livros']);
+                    $foto = htmlspecialchars($res['liv_foto']);
+
+                    echo "
+          <div class='card-liv'>
+              <a href=\"https://wa.me/{$telefone}?text=$mensagem\" target=\"_blank\">
+                 <img src=\"../imagens/livrarias/{$foto}\" alt=''>
+              </a>
+              <p>{$nome}</p>
+              <p>{$email}</p>
+              <p>{$cidade} ({$estado})</p>
+              <div class='input'>Total de Livros: {$total}</div>
+          </div>
+          
+          ";
+                }
+            }
             $stmt->close();
-        } else {
-            echo "<p>Erro ao consultar as livrarias. Tente novamente mais tarde.</p>";
-        }
-        ?>
+            ?>
 
 
-    </div>
+        </div>
     </main>
     <script src="../script.js"></script>
 </body>

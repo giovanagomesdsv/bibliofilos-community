@@ -14,7 +14,7 @@ include "../conexao.php";
     <link rel="stylesheet" href="home.css">
     <link rel="stylesheet" href="geral.css">
 
-    <title>Home - BACKSTAGECommunity</title>
+    <title>Home - BACKSTAGE Community</title>
 
 </head>
 <style>
@@ -23,18 +23,15 @@ include "../conexao.php";
 
 <body>
     <header>
-        Administrador BC
+        BACKSTAGE Community
     </header>
     <nav class="sidebar" id="sidebar">
         <div class="nome">
-
             <li class="logo_name">
                 <a href="perfil/perfil.php">
                     <span class="link_name"><?php echo $_SESSION['nome']; ?></span>
                 </a>
             </li>
-
-
             <div class="menu" id="menu">
                 <i class="bx bx-menu"></i>
             </div>
@@ -96,10 +93,10 @@ include "../conexao.php";
             <?php
             // --------------------- RESENHAS ---------------------
             $sql = "SELECT resenha_titulo, res_nome_fantasia, resenha_id, livro_foto 
-    FROM RESENHAS 
-    INNER JOIN RESENHISTAS ON RESENHISTAS.res_id = RESENHAS.res_id 
-    INNER JOIN LIVROS ON RESENHAS.livro_id = LIVROS.livro_id 
-    WHERE resenha_status = 0";
+                      FROM RESENHAS 
+                INNER JOIN RESENHISTAS ON RESENHISTAS.res_id = RESENHAS.res_id 
+                INNER JOIN LIVROS ON RESENHAS.livro_id = LIVROS.livro_id 
+                     WHERE resenha_status = 0";
 
             $stmt = $conn->prepare($sql);
             $stmt->execute();
@@ -114,7 +111,7 @@ include "../conexao.php";
                     $foto = htmlspecialchars($res['livro_foto']);
 
                     echo "
-        <div class='card card1'>
+          <div class='card card1'>
                 <img class='imagem' src='imagens/livros/{$foto}' alt=''>
             <div class='info'>
                 <p>{$titulo}</p>
@@ -125,8 +122,7 @@ include "../conexao.php";
                   <button class='botao'>Avaliar</button>
                </a>
             </div>
-        </div>
-        ";
+          </div>";
                 }  
             }
             $stmt->close();
@@ -134,11 +130,10 @@ include "../conexao.php";
             // --------------------- LIVRARIAS ---------------------
             //uma forma difernte de fazer a mesma coisa acima
             $stmt = $conn->prepare("
-    SELECT usu_id, usu_nome, liv_nome, liv_foto 
-    FROM usuarios 
-    INNER JOIN livrarias ON livrarias.liv_id = usuarios.usu_id 
-    WHERE usu_tipo_usuario = 1 AND usu_status = 0
-");
+            SELECT usu_id, usu_nome, liv_nome, liv_foto 
+              FROM usuarios 
+        INNER JOIN livrarias ON livrarias.liv_id = usuarios.usu_id 
+             WHERE usu_tipo_usuario = 1 AND usu_status = 0");
 
             if ($stmt && $stmt->execute()) {  //Verifica se a variável existe e não é falsa e executa em seguida
                 $result = $stmt->get_result();
@@ -150,10 +145,8 @@ include "../conexao.php";
                     $foto = htmlspecialchars($liv['liv_foto']);
 
                     echo "
-        <div class='card card1'>
-            
-                <img class='imagem' src='../administrador/imagens/livrarias/{$foto}' alt=''>
-            
+          <div class='card card1'>
+                <img class='imagem' src='imagens/livrarias/{$foto}' alt=''>
             <div class='info'>
                 <p>{$livraria}</p>
                 <p>- {$usuario}</p>
@@ -163,20 +156,15 @@ include "../conexao.php";
                   <button class='botao'>Avaliar</button>
                </a>
             </div>
-        </div>
-        ";
+          </div>";
                 }
-                $stmt->close();
             }
+             $stmt->close();
             ?>
-
         </div>
-
-
     </main>
-
+    
     <script src="script.js"></script>
-
 </body>
 
 </html>

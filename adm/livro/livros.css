@@ -2,11 +2,14 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: space-around;
     padding: 1rem;
+    width: 100%;
+    margin: 1rem 0 0 -1rem;
     
 }
 
 .informacoes {
-    border: 1px solid red;
-    width: 100%;
+    width: 60%;
+    color: #000;
 }

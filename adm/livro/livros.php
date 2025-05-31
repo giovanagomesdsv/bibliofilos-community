@@ -4,27 +4,24 @@ include "../protecao.php";
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
-    <link rel="stylesheet" href="livros.css">
-    <link rel="stylesheet" href="../geral.css">
-   
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
-    <title>ADM BC - Livros</title>
+
+    <link rel="stylesheet" href="livros.css">
+    <link rel="stylesheet" href="../geral.css">
+    <title>Livros - BACKSTAGE Community</title>
 </head>
 
 <body>
     <header>
-        Administrador BC
+        BACKSTAGE Community
     </header>
     <nav class="sidebar" id="sidebar">
         <div class="nome">
-
             <li class="logo_name">
                 <a href="perfil/perfil.php">
                     <span class="link_name">
@@ -32,12 +29,9 @@ include "../protecao.php";
                     </span>
                 </a>
             </li>
-
-
             <div class="menu" id="menu">
                 <i class="bx bx-menu"></i>
             </div>
-
         </div>
         <ul class="nav-list">
             <li>
@@ -76,7 +70,7 @@ include "../protecao.php";
         </ul>
     </nav> 
 <main>
-<div class="busca-container">
+        <div class="busca-container">
             <form action="" method="GET" class="busca-form">
                 <input type="text" name="busca" placeholder="nome do usuário">
                 <button type="submit"><i class='bx bx-search'></i></button>
@@ -92,18 +86,13 @@ include "../protecao.php";
             $pesquisa = $conn->real_escape_string($_GET['busca']);
 
             // Query de busca
-            $sql_code = "SELECT 
-    livros.livro_titulo, 
-    livros.livro_foto, 
-    livrarias_livros.liv_livro_preco, 
-    autores.aut_nome, 
-    livrarias.liv_nome
-FROM livros
-INNER JOIN livrarias_livros ON livros.livro_id = livrarias_livros.livro_id
-INNER JOIN livrarias ON livrarias_livros.liv_id = livrarias.liv_id
-INNER JOIN livro_autores ON livros.livro_id = livro_autores.livro_id
-INNER JOIN autores ON livro_autores.aut_id = autores.aut_id
-   WHERE livro_titulo LIKE '%$pesquisa%' AND liv_livro_status = '1'";
+            $sql_code = "SELECT livros.livro_titulo, livros.livro_foto,  livrarias_livros.liv_livro_preco, autores.aut_nome, livrarias.liv_nome
+            FROM livros
+            INNER JOIN livrarias_livros ON livros.livro_id = livrarias_livros.livro_id
+            INNER JOIN livrarias ON livrarias_livros.liv_id = livrarias.liv_id
+            INNER JOIN livro_autores ON livros.livro_id = livro_autores.livro_id
+            INNER JOIN autores ON livro_autores.aut_id = autores.aut_id
+             WHERE livro_titulo LIKE '%$pesquisa%' AND liv_livro_status = '1'";
             
             $sql_query = $conn->query($sql_code) or die("Erro ao consultar: " . $conn->error);
 
@@ -112,30 +101,29 @@ INNER JOIN autores ON livro_autores.aut_id = autores.aut_id
             } else {
 
                 while ($dados = $sql_query->fetch_assoc()) {
-                    echo "
-                         <div>
-                            <div class='card card-livro'>
-                                <div class='imagem'>
-                                    <img src='../imagens/livros/{$dados['livro_foto']}'>
-                                </div>
-                                <div class='informacoes'>
-                                    <p class='inputNome'><strong>" . htmlspecialchars($dados['livro_titulo']) . "</strong></p>
-                                    <p class='inputNome'>Autor: " . htmlspecialchars($dados['aut_nome']) . "</p>
-                                    <p class='inputNome'>Preço: R$ " . number_format($dados['liv_livro_preco'], 2, ',', '.') . "</p>
-                                    <p class='inputNome'>Livraria: " . htmlspecialchars($dados['liv_nome']) . "</p>
-                                </div>
-                            </div>";
-         
+            $foto = htmlspecialchars($dados['livro_foto']);
+            $titulo = htmlspecialchars($dados['livro_titulo']);
+            $autor = htmlspecialchars($dados['aut_nome']);
+            $nome = htmlspecialchars($dados['liv_nome']);
+            $preco = number_format($dados['liv_livro_preco'], 2, ',', '.');
+
+            echo "
+            <div class='card card-livro'>
+                <div class='imagem'>
+                    <img src='../imagens/livros/$foto' alt='$titulo'>
+                </div>
+                <div class='informacoes'>
+                    <p class='input' style='color: #000'>$titulo</p>
+                    <p class='input'>Escritor: $autor</p>
+                    <p class='input'>R$ $preco</p>
+                    <p class='input'>$nome</p>
+                </div>
+            </div>";
                 }
             }
         }
         ?>
-
-
-
-
-
-            <?php
+        <?php
 // Consulta segura utilizando Prepared Statements
 $sql_code = "
     SELECT 
@@ -148,40 +136,37 @@ $sql_code = "
     INNER JOIN livrarias_livros ON livros.livro_id = livrarias_livros.livro_id
     INNER JOIN livrarias ON livrarias_livros.liv_id = livrarias.liv_id
     INNER JOIN livro_autores ON livros.livro_id = livro_autores.livro_id
-    INNER JOIN autores ON livro_autores.aut_id = autores.aut_id
-";
+    INNER JOIN autores ON livro_autores.aut_id = autores.aut_id";
+$stmt = $conn->prepare($sql_code);
+$stmt->execute();
+$result= $stmt->get_result();
 
-// Executando a consulta de forma segura
-if ($tabela = mysqli_query($conn, $sql_code)) {
-    // Verificando se há registros
-    if (mysqli_num_rows($tabela) > 0) {
-        while ($linha = mysqli_fetch_assoc($tabela)) {
-            // Exibindo os resultados de forma estruturada
+if ($result-> num_rows > 0) {
+    while ($linha = mysqli_fetch_assoc($result)) {
+            $foto = htmlspecialchars($linha['livro_foto']);
+            $titulo = htmlspecialchars($linha['livro_titulo']);
+            $autor = htmlspecialchars($linha['aut_nome']);
+            $nome = htmlspecialchars($linha['liv_nome']);
+            $preco = number_format($linha['liv_livro_preco'], 2, ',', '.');
+
             echo "
             <div class='card card-livro'>
                 <div class='imagem'>
-                    <img src='../imagens/livros/{$linha['livro_foto']}' alt='" . htmlspecialchars($linha['livro_titulo']) . "'>
+                    <img src='../imagens/livros/$foto' alt='$titulo'>
                 </div>
                 <div class='informacoes'>
-                    <p class='inputNome'><strong>" . htmlspecialchars($linha['livro_titulo']) . "</strong></p>
-                    <p class='inputNome'>Autor: " . htmlspecialchars($linha['aut_nome']) . "</p>
-                    <p class='inputNome'>Preço: R$ " . number_format($linha['liv_livro_preco'], 2, ',', '.') . "</p>
-                    <p class='inputNome'>Livraria: " . htmlspecialchars($linha['liv_nome']) . "</p>
+                    <p class='input' style='color: #000'>$titulo</p>
+                    <p class='input'>Escritor: $autor</p>
+                    <p class='input'>R$ $preco</p>
+                    <p class='input'>$nome</p>
                 </div>
             </div>";
         }
     } else {
         echo "<p>Nenhum livro encontrado!</p>";
     }
-} else {
-    echo "<p>Erro ao consultar os livros. Tente novamente mais tarde.</p>";
-}
+
 ?>
-
-
-
-    </main>
-
 </main>
     <script src="../script.js"></script>
 </body>

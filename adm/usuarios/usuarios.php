@@ -6,24 +6,22 @@ include "../protecao.php";
 <html lang="pt-br">
 
 <head>
-    <link rel="stylesheet" href="../geral.css">
-    <link rel="stylesheet" href="usuarios.css">
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
-    <title>ADM BC - Usuarios</title>
+    <link rel="stylesheet" href="../geral.css">
+    <link rel="stylesheet" href="usuarios.css">
+    <title>Usuarios - BACKSTAGE Community</title>
 </head>
 
-<body style="background-color:#DEDEDE">
+<body>
     <header>
-        Administrador BC
+        BACKSTAGE Community
     </header>
     <nav class="sidebar" id="sidebar">
         <div class="nome">
-
             <li class="logo_name">
                 <a href="perfil/perfil.php">
                     <span class="link_name">
@@ -31,12 +29,9 @@ include "../protecao.php";
                     </span>
                 </a>
             </li>
-
-
             <div class="menu" id="menu">
                 <i class="bx bx-menu"></i>
             </div>
-
         </div>
         <ul class="nav-list">
             <li>
@@ -76,13 +71,13 @@ include "../protecao.php";
     </nav>
 
     <main>
-        <!--Botão de cadastro de usuário-->
-            <div class="botao">
-                <a href="cadastrarusuario.php">Cadastrar usuário</a>
-            </div>
-
             <!-- BARRA DE PESQUISA -->
         <div class="busca-container">
+             <!--Botão de cadastro de usuário-->
+            <div class='botao'>
+                <a href="cadastrarusuario.php">Cadastrar usuário</a>
+            </div> 
+            
             <form action="" method="GET" class="busca-form">
                 <input type="text" name="busca" placeholder="nome do usuário">
                 <button type="submit"><i class='bx bx-search'></i></button>
@@ -98,75 +93,112 @@ include "../protecao.php";
                 $pesquisa = $conn->real_escape_string($_GET['busca']);
 
                 // Query de busca
-                $sql_code = "SELECT usu_nome, usu_id, usu_tipo_usuario FROM usuarios WHERE usu_nome LIKE '%$pesquisa%' ";
+                $sql_code = "SELECT usu_nome, usu_id, usu_tipo_usuario, usu_status FROM usuarios WHERE usu_nome LIKE '%$pesquisa%' ";
                 $sql_query = $conn->query($sql_code) or die("Erro ao consultar: " . $conn->error);
 
                 if ($sql_query->num_rows == 0) {
                     echo "<div class='resultados'><h3>Nenhum resultado encontrado!</h3></div>";
                 } else {
-                    while ($dados = $sql_query->fetch_assoc()) {
+                while ($row = $sql_query->fetch_assoc()) {
+                        $status = (int) $row['usu_status'];
+                        $usuario = (int) $row['usu_tipo_usuario']; 
+                        $nomeUsuario = htmlspecialchars($row['usu_nome']);
 
-                        if ($dados['usu_tipo_usuario'] == 0) {
+                    if ($status == 0) {
+
+                        if ($usuario == 0) {
                             echo "
-                <div class='containerInput'>
-                        <text class='inputText'>NOME DE USUARIO</text>
-                         <p class='inputNome'>Usuário: {$dados['usu_nome']}</p>
-                         <text class='inputText'>TIPO DE USUARIO</text>
-                    <div class='containerBtnInput'>
-                         <p class='inputID'>Id: {$dados['usu_id']}</p>
-                          <a href='editarusuario.php?id={$dados['usu_id']}'><div class='atualizarBotao'>ATUALIZAR</div></a>
-                    </div>
-                </div>
+                        <div class='card containerInput inativo'>
+                        <text>NOME DE USUARIO</text>
+                         <p class='input'>$nomeUsuario</p>
+                        <div class='containerBtnInput'>
+                            <p class='inputID'>RESENHISTA</p>
+                          <a href='editarusuario.php?id={$row['usu_id']}'><div class='botao'>ATUALIZAR</div></a>
+                        </div>
+                       </div>
                      ";
-                        } else if ($dados['usu_tipo_usuario'] == 1) {
+                        } else if ($usuario == 1) {
                             echo "
-                <div class='containerInput'>
-                        <text class='inputText'>NOME DE USUARIO</text>
-                         <p class='inputNome'>Usuário: {$dados['usu_nome']}</p>
-                         <text class='inputText'>TIPO DE USUARIO</text>
-                         <div class='containerBtnInput'>
-                         <p class='inputID'>Id: {$dados['usu.id']}</p>
-                          <a href='editarusuario.php?id={$dados['usu_id']}'><div class='atualizarBotao'>ATUALIZAR</div></a>
-                    </div>
-                </div>
+                        <div class='card containerInput inativo'>
+                        <text>NOME DE USUARIO</text>
+                         <p class='input'>$nomeUsuario</p>
+                        <div class='containerBtnInput'>
+                         <p class='inputID'>LIVRARIA</p>
+                          <a href='editarusuario.php?id={$row['usu_id']}'><div class='botao'>ATUALIZAR</div></a>
+                        </div>
+                       </div>
                      ";
                         } else {
                             echo "
-                    <div class='containerInput'>
-                            <text class='inputText'>NOME DE USUARIO</text>
-                             <p class='inputNome'>Usuário: {$dados['usu_nome']}</p>
-                             <text class='inputText'>TIPO DE USUARIO</text>
-                             <div class='containerBtnInput'>
-                             <p class='inputID'>Id: {$dados['usu.id']}</p>
-                              <a href='editarusuario.php?id={$dados['usu_id']}'><div class='atualizarBotao'>ATUALIZAR</div></a>
+                            <div class='card containerInput inativo'>
+                            <text>NOME DE USUARIO</text>
+                             <p class='input'>$nomeUsuario</p>
+                            <div class='containerBtnInput'>
+                             <p class='inputID'>ADMINISTRADOR</p>
+                              <a href='editarusuario.php?id={$row['usu_id']}'><div class='botao'>ATUALIZAR</div></a>
+                            </div>
+                           </div>
+                         ";
+                        }
+                    } else {
+                        if ($usuario == 0) {
+                            echo "
+                        <div class='card containerInput'>
+                        <text>NOME DE USUARIO</text>
+                         <p class='input'>$nomeUsuario</p>
+                        <div class='containerBtnInput'>
+                            <p class='inputID'>RESENHISTA</p>
+                          <a href='editarusuario.php?id={$row['usu_id']}'><div class='botao'>ATUALIZAR</div></a>
                         </div>
-                    </div>
+                       </div>
+                     ";
+                        } else if ($usuario == 1) {
+                            echo "
+                        <div class='card containerInput'>
+                        <text>NOME DE USUARIO</text>
+                         <p class='input'>$nomeUsuario</p>
+                        <div class='containerBtnInput'>
+                         <p class='inputID'>LIVRARIA</p>
+                          <a href='editarusuario.php?id={$row['usu_id']}'><div class='botao'>ATUALIZAR</div></a>
+                        </div>
+                       </div>
+                     ";
+                        } else {
+                            echo "
+                        <div class='card containerInput'>
+                            <text>NOME DO USUARIO</text>
+                            <p class='input'>$nomeUsuario</p>
+                         <div class='containerBtnInput'>
+                             <p class='inputID'>ADMINISTRADOR</p>
+                              <a href='editarusuario.php?id={$row['usu_id']}'><div class='botao'>ATUALIZAR</div></a>
+                         </div>
+                        </div>
                          ";
                         }
                     }
                 }
+                }
             }
             ?>
         </div>
+        <!--CONTAGEM DE USUÁRIOS-------------------------------------------------------------->
         <div>
             <?php
-
             $sql = "SELECT usu_tipo_usuario, COUNT(*) AS quantidade
             FROM usuarios
             GROUP BY usu_tipo_usuario";
+
             $stmt = $conn->prepare($sql);
+            $stmt->execute();
+            $result = $stmt->get_result();
 
-            if ($stmt && $stmt->execute()) {
-                $result = $stmt->get_result();
-
+            if ($result->num_rows > 0) {
                 // Array para mapear tipo para nome
                 $tipos = [
                     0 => "Resenhistas",
                     1 => "Livrarias",
                     2 => "Administradores"
                 ];
-
-
                 while ($row = $result->fetch_assoc()) { // percorre cada linha de resultado retornada pela consulta SQL
                     $tipo = $row['usu_tipo_usuario'];
                     $quantidade = $row['quantidade'];
@@ -183,37 +215,40 @@ include "../protecao.php";
             $stmt->close();
             ?>
         </div>
+
         <div>
             <?php
-            $consulta = "SELECT usu_nome, usu_id, usu_status, usu_tipo_usuario FROM usuarios order by usu_data_criacao desc";
+            $consulta = "SELECT usu_nome, usu_id, usu_status, usu_tipo_usuario 
+                         FROM usuarios 
+                         order by usu_data_criacao desc";
             $stmt = $conn->prepare($consulta);
-
-
-            if ($stmt &&  $stmt->execute()) {
-                $result = $stmt->get_result();
-
+            $stmt->execute();
+            $result = $stmt->get_result();
+            
+            if ($result->num_rows > 0) {       
                 while ($row = $result->fetch_assoc()) {
+                        $status = (int) $row['usu_status'];
+                        $usuario = (int) $row['usu_tipo_usuario']; 
+                        $nomeUsuario = htmlspecialchars($row['usu_nome']);
 
-                    if ($row['usu_status'] == 0) {
+                    if ($status == 0) {
 
-                        if ($row['usu_tipo_usuario'] == 0) {
+                        if ($usuario == 0) {
                             echo "
-                        <div class='containerInput' style='background-color:rgba(119, 136, 153, .6)'>
+                        <div class='card containerInput inativo'>
                         <text>NOME DE USUARIO</text>
-                         <p class='inputNome'>Usuário: {$row['usu_nome']}</p>
-                         <p class='inputNome'>RESENHISTA</p>
-                         <text>ID</text>
+                         <p class='input'>$nomeUsuario</p>
                         <div class='containerBtnInput'>
-                         <p class='inputID'>Id: {$row['usu_id']}</p>
+                            <p class='inputID'>RESENHISTA</p>
                           <a href='editarusuario.php?id={$row['usu_id']}'><div class='botao'>ATUALIZAR</div></a>
                         </div>
                        </div>
                      ";
-                        } else if ($row['usu_tipo_usuario'] == 1) {
+                        } else if ($usuario == 1) {
                             echo "
-                        <div class='containerInput' style='background-color:rgba(119, 136, 153, .6)'>
+                        <div class='card containerInput inativo'>
                         <text>NOME DE USUARIO</text>
-                         <p class='inputNome'>Usuário: {$row['usu_nome']}</p>
+                         <p class='input'>$nomeUsuario</p>
                         <div class='containerBtnInput'>
                          <p class='inputID'>LIVRARIA</p>
                           <a href='editarusuario.php?id={$row['usu_id']}'><div class='botao'>ATUALIZAR</div></a>
@@ -222,9 +257,9 @@ include "../protecao.php";
                      ";
                         } else {
                             echo "
-                            <div class='containerInput' style='background-color:rgba(119, 136, 153, .6)'>
+                            <div class='card containerInput inativo'>
                             <text>NOME DE USUARIO</text>
-                             <p class='inputNome'>Usuário: {$row['usu_nome']}</p>
+                             <p class='input'>$nomeUsuario</p>
                             <div class='containerBtnInput'>
                              <p class='inputID'>ADMINISTRADOR</p>
                               <a href='editarusuario.php?id={$row['usu_id']}'><div class='botao'>ATUALIZAR</div></a>
@@ -233,24 +268,22 @@ include "../protecao.php";
                          ";
                         }
                     } else {
-                        if ($row['usu_tipo_usuario'] == 0) {
+                        if ($usuario == 0) {
                             echo "
-                        <div class='containerInput'>
+                        <div class='card containerInput'>
                         <text>NOME DE USUARIO</text>
-                         <p class='inputNome'>Usuário: {$row['usu_nome']}</p>
-                         <p class='inputNome'>RESENHISTA</p>
-                         <text>ID</text>
+                         <p class='input'>$nomeUsuario</p>
                         <div class='containerBtnInput'>
-                         <p class='inputID'>Id: {$row['usu_id']}</p>
+                            <p class='inputID'>RESENHISTA</p>
                           <a href='editarusuario.php?id={$row['usu_id']}'><div class='botao'>ATUALIZAR</div></a>
                         </div>
                        </div>
                      ";
-                        } else if ($row['usu_tipo_usuario'] == 1) {
+                        } else if ($usuario == 1) {
                             echo "
-                        <div class='containerInput'>
+                        <div class='card containerInput'>
                         <text>NOME DE USUARIO</text>
-                         <p class='inputNome'>Usuário: {$row['usu_nome']}</p>
+                         <p class='input'>$nomeUsuario</p>
                         <div class='containerBtnInput'>
                          <p class='inputID'>LIVRARIA</p>
                           <a href='editarusuario.php?id={$row['usu_id']}'><div class='botao'>ATUALIZAR</div></a>
@@ -259,14 +292,14 @@ include "../protecao.php";
                      ";
                         } else {
                             echo "
-                            <div class='containerInput'>
-                            <text>NOME DE USUARIO</text>
-                             <p class='inputNome'>Usuário: {$row['usu_nome']}</p>
-                            <div class='containerBtnInput'>
+                        <div class='card containerInput'>
+                            <text>NOME DO USUARIO</text>
+                            <p class='input'>$nomeUsuario</p>
+                         <div class='containerBtnInput'>
                              <p class='inputID'>ADMINISTRADOR</p>
                               <a href='editarusuario.php?id={$row['usu_id']}'><div class='botao'>ATUALIZAR</div></a>
-                            </div>
-                           </div>
+                         </div>
+                        </div>
                          ";
                         }
                     }

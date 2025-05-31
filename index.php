@@ -21,11 +21,7 @@ session_start();
     <section>
         <nav>
         <?php
-           $_SESSION['id'];
-           $_SESSION['nome'];
-           $_SESSION['tipo']; 
-
-           if ($_SESSION['tipo'] == 2) {
+           if (isset($_SESSION['tipo']) && $_SESSION['tipo'] == 2) {
         echo "
             <nav class='sidebar' id='sidebar'>
     <div class='nome'>

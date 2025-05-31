@@ -32,16 +32,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['avaliar'])) {
 // ------------------- EXIBIR RESENHA -------------------
 
 $SELECT = "
-    SELECT 
-        resenha_id, resenha_titulo, resenha_texto, livro_sinopse, livro_foto, res_nome_fantasia
-    FROM 
-        resenhas 
-    INNER JOIN 
-        LIVROS ON resenhas.livro_id = livros.livro_id
-    INNER JOIN 
-        RESENHISTAS ON resenhistas.res_id = resenhas.res_id 
-    WHERE 
-        resenha_id = ?
+    SELECT resenha_id, resenha_titulo, resenha_texto, livro_sinopse, livro_foto, res_nome_fantasia
+    FROM resenhas 
+    INNER JOIN LIVROS ON resenhas.livro_id = livros.livro_id
+    INNER JOIN RESENHISTAS ON resenhistas.res_id = resenhas.res_id 
+    WHERE resenha_id = ?
 ";
 
 $stmt = $conn->prepare($SELECT);
@@ -58,54 +53,20 @@ if ($result->num_rows > 0) {
     $autor = htmlspecialchars($row['res_nome_fantasia']);
 
     echo "
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
--->
-<!DOCTYPE html>
-<html lang='pt-br'>
-
-<head>
-    <meta charset='UTF-8'>
-    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <title>Avaliar resenha - BACKSTAGECommunity</title>
-    <link rel='stylesheet' href='../home.css'>
-    <link rel='stylesheet' href='../geral.css'>
-
-</head>
-
-<body>
-
-    <header>
-        Administrador BC
-    </header>
-    <main>
-        <p class='avaliar'>AVALIAR RESENHA</p>
-        </div>
-
-        <div class='card'>
-            <div class='cardimgsinopse'>
-                <img class='imagem imgavaliar'src='../imagens/livros/{$foto}' alt=''>
-                <div class='sinopse'>
-                    <p>{$titulo}</p>
-                    <p>Sinopse</p>
-                    <p>{$sinopse}</p>
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-
     <!DOCTYPE html>
     <html lang='pt-br'>
     <head>
         <meta charset='UTF-8'>
         <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-        <title>Avaliar resenha - BACKSTAGECommunity</title>
+
         <link rel='stylesheet' href='../home.css'>
         <link rel='stylesheet' href='../geral.css'>
+
+        <title>Avaliar resenha - BACKSTAGECommunity</title>
     </head>
     <body>
         <header>
-            Administrador BC
+             BACKSTAGE Community
         </header>
         <main>
             <p class='avaliar'>AVALIAR RESENHA</p>
@@ -115,19 +76,19 @@ if ($result->num_rows > 0) {
                     <div class='sinopse'>
                         <p>{$titulo}</p>
                         <p>Sinopse</p>
-                        <p><?php echo $sinopse; ?></p>
+                        <p>$sinopse}</p>
                     </div>
                 </div>
 
                 <div class='cardresenha'>
                     <div class='resenha'>
                         <p>RESENHA</p>
-                        <p><?php echo $texto; ?></p>
-                        <p><?php echo $autor; ?></p>
+                        <p>{$texto}</p>
+                        <p>{$autor}r</p>
                     </div>
                 </div>
 
-                <form action='?id=<?php echo $dado; ?>' method='post' class='cardforms'>
+                <form action='?id={$dado}' method='post' class='cardforms'>
                     <select class='notas' name='avaliar' required>
                         <option class='resultado' value=''>Avaliar</option>
                         <option class='resultado' value='1'>Reprovada</option>
