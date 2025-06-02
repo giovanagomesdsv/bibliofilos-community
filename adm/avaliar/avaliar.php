@@ -1,4 +1,4 @@
-<?php
+<!--<?php
 include "../../conexao.php";
 
 // Verifica se o ID foi passado via GET
@@ -53,6 +53,7 @@ if ($result->num_rows > 0) {
     $autor = htmlspecialchars($row['res_nome_fantasia']);
 
     echo "
+-->
     <!DOCTYPE html>
     <html lang='pt-br'>
     <head>
@@ -72,7 +73,7 @@ if ($result->num_rows > 0) {
             <p class='avaliar'>AVALIAR RESENHA</p>
             <div class='card'>
                 <div class='cardimgsinopse'>
-                    <img class='imagem' src='../imagens/livros/{$foto}' alt=''>
+                    <img class='imagem imgavalia' src='../imagens/livros/{$foto}' alt=''>
                     <div class='sinopse'>
                         <p>{$titulo}</p>
                         <p>Sinopse</p>
