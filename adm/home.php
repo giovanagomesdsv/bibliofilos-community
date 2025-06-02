@@ -27,7 +27,7 @@ include "../conexao.php";
     </header>
     <nav class="sidebar" id="sidebar">
     <ul class="nav-list">
-        <div class="nome">
+        <!--<div class="nome">-->
             <li>
                 <a href="perfil/perfil.php">
                     <span class="link_name"><?php echo $_SESSION['nome']; ?></span>
@@ -37,7 +37,7 @@ include "../conexao.php";
                 <i class="bx bx-menu"></i>
             </div>
 
-        </div>
+         <!--</div>-->
         
             <li>
                 <a href="../index.php">

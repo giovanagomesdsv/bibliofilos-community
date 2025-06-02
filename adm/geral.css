@@ -107,6 +107,7 @@ header {
     height: 1.5rem;
     background-color: var(--terciaria);
     padding-left: 20rem;
+    border: solid 1px red;
 }
 
 /*menu*/
@@ -117,6 +118,7 @@ header {
     top: 0;
     position: fixed;
     z-index: 1000;
+    border: solid 1px red;
 
 }
 
@@ -124,8 +126,8 @@ header {
     display: flex;
     flex-direction: column;
     align-items: center;
-
-
+    border: solid 1px red;
+    
 }
 
 .menu {
@@ -154,27 +156,6 @@ header {
     /* <- isso é importante */
 }
 
-.logo_name {
-    background-color: var(--principal);
-    color: var(--text);
-    padding: 1rem;
-    border-top-left-radius: 15px;
-    border-bottom-left-radius: 15px;
-    width: 100%;
-    text-align: center;
-    display: none;
-    text-decoration: underline;
-    text-decoration-color: var(--text);
-    justify-content: center;
-    margin-top: 1rem;
-}
-
-.logo_name:hover {
-    width: 100%;
-    color: var(--text);
-    text-decoration: underline;
-    text-decoration-color: var(--text);
-}
 
 .sidebar ul {
     height: 100%;
