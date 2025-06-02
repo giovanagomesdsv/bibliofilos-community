@@ -21,6 +21,7 @@ include "../protecao.php";
         BACKSTAGE Community
     </header>
     <nav class="sidebar" id="sidebar">
+    <ul class="nav-list">
         <div class="nome">
             <li>
                 <a href="../perfil/perfil.php">
@@ -33,7 +34,7 @@ include "../protecao.php";
                 <i class="bx bx-menu"></i>
             </div>
         </div>
-        <ul class="nav-list">
+      
             <li>
                 <a href="../home.php">
                     <i class='bx bx-home-alt-2'></i>

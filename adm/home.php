@@ -26,6 +26,7 @@ include "../conexao.php";
         BACKSTAGE Community
     </header>
     <nav class="sidebar" id="sidebar">
+    <ul class="nav-list">
         <div class="nome">
             <li>
                 <a href="perfil/perfil.php">
@@ -37,7 +38,7 @@ include "../conexao.php";
             </div>
 
         </div>
-        <ul class="nav-list">
+        
             <li>
                 <a href="../index.php">
                     <i class='bx bx-home-alt-2'></i>
