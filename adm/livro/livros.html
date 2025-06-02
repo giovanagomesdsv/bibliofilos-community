@@ -4,6 +4,7 @@ include "../protecao.php";
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -68,8 +69,8 @@ include "../protecao.php";
                 <a href="../logout.php"><i class='bx bx-log-out'></i></a>
             </li>
         </ul>
-    </nav> 
-<main>
+    </nav>
+    <main>
         <div class="busca-container">
             <form action="" method="GET" class="busca-form">
                 <input type="text" name="busca" placeholder="nome do usuário">
@@ -123,7 +124,7 @@ include "../protecao.php";
             }
         }
         ?>
-        <?php
+            <?php
 // Consulta segura utilizando Prepared Statements
 $sql_code = "
     SELECT 
@@ -167,7 +168,7 @@ if ($result-> num_rows > 0) {
     }
 
 ?>
-</main>
+    </main>
     <script src="../script.js"></script>
 </body>
 
