@@ -206,6 +206,13 @@ header {
     border-bottom-left-radius: 15px;
 }
 
+.sidebar .nome .fix {
+    background: var(--principal);
+    padding: 0.1rem 0.5rem;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
+
 
 /* classe js -> abrir e fechar menu*/
 .sidebar.abrir {
