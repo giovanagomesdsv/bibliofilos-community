@@ -43,13 +43,16 @@ if ($result->num_rows === 1) {
         Administrador BC
     </header>
     <nav class="sidebar" id="sidebar">
+    <ul class="nav-list">
         <div class="nome">
+            <li>
             <div class="fix"> <?php echo $_SESSION['nome']; ?></div>
+            </li>
             <div class="menu" id="menu">
                 <i class="bx bx-menu"></i>
             </div>
         </div>
-        <ul class="nav-list">
+        
             <li>
                 <a href="../home.php">
                     <i class='bx bx-home-alt-2'></i>

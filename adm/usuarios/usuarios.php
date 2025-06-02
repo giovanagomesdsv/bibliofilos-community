@@ -23,7 +23,7 @@ include "../protecao.php";
     <nav class="sidebar" id="sidebar">
         <div class="nome">
             <li>
-                <a href="perfil/perfil.php">
+                <a href="../perfil/perfil.php">
                     <span class="link_name">
                         <?php echo $_SESSION['nome']; ?>
                     </span>
