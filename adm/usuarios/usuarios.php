@@ -205,10 +205,16 @@ include "../protecao.php";
 
                     // Cria um card para cada tipo encontrado no banco
                     echo "
-                        <div>
-                            <h3>{$tipos[$tipo]}</h3>
-                            <p>$quantidade</p>
+                    <div class='card containerInput'>
+                        <div class="linha">
+                            <span class='textUsuario'>USÚARIO:</span>
+                            <h3 class='inputContagem'>{$tipos[$tipo]}</h3>
                         </div>
+                        <div class="linha">
+                            <span class='textUsuario'>QUANTIDADE:</span>
+                            <p class='inputContagem'>$quantidade</p>
+                        </div>
+                    </div>
                     ";
                 }
             }
