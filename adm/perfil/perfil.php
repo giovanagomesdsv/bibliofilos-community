@@ -44,7 +44,7 @@ if ($result->num_rows === 1) {
     </header>
     <nav class="sidebar" id="sidebar">
         <div class="nome">
-            <div class="logo_name"> <?php echo $_SESSION['nome']; ?></div>
+            <div class="fix"> <?php echo $_SESSION['nome']; ?></div>
             <div class="menu" id="menu">
                 <i class="bx bx-menu"></i>
             </div>
