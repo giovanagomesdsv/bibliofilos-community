@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Usuário</title>
-    <link rel="stylesheet" href="editarusuario.css">
+    <link rel="stylesheet" href="usuarios.css">
 </head>
 <body>
 
@@ -30,7 +30,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
             $labels = [0 => 'DESATIVADO', 1 => 'ATIVO'];
 
             echo "
-            <form action='atualizar.php?id=" . htmlspecialchars($id) . "' method='POST'>
+            <form action='atualizar.php?id=" . htmlspecialchars($id) . "' method='POST' class='format'>
                 <label for='status'>Status atual: <strong>{$labels[$statusAtual]}</strong></label><br><br>
 
                 <select name='status' id='status' required>
@@ -39,7 +39,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
                     <option value='0' " . ($statusAtual === 0 ? "selected" : "") . ">DESATIVADO</option>
                 </select><br><br>
 
-                <input type='submit' value='Atualizar'>
+                <input type='submit' value='Atualizar' class='inputEditar'>
             </form>";
         } else {
             echo "<p>Usuário não encontrado.</p>";

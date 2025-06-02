@@ -57,18 +57,18 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastrar Usuário</title>
-    <link rel="stylesheet" href="cadastrarusuario.css">
+    <link rel="stylesheet" href="usuarios.css">
 </head>
 <body style="background-color:#DEDEDE">
-    <form action="cadastrarusuario.php" method="POST">
+    <form action="cadastrarusuario.php" method="POST" class='format2'>
         <label for="email">E-mail:</label>
-        <input type="email" name="email" required>
+        <input type="email" name="email" required class='inputEditar2'>
 
         <label for="nome">Nome:</label>
-        <input type="text" name="nome" required>
+        <input type="text" name="nome" required class='inputEditar2'>
 
         <label for="senha">Senha:</label>
-        <input type="password" name="senha" required>
+        <input type="password" name="senha" required class='inputEditar2'>
 
         <label for="usuario">Tipo de usuário:</label>
         <select name="usuario" id="usuario" required>
@@ -77,7 +77,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <option value="0">Resenhista</option>
         </select>
 
-        <input type="submit" value="Cadastrar usuário">
+        <input type="submit" value="Cadastrar usuário" class='inputConfirmar'>
     </form>
 </body>
 </html>
