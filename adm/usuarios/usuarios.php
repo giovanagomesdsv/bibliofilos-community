@@ -72,13 +72,13 @@ include "../protecao.php";
     </nav>
 
     <main>
-            <!-- BARRA DE PESQUISA -->
+        <!-- BARRA DE PESQUISA -->
         <div class="busca-container">
-             <!--Botão de cadastro de usuário-->
+            <!--Botão de cadastro de usuário-->
             <div class='botao'>
                 <a href="cadastrarusuario.php">Cadastrar usuário</a>
-            </div> 
-            
+            </div>
+
             <form action="" method="GET" class="busca-form">
                 <input type="text" name="busca" placeholder="nome do usuário">
                 <button type="submit"><i class='bx bx-search'></i></button>
@@ -100,15 +100,15 @@ include "../protecao.php";
                 if ($sql_query->num_rows == 0) {
                     echo "<div class='resultados'><h3>Nenhum resultado encontrado!</h3></div>";
                 } else {
-                while ($row = $sql_query->fetch_assoc()) {
+                    while ($row = $sql_query->fetch_assoc()) {
                         $status = (int) $row['usu_status'];
-                        $usuario = (int) $row['usu_tipo_usuario']; 
+                        $usuario = (int) $row['usu_tipo_usuario'];
                         $nomeUsuario = htmlspecialchars($row['usu_nome']);
 
-                    if ($status == 0) {
+                        if ($status == 0) {
 
-                        if ($usuario == 0) {
-                            echo "
+                            if ($usuario == 0) {
+                                echo "
                         <div class='card containerInput inativo'>
                         <text>USUARIO</text>
                          <p class='input'>$nomeUsuario</p>
@@ -118,8 +118,8 @@ include "../protecao.php";
                         </div>
                        </div>
                      ";
-                        } else if ($usuario == 1) {
-                            echo "
+                            } else if ($usuario == 1) {
+                                echo "
                         <div class='card containerInput inativo'>
                         <text>USUARIO</text>
                          <p class='input'>$nomeUsuario</p>
@@ -129,8 +129,8 @@ include "../protecao.php";
                         </div>
                        </div>
                      ";
-                        } else {
-                            echo "
+                            } else {
+                                echo "
                             <div class='card containerInput inativo'>
                             <text>USUARIO</text>
                              <p class='input'>$nomeUsuario</p>
@@ -140,10 +140,10 @@ include "../protecao.php";
                             </div>
                            </div>
                          ";
-                        }
-                    } else {
-                        if ($usuario == 0) {
-                            echo "
+                            }
+                        } else {
+                            if ($usuario == 0) {
+                                echo "
                         <div class='card containerInput'>
                         <text>USUARIO</text>
                          <p class='input'>$nomeUsuario</p>
@@ -153,8 +153,8 @@ include "../protecao.php";
                         </div>
                        </div>
                      ";
-                        } else if ($usuario == 1) {
-                            echo "
+                            } else if ($usuario == 1) {
+                                echo "
                         <div class='card containerInput'>
                         <text>USUARIO</text>
                          <p class='input'>$nomeUsuario</p>
@@ -164,8 +164,8 @@ include "../protecao.php";
                         </div>
                        </div>
                      ";
-                        } else {
-                            echo "
+                            } else {
+                                echo "
                         <div class='card containerInput'>
                             <text>USUARIO</text>
                             <p class='input'>$nomeUsuario</p>
@@ -175,9 +175,9 @@ include "../protecao.php";
                          </div>
                         </div>
                          ";
+                            }
                         }
                     }
-                }
                 }
             }
             ?>
@@ -229,12 +229,12 @@ include "../protecao.php";
             $stmt = $conn->prepare($consulta);
             $stmt->execute();
             $result = $stmt->get_result();
-            
-            if ($result->num_rows > 0) {       
+
+            if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
-                        $status = (int) $row['usu_status'];
-                        $usuario = (int) $row['usu_tipo_usuario']; 
-                        $nomeUsuario = htmlspecialchars($row['usu_nome']);
+                    $status = (int) $row['usu_status'];
+                    $usuario = (int) $row['usu_tipo_usuario'];
+                    $nomeUsuario = htmlspecialchars($row['usu_nome']);
 
                     if ($status == 0) {
 

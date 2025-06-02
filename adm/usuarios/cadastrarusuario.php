@@ -15,27 +15,31 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         $sql = "INSERT INTO usuarios (usu_nome, usu_email, usu_senha, usu_tipo_usuario) VALUES (?, ?, ?, ?)";
         $stmt = $conn->prepare($sql);
+        $stmt->bind_param("sssi", $nome, $email, $senha, $usuario); 
+        
+        if ($stmt->execute()) {
+            $idUsuario = $stmt->insert_id;
 
-        if ($stmt) {
-            $stmt->bind_param("sssi", $nome, $email, $senha, $usuario);
-            if ($stmt->execute()) {
-                echo '<script>
-                    alert("Usuário cadastrado com sucesso!");
-                    window.location.href = "usuarios.php";
-                </script>';
+            if ($usuario == 0) {
+                // Se for resenhista, redireciona para cadastrar na tabela resenhistas
+                echo "<script>
+                    alert('Usuário cadastrado com sucesso! Agora cadastre os dados de resenhista.');
+                    window.location.href = 'cadastrarresenhista.php?id=$idUsuario';
+                </script>";
             } else {
-                echo '<script>
-                    alert("Erro ao cadastrar o usuário.");
-                    window.location.href = "cadastrarusuario.php";
-                </script>';
+                // Caso contrário, volta para a tela de usuários
+                echo "<script>
+                    alert('Administrador cadastrado com sucesso cadastrado com sucesso!');
+                    window.location.href = 'usuarios.php';
+                </script>";
             }
-            $stmt->close();
         } else {
             echo '<script>
-                alert("Erro ao preparar o cadastro.");
+                alert("Erro ao cadastrar o usuário.");
                 window.location.href = "cadastrarusuario.php";
             </script>';
         }
+        $stmt->close();
     } else {
         echo '<script>
             alert("Dados inválidos. Verifique o preenchimento do formulário.");
@@ -45,6 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     exit;
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="pt-br">

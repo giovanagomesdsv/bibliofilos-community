@@ -141,7 +141,7 @@ $stmt->close();
     </div>
     <div class="form-group">
         <label>Nova senha:</label><br>
-        <input type="password" name="senha" placeholder="Deixe em branco para manter"><br><br>
+        <input type="password" name="senha" placeholder="Deixe em branco para manter a mesma senha"><br><br>
     </div>
         <button type="submit">Salvar Alterações</button>
     </form>
