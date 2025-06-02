@@ -3,15 +3,8 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    background-color: var(--principal);
-    /* tom azul escuro */
     padding: 1rem;
-    margin: 2rem;
-    border-radius: 6px;
     color: var(--text);
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-    font-family: Arial, sans-serif;
-    width: 100%;
 }
 
 .cardtext {

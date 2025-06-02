@@ -114,7 +114,7 @@ include "../protecao.php";
                         $mensagem = urlencode("Olá, aqui fala a administradora do site Bibliófilos Community!");
  
                         echo "
-                       <div class='resenhista-box'>
+                       <div class=' cardresenhista-box'>
                         <div class='resenhista-info'>
                             <a href='https://wa.me/{$telefone}?text={$mensagem}' target='_blank'>
                               <img class='imagem' src='../imagens/resenhistas/$foto' alt=''>
@@ -172,7 +172,7 @@ include "../protecao.php";
                         $mensagem = urlencode("Olá, aqui fala a administradora do site Bibliófilos Community!");
  
                         echo "
-                    <div class='resenhista-box'>
+                    <div class=' card resenhista-box'>
                         <div class='resenhista-info'>
                             <a href='https://wa.me/{$telefone}?text={$mensagem}' target='_blank'>
                               <img class='imagem' src='../imagens/resenhistas/$foto' alt=''>

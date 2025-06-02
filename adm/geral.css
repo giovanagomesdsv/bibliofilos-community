@@ -311,8 +311,9 @@ header {
 
 /*card*/
 .card {
-    background-color: var(--principal);
-    width: 100%;
+    width: 153rem; /* Em vez de auto */
+    margin: 3.5rem 0;
+    background-color: blue;
     color: var(--text);
     border-radius: .8rem;
 }
