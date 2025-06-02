@@ -120,22 +120,22 @@ header {
     border: solid 1px red;
 
 }
-
+/*problema do menu*/
 .nome {
     display: flex;
     flex-direction: column;
     align-items: center;
     border: solid 1px red;
-    
+ 
 }
-
+/*problema do menu*/
 .menu {
-    margin-top: 1rem;
+  
     font-size: 1.5rem;
     cursor: pointer;
     display: flex;
     align-items: center;
-
+    border: solid 1px red;
 }
 
 .menu:hover {
@@ -152,7 +152,7 @@ header {
     margin-bottom: 1rem;
     text-align: center;
     width: 100%;
-    /* <- isso é importante */
+    border: solid 1px red;
 }
 
 
@@ -188,12 +188,8 @@ header {
 /* classe js -> abrir e fechar menu*/
 .sidebar.abrir {
     width: 15rem;
-}
-
-.sidebar.abrir .logo_name {
     display: flex;
 }
-
 .sidebar.abrir .link_name {
     display: block;
 }
