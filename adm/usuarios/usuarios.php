@@ -109,7 +109,7 @@ include "../protecao.php";
                         if ($usuario == 0) {
                             echo "
                         <div class='card containerInput inativo'>
-                        <text>NOME DE USUARIO</text>
+                        <text>USUARIO</text>
                          <p class='input'>$nomeUsuario</p>
                         <div class='containerBtnInput'>
                             <p class='inputID'>RESENHISTA</p>
@@ -120,7 +120,7 @@ include "../protecao.php";
                         } else if ($usuario == 1) {
                             echo "
                         <div class='card containerInput inativo'>
-                        <text>NOME DE USUARIO</text>
+                        <text>USUARIO</text>
                          <p class='input'>$nomeUsuario</p>
                         <div class='containerBtnInput'>
                          <p class='inputID'>LIVRARIA</p>
@@ -131,7 +131,7 @@ include "../protecao.php";
                         } else {
                             echo "
                             <div class='card containerInput inativo'>
-                            <text>NOME DE USUARIO</text>
+                            <text>USUARIO</text>
                              <p class='input'>$nomeUsuario</p>
                             <div class='containerBtnInput'>
                              <p class='inputID'>ADMINISTRADOR</p>
@@ -144,7 +144,7 @@ include "../protecao.php";
                         if ($usuario == 0) {
                             echo "
                         <div class='card containerInput'>
-                        <text>NOME DE USUARIO</text>
+                        <text>USUARIO</text>
                          <p class='input'>$nomeUsuario</p>
                         <div class='containerBtnInput'>
                             <p class='inputID'>RESENHISTA</p>
@@ -155,7 +155,7 @@ include "../protecao.php";
                         } else if ($usuario == 1) {
                             echo "
                         <div class='card containerInput'>
-                        <text>NOME DE USUARIO</text>
+                        <text>USUARIO</text>
                          <p class='input'>$nomeUsuario</p>
                         <div class='containerBtnInput'>
                          <p class='inputID'>LIVRARIA</p>
@@ -166,7 +166,7 @@ include "../protecao.php";
                         } else {
                             echo "
                         <div class='card containerInput'>
-                            <text>NOME DO USUARIO</text>
+                            <text>USUARIO</text>
                             <p class='input'>$nomeUsuario</p>
                          <div class='containerBtnInput'>
                              <p class='inputID'>ADMINISTRADOR</p>
@@ -206,13 +206,11 @@ include "../protecao.php";
                     // Cria um card para cada tipo encontrado no banco
                     echo "
                     <div class='card containerInput'>
-                        <div class="linha">
-                            <span class='textUsuario'>USÚARIO:</span>
-                            <h3 class='inputContagem'>{$tipos[$tipo]}</h3>
+                        <div class='linha'>
+                            <h3>{$tipos[$tipo]}</h3>
                         </div>
-                        <div class="linha">
-                            <span class='textUsuario'>QUANTIDADE:</span>
-                            <p class='inputContagem'>$quantidade</p>
+                        <div class='linha'>
+                            <p class='input'>$quantidade</p>
                         </div>
                     </div>
                     ";
@@ -242,7 +240,7 @@ include "../protecao.php";
                         if ($usuario == 0) {
                             echo "
                         <div class='card containerInput inativo'>
-                        <text>NOME DE USUARIO</text>
+                        <text>USUARIO</text>
                          <p class='input'>$nomeUsuario</p>
                         <div class='containerBtnInput'>
                             <p class='inputID'>RESENHISTA</p>
@@ -253,7 +251,7 @@ include "../protecao.php";
                         } else if ($usuario == 1) {
                             echo "
                         <div class='card containerInput inativo'>
-                        <text>NOME DE USUARIO</text>
+                        <text>USUARIO</text>
                          <p class='input'>$nomeUsuario</p>
                         <div class='containerBtnInput'>
                          <p class='inputID'>LIVRARIA</p>
@@ -264,7 +262,7 @@ include "../protecao.php";
                         } else {
                             echo "
                             <div class='card containerInput inativo'>
-                            <text>NOME DE USUARIO</text>
+                            <text>USUARIO</text>
                              <p class='input'>$nomeUsuario</p>
                             <div class='containerBtnInput'>
                              <p class='inputID'>ADMINISTRADOR</p>
@@ -277,7 +275,7 @@ include "../protecao.php";
                         if ($usuario == 0) {
                             echo "
                         <div class='card containerInput'>
-                        <text>NOME DE USUARIO</text>
+                        <text>USUARIO</text>
                          <p class='input'>$nomeUsuario</p>
                         <div class='containerBtnInput'>
                             <p class='inputID'>RESENHISTA</p>
@@ -288,7 +286,7 @@ include "../protecao.php";
                         } else if ($usuario == 1) {
                             echo "
                         <div class='card containerInput'>
-                        <text>NOME DE USUARIO</text>
+                        <text>USUARIO</text>
                          <p class='input'>$nomeUsuario</p>
                         <div class='containerBtnInput'>
                          <p class='inputID'>LIVRARIA</p>
@@ -299,7 +297,7 @@ include "../protecao.php";
                         } else {
                             echo "
                         <div class='card containerInput'>
-                            <text>NOME DO USUARIO</text>
+                            <text>USUARIO</text>
                             <p class='input'>$nomeUsuario</p>
                          <div class='containerBtnInput'>
                              <p class='inputID'>ADMINISTRADOR</p>

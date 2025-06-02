@@ -313,7 +313,7 @@ header {
 .card {
     width: 153rem; /* Em vez de auto */
     margin: 3.5rem 0;
-    background-color: blue;
+    background-color: var(--principal);
     color: var(--text);
     border-radius: .8rem;
 }

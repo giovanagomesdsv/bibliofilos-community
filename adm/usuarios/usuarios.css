@@ -11,8 +11,6 @@
 
 /* card*/
 .containerInput {
-    background-color: var(--principal); /* Cor de fundo do container */
-    padding: 1rem;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     justify-content: center;
     align-items: center;
@@ -28,21 +26,6 @@
     margin-bottom: 8px; /* Espaço entre as linhas */
 }
 
-.textUsuario {
-    font-weight: bold;
-}
-.inputContagem{
-    width: 30%; /* Largura total do input */
-    padding: 1rem;
-    border: none;
-    border-radius: 4px; 
-    background-color: white; /* Cor de fundo do input */
-    color: #000;
-    display:flex;
-    margin-left:105rem;
-    border: solid 1px red;
-}
-/*Responsividade da DIV contagem de úsuarios*/
 
 .inativo {
     background-color: rgba(119, 136, 153, .6);
