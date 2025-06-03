@@ -50,7 +50,6 @@ html {
 }
 
 body {
-
     /* Define a fonte primária usando uma variável CSS */
     background-color: var(--bg);
     color: var(--color-text);
@@ -60,7 +59,6 @@ body {
     min-height: 100vh;
 
     /* Adiciona um preenchimento ao redor do conteúdo do body usando uma variável CSS */
-
 
     /* Força a exibição da barra de rolagem vertical, evitando o deslocamento de elementos quando o conteúdo se torna longo o suficiente para precisar da barra */
     overflow-y: scroll;
@@ -285,7 +283,7 @@ header {
 
 /*card*/
 .card {
-    width: 100%; /* Em vez de auto */
+    width: 100%; 
     margin: 3.5rem 0;
     background-color: var(--principal);
     color: var(--text);

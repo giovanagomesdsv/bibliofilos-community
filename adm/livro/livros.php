@@ -152,7 +152,7 @@ if ($result-> num_rows > 0) {
             $preco = number_format($linha['liv_livro_preco'], 2, ',', '.');
 
             echo "
-            <div class='card card-livro'>
+            <div class='card-livro'>
                 <div class='imagem'>
                     <img src='../imagens/livros/$foto' alt='$titulo'>
                 </div>
