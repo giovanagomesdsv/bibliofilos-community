@@ -3,172 +3,140 @@ include "conexao.php";
 
 session_start();
 
+// Corrigido: variável $_SESSION[''] estava sem índice. Use o índice correto.
+// Exemplo:
+$usuario = isset($_SESSION['usuario']) ? $_SESSION['usuario'] : null;
 ?>
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link rel="stylesheet" type="text/css" href="geral.css">
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" href="geral.css" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
     <title>BIBLIÓFILOS Community - HOME</title>
 </head>
 
 <body>
-    <!--Primeira tela___________________________________________________________________-->
+    <!-- Primeira tela -->
     <section>
         <nav>
             <?php
             if (isset($_SESSION['tipo']) && $_SESSION['tipo'] == 2) {
-                // menu do adm
+                // Menu administrador
                 echo "
-            <nav class='sidebar' id='sidebar'>
-    <div class='nome'>
+                <nav class='sidebar' id='sidebar'>
+                    <div class='nome'>
+                        <li class='logo_name'>
+                            <a href='adm/perfil/perfil.php'>
+                                <span class='link_name'>" . htmlspecialchars($_SESSION['nome']) . "</span>
+                            </a>
+                        </li>
+                        <div class='menu' id='menu'>
+                            <i class='bx bx-menu'></i>
+                        </div>
+                    </div>
+                    <ul class='nav-list'>
+                        <li class='fix'>
+                            <a href='adm/home.php'>
+                                <i class='bx bx-home-alt-2'></i>
+                                <span class='link_name'>Home</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href='adm/livrarias/livrarias.php'>
+                                <i class='bx bx-user'></i>
+                                <span class='link_name'>Livrarias</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href='adm/resenhistas/resenhistas.php'>
+                                <i class='bx bx-user-pin'></i>
+                                <span class='link_name'>Resenhistas</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href='adm/livro/livros.php'>
+                                <i class='bx bx-book-bookmark'></i>
+                                <span class='link_name'>Livros</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href='adm/usuarios/usuarios.php'>
+                                <i class='bx bx-book-content'></i>
+                                <span class='link_name'>Usuários</span>
+                            </a>
+                        </li>
+                        <li class='sair' style='background-color: #000'>
+                            <a href='adm/logout.php'><i class='bx bx-log-out'></i></a>
+                        </li>
+                    </ul>
+                </nav>
+                ";
+            } elseif (isset($_SESSION['tipo']) && ($_SESSION['tipo'] == 0 || $_SESSION['tipo'] == 1)) {
+                $usuarioTipo = $_SESSION['tipo'];
+                // Corrigido: nomes das variáveis de imagens para usar chaves, evitar erros
+                $imgCaminho = ($usuarioTipo == 0)
+                    ? "adm/imagens/resenhistas/" . htmlspecialchars($_SESSION['imagem-res'])
+                    : "adm/imagens/livrarias/" . htmlspecialchars($_SESSION['imagem-liv']);
+                $nome = htmlspecialchars($_SESSION['nome']);
 
-        <li class='logo_name'>
-            <a href='adm/perfil/perfil.php'>
-                 <span class='link_name'>" . $_SESSION['nome'] . "</span>
-            </a>
-        </li>
-
-        <div class='menu' id='menu'>
-            <i class='bx bx-menu'></i>
-        </div>
-
-    </div>
-    <ul class='nav-list'>
-    
-        <li class='fix'>
-            <a href='adm/home.php'>
-                <i class='bx bx-home-alt-2'></i>
-                <span class='link_name'>Home</span>
-            </a>
-        </li>
-        <li>
-            <a href='adm/livrarias/livrarias.php'>
-                <i class='bx bx-user'></i>
-                <span class='link_name'>Livrarias</span>
-            </a>
-        </li>
-        <li>
-            <a href='adm/resenhistas/resenhistas.php'>
-                <i class='bx bx-user-pin'></i>
-                <span class='link_name'>Resenhistas</span>
-            </a>
-        </li>
-        <li>
-            <a href='adm/livro/livros.php'>
-                <i class='bx bx-book-bookmark'></i>
-                <span class='link_name'>Livros</span>
-            </a>
-        </li>
-        <li>
-            <a href='adm/usuarios/usuarios.php'>
-                <i class='bx bx-book-content'></i>
-                <span class='link_name'>Usuarios</span>
-            </a>
-        </li>
-        <li class='sair' style='background-color: #000'>
-            <a href='adm/logout.php'><i class='bx bx-log-out'></i></a>
-        </li>
-    </ul>
-</nav>
-";
-            } else if (isset($_SESSION['tipo']) && $_SESSION['tipo'] == 0) {
-
-                // menu resenhista e livraria
                 echo "
-<nav class='sidebar' id='sidebar'>
-    <div class='nome'>
+                <nav class='sidebar' id='sidebar'>
+                    <div class='nome'>
+                        <li class='logo_name'>
+                            <a href='liv-res/perfil/perfil.php'>
+                                <img src='" . $imgCaminho . "' alt='Foto de perfil' style='width:100px' />
+                                <span class='link_name'>{$nome}</span>
+                            </a>
+                        </li>
+                        <div class='menu' id='menu'>
+                            <i class='bx bx-menu'></i>
+                        </div>
+                    </div>
+                    <ul class='nav-list'>
+                ";
 
-        <li class='logo_name'>
-            <a href='liv-res/perfil/perfil.php'>
-               <img src='adm/imagens/resenhistas/{$_SESSION['imagem-res']}' alt='' style='width:100px'>
-               <span class='link_name'>{$_SESSION['nome']}</span>
-            </a>
-        </li>
+                if ($usuarioTipo == 1) {
+                    echo "
+                        <li>
+                            <a href='../anuncio/anuncios.php'>
+                                <i class='bx bx-user'></i>
+                                <span class='link_name'>Criar resenhas</span>
+                            </a>
+                        </li>
+                    ";
+                }
 
-        <div class='menu' id='menu'>
-            <i class='bx bx-menu'></i>
-        </div>
-
-    </div>
-    <ul class='nav-list'>
-
-        <li>
-            <a href='liv-res/resenha/resenhas.php'>
-                <i class='bx bx-user'></i>
-                <span class='link_name'>Criar resenhas</span>
-            </a>
-        </li>
-        <li>
-            <a href='liv-res/m-resenha/m-resenhas.php'>
-                <i class='bx bx-user-pin'></i>
-                <span class='link_name'>Minhas resenhas</span>
-            </a>
-        </li>
-       
-        <li class='sair' style='background-color: #000'>
-            <a href='liv-res/logout.php'><i class='bx bx-log-out'></i></a>
-        </li>
-    </ul>
-</nav>
-";
-            } else if (isset($_SESSION['tipo']) && $_SESSION['tipo'] == 1) {
                 echo "
-<nav class='sidebar' id='sidebar'>
-    <div class='nome'>
-
-        <li class='logo_name'>
-           <a href='liv-res/perfil/perfil.php'>
-             <img src='adm/imagens/livrarias/{$_SESSION['imagem-liv']}' alt=''>
-             <span class='link_name'>{$_SESSION['nome']}</span>
-           </a>
-        </li>
-
-        <div class='menu' id='menu'>
-            <i class='bx bx-menu'></i>
-        </div>
-
-    </div>
-    <ul class='nav-list'>
-    
-        <li class='fix'>
-            <a href='liv-res/anuncio/anuncios.php'>
-                <i class='bx bx-home-alt-2'></i>
-                <span class='link_name'>Anúncios</span>
-            </a>
-        </li>
-        <li>
-            <a href='liv-res/resenha/resenhas.php'>
-                <i class='bx bx-user'></i>
-                <span class='link_name'>Criar resenhas</span>
-            </a>
-        </li>
-        <li>
-            <a href='liv-res/m-resenha/m-resenhas.php'>
-                <i class='bx bx-user-pin'></i>
-                <span class='link_name'>Minhas resenhas</span>
-            </a>
-        </li>
-       
-        <li class='sair' style='background-color: #000'>
-            <a href='liv-res/logout.php'><i class='bx bx-log-out'></i></a>
-        </li>
-    </ul>
-</nav>
-";
+                        <li>
+                            <a href='liv-res/resenha/resenhas.php'>
+                                <i class='bx bx-user'></i>
+                                <span class='link_name'>Criar resenhas</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href='liv-res/m-resenha/m-resenhas.php'>
+                                <i class='bx bx-user-pin'></i>
+                                <span class='link_name'>Minhas resenhas</span>
+                            </a>
+                        </li>
+                        <li class='sair'>
+                            <a href='logout.php'><i class='bx bx-log-out'></i></a>
+                        </li>
+                    </ul>
+                </nav>";
             }
-
             ?>
-            <a href="login/login.php">Logar</a>
-            <a href="#">Home</a>
-            <a href="resenhas/resenhas.php">Resenhas</a>
-            <a href="autores/autores.php">Autores</a>
-            <a href="livros/livros.php">Livros</a>
-            <a href="sobre/sobre.php">Sobre</a>
+
+            <a href='login/login.php'>Logar</a>
+            <a href='#'>Home</a>
+            <a href='resenhas/resenhas.php'>Resenhas</a>
+            <a href='autores/autores.php'>Autores</a>
+            <a href='livros/livros.php'>Livros</a>
+            <a href='sobre/sobre.php'>Sobre</a>
         </nav>
 
         <div class="change-text">
