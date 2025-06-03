@@ -1,4 +1,4 @@
-<?php
+<!--<?php
 include "../../conexao.php";
 
 // Verifica se o ID foi passado via GET
@@ -53,7 +53,7 @@ if ($result->num_rows > 0) {
     $autor = htmlspecialchars($row['res_nome_fantasia']);
 
     echo "
-
+-->
     <!DOCTYPE html>
     <html lang='pt-br'>
     <head>
