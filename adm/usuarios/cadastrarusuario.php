@@ -57,7 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastrar Usuário</title>
-    <link rel="stylesheet" href="usuarios.css">
+    <link rel="stylesheet" href="usuaria.css">
 </head>
 <body style="background-color:#DEDEDE">
     <form action="cadastrarusuario.php" method="POST" class='format2'>
