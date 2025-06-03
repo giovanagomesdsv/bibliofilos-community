@@ -93,6 +93,7 @@ $usuario_db agora contém os dados encontrados que foram pedidos na consulta SQL
                     <option value="1">Livraria</option>
                 </select>
                 <button class="btn" id="proximoBtn">PRÓXIMO</button>
+                <br>
                 <a href="../index.php">Bibliófilos Community</a>
             </div>
     
