@@ -1,4 +1,4 @@
-<!--<?php
+<?php
 include "../../conexao.php";
 
 // Verifica se o ID foi passado via GET
@@ -53,7 +53,7 @@ if ($result->num_rows > 0) {
     $autor = htmlspecialchars($row['res_nome_fantasia']);
 
     echo "
--->
+
     <!DOCTYPE html>
     <html lang='pt-br'>
     <head>
@@ -89,7 +89,7 @@ if ($result->num_rows > 0) {
                     </div>
                 </div>
 
-                <form action='?id={$dado}' method='post' class='cardforms'>
+                <form class='barraenvia'action='?id={$dado}' method='post' class='cardforms'>
                     <select class='notas' name='avaliar' required>
                         <option class='resultado' value=''>Avaliar</option>
                         <option class='resultado' value='1'>Reprovada</option>
@@ -102,7 +102,8 @@ if ($result->num_rows > 0) {
         </main>
         <script src='script.js'></script>
     </body>
-    </html>";
+    </html>
+    ";
 
 } else {
     echo "<p>Resenha não encontrada.</p>";

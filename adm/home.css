@@ -35,10 +35,11 @@
     align-items: center;
     justify-content: space-around;
     border: 1px solid #ccc;
-    padding: 1rem;
+    padding: 1rem 0;
     margin-bottom: 2rem;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     height: 15rem;
+    width: 100%;
 }
 
 /* texto de informaçao dos resenhsotas */
@@ -47,7 +48,6 @@
     display: flex;
     flex-direction: column;
     color: var(--text);
-    border: 1PX SOLID RED;
     width: 25%;
 }
 
@@ -56,48 +56,36 @@
 .cardimgsinopse {
     display: flex;
     flex-direction: row;
-    border: solid red;
-
 }
 
 .imgavalia {
     margin: 2rem;
-    border: solid red;
 }
 
 /* texto de sinopse */
 .cardimgsinopse p {
     margin: 3rem;
-    border: solid red;
     font-size: 1.6rem;
     text-align: start;
     align-items: start;
 }
-
 .cardimgsinopse p {
     margin: 2rem;
 }
 .cardresenha {
     display: flex;
-    border: solid red;
     height: auto;
-
-
 }
-
 .cardresenha p {
     margin: 2rem;
     font-size: 1.6rem;
 }
-
 .cardresenha p {
     margin: 2rem;
 }
-
 .cardresenha p {
     margin: 2rem;
 }
-
 /* Seções internas */
 .card section {
     background-color: var(--content-bg);
@@ -106,13 +94,11 @@
     margin-top: 1rem;
     border-radius: 5px;
 }
-
 /* Títulos das seções */
 .card h3 {
     color: var(--text-light);
     margin-top: 1.5rem;
 }
-
 /* Autor */
 .card .autor {
     margin-top: 1rem;
@@ -120,23 +106,89 @@
     font-size: 0.9rem;
     color: var(--text-light);
 }
-
 .cardforms {
     display: flex;
     justify-content: center;
     padding: 2rem;
 }
 
+.barraenvia {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 1rem;
+}
 .notas {
     color: #000;
-    width: 50%;
+    width: 45%;
+    margin: 0 0 0 1rem;
 }
-
 .resultado {
     color: #000;
 }
-
 .teste {
     color: #000;
-    width: 25%;
+    width: 50%;
+    margin: 0 0 0 1rem;
+}
+/* css do avaliar livraria________________________________________________________________________ */
+.card2 {
+    height: 60rem;
+}
+
+.layoutliv {
+    display: flex;
+    flex-direction: row;
+}
+
+.imgavalialiv {
+    margin: 2rem;
+}
+
+.avalialiv {
+    margin: 1rem;
+    width: 100%;
+    background-color: var(--text);
+    justify-content: center;
+    align-items: center;
+}
+
+p {
+    color: #000;
+    font-weight: normal;
+    text-align: start;
+    margin-left: 1rem;
+}
+
+strong {
+    color: #000;
+    font-weight: normal;
+    text-align: start;
+    margin-left: 1rem;
+}
+
+h2 {
+    color: #000;
+    font-weight: normal;
+    text-align: start;
+    margin-left: 1rem;
+}
+
+.barraenvia {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.notas {
+    color: #000;
+    width: 45%;
+    margin: 0 0 0 1rem;
+}
+.resultado {
+    color: #000;
+}
+.teste {
+    color: #000;
+    width: 50%;
+    margin: 0 0 0 1rem;
 }

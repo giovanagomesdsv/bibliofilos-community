@@ -1,4 +1,4 @@
-<?php
+<!--<?php
 include "../../conexao.php";
 
 // Verifica se o ID foi passado via GET
@@ -89,6 +89,7 @@ if ($result->num_rows > 0) {
     $liv_social = htmlspecialchars($row['liv_social']);
 
     echo "
+-->
     <!DOCTYPE html>
     <html lang='pt-br'>
     <head>
@@ -96,18 +97,29 @@ if ($result->num_rows > 0) {
         <meta name='viewport' content='width=device-width, initial-scale=1.0'>
         <title>Avaliar livraria - BACKSTAGECommunity</title>
 
-        <link rel='stylesheet' href='home.css'>
-        <link rel='stylesheet' href='geral.css'>
+        <link rel='stylesheet' href='../home.css'>
+        <link rel='stylesheet' href='../geral.css'>
     </head>
     <body>
+        <main>
+        <p class='textnotificaçao'>AVALIAR LIVRARIA</p>
+        <div class='card card2'>
+<div class='layoutliv'>
 
-        <h2>Informações dao administrador</h2>
 
+            <div class='imagem imgavalialiv'>
+                <p><strong></strong>{$liv_foto}</p><!--essa parte eu fiz-------------------------------------------------------------->
+            </div>
+
+            <div class='avalialiv'>
+        <h2>Informações do administrador</h2>
+
+        
         <p><strong>Nome:</strong>{$nome}</p>
-        <p><strong>Nome:</strong>{$email}</p>
+        <p><strong>Email:</strong>{$email}</p>
 
         <h2>Informações da Livraria</h2>
-
+       
         <p><strong>Nome:</strong> {$liv_nome}</p>
         <p><strong>Email:</strong> {$liv_email}</p>
         <p><strong>Cidade:</strong> {$liv_cidade}</p>
@@ -117,15 +129,23 @@ if ($result->num_rows > 0) {
         <p><strong>Perfil:</strong> {$liv_perfil}</p>
         <p><strong>Redes Sociais:</strong> {$liv_social}</p>
         <p><strong>Status Atual:</strong> {$status}</p>
+    </div>
+</div>
 
-        <form action='?id={$dado}' method='post'>
-            <select name='avaliar' required>
-                <option value=''>Avaliar</option>
-                <option value='1'>Aprovada</option>
+
+
+        <form class='barraenvia'action='?id={$dado}' method='post'>
+            <select class='notas' name='avaliar' required>
+                <option class='resultado' value=''>Avaliar</option>
+                <option class='resultado' value='1'>Aprovada</option>
+                <option class='resultado' value='2'>reprovada</option>
             </select>
-            <input type='submit' value='Enviar'>
+            <input class='teste' type='submit' value='Enviar'>
         </form>
 
+    </div>
+    </main>
+    <script src='script.js'></script>
     </body>
     </html>
     ";
