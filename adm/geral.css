@@ -167,6 +167,7 @@ header {
     padding: 0.01rem ;
     border-top-left-radius: 15px;
     border-bottom-left-radius: 15px;
+    width: 100%;
 }
 /* classe js -> abrir e fechar menu*/
 .sidebar.abrir {
