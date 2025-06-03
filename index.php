@@ -20,9 +20,10 @@ session_start();
     <!--Primeira tela___________________________________________________________________-->
     <section>
         <nav>
-        <?php
-           if (isset($_SESSION['tipo']) && $_SESSION['tipo'] == 2) {
-        echo "
+            <?php
+            if (isset($_SESSION['tipo']) && $_SESSION['tipo'] == 2) {
+                // menu do adm
+                echo "
             <nav class='sidebar' id='sidebar'>
     <div class='nome'>
 
@@ -75,11 +76,93 @@ session_start();
     </ul>
 </nav>
 ";
-           } else {
+            } else if (isset($_SESSION['tipo']) && $_SESSION['tipo'] == 0) {
 
-           }
+                // menu resenhista e livraria
+                echo "
+<nav class='sidebar' id='sidebar'>
+    <div class='nome'>
 
-        ?>
+        <li class='logo_name'>
+            <a href='liv-res/perfil/perfil.php'>
+               <img src='adm/imagens/resenhistas/{$_SESSION['imagem-res']}' alt='' style='width:100px'>
+               <span class='link_name'>{$_SESSION['nome']}</span>
+            </a>
+        </li>
+
+        <div class='menu' id='menu'>
+            <i class='bx bx-menu'></i>
+        </div>
+
+    </div>
+    <ul class='nav-list'>
+
+        <li>
+            <a href='liv-res/resenha/resenhas.php'>
+                <i class='bx bx-user'></i>
+                <span class='link_name'>Criar resenhas</span>
+            </a>
+        </li>
+        <li>
+            <a href='liv-res/m-resenha/m-resenhas.php'>
+                <i class='bx bx-user-pin'></i>
+                <span class='link_name'>Minhas resenhas</span>
+            </a>
+        </li>
+       
+        <li class='sair' style='background-color: #000'>
+            <a href='liv-res/logout.php'><i class='bx bx-log-out'></i></a>
+        </li>
+    </ul>
+</nav>
+";
+            } else if (isset($_SESSION['tipo']) && $_SESSION['tipo'] == 1) {
+                echo "
+<nav class='sidebar' id='sidebar'>
+    <div class='nome'>
+
+        <li class='logo_name'>
+           <a href='liv-res/perfil/perfil.php'>
+             <img src='adm/imagens/livrarias/{$_SESSION['imagem-liv']}' alt=''>
+             <span class='link_name'>{$_SESSION['nome']}</span>
+           </a>
+        </li>
+
+        <div class='menu' id='menu'>
+            <i class='bx bx-menu'></i>
+        </div>
+
+    </div>
+    <ul class='nav-list'>
+    
+        <li class='fix'>
+            <a href='liv-res/anuncio/anuncios.php'>
+                <i class='bx bx-home-alt-2'></i>
+                <span class='link_name'>Anúncios</span>
+            </a>
+        </li>
+        <li>
+            <a href='liv-res/resenha/resenhas.php'>
+                <i class='bx bx-user'></i>
+                <span class='link_name'>Criar resenhas</span>
+            </a>
+        </li>
+        <li>
+            <a href='liv-res/m-resenha/m-resenhas.php'>
+                <i class='bx bx-user-pin'></i>
+                <span class='link_name'>Minhas resenhas</span>
+            </a>
+        </li>
+       
+        <li class='sair' style='background-color: #000'>
+            <a href='liv-res/logout.php'><i class='bx bx-log-out'></i></a>
+        </li>
+    </ul>
+</nav>
+";
+            }
+
+            ?>
             <a href="login/login.php">Logar</a>
             <a href="#">Home</a>
             <a href="resenhas/resenhas.php">Resenhas</a>
@@ -220,9 +303,9 @@ session_start();
 
                 ?>
             </div>
-            
-          
-           
+
+
+
 
             <!-- Terror -->
             <!--div container das resenhas-->

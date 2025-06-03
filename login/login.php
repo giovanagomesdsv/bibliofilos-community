@@ -14,7 +14,21 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['email'], $_POST['senh
     if (empty($email) || empty($senha) || $_POST['tipo_usuario'] === "") {
         echo "Preencha todos os campos.";
     } else {
-        $sql_code = "SELECT * FROM usuarios WHERE usu_email = ? AND usu_tipo_usuario = ? AND usu_status = 1"; // Aqui está sendo criada uma query SQL com parâmetros (?) para evitar SQL Injection.
+        $sql_code = "SELECT 
+    u.usu_id, u.usu_email, u.usu_nome, u.usu_senha, u.usu_tipo_usuario, 
+    u.usu_data_criacao, u.usu_status,
+
+    r.res_id, r.tit_id, r.res_nome_fantasia, r.res_cidade, r.res_estado, 
+    r.res_telefone, r.res_foto, r.res_perfil, r.res_social,
+
+    l.liv_id, l.liv_nome, l.liv_cidade, l.liv_estado, l.liv_endereco, 
+    l.liv_telefone, l.liv_email, l.liv_foto, l.liv_perfil, l.liv_social
+
+FROM usuarios u
+LEFT JOIN resenhistas r ON r.res_id = u.usu_id
+LEFT JOIN livrarias l ON l.liv_id = u.usu_id
+WHERE u.usu_email = ? AND u.usu_tipo_usuario = ? AND u.usu_status = 1;
+"; // Aqui está sendo criada uma query SQL com parâmetros (?) para evitar SQL Injection.
         $stmt = $conn->prepare($sql_code); // Isso permite executar a mesma consulta várias vezes com diferentes valores de forma segura.
         $stmt->bind_param("si", $email, $tipo_usuario);
         
@@ -38,6 +52,8 @@ $usuario_db agora contém os dados encontrados que foram pedidos na consulta SQL
                 $_SESSION['id'] = $usuario_db['usu_id'];
                 $_SESSION['nome'] = $usuario_db['usu_nome'];
                 $_SESSION['tipo'] = $usuario_db['usu_tipo_usuario'];
+                $_SESSION['imagem-liv'] = $usuario_db['liv_foto'];
+                $_SESSION['imagem-res'] = $usuario_db['res_foto'];
 
                 // Cria variáveis de sessão, que permitem manter o usuário logado durante a navegação no site.
  
