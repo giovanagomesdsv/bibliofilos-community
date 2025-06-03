@@ -45,7 +45,7 @@ if ($result->num_rows === 1) {
     <nav class="sidebar" id="sidebar">
     <ul class="nav-list">
         <div class="nome">
-            <li>
+            <li class="usuario">
             <div class="fix"> <?php echo $_SESSION['nome']; ?></div>
             </li>
             <div class="menu" id="menu">

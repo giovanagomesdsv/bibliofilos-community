@@ -100,13 +100,17 @@ header {
     top: 0;
     position: fixed;
     z-index: 1000;
+    overflow: hidden;
 }
 /*problema do menu*/
 .nome {
     display: flex;
     flex-direction: column;
     align-items: center;
- margin-bottom: 7rem;
+    margin-bottom: 7rem;
+}
+.nome .usuario{
+    display: none;
 }
 /*problema do menu*/
 .menu {
@@ -139,13 +143,14 @@ header {
 }
 
 .sidebar ul li {
-    margin-bottom: 7rem;
+    margin-bottom: 4rem;
     width: 100%;
 }
 
 .sidebar ul li a .link_name {
     margin-left: 1.4rem;
     display: none;
+    width: 100%;
 }
 
 .sidebar ul li a:hover {
@@ -154,14 +159,6 @@ header {
     border-bottom: 1px solid var(--text);
 }
 
-/* teste*/
-.nome .link_name {
-    display: none;
-}
-
-.sidebar.abrir .nome .link_name {
-    display: block;
-}
 .sidebar ul .fix {
     background: var(--principal);
     padding: 0.01rem ;
@@ -169,13 +166,27 @@ header {
     border-bottom-left-radius: 15px;
     width: 100%;
 }
+
 /* classe js -> abrir e fechar menu*/
 .sidebar.abrir {
     width: 15rem;
     display: flex;
 }
+.sidebar.abrir .usuario{
+    display: block;
+    width: 100%;
+}
 .sidebar.abrir .link_name {
     display: block;
+    width: 100%;
+}
+
+.sidebar.abrir ul .fix {
+    background: var(--principal);
+    padding: 1rem 1rem 1rem -50rem  ;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    width: 100%;
 }
 
 .sidebar.abrir .sair {
@@ -195,7 +206,8 @@ header {
 }
 
 .sidebar.abrir ul li {
-    margin-top: 1rem;
+    margin-top: 5rem;
+    
 }
 
 .link_name{

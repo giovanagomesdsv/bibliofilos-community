@@ -25,7 +25,7 @@ include "../protecao.php";
     <ul class="nav-list">
         <div class="nome">
             <li>
-                <a href="perfil/perfil.php">
+                <a href="../perfil/perfil.php">
                     <span class="link_name">
                         <?php echo $_SESSION['nome']; ?>
                     </span>
@@ -35,7 +35,12 @@ include "../protecao.php";
                 <i class="bx bx-menu"></i>
             </div>
         </div>
-   
+        <li>
+                <a href="../../index.php">
+                    <i class='bx bx-home-alt-2'></i>
+                    <span class="link_name">Bibliófilos Community</span>
+                </a>
+            </li>
             <li>
                 <a href="../home.php">
                     <i class='bx bx-home-alt-2'></i>
@@ -152,7 +157,7 @@ if ($result-> num_rows > 0) {
             $preco = number_format($linha['liv_livro_preco'], 2, ',', '.');
 
             echo "
-            <div class='card-livro'>
+            <div class='card card-livro'>
                 <div class='imagem'>
                     <img src='../imagens/livros/$foto' alt='$titulo'>
                 </div>
