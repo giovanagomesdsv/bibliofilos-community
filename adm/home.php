@@ -36,9 +36,7 @@ include "../conexao.php";
             <div class="menu" id="menu">
                 <i class="bx bx-menu"></i>
             </div>
-
          </div>
-        
             <li>
                 <a href="../index.php">
                     <i class='bx bx-home-alt-2'></i>

@@ -1,31 +1,24 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Flex:opsz,wght@8..144,100..1000&family=Roboto:ital,wght@0,100..900;1,100..900&family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
 * {
-
     font-family: 'Roboto', sans-serif;
     text-decoration: none;
     list-style-type: none;
     color: var(--text);
     scroll-behavior: smooth;
-
 }
 
 :root {
     padding: 1rem;
-
     --bg: #DEDEDE;
     --text: #f5f5f5;
     --principal: #406E96;
     --secundaria: #2A4A64;
     --terciaria: #1F3A50;
-
-
     /* Transições */
     --transition-fast: 0.2s ease;
     --transition-base: 0.3s ease;
-
     --padding: 1rem;
-
     /* Controla a síntese de fontes (negrito, itálico) pelo navegador */
     font-synthesis: none;
     /* Otimiza a renderização do texto para melhor legibilidade */
@@ -34,7 +27,6 @@
     -webkit-font-smoothing: antialiased;
     /* Melhora a renderização de fontes em navegadores Firefox no macOS */
     -moz-osx-font-smoothing: grayscale;
-
     text-decoration: none;
     box-sizing: border-box;
     margin: 0;
@@ -54,15 +46,11 @@ body {
     background-color: var(--bg);
     color: var(--color-text);
     font-size: 1.6rem;
-
     /* Garante uma largura mínima de 320px para evitar layouts quebrados em telas pequenas */
     min-height: 100vh;
-
     /* Adiciona um preenchimento ao redor do conteúdo do body usando uma variável CSS */
-
     /* Força a exibição da barra de rolagem vertical, evitando o deslocamento de elementos quando o conteúdo se torna longo o suficiente para precisar da barra */
     overflow-y: scroll;
-
     margin: 0 auto;
     text-align: center;
     width: 100%;
@@ -81,11 +69,9 @@ main {
     padding: var(--padding);
 }
 
-
 ::-webkit-scrollbar {
     height: 0;
     width: 0.5rem;
-
 }
 
 ::-webkit-scrollbar-track {
@@ -96,7 +82,6 @@ main {
     background: var(--text);
     border-radius: .5rem;
 }
-
 
 /* header bc administrador*/
 header {
@@ -115,27 +100,21 @@ header {
     top: 0;
     position: fixed;
     z-index: 1000;
-    border: solid 1px red;
-
 }
 /*problema do menu*/
 .nome {
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: solid 1px red;
- 
+ margin-bottom: 7rem;
 }
 /*problema do menu*/
 .menu {
-  
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     cursor: pointer;
     display: flex;
     align-items: center;
-    border: solid 1px red;
 }
-
 .menu:hover {
     border: 1px solid;
     border-radius: 30%;
@@ -150,19 +129,18 @@ header {
     margin-bottom: 1rem;
     text-align: center;
     width: 100%;
-    border: solid 1px red;
 }
 
 
 .sidebar ul {
     height: 100%;
-    font-size: 1rem;
-    margin-top: 1rem;
+    font-size: 1.6rem;
+  
     padding-left: 2rem;
 }
 
 .sidebar ul li {
-    margin-bottom: 5rem;
+    margin-bottom: 7rem;
     width: 100%;
 }
 
@@ -212,6 +190,9 @@ header {
     margin-top: 1rem;
 }
 
+.link_name{
+    font-size: 1.4rem;
+}
 
 /* padrao de pesquisa */
 .busca-container {
@@ -221,7 +202,6 @@ header {
     padding-top: 1rem;
     width: 100%;
 }
-
 .busca-form {
     display: flex;
     align-items: center;
@@ -232,7 +212,6 @@ header {
     gap: 1rem;
     border: 1px solid #000;
 }
-
 .busca-form input[type="text"] {
     border: none;
     /* remove a borda preta */
@@ -245,13 +224,11 @@ header {
     /* arredonda o lado esquerdo */
     color: #000;
 }
-
 .busca-form button {
     background: none;
     border: none;
     cursor: pointer;
 }
-
 .busca-form button i {
     padding: 0 1rem;
     font-size: 1.4rem;
@@ -274,7 +251,6 @@ header {
     background-color: #2A4A64;
     width: 10rem;
     height: 3rem;
-    
 }
 
 .botao:hover {
