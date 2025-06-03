@@ -26,17 +26,19 @@ include "../conexao.php";
         BACKSTAGE Community
     </header>
     <nav class="sidebar" id="sidebar">
-    <ul class="nav-list">
-        <div class="nome">
-            <li>
-                <a href="perfil/perfil.php">
-                    <span class="link_name"><?php echo $_SESSION['nome']; ?></span>
-                </a>
-            </li>
-            <div class="menu" id="menu">
-                <i class="bx bx-menu"></i>
+        <ul class="nav-list">
+            <div class="nome">
+                <li>
+                    <a href="perfil/perfil.php">
+                        <span class="link_name">
+                            <?php echo $_SESSION['nome']; ?>
+                        </span>
+                    </a>
+                </li>
+                <div class="menu" id="menu">
+                    <i class="bx bx-menu"></i>
+                </div>
             </div>
-         </div>
             <li>
                 <a href="../index.php">
                     <i class='bx bx-home-alt-2'></i>
@@ -83,7 +85,9 @@ include "../conexao.php";
     <main>
 
         <div class="titulo">
-            <h3>Olá, <?php echo $_SESSION['nome']; ?>, <br> Seja bem-vindo!</h3>
+            <h3>Olá,
+                <?php echo $_SESSION['nome']; ?>, <br> Seja bem-vindo!
+            </h3>
         </div>
         <div class="avaliar">
             <div class="textnotificaçao"> AVALIAR</div>
@@ -162,7 +166,7 @@ include "../conexao.php";
             ?>
         </div>
     </main>
-    
+
     <script src="script.js"></script>
 </body>
 
