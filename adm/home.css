@@ -71,7 +71,7 @@
 /* texto de sinopse */
 .cardimgsinopse p {
     margin: 3rem;
-    font-size: 1.6rem;
+    font-size: 2rem;
     text-align: start;
     align-items: start;
     color:var(--text);
@@ -85,7 +85,7 @@
 }
 .cardresenha p {
     margin: 2rem;
-    font-size: 1.6rem;
+    font-size: 2rem;
     color:var(--text);
 }
 .cardresenha p {
