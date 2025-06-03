@@ -92,22 +92,23 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro de Resenhistas</title>
-    <link rel="stylesheet" href="cadastro_resenhista.css">
+    <link rel="stylesheet" href="../geral.css">
+    <link rel="stylesheet" href="usuarios.css">
 </head>
 
 <body>
-    <form action="cadastrarresenhista.php?id=<?= $res_id ?>" method="POST" enctype="multipart/form-data">
+    <form action="cadastrarresenhista.php?id=<?= $res_id ?>" method="POST" enctype="multipart/form-data" class='format'>
         <h1>Cadastro de Resenhistas</h1>
 
 
         <label for="pseudonimo">Pseudônimo:</label>
-        <input type="text" name="pseudonimo" required>
+        <input type="text" name="pseudonimo" class='inputEditar2'>
 
         <label for="cidade">Cidade:</label>
-        <input type="text" name="cidade" required>
+        <input type="text" name="cidade" required class='inputEditar2'>
 
         <label for="estado">Estado:</label>
-        <select name="estado" required>
+        <select name="estado" required class=''>
             <option value="">Selecione...</option>
             <option value="SP">SP</option>
             <option value="MG">MG</option>
@@ -115,18 +116,18 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         </select>
 
         <label for="telefone">Telefone (WhatsApp):</label>
-        <input type="text" name="telefone" placeholder="5511999999999" required>
+        <input type="text" name="telefone" placeholder="5511999999999" required class='inputEditar2'>
 
         <label for="instagram">Instagram (URL):</label>
-        <input type="url" name="instagram" placeholder="https://instagram.com/seuperfil">
+        <input type="url" name="instagram" placeholder="https://instagram.com/seuperfil" class='inputEditar2'>
 
         <label for="descricao">Perfil:</label>
-        <input type="text" name="descricao">
+        <input type="text" name="descricao" class='inputEditar2'>
 
         <label for="arquivo">Foto:</label>
-        <input type="file" name="arquivo" accept=".jpg,.jpeg,.png">
+        <input type="file" name="arquivo" accept=".jpg,.jpeg,.png" class='inputEditar2'>
 
-        <input type="submit" value="Cadastrar">
+        <input type="submit" value="Cadastrar" class='inputEditar2'>
         <a href="resenhistas.php">Voltar</a>
     </form>
 </body>
