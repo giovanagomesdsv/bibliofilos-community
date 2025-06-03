@@ -5,23 +5,19 @@
     padding: 3rem;
     border-radius: 10px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    border: solid red;
 }
-
 .perfil-container h1 {
     margin-bottom: 20px;
     color: var(--text);
     display: flex;
     justify-content: center;
 }
-
 .perfil-container p {
     font-size: 1.6rem;
     color: var(--text);
     margin: 2rem;
     text-align: start;
 }
-
 .perfil-container a {
     color: var(--text);
     display: flex;
@@ -34,17 +30,6 @@
     border-radius: 5px;
 }
 
-.logo_name {
-    background-color: var(--principal);
-    color: var(--text);
-    padding: 1rem;
-    border-top-left-radius: 15px;
-    border-bottom-left-radius: 15px;
-    width: 100%;
-    text-align: center;
-    display: none;
-    
-}
 
 /* inicio editar perfil -----------------------------------------------------------------------------------------------------------------------------------*/
 .editar-perfil-container {

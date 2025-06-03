@@ -130,6 +130,19 @@ header {
     text-align: center;
     width: 100%;
 }
+/*
+.sidebar .nome {
+    display: none;
+}
+*/
+.sidebar.abrir .nome {
+    display: block;
+}
+
+
+
+
+
 
 .sidebar ul {
     height: 100%;
