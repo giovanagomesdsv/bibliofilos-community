@@ -71,7 +71,7 @@ if ($result->num_rows > 0) {
         </header>
         <main>
             <p class='textnotificaçao'>AVALIAR RESENHA</p>
-            <div class='card'>
+            <div class='card card3'>
                 <div class='cardimgsinopse'>
                     <img class='imagem imgavalia' src='../imagens/livros/{$foto}' alt=''>
                     <div class='sinopse'>

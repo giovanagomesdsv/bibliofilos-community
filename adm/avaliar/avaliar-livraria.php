@@ -90,67 +90,71 @@ if ($result->num_rows > 0) {
 
     echo "
 -->
-    <!DOCTYPE html>
-    <html lang='pt-br'>
-    <head>
-        <meta charset='UTF-8'>
-        <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-        <title>Avaliar livraria - BACKSTAGECommunity</title>
+<!DOCTYPE html>
+<html lang='pt-br'>
 
-        <link rel='stylesheet' href='../home.css'>
-        <link rel='stylesheet' href='../geral.css'>
-    </head>
-    <body>
-        <main>
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Avaliar livraria - BACKSTAGECommunity</title>
+
+    <link rel='stylesheet' href='../home.css'>
+    <link rel='stylesheet' href='../geral.css'>
+</head>
+
+<body>
+    <main>
         <p class='textnotificaçao'>AVALIAR LIVRARIA</p>
         <div class='card card2'>
-<div class='layoutliv'>
+            <div class='layoutliv'>
 
 
-            <div class='imagem imgavalialiv'>
-                <p><strong></strong>{$liv_foto}</p><!--essa parte eu fiz-------------------------------------------------------------->
+                <div class='imagem imgavalialiv'>
+                    <p><strong></strong>{$liv_foto}</p>
+                    <!--essa parte eu fiz-------------------------------------------------------------->
+                </div>
+
+                <div class='avalialiv'>
+                    <h2>Informações do administrador</h2>
+
+
+                    <p><strong>Nome:</strong>{$nome}</p>
+                    <p><strong>Email:</strong>{$email}</p>
+
+                    <h2>Informações da Livraria</h2>
+
+                    <p><strong>Nome:</strong> {$liv_nome}</p>
+                    <p><strong>Email:</strong> {$liv_email}</p>
+                    <p><strong>Cidade:</strong> {$liv_cidade}</p>
+                    <p><strong>Estado:</strong> {$liv_estado}</p>
+                    <p><strong>Endereço:</strong> {$liv_endereco}</p>
+                    <p><strong>Telefone:</strong> {$liv_telefone}</p>
+                    <p><strong>Perfil:</strong> {$liv_perfil}</p>
+                    <p><strong>Redes Sociais:</strong> {$liv_social}</p>
+                    <p><strong>Status Atual:</strong> {$status}</p>
+                </div>
             </div>
 
-            <div class='avalialiv'>
-        <h2>Informações do administrador</h2>
-
-        
-        <p><strong>Nome:</strong>{$nome}</p>
-        <p><strong>Email:</strong>{$email}</p>
-
-        <h2>Informações da Livraria</h2>
-       
-        <p><strong>Nome:</strong> {$liv_nome}</p>
-        <p><strong>Email:</strong> {$liv_email}</p>
-        <p><strong>Cidade:</strong> {$liv_cidade}</p>
-        <p><strong>Estado:</strong> {$liv_estado}</p>
-        <p><strong>Endereço:</strong> {$liv_endereco}</p>
-        <p><strong>Telefone:</strong> {$liv_telefone}</p>
-        <p><strong>Perfil:</strong> {$liv_perfil}</p>
-        <p><strong>Redes Sociais:</strong> {$liv_social}</p>
-        <p><strong>Status Atual:</strong> {$status}</p>
-    </div>
-</div>
 
 
+            <form class='barraenvia' action='?id={$dado}' method='post'>
+                <select class='notas' name='avaliar' required>
+                    <option class='resultado' value=''>Avaliar</option>
+                    <option class='resultado' value='1'>Aprovada</option>
+                    <option class='resultado' value='2'>reprovada</option>
+                </select>
+                <input class='teste' type='submit' value='Enviar'>
+            </form>
 
-        <form class='barraenvia'action='?id={$dado}' method='post'>
-            <select class='notas' name='avaliar' required>
-                <option class='resultado' value=''>Avaliar</option>
-                <option class='resultado' value='1'>Aprovada</option>
-                <option class='resultado' value='2'>reprovada</option>
-            </select>
-            <input class='teste' type='submit' value='Enviar'>
-        </form>
-
-    </div>
+        </div>
     </main>
     <script src='script.js'></script>
-    </body>
-    </html>
-    ";
+</body>
+
+</html>
+";
 } else {
-    echo "<p>Livraria não encontrada ou você está tentando acessar um usuário que não é uma livraria.</p>";
+echo "<p>Livraria não encontrada ou você está tentando acessar um usuário que não é uma livraria.</p>";
 }
 
 $stmt->close();

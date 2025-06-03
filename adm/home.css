@@ -56,6 +56,9 @@
 
 /* css do avaliar________________________________________________________________________ */
 
+.card3{
+    padding: 1rem;
+}
 .cardimgsinopse {
     display: flex;
     flex-direction: row;
@@ -139,6 +142,7 @@
 /* css do avaliar livraria________________________________________________________________________ */
 .card2 {
     height: 60rem;
+    padding: 1rem;
 }
 
 .layoutliv {
