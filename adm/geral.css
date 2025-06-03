@@ -156,7 +156,7 @@ header {
 
 .sidebar ul .fix {
     background: var(--principal);
-    padding: 0.1rem 0.5rem;
+    padding: 0.01rem ;
     border-top-left-radius: 15px;
     border-bottom-left-radius: 15px;
 }
