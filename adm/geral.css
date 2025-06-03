@@ -131,16 +131,6 @@ header {
     width: 100%;
 }
 
-
-/*teste*/
-.sidebar ul .nome li a .link_name {
-    margin-left: 1.4rem;
-    display: none;
-}
-.sidebar ul .nome li {
-    margin-bottom: 7rem;
-    width: 100%;
-}
 .sidebar ul {
     height: 100%;
     font-size: 1.6rem;
