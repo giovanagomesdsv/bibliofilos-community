@@ -77,7 +77,6 @@ p {
 
 /*CSS DO EDITAR USUARIO --------------------------------------------------------------*/
 
-/* Estilos gerais */
 /* Estilos do formulário */
 .format {
     background-color: #1F3A50;
@@ -115,6 +114,7 @@ input[type="submit"] {
     border: none;
     cursor: pointer;
     transition: background-color 0.3s;
+    width:101%;
 }
 
 /* Efeito de hover no botão */
@@ -143,7 +143,7 @@ label {
 }
 
 /* Estilos dos inputs e select <-- Está sendo utilizado no Cadastrar usuário & Cadastrar resenhista para otimizar o código*/
-select, .inputEditar2[type="text"], .inputConfirmar[type="submit"], .inputEditar2[type="number"], .inputEditar2[type="email"], .inputEditar2[type="url"], textarea {
+select, .inputEditar2[type="text"], .inputConfirmar[type="submit"], .inputEditar2[type="number"], .inputEditar2[type="email"], .inputEditar2[type="password"], .inputEditar2[type="url"], textarea {
     width: 98%;
     padding: 10px;
     margin: 10px 0 15px 0; /* Aumentei o espaço inferior entre os inputs */
@@ -152,8 +152,8 @@ select, .inputEditar2[type="text"], .inputConfirmar[type="submit"], .inputEditar
     border: 1px solid #406E96;
     border-radius: 2%; /* Border-radius aplicado a todos os inputs */
     font-size: 14px;
+    
 }
-
 /*Para deixar todos os inputs do mesmo tamanho (Foi necessario implementar esse width de forma separada no select)*/
 select {
     width: 101.5%;
@@ -164,7 +164,13 @@ select {
 .inputEditar2[type="password"], textarea {
     width: 98%;
 }
-
+.selectResenhista {
+    width: 101%;
+}
+.tamanhoSubmit {
+    width: 21%;
+    border: 2px solid red;
+}
 
 /* Estilos do botão de envio */
 .inputConfirmar[type="submit"] {

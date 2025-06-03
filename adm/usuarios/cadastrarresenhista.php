@@ -108,7 +108,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <input type="text" name="cidade" required class='inputEditar2'>
 
         <label for="estado">Estado:</label>
-        <select name="estado" required class=''>
+        <select name="estado" required class='selectResenhista'>
             <option value="">Selecione...</option>
             <option value="SP">SP</option>
             <option value="MG">MG</option>
@@ -125,9 +125,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <input type="text" name="descricao" class='inputEditar2'>
 
         <label for="arquivo">Foto:</label>
-        <input type="file" name="arquivo" accept=".jpg,.jpeg,.png" class='inputEditar2'>
+        <input type="file" name="arquivo" accept=".jpg,.jpeg,.png">
 
-        <input type="submit" value="Cadastrar" class='inputEditar2'>
+        <input type="submit" value="Cadastrar" class='tamanhoSubmit'>
         <a href="resenhistas.php">Voltar</a>
     </form>
 </body>
