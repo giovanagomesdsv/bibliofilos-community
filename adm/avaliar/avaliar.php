@@ -70,14 +70,14 @@ if ($result->num_rows > 0) {
              BACKSTAGE Community
         </header>
         <main>
-            <p class='avaliar'>AVALIAR RESENHA</p>
+            <p class='textnotificaçao'>AVALIAR RESENHA</p>
             <div class='card'>
                 <div class='cardimgsinopse'>
                     <img class='imagem imgavalia' src='../imagens/livros/{$foto}' alt=''>
                     <div class='sinopse'>
                         <p>{$titulo}</p>
                         <p>Sinopse</p>
-                        <p>$sinopse}</p>
+                        <p>$sinopse</p>
                     </div>
                 </div>
 
