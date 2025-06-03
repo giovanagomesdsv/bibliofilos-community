@@ -3,8 +3,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
-    padding: 1rem;
-    width: 153rem;
+    width: 100%;
     margin: 3.5rem 0;
     background-color: var(--principal);
     color: var(--text);
