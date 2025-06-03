@@ -144,6 +144,10 @@ div a {
   transition: color 0.2s;
 }
 
+div a:hover{
+  color:#ccc;
+}
+
 /* Links adicionais */
 #cadastro-link,
 #resenhista-link {

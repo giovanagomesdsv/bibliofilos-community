@@ -110,7 +110,7 @@ $usuario_db agora contém os dados encontrados que foram pedidos na consulta SQL
                 </select>
                 <button class="btn" id="proximoBtn">PRÓXIMO</button>
                 <br>
-                <a href="../index.php">Bibliófilos Community</a>
+                <a href="../index.php" class=''>Bibliófilos Community</a>
             </div>
     
             <!-- Tela de login (inicialmente oculta) -->
