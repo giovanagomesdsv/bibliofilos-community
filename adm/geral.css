@@ -130,18 +130,13 @@ header {
     text-align: center;
     width: 100%;
 }
-/*
-.sidebar .nome {
+
+
+/*teste*/
+.sidebar ul .nome li a .link_name {
+    margin-left: 1.4rem;
     display: none;
 }
-*/
-.sidebar.abrir .nome {
-    display: block;
-}
-
-
-
-
 
 
 .sidebar ul {
