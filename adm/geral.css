@@ -108,6 +108,10 @@ header {
     align-items: center;
  margin-bottom: 7rem;
 }
+.nome.link_name{
+    display: none;
+    margin-left: 1.4rem;
+}
 /*problema do menu*/
 .menu {
     font-size: 1.6rem;
