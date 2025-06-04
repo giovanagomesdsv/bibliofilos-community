@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editar Usuário</title>
+    <title>Editar Usuário - BACKSTAGE Community</title>
     <link rel="stylesheet" href="../geral.css">
     <link rel="stylesheet" href="usuarios.css">
 </head>

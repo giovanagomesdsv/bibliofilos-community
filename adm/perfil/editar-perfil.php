@@ -69,7 +69,7 @@ $stmt->close();
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Editar Perfil</title>
+    <title>Editar Perfil - BACKSTAGE Community</title>
 
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href='https://cdn.boxicons.com/fonts/basic/boxicons.min.css' rel='stylesheet'>
