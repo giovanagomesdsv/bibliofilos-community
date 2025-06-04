@@ -115,7 +115,7 @@ $fotoLiv = $_SESSION['imagem-liv'];
                     // Proteção contra SQL Injection
                     $pesquisa = $conn->real_escape_string($_GET['busca']);
 
-                    // Query de busca
+                    // Query de busca ---------------------------------------------------------------------------------PAREI AQUI-------------------------------------------------------
                     $sql_code = "SELECT * FROM RESENHAS WHERE resenha_titulo LIKE '%$pesquisa%' ";
                     $sql_query = $conn->query($sql_code) or die("Erro ao consultar: " . $conn->error);
 
