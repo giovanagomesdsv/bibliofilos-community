@@ -55,6 +55,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['email'], $_POST['tipo
     <link rel="stylesheet" type="text/css" href="../geral.css">
 
     <style>
+
+        h1{
+            color:white;
+        }
         body {
             font-family: Arial, sans-serif;
             background-color: #222;
@@ -70,6 +74,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['email'], $_POST['tipo
             background: #333;
             padding: 30px;
             border-radius: 10px;
+            background-color: var(--principal)
         }
 
         input, select, button {
@@ -89,6 +94,37 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['email'], $_POST['tipo
         .mensagem {
             margin-top: 20px;
             text-align: center;
+        }
+
+        select {
+        width: 100%;
+        max-width: 50rem;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: none;
+        border-radius: 2px;
+        font-size: 14px;
+        border: 2px solid red;
+        }
+
+        input[type="email"] {
+        width: 100%;
+        max-width: 48rem;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: none;
+        border-radius: 2px;
+        font-size: 14px;
+        border: 2px solid red;
+        }
+        input[type="password"] {
+        width: 100%;
+        max-width: 30rem;
+        padding: 20px;
+        margin-bottom: 20px;
+        border: none;
+        border-radius: 2px;
+        font-size: 14px;
         }
     </style>
 </head>
