@@ -70,8 +70,10 @@ $stmt->close();
 <head>
     <meta charset="UTF-8">
     <title>Editar Perfil</title>
+
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="perfil.css">
+    <link href='https://cdn.boxicons.com/fonts/basic/boxicons.min.css' rel='stylesheet'>
+    <link href='https://cdn.boxicons.com/fonts/brands/boxicons-brands.min.css' rel='stylesheet'>    <link rel="stylesheet" href="perfil.css">
     <link rel="stylesheet" href="../geral.css">
 </head>
 <body>
@@ -81,13 +83,19 @@ $stmt->close();
     <nav class="sidebar" id="sidebar">
     <ul class="nav-list">
         <div class="nome">
-            <li>
+            <li class="usuario">
             <div class="fix"> <?php echo $_SESSION['nome']; ?></div>
             </li>
             <div class="menu" id="menu">
                 <i class="bx bx-menu"></i>
             </div>
         </div>
+        <li>
+                <a href="../../index.php">
+                <i class='bx  bx-reply-stroke'></i> 
+                    <span class="link_name">Bibliófilos Community</span>
+                </a>
+            </li>
             <li>
                 <a href="../home.php">
                     <i class='bx bx-home-alt-2'></i>

@@ -120,7 +120,7 @@ $usuario_db agora contém os dados encontrados que foram pedidos na consulta SQL
                     <input type="hidden" name="tipo_usuario" id="tipoSelecionado">
                     <input type="email" name="email" placeholder="EMAIL" required>
                     <input type="password" name="senha" placeholder="SENHA" required>
-                    <a href="esqueci a senha/esqueci-senha.php">ESQUECEU A SENHA</a>
+                    <a href="esqueci-senha.php">ESQUECEU A SENHA</a>
                     <button class="btn" type="submit">ENTRAR</button>
     
                     <a id="cadastro-link" href="cadastrar-usuario.php" style="display: none;">Criar conta como livraria</a>
