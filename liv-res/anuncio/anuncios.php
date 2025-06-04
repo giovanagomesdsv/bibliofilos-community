@@ -65,7 +65,7 @@ $fotoLiv = $_SESSION['imagem-liv'];
             </li>
             <!-- Apenas para livrarias -->
             <?php if ($usuario == 1): ?>
-                <li>
+                <li class="fix">
                     <a href='../anuncio/anuncios.php'>
                         <i class='bx bx-user'></i>
                         <span class='link_name'>Anúncios</span>

@@ -72,8 +72,8 @@ $fotoLiv = $_SESSION['imagem-liv'];
                     </a>
                 </li>
             <?php endif; ?>
-            <li>
-                <a href='#'>
+            <li class="fix">
+                <a href='#' class="#">
                     <i class='bx bx-user'></i>
                     <span class='link_name'>Criar resenhas</span>
                 </a>

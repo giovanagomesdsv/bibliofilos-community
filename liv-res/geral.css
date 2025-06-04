@@ -1,31 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Flex:opsz,wght@8..144,100..1000&family=Roboto:ital,wght@0,100..900;1,100..900&family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
 * {
-
     font-family: 'Roboto', sans-serif;
     text-decoration: none;
     list-style-type: none;
-    color: #000;
+    color: var(--text);
     scroll-behavior: smooth;
-
 }
 
 :root {
-    padding: 1rem;
-
     --bg: #DEDEDE;
     --text: #f5f5f5;
     --principal: #406E96;
     --secundaria: #2A4A64;
     --terciaria: #1F3A50;
-
-
     /* Transições */
     --transition-fast: 0.2s ease;
     --transition-base: 0.3s ease;
-
     --padding: 1rem;
-
     /* Controla a síntese de fontes (negrito, itálico) pelo navegador */
     font-synthesis: none;
     /* Otimiza a renderização do texto para melhor legibilidade */
@@ -34,7 +26,6 @@
     -webkit-font-smoothing: antialiased;
     /* Melhora a renderização de fontes em navegadores Firefox no macOS */
     -moz-osx-font-smoothing: grayscale;
-
     text-decoration: none;
     box-sizing: border-box;
     margin: 0;
@@ -50,19 +41,15 @@ html {
 }
 
 body {
-
     /* Define a fonte primária usando uma variável CSS */
+    background-color: var(--bg);
+    color: var(--color-text);
     font-size: 1.6rem;
-
     /* Garante uma largura mínima de 320px para evitar layouts quebrados em telas pequenas */
     min-height: 100vh;
-
     /* Adiciona um preenchimento ao redor do conteúdo do body usando uma variável CSS */
-
-
     /* Força a exibição da barra de rolagem vertical, evitando o deslocamento de elementos quando o conteúdo se torna longo o suficiente para precisar da barra */
     overflow-y: scroll;
-
     margin: 0 auto;
     text-align: center;
     width: 100%;
@@ -72,20 +59,16 @@ main {
     height: 100vh;
     width: 80%;
     min-height: 100vh;
-    border: solid 1px red;
     margin: 0 10%;
     display: flex;
     align-items: center;
     flex-direction: column;
     position: absolute;
-    padding: var(--padding);
 }
-
 
 ::-webkit-scrollbar {
     height: 0;
     width: 0.5rem;
-
 }
 
 ::-webkit-scrollbar-track {
@@ -97,7 +80,7 @@ main {
     border-radius: .5rem;
 }
 
-/*HEADER*/
+/* header bc administrador*/
 header {
     display: flex;
     align-items: center;
@@ -106,7 +89,7 @@ header {
     padding: 1rem 1rem 1rem 20rem;
 }
 
-/*MENU*/
+/*menu*/
 .sidebar {
     height: 100vh;
     width: 5rem;
@@ -234,4 +217,109 @@ header {
 
 .link_name{
     font-size: 1.4rem;
+}
+
+/* padrao de pesquisa */
+.busca-container {
+    display: flex;
+    justify-content: flex-end;
+    float: right;
+    padding-top: 1rem;
+    width: 100%;
+}
+.busca-form {
+    display: flex;
+    align-items: center;
+    border-radius: 0.5rem;
+    justify-content: flex-end;
+    background-color: var(--pesquisa);
+    margin-bottom: 2rem;
+    gap: 1rem;
+    border: 1px solid #000;
+}
+.busca-form input[type="text"] {
+    border: none;
+    /* remove a borda preta */
+    outline: none;
+    /* remove o contorno ao focar */
+    padding: 0.8rem 1rem;
+    font-size: 1rem;
+    background-color: var(--pesquisa);
+    border-radius: 0.5rem 0 0 0.5rem;
+    /* arredonda o lado esquerdo */
+    color: #000;
+}
+.busca-form button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+.busca-form button i {
+    padding: 0 1rem;
+    font-size: 1.4rem;
+    cursor: pointer;
+    color: #000000;
+}
+
+/* Botão estilizado */
+.botao {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: .5rem;
+    background-color: var(--secundaria);
+    color: var(--text);
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-weight: bold;
+    background-color: #2A4A64;
+    width: 10rem;
+    height: 3rem;
+}
+
+.botao:hover {
+    background-color: var(--terciaria);
+}
+
+/*card*/
+.card {
+    width: 100%; 
+    margin: 3.5rem 0;
+    background-color: var(--principal);
+    color: var(--text);
+    border-radius: .8rem;
+}
+/* altura do card pequeno height: 15rem; a altura precisa pra por em cards menores */
+/* texto que tem uma linha preta em baixo de fora a fora  */
+.textnotificaçao {
+    width: 100%;
+    border-bottom: 2px solid var(--terciaria);
+    color: var(--terciaria);
+    font-weight: bold;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+p{
+    font-size: 1.6rem;
+}
+.imagem {
+    width: 10rem;
+    height: 15rem;
+}
+.imagem img{
+    width: 100%;
+    height: 100%;
+}
+
+.input {
+    width: 97.5%; /* Largura total do input */
+    padding: 1rem;
+    border: none;
+    border-radius: 4px; 
+    margin:1rem;
+    background-color: white; /* Cor de fundo do input */
+    color: #000;
 }

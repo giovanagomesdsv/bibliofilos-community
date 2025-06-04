@@ -67,12 +67,12 @@ $fotoLiv = $_SESSION['imagem-liv'];
             </li>
             <!-- Apenas para livrarias -->
             <?php if ($usuario == 1): ?>
-            <li>
-                <a href='../anuncio/anuncios.php'>
-                    <i class='bx bx-user'></i>
-                    <span class='link_name'>Anúncios</span>
-                </a>
-            </li>
+                <li>
+                    <a href='../anuncio/anuncios.php'>
+                        <i class='bx bx-user'></i>
+                        <span class='link_name'>Anúncios</span>
+                    </a>
+                </li>
             <?php endif; ?>
             <li>
                 <a href='../resenha/resenhas.php'>
@@ -80,8 +80,8 @@ $fotoLiv = $_SESSION['imagem-liv'];
                     <span class='link_name'>Criar resenhas</span>
                 </a>
             </li>
-            <li>
-                <a href='../m-resenha/m-resenhas.php'>
+            <li class="fix">
+                <a href='#'>
                     <i class='bx bx-user-pin'></i>
                     <span class='link_name'>Minhas resenhas</span>
                 </a>
@@ -93,6 +93,47 @@ $fotoLiv = $_SESSION['imagem-liv'];
         </ul>
     </nav>
     <main>
+        <div>
+            <!-- BARRA DE PESQUISA -->
+            <div class="busca-container">
+                <!--Botão de cadastro de usuário-->
+                <div class='botao'>
+                    <a href="cadastrarusuario.php">Cadastrar usuário</a>
+                </div>
+
+                <form action="" method="GET" class="busca-form">
+                    <input type="text" name="busca" placeholder="nome do usuário">
+                    <button type="submit"><i class='bx bx-search'></i></button>
+                </form>
+            </div>
+            <div class="pesquisa"> <!-- DIV DA CAIXA ONDE DENTRO APARECERÁ OS CARDS DO RESULTADO DA BUSCA-->
+                <?php
+                if (!isset($_GET['busca']) || empty($_GET['busca'])) {
+                    echo "<div class='resultados'></div>";
+                } else {
+
+                    // Proteção contra SQL Injection
+                    $pesquisa = $conn->real_escape_string($_GET['busca']);
+
+                    // Query de busca
+                    $sql_code = "SELECT * FROM RESENHAS WHERE resenha_titulo LIKE '%$pesquisa%' ";
+                    $sql_query = $conn->query($sql_code) or die("Erro ao consultar: " . $conn->error);
+
+                    if ($sql_query->num_rows == 0) {
+                        echo "<div class='resultados'><h3>Nenhum resultado encontrado!</h3></div>";
+                    } else {
+                        while ($row = $sql_query->fetch_assoc()) {
+                            $status = (int) $row['usu_status'];
+                            $usuario = (int) $row['usu_tipo_usuario'];
+                            $nomeUsuario = htmlspecialchars($row['usu_nome']);
+                        }
+                    }
+                }
+                ?>
+            </div>
+
+
+        </div>
 
     </main>
     <script src="../script.js"></script>
