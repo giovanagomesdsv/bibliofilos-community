@@ -12,7 +12,8 @@ include "../../protecao.php";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-
+    <link href='https://cdn.boxicons.com/fonts/basic/boxicons.min.css' rel='stylesheet'>
+    <link href='https://cdn.boxicons.com/fonts/brands/boxicons-brands.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="../geral.css">
     <link rel="stylesheet" href="livrarias.css">
 
@@ -39,7 +40,7 @@ include "../../protecao.php";
         </div>
         <li>
                 <a href="../../index.php">
-                    <i class='bx bx-home-alt-2'></i>
+                <i class='bx  bx-reply-stroke'></i> 
                     <span class="link_name">Bibliófilos Community</span>
                 </a>
             </li>
