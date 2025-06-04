@@ -102,7 +102,7 @@ $usuario = isset($_SESSION['usuario']) ? $_SESSION['usuario'] : null;
                 if ($usuarioTipo == 1) {
                     echo "
                         <li>
-                            <a href='../anuncio/anuncios.php'>
+                            <a href='liv-res/anuncio/anuncios.php'>
                                 <i class='bx bx-user'></i>
                                 <span class='link_name'>Criar resenhas</span>
                             </a>
@@ -122,9 +122,6 @@ $usuario = isset($_SESSION['usuario']) ? $_SESSION['usuario'] : null;
                                 <i class='bx bx-user-pin'></i>
                                 <span class='link_name'>Minhas resenhas</span>
                             </a>
-                        </li>
-                        <li class='sair'>
-                            <a href='logout.php'><i class='bx bx-log-out'></i></a>
                         </li>
                     </ul>
                 </nav>";

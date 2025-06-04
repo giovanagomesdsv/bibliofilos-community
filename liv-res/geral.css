@@ -97,6 +97,7 @@ main {
     border-radius: .5rem;
 }
 
+/*HEADER*/
 header {
     display: flex;
     align-items: center;
@@ -105,3 +106,132 @@ header {
     padding: 1rem 1rem 1rem 20rem;
 }
 
+/*MENU*/
+.sidebar {
+    height: 100vh;
+    width: 5rem;
+    background: var(--secundaria);
+    top: 0;
+    position: fixed;
+    z-index: 1000;
+    overflow: hidden;
+}
+/*problema do menu*/
+.nome {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 7rem;
+}
+.nome .usuario{
+    display: none;
+}
+/*problema do menu*/
+.menu {
+    font-size: 1.6rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+.menu:hover {
+    border: 1px solid;
+    border-radius: 30%;
+}
+
+.nav-list li a {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    width: 100%;
+}
+
+.sidebar ul {
+    height: 100%;
+    font-size: 1.6rem;
+    padding-left: 2rem;
+}
+
+.sidebar ul li {
+    margin-bottom: 4rem;
+    width: 100%;
+}
+
+.sidebar ul li a .link_name {
+    margin-left: 1.4rem;
+    display: none;
+    width: 100%;
+}
+
+.sidebar ul li a:hover {
+    width: 100%;
+    color: var(--text);
+    border-bottom: 1px solid var(--text);
+}
+
+.sidebar ul .fix {
+    background: var(--principal);
+    border-top-left-radius: 15px;
+    padding: 1rem;
+    border-bottom-left-radius: 15px;
+    width: 100%;
+}
+
+/* classe js -> abrir e fechar menu*/
+.sidebar.abrir {
+    width: 15rem;
+    display: flex;
+    transition: ease .5s;
+}
+.sidebar.abrir .usuario{
+    display: block;
+    width: 100%;
+}
+
+.sidebar.abrir .nome{
+    margin-top: -6rem;
+}
+.sidebar.abrir .link_name {
+    display: block;
+    width: 100%;
+}
+
+.sidebar.abrir ul .fix {
+    background: var(--principal);
+    padding: .5rem 0  ;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    width: 100%;
+}
+.sidebar.abrir ul li{
+    padding: .5rem 0  ;
+    transition: ease .5s;
+}
+
+.sidebar.abrir .sair {
+    border: 1px solid;
+    width: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 2.5rem;
+    border-radius: 30%;
+    transition: 0.2s;
+    color: var(--secundaria)
+}
+
+.sidebar.abrir .sair:hover {
+    background-color: #406E96;
+}
+
+.sidebar.abrir ul li {
+    margin-top: 5rem;
+    
+}
+
+.link_name{
+    font-size: 1.4rem;
+}
