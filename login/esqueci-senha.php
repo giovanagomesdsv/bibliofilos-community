@@ -86,7 +86,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['email'], $_POST['tipo
         }
 
         button {
-            background-color: #007bff;
+            background-color:var(--terciaria);
             color: white;
             cursor: pointer;
         }
