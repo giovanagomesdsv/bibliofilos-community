@@ -111,7 +111,6 @@ if ($result->num_rows > 0) {
 
                 <div class='imagem imgavalialiv'>
                     <p><strong></strong>{$liv_foto}</p>
-                    <!--essa parte eu fiz-------------------------------------------------------------->
                 </div>
 
                 <div class='avalialiv'>

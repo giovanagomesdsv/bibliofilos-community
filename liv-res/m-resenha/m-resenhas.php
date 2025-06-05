@@ -1,8 +1,10 @@
 <?php
 include "../../conexao.php";
-include "protecao.php";
+include "../protecao.php";
 
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 if (!isset($_SESSION['id'])) {
     header("Location: ../index.php");
@@ -13,6 +15,7 @@ $usuario = $_SESSION['tipo'];
 $nome = $_SESSION['nome'];
 $fotoRes = $_SESSION['imagem-res'];
 $fotoLiv = $_SESSION['imagem-liv'];
+$id =  $_SESSION['id'];
 
 ?>
 <!DOCTYPE html>
@@ -93,47 +96,118 @@ $fotoLiv = $_SESSION['imagem-liv'];
         </ul>
     </nav>
     <main>
-        <div>
-            <!-- BARRA DE PESQUISA -->
-            <div class="busca-container">
-                <!--Botão de cadastro de usuário-->
-                <div class='botao'>
-                    <a href="cadastrarusuario.php">Cadastrar usuário</a>
-                </div>
+        <!-- BARRA DE PESQUISA -->
+        <div class="busca-container">
 
-                <form action="" method="GET" class="busca-form">
-                    <input type="text" name="busca" placeholder="nome do usuário">
-                    <button type="submit"><i class='bx bx-search'></i></button>
-                </form>
+            <!--Total de resenhas publicadas-->
+            <div>
+
             </div>
-            <div class="pesquisa"> <!-- DIV DA CAIXA ONDE DENTRO APARECERÁ OS CARDS DO RESULTADO DA BUSCA-->
-                <?php
-                if (!isset($_GET['busca']) || empty($_GET['busca'])) {
-                    echo "<div class='resultados'></div>";
+
+            <form action="" method="GET" class="busca-form">
+                <input type="text" name="busca" placeholder="nome do usuário">
+                <button type="submit"><i class='bx bx-search'></i></button>
+            </form>
+        </div>
+        <div class="pesquisa"> <!-- DIV DA CAIXA ONDE DENTRO APARECERÁ OS CARDS DO RESULTADO DA BUSCA-->
+            <?php
+            if (!isset($_GET['busca']) || empty($_GET['busca'])) {
+                echo "<div class='resultados'></div>";
+            } else {
+
+                // Proteção contra SQL Injection usando prepared statements
+                $pesquisa = $_GET['busca']; // Sem real_escape_string aqui
+                $res_id = $id; // Substitua pelo valor correto conforme seu contexto
+
+                // Adiciona os % aqui, não na query
+                $pesquisa_como_like = "%$pesquisa%";
+
+                // Query com placeholders
+                $sql_code = "SELECT livro_foto, resenha_titulo, livro_sinopse, resenha_id FROM RESENHAS INNER JOIN LIVROS ON LIVROS.livro_id = RESENHAS.resenha_id WHERE resenha_titulo LIKE ? AND res_id = ?";
+
+                // Prepara a query
+                $stmt = $conn->prepare($sql_code) or die("Erro ao preparar: " . $conn->error);
+
+                // Liga os parâmetros: "s" para string (LIKE), "i" para integer (res_id)
+                $stmt->bind_param("si", $pesquisa_como_like, $res_id);
+
+                // Executa a query
+                $stmt->execute();
+
+                // Pega os resultados
+                $result = $stmt->get_result();
+
+                if ($result->num_rows == 0) {
+                    echo "<div class='resultados'><h3>Nenhum resultado encontrado!</h3></div>";
                 } else {
+                    while ($row = $result->fetch_assoc()) {
+                        $resenha = htmlspecialchars($row['resenha_titulo']);
+                        $foto = htmlspecialchars($row['livro_foto']);
+                        $sinopse = htmlspecialchars($row['livro_sinopse']);
+                        $idResenha = (int) $row['resenha_id'];
 
-                    // Proteção contra SQL Injection
-                    $pesquisa = $conn->real_escape_string($_GET['busca']);
-
-                    // Query de busca ---------------------------------------------------------------------------------PAREI AQUI-------------------------------------------------------
-                    $sql_code = "SELECT * FROM RESENHAS WHERE resenha_titulo LIKE '%$pesquisa%' ";
-                    $sql_query = $conn->query($sql_code) or die("Erro ao consultar: " . $conn->error);
-
-                    if ($sql_query->num_rows == 0) {
-                        echo "<div class='resultados'><h3>Nenhum resultado encontrado!</h3></div>";
-                    } else {
-                        while ($row = $sql_query->fetch_assoc()) {
-                            $status = (int) $row['usu_status'];
-                            $usuario = (int) $row['usu_tipo_usuario'];
-                            $nomeUsuario = htmlspecialchars($row['usu_nome']);
-                        }
+                        echo "
+                        <div>
+                           <div>
+                              <img src='../../adm/imagens/livros/$foto' alt=''>
+                              <div>
+                                 <h2> $resenha</h2>
+                                 <p>$sinopse</p>
+                              </div>
+                           </div>
+                           <div>
+                              <a href='abrir.php?id={$idResenha}'> 
+                                 <button>Abrir resenha</button>
+                              </a>
+                              <a href='abrir.php?id={$idResenha}'> 
+                                 <button>Atualizar resenha</button>
+                              </a>
+                           </div>
+                        </div>
+                        ";
                     }
                 }
-                ?>
-            </div>
-
-
+                $stmt->close();
+            }
+            ?>
         </div>
+        <?php
+        $code = "SELECT livro_foto, resenha_titulo, livro_sinopse, resenha_id FROM RESENHAS INNER JOIN LIVROS ON LIVROS.livro_id = RESENHAS.resenha_id WHERE res_id = ?";
+        $stmt = $conn->prepare($code);
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $resenha = htmlspecialchars($row['resenha_titulo']);
+                $foto = htmlspecialchars($row['livro_foto']);
+                $sinopse = htmlspecialchars($row['livro_sinopse']);
+                $idResenha = (int) $row['resenha_id'];
+
+                echo "
+                        <div>
+                           <div>
+                              <img src='../../adm/imagens/livros/$foto' alt=''>
+                              <div>
+                                 <h2> $resenha</h2>
+                                 <p>$sinopse</p>
+                              </div>
+                           </div>
+                           <div>
+                              <a href='abrir.php?id={$idResenha}'> 
+                                 <button>Abrir resenha</button>
+                              </a>
+                              <a href='atualizar.php?id={$idResenha}'> 
+                                 <button>Atualizar resenha</button>
+                              </a>
+                           </div>
+                        </div>
+                        ";
+            }
+        }
+        $stmt->close();
+        ?>
 
     </main>
     <script src="../script.js"></script>

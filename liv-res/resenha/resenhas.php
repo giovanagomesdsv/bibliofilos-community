@@ -1,8 +1,11 @@
 <?php
 include "../../conexao.php";
-include "protecao.php";
+include "../protecao.php";
 
-session_start();
+
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 if (!isset($_SESSION['id'])) {
     header("Location: ../index.php");
@@ -41,15 +44,15 @@ $fotoLiv = $_SESSION['imagem-liv'];
 
                         <?php
                         if ($usuario == 0) {
-                            $imgCaminho = "../../adm/imagens/resenhistas/" . $_SESSION['imagem-res'];
+                            $imgCaminho = "../../adm/imagens/resenhistas/" . $fotoRes;
                         } else if ($usuario == 1) {
-                            $imgCaminho = "../../adm/imagens/livrarias/" . $_SESSION['imagem-liv'];
+                            $imgCaminho = "../../adm/imagens/livrarias/" . $fotoLiv;
                         }
                         ?>
 
                         <img src="<?php echo $imgCaminho; ?>" alt="" style="width:100px">
 
-                        <span class='link_name'><?php echo $_SESSION['nome'] ?></span>
+                        <span class='link_name'><?php echo $nome ?></span>
                     </a>
                 </li>
 
