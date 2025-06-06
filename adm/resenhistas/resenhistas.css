@@ -11,6 +11,8 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    width: 45rem;
+    flex-wrap: wrap;
 }
 
 /* Informações alinhadas à esquerda */
