@@ -123,7 +123,7 @@ $id =  $_SESSION['id'];
                 $pesquisa_como_like = "%$pesquisa%";
 
                 // Query com placeholders
-                $sql_code = "SELECT livro_foto, resenha_titulo, livro_sinopse, resenha_id FROM RESENHAS INNER JOIN LIVROS ON LIVROS.livro_id = RESENHAS.resenha_id WHERE resenha_titulo LIKE ? AND res_id = ?";
+                $sql_code = "SELECT livro_foto, resenha_titulo, livro_sinopse, resenha_id FROM RESENHAS INNER JOIN LIVROS ON LIVROS.livro_id = RESENHA.livro_id WHERE resenha_titulo LIKE ? AND res_id = ?";
 
                 // Prepara a query
                 $stmt = $conn->prepare($sql_code) or die("Erro ao preparar: " . $conn->error);
@@ -172,7 +172,7 @@ $id =  $_SESSION['id'];
             ?>
         </div>
         <?php
-        $code = "SELECT livro_foto, resenha_titulo, livro_sinopse, resenha_id FROM RESENHAS INNER JOIN LIVROS ON LIVROS.livro_id = RESENHAS.resenha_id WHERE res_id = ?";
+        $code = "SELECT livro_foto, resenha_titulo, livro_sinopse, resenha_id FROM RESENHAS INNER JOIN LIVROS ON LIVROS.livro_id = RESENHAS.livro_id WHERE res_id = ?";
         $stmt = $conn->prepare($code);
         $stmt->bind_param("i", $id);
         $stmt->execute();

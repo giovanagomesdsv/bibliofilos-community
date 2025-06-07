@@ -87,7 +87,7 @@ $usuario_db agora contém os dados encontrados que foram pedidos na consulta SQL
     <link rel="stylesheet" href="login.css">
     <link rel="stylesheet" type="text/css" href="../geral.css">
 
-    <title>Administrador BC - Login</title>
+    <title>Login - BACKSTAGE Community</title>
 </head>
 
 <body>
