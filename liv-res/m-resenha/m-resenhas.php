@@ -101,6 +101,30 @@ $id =  $_SESSION['id'];
 
             <!--Total de resenhas publicadas-->
             <div>
+                <?php
+                $count = "SELECT 
+                           COUNT(resenhas.res_id) as total_resenhas
+                            FROM RESENHAS
+                      INNER JOIN RESENHISTAS
+                              ON RESENHAS.res_id = RESENHISTAS.res_id
+                           WHERE RESENHISTAS.res_id = ?";
+                $stmt = $conn->prepare($count);
+                $stmt->bind_param("i", $id);
+                $stmt->execute();
+                $result = $stmt->get_result();
+
+                if ($result->num_rows > 0) {
+                    $row = $result->fetch_assoc();
+                    $contagem = (int) $row['total_resenhas'];
+
+                    echo "
+                    <div>
+                       <p>Resenhas publicadas:</p>
+                       <p>$contagem</p>
+                    </div>
+                    ";
+                }
+                ?>
 
             </div>
 
