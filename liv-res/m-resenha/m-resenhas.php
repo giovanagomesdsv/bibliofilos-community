@@ -198,10 +198,7 @@ $id =  $_SESSION['id'];
 
         <div>
             <?php
-            $consulta = "SELECT livro_foto, resenha_titulo, livro_sinopse, resenha_id, resenha_status 
-            FROM RESENHAS 
-            INNER JOIN LIVROS ON LIVROS.livro_id = RESENHAS.livro_id  
-            WHERE res_id = ? AND resenha_status IN (0, 3)";
+            $consulta = "SELECT livro_foto, resenha_titulo, livro_sinopse, resenha_id, resenha_status FROM RESENHAS INNER JOIN LIVROS ON LIVROS.livro_id = RESENHAS.livro_id  WHERE res_id = ?";
             $stmt = $conn->prepare($consulta);
             $stmt->bind_param("i", $id);
             $stmt->execute();
@@ -212,24 +209,33 @@ $id =  $_SESSION['id'];
                     $resenha = htmlspecialchars($row['resenha_titulo']);
                     $foto = htmlspecialchars($row['livro_foto']);
                     $sinopse = htmlspecialchars($row['livro_sinopse']);
-                    $status = (int)$row['resenha_status'];
-                    $idResenha = (int)$row['resenha_id'];
+                    $status = htmlspecialchars($row['resenha_status']);
+                    $idResenha = (int) $row['resenha_id'];
 
-                    $statusLabel = $status == 3 ? "CORRIGIR" : "REPROVADA";
-
-                    echo "
-       <div>
-         <img src='../../adm/imagens/livros/$foto' alt=''>
-         <p>$resenha</p>
-         <p>$sinopse</p>
-         <a href='atualizar.php?id={$idResenha}'>
-           <button>$statusLabel</button>
-         </a>
-       </div>
-      ";
+                    if ($status ==  3) {
+                        echo "
+                        <div>
+                          <img src='../../adm/imagens/livros/$foto' alt=''>
+                          <p>$resenha</p>
+                          <p>$sinopse</p>
+                          <a href='atualizar.php?id={$idResenha}'>
+                            <button>CORRIGIR</button>
+                          </a>
+                        </div>
+                       ";
+                    } else if ($status == 1) {
+                        echo "
+                        <div>
+                          <img src='../../adm/imagens/livros/$foto' alt=''>
+                          <p>$resenha</p>
+                          <p>$sinopse</p>
+                          <a href=''>
+                            <button>REPROVADA</button>
+                          </a>
+                        </div>
+                       ";
+                    }
                 }
-            } else {
-                echo "<p>Nenhuma resenha para corrigir ou reprovada.</p>";
             }
             ?>
 
