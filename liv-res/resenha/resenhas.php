@@ -39,8 +39,8 @@ $fotoLiv = $_SESSION['imagem-liv'];
         <ul class='nav-list'>
             <div class='nome'>
 
-                <li class='logo_name'>
-                    <a href='../perfil/perfil.php'>
+                <li >
+                    <a href='../perfil/perfil.php' class="perfil">
 
                         <?php
                         if ($usuario == 0) {
@@ -50,8 +50,7 @@ $fotoLiv = $_SESSION['imagem-liv'];
                         }
                         ?>
 
-                        <img src="<?php echo $imgCaminho; ?>" alt="" style="width:100px">
-
+                        <img src="<?php echo $imgCaminho; ?>" alt="" class="img-perfil">
                         <span class='link_name'><?php echo $nome ?></span>
                     </a>
                 </li>
