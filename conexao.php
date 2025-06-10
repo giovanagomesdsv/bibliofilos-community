@@ -1,8 +1,8 @@
 <?php 
 $hostname = "localhost";
 $banco = "bd_tcc_etim_123_g2";
-$usuario = "us_etim_123_g2";
-$senha = "ec0623";
+$usuario = "root";
+$senha = "";
 
 $conn = new mysqli($hostname, $usuario, $senha, $banco);
 

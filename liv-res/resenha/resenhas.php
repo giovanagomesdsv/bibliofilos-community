@@ -41,7 +41,7 @@ $fotoLiv = $_SESSION['imagem-liv'];
         <ul class='nav-list'>
             <div class='nome'>
 
-                <li >
+                <li>
                     <a href='../perfil/perfil.php' class="perfil">
 
                         <?php
@@ -63,7 +63,7 @@ $fotoLiv = $_SESSION['imagem-liv'];
             </div>
             <li>
                 <a href='../../index.php'>
-                <i class='bx  bx-reply-stroke'></i>
+                    <i class='bx  bx-reply-stroke'></i>
                     <span class='link_name'>BIBLIÓFILOS Community</span>
                 </a>
             </li>
@@ -78,13 +78,13 @@ $fotoLiv = $_SESSION['imagem-liv'];
             <?php endif; ?>
             <li class="fix">
                 <a href='#' class="#">
-                <i class='bx  bx-pencil-circle'></i> 
+                    <i class='bx  bx-pencil-circle'></i>
                     <span class='link_name'>CRIAR RESENHAS</span>
                 </a>
             </li>
             <li>
                 <a href='../m-resenha/m-resenhas.php'>
-                <i class='bx  bx-book-bookmark'></i> 
+                    <i class='bx  bx-book-bookmark'></i>
                     <span class='link_name'>MINHAS RESENHAS</span>
                 </a>
             </li>
@@ -95,7 +95,103 @@ $fotoLiv = $_SESSION['imagem-liv'];
         </ul>
     </nav>
     <main>
+        <div class="busca-container">
 
+            <form action="" method="GET" class="busca-form">
+                <input type="text" name="busca" placeholder="nome do usuário">
+                <button type="submit"><i class='bx bx-search'></i></button>
+            </form>
+        </div>
+        <div class="pesquisa"> <!-- DIV DA CAIXA ONDE DENTRO APARECERÁ OS CARDS DO RESULTADO DA BUSCA-->
+            <?php
+            if (!isset($_GET['busca']) || empty($_GET['busca'])) {
+                echo "<div class='resultados'></div>";
+            } else {
+                $pesquisa = $_GET['busca'];
+                $pesquisa_como_like = "%$pesquisa%";
+
+                $sql_code = "SELECT livro_id, livro_foto, livro_titulo, livro_sinopse FROM LIVROS WHERE livro_titulo LIKE ?";
+
+                $stmt = $conn->prepare($sql_code) or die("Erro ao preparar: " . $conn->error);
+
+                $stmt->bind_param("s", $pesquisa_como_like);
+                $stmt->execute();
+                $result = $stmt->get_result();
+
+                if ($result->num_rows > 0) {
+
+                    while ($row = $result->fetch_assoc()) {
+                        $titulo = htmlspecialchars($row['livro_titulo']);
+                        $foto = htmlspecialchars($row['livro_foto']);
+                        $sinopse = htmlspecialchars($row['livro_sinopse']);
+                        $idLivro = (int) $row['livro_id'];
+
+                        echo "
+                        <div>
+                           <div>
+                              <img src='../../adm/imagens/livros/$foto' alt=''>
+                              <div>
+                                 <h2> $titulo</h2>
+                                 <p>$sinopse</p>
+                              </div>
+                           </div>
+                           <div>
+                              <a href='criar-resenha.php?id={$idLivro}'> 
+                                 <button>Criar Resenha</button>
+                              </a>
+                              
+                           </div>
+                        </div>
+                        ";
+                    }
+                } else {
+                     echo "
+                    <p>Livro não econcontrado</p>
+                    <a href='cadastro-livro.php'>Cadastre</a>
+                    ";
+                }
+                $stmt->close();
+            }
+            ?>
+
+            <div>
+                <?php
+                $select = "SELECT livro_id, livro_foto, livro_titulo, livro_sinopse FROM LIVROS";
+                $stmt = $conn->prepare($select);
+                $stmt->execute();
+                $result = $stmt->get_result();
+
+                if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+                        $titulo = htmlspecialchars($row['livro_titulo']);
+                        $foto = htmlspecialchars($row['livro_foto']);
+                        $sinopse = htmlspecialchars($row['livro_sinopse']);
+                        $idLivro = (int) $row['livro_id'];
+                         echo "
+                        <div>
+                           <div>
+                              <div>
+                                 <img src='../../adm/imagens/livros/$foto' alt=''>
+                                 <h2> $titulo</h2>
+                              </div>
+                              <div>
+                                 <p>$sinopse</p>
+                              </div>
+                           </div>
+                           <div>
+
+                              <a href='criar-resenha.php?id={$idLivro}'> 
+                                 <button>Criar Resenha</button>
+                              </a>
+                              
+                           </div>
+                        </div>
+                        ";
+                    }
+                }
+                ?>
+            </div>
+        </div>
     </main>
     <script src="../script.js"></script>
 </body>

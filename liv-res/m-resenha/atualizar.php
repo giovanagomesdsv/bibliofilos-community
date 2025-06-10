@@ -79,7 +79,7 @@ if ($result->num_rows > 0) {
                 <form method="POST">
                     <textarea name="resenha" id="resenha" rows="10" cols="70"><?php echo htmlspecialchars($resenha); ?></textarea><br>
 
-                    <input type="submit" value="Atualizar">
+                    <input type="submit" value="Enviar">
                 </form>
             </div>
             <a href='m-resenhas.php'>

@@ -138,27 +138,17 @@ $id =  $_SESSION['id'];
             if (!isset($_GET['busca']) || empty($_GET['busca'])) {
                 echo "<div class='resultados'></div>";
             } else {
+                $pesquisa = $_GET['busca']; 
+                $res_id = $id; 
 
-                // Proteção contra SQL Injection usando prepared statements
-                $pesquisa = $_GET['busca']; // Sem real_escape_string aqui
-                $res_id = $id; // Substitua pelo valor correto conforme seu contexto
-
-                // Adiciona os % aqui, não na query
                 $pesquisa_como_like = "%$pesquisa%";
 
-                // Query com placeholders
+               
                 $sql_code = "SELECT livro_foto, resenha_titulo, livro_sinopse, resenha_id FROM RESENHAS INNER JOIN LIVROS ON LIVROS.livro_id = RESENHA.livro_id WHERE resenha_titulo LIKE ? AND res_id = ?";
 
-                // Prepara a query
                 $stmt = $conn->prepare($sql_code) or die("Erro ao preparar: " . $conn->error);
-
-                // Liga os parâmetros: "s" para string (LIKE), "i" para integer (res_id)
                 $stmt->bind_param("si", $pesquisa_como_like, $res_id);
-
-                // Executa a query
                 $stmt->execute();
-
-                // Pega os resultados
                 $result = $stmt->get_result();
 
                 if ($result->num_rows == 0) {
@@ -229,9 +219,9 @@ $id =  $_SESSION['id'];
                           <img src='../../adm/imagens/livros/$foto' alt=''>
                           <p>$resenha</p>
                           <p>$sinopse</p>
-                          <a href=''>
-                            <button>REPROVADA</button>
-                          </a>
+                          <form action='deletar.php?id={$idResenha}' method='POST'>
+                            <input type='submit' value='REPROVADA'>
+                          </form>
                         </div>
                        ";
                     }
