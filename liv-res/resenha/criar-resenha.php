@@ -56,8 +56,7 @@ if ($result->num_rows > 0) {
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
     <title>Resenha - BACKSTAGE Community
     </title>
-</head>
-<style>
+    <style>
     .rating {
         direction: rtl;
         unicode-bidi: bidi-override;
@@ -80,7 +79,7 @@ if ($result->num_rows > 0) {
         color: gold;
     }
 </style>
-
+</head>
 <body>
     <main>
 

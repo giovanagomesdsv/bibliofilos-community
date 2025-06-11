@@ -8,12 +8,14 @@ $id = (int) $_GET['id'];
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $novaresenha = $_POST['resenha'];
+    $avaliacao = $_POST["avaliacao"];
 
-    $update = "UPDATE RESENHAS set resenha_texto = ? WHERE resenha_id = ?";
+
+    $update = "UPDATE RESENHAS set resenha_texto = ?, resenha_avaliacao = ? WHERE resenha_id = ?";
     $stmt  = $conn->prepare($update);
-    $stmt->bind_param("si", $novaresenha, $id);
-    
-    if ( $stmt->execute()) {
+    $stmt->bind_param("sii", $novaresenha, $avaliacao, $id);
+
+    if ($stmt->execute()) {
         echo "
         <script>
         alert('Resenha atualizada com sucesso!');
@@ -57,27 +59,59 @@ if ($result->num_rows > 0) {
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
     <title>Resenha - BACKSTAGE Community
     </title>
+    <style>
+        .rating {
+            direction: rtl;
+            unicode-bidi: bidi-override;
+            display: inline-block;
+        }
+
+        .rating input {
+            display: none;
+        }
+
+        .rating label {
+            font-size: 2em;
+            color: #ccc;
+            cursor: pointer;
+        }
+
+        .rating input:checked~label,
+        .rating label:hover,
+        .rating label:hover~label {
+            color: gold;
+        }
+    </style>
 </head>
 
 <body>
     <main>
 
         <div>
-            <img src='../../adm/imagens/livros/<?php echo $foto?>' alt=''>
+            <img src='../../adm/imagens/livros/<?php echo $foto ?>' alt=''>
             <div>
                 <h1><?php echo $titulo ?></h1>
                 <div>
                     <p><?php echo $sinopse ?></p>
                 </div>
-                <p>Avaliação:<?php echo $avaliacao ?></p>
                 <p>Publicação:<?php echo $publicacao ?></p>
                 <p>Atualizado:<?php echo $atualizacao ?></p>
+
             </div>
         </div>
         <div>
             <div>
                 <form method="POST">
                     <textarea name="resenha" id="resenha" rows="10" cols="70"><?php echo htmlspecialchars($resenha); ?></textarea><br>
+
+                    <label for="avaliacao">Avaliação do livro:</label><br>
+                    <div class="rating">
+                        <input type="radio" id="estrela5" name="avaliacao" value="5" <?php if ($avaliacao === 5) echo 'checked'; ?>><label for="estrela5">★</label>
+                        <input type="radio" id="estrela4" name="avaliacao" value="4" <?php if ($avaliacao === 4) echo 'checked'; ?>><label for="estrela4">★</label>
+                        <input type="radio" id="estrela3" name="avaliacao" value="3" <?php if ($avaliacao === 3) echo 'checked'; ?>><label for="estrela3">★</label>
+                        <input type="radio" id="estrela2" name="avaliacao" value="2" <?php if ($avaliacao === 2) echo 'checked'; ?>><label for="estrela2">★</label>
+                        <input type="radio" id="estrela1" name="avaliacao" value="1" <?php if ($avaliacao === 1) echo 'checked'; ?> required><label for="estrela1">★</label>
+                    </div><br><br>
 
                     <input type="submit" value="Enviar">
                 </form>
@@ -90,4 +124,5 @@ if ($result->num_rows > 0) {
     </main>
 
 </body>
+
 </html>

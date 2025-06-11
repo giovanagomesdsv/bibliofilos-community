@@ -146,8 +146,8 @@ $fotoLiv = $_SESSION['imagem-liv'];
                     }
                 } else {
                      echo "
-                    <p>Livro não econcontrado</p>
-                    <a href='cadastro-livro.php'>Cadastre</a>
+                    <p>Livro não encontrado!</p>
+                    <a href='cadastro-livro.php'>Cadastre aqui.</a>
                     ";
                 }
                 $stmt->close();
