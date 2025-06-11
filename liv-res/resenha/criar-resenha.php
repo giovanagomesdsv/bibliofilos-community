@@ -3,19 +3,25 @@ include "../../conexao.php";
 if (!isset($_GET['id']) || empty($_GET['id'])) {
     die("ID não fornecido!");
 }
+session_start();
 
-$id = (int) $_GET['id'];
+$idResenhista = $_SESSION['id'];
+$idLivro = (int) $_GET['id'];
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $tituloResenha = $_POST["titulo"];
+    $resenha = $_POST["resenha"];
+    $avaliacao = $_POST["avaliacao"];
 
     $update = "INSERT INTO RESENHAS (res_id, livro_id, resenha_titulo, resenha_texto, resenha_avaliacao) VALUES (?, ?, ?, ?, ?)";
+    $stmt = $conn->prepare($update);
+    $stmt->bind_param("iissi", $idResenhista, $idLivro, $tituloResenha, $resenha, $avaliacao);
 
-    
-    if ( $stmt->execute()) {
+    if ($stmt->execute()) {
         echo "
         <script>
         alert('Resenha enviada com sucesso! Agradecemos pela colaboração. Antes de ser exibida no Bibliófilos Community será avaliada por um de nossos administradores com o intuito de manter o padrão de nosso site. Retornaremos o mais rápido possível indicando se foi recusada ou será necessário reajuste. Se não houver objeções será exposta diretamente para acesso dos usuários.');
-        window.location.href = 'm-resenhas.php';
+        window.location.href = 'resenhas.php';
         </script>
         ";
     } else {
@@ -30,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 $SELECT = "SELECT livro_titulo, livro_foto, livro_sinopse FROM LIVROS WHERE livro_id = ?";
 $stmt = $conn->prepare($SELECT);
-$stmt->bind_param("i", $id);
+$stmt->bind_param("i", $idLivro);
 $stmt->execute();
 $result = $stmt->get_result();
 
@@ -51,12 +57,35 @@ if ($result->num_rows > 0) {
     <title>Resenha - BACKSTAGE Community
     </title>
 </head>
+<style>
+    .rating {
+        direction: rtl;
+        unicode-bidi: bidi-override;
+        display: inline-block;
+    }
+
+    .rating input {
+        display: none;
+    }
+
+    .rating label {
+        font-size: 2em;
+        color: #ccc;
+        cursor: pointer;
+    }
+
+    .rating input:checked~label,
+    .rating label:hover,
+    .rating label:hover~label {
+        color: gold;
+    }
+</style>
 
 <body>
     <main>
 
         <div>
-            <img src='../../adm/imagens/livros/<?php echo $foto?>' alt=''>
+            <img src='../../adm/imagens/livros/<?php echo $foto ?>' alt=''>
             <div>
                 <h1><?php echo $titulo ?></h1>
                 <div>
@@ -67,7 +96,20 @@ if ($result->num_rows > 0) {
         <div>
             <div>
                 <form method="POST">
-                    <textarea name="resenha" id="resenha" rows="10" cols="70"></textarea><br>
+                    <label for="titulo">Título:</label><br>
+                    <input type="text" name="titulo" required><br><br>
+
+                    <label for="resenha">Resenha:</label><br>
+                    <textarea name="resenha" id="resenha" rows="5" cols="60" required></textarea><br><br>
+
+                    <label for="avaliacao">Avaliação do livro:</label><br>
+                    <div class="rating">
+                        <input type="radio" id="estrela5" name="avaliacao" value="5"><label for="estrela5">★</label>
+                        <input type="radio" id="estrela4" name="avaliacao" value="4"><label for="estrela4">★</label>
+                        <input type="radio" id="estrela3" name="avaliacao" value="3"><label for="estrela3">★</label>
+                        <input type="radio" id="estrela2" name="avaliacao" value="2"><label for="estrela2">★</label>
+                        <input type="radio" id="estrela1" name="avaliacao" value="1" required><label for="estrela1">★</label>
+                    </div><br><br>
 
                     <input type="submit" value="Enviar">
                 </form>
@@ -80,4 +122,5 @@ if ($result->num_rows > 0) {
     </main>
 
 </body>
+
 </html>

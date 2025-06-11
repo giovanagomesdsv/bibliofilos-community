@@ -231,7 +231,7 @@ $id =  $_SESSION['id'];
 
         </div>
         <?php
-        $code = "SELECT livro_foto, resenha_titulo, livro_sinopse, resenha_id FROM RESENHAS INNER JOIN LIVROS ON LIVROS.livro_id = RESENHAS.livro_id WHERE res_id = ?";
+        $code = "SELECT livro_foto, resenha_titulo, livro_sinopse, resenha_id FROM RESENHAS INNER JOIN LIVROS ON LIVROS.livro_id = RESENHAS.livro_id WHERE res_id = ? order by resenha_dtpublicacao desc";
         $stmt = $conn->prepare($code);
         $stmt->bind_param("i", $id);
         $stmt->execute();
