@@ -26,6 +26,8 @@ $id =  $_SESSION['id'];
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href='https://cdn.boxicons.com/fonts/basic/boxicons.min.css' rel='stylesheet'>
+    <link href='https://cdn.boxicons.com/fonts/basic/boxicons.min.css' rel='stylesheet'> 
 
     <link rel="stylesheet" href="../geral.css">
     <title>Minhas resenhas - BACKSTAGE Community</title>
@@ -79,14 +81,14 @@ $id =  $_SESSION['id'];
             <?php endif; ?>
             <li>
                 <a href='../resenha/resenhas.php'>
-                    <i class='bx bx-user'></i>
-                    <span class='link_name'>Criar resenhas</span>
+                    <i class='bx bx-pencil-circle'></i>
+                    <span class='link_name'>CRIAR RESENHAS</span>
                 </a>
             </li>
             <li class="fix">
                 <a href='#'>
-                    <i class='bx bx-user-pin'></i>
-                    <span class='link_name'>Minhas resenhas</span>
+                    <i class='bx bx-boox-bookmark'></i>
+                    <span class='link_name'>MINHAS RESENHAS</span>
                 </a>
             </li>
 
