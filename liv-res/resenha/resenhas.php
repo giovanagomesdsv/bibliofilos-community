@@ -84,7 +84,7 @@ $fotoLiv = $_SESSION['imagem-liv'];
             </li>
             <li>
                 <a href='../m-resenha/m-resenhas.php'>
-                    <i class='bx  bx-book-bookmark'></i>
+                   <i class='bx bx-book-bookmark'></i>
                     <span class='link_name'>MINHAS RESENHAS</span>
                 </a>
             </li>

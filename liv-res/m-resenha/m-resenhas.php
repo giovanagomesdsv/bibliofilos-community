@@ -27,7 +27,7 @@ $id =  $_SESSION['id'];
 
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href='https://cdn.boxicons.com/fonts/basic/boxicons.min.css' rel='stylesheet'>
-    <link href='https://cdn.boxicons.com/fonts/basic/boxicons.min.css' rel='stylesheet'> 
+    <link href='https://cdn.boxicons.com/fonts/basic/boxicons.min.css' rel='stylesheet'>
 
     <link rel="stylesheet" href="../geral.css">
     <title>Minhas resenhas - BACKSTAGE Community</title>
@@ -66,7 +66,7 @@ $id =  $_SESSION['id'];
             </div>
             <li>
                 <a href='../../index.php'>
-                    <i class='bx bx-user'></i>
+                    <i class='bx bx-reply-stroke'></i>
                     <span class='link_name'>BIBLIÓFILOS Community</span>
                 </a>
             </li>
@@ -87,8 +87,8 @@ $id =  $_SESSION['id'];
             </li>
             <li class="fix">
                 <a href='#'>
-                    <i class='bx bx-boox-bookmark'></i>
-                    <span class='link_name'>MINHAS RESENHAS</span>
+                <i class='bx bx-book-bookmark'></i>    
+                <span class='link_name'>MINHAS RESENHAS</span>
                 </a>
             </li>
 
