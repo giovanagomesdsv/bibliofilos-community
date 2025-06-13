@@ -61,12 +61,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $sql = "INSERT INTO resenhistas (res_id, res_nome_fantasia, res_cidade, res_estado, res_telefone, res_foto, res_perfil, res_social)
             VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
     $stmt = $conn->prepare($sql);
-
-    if (!$stmt) {
-        echo "<script>alert('Erro ao preparar SQL.'); history.back();</script>";
-        exit;
-    }
-
     $stmt->bind_param("isssssss", $res_id, $pseudonimo, $cidade, $estado, $telefone, $path, $descricao, $instagram);
 
     if ($stmt->execute()) {

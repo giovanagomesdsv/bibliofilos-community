@@ -68,7 +68,7 @@
 
 <body>
     <header>
-        Editar perfil - BACKSTAGE Community
+     BACKSTAGE Community
     </header>
     <nav class="sidebar" id="sidebar">
         <ul class="nav-list">

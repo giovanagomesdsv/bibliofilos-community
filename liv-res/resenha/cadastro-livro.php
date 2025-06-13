@@ -1,4 +1,5 @@
 <?php
+include "../../conexao.php";
 if ($_SERVER['REQUEST_METHOD'] === "POST") {
     $titulo = $_POST['titulo'];
     $sinopse = $_POST['sinopse'];
@@ -25,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
         }
 
         $novoNome = uniqid() . '.' . $extensao;
-        $pasta = "../imagens/resenhistas/";
+        $pasta = "../../adm/imagens/livros/";
         $caminho = $pasta . $novoNome;
 
         if (!move_uploaded_file($arquivo['tmp_name'], $caminho)) {
@@ -34,6 +35,27 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
         }
 
         $path = $novoNome;
+    } else {
+        echo "<script>alert('Erro no envio da imagem.'); history.back();</script>";
+        exit;
+    }
+
+    $insert = "INSERT INTO LIVROS (livro_titulo, livro_sinopse, livro_editora, livro_isbn, livro_ano, livro_classidd, livro_foto) VALUES (?, ?, ?, ?, ?, ?, ?)";
+    $stmt = $conn->prepare($insert);
+    $stmt->bind_param("ssssiss", $titulo, $sinopse, $editora, $isbn, $ano, $idd, $path);
+    
+    if ($stmt->execute()) {
+        $livro_id = $conn->insert_id; // Pega o ID do livro recém-inserido
+        echo "
+        <script>
+        window.location.href = 'cadastrar_autor.php?id_livro=$livro_id';
+        </script>
+        ";
+    } else {
+        echo "<script>
+            alert('Erro ao cadastrar.');
+            history.back();
+        </script>";
     }
 }
 
@@ -48,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
 </head>
 
 <body>
-    <form method="POST">
+    <form method="POST" enctype="multipart/form-data">
         <label for="titulo">Título:</label>
         <input type="text" name="titulo" required>
 
@@ -76,7 +98,10 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
 
         <label for="arquivo" required>Imagem do livro:</label>
         <input type="file" name="arquivo" accept=".jpg,.jpeg,.png">
+
+        <input type="submit" value="Enviar">
     </form>
+<!-- window.location.href = 'cadastrar_autor.php?id_livro=$livro_id'; -->
 </body>
 
 </html>
