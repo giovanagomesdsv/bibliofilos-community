@@ -33,6 +33,8 @@ $id =  $_SESSION['id'];
     <title>Minhas resenhas - BACKSTAGE Community</title>
 </head>
 
+
+
 <body>
     <header>
         BACKSTAGE Community
