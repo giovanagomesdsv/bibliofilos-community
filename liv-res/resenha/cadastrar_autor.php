@@ -79,7 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $autor_id = $stmt->insert_id;
 
                 // Relaciona o novo autor com o livro
-                $stmt2 = $conn->prepare("INSERT INTO livro_autores (livro_id, autor_id) VALUES (?, ?)");
+                $stmt2 = $conn->prepare("INSERT INTO livro_autores (livro_id, aut_id) VALUES (?, ?)");
                 $stmt2->bind_param("ii", $id_livro, $autor_id);
                 if ($stmt2->execute()) {
                     header("Location: cadastrar_genero.php?id_livro=$id_livro");
