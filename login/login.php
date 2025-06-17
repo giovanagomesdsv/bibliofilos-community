@@ -2,43 +2,33 @@
 session_start();
 include "../conexao.php";
 
-$email = trim($_POST['email']); //trim() remove espaços em branco no início e no fim da string
-$senha = trim($_POST['senha']);
-$tipo_usuario = (int)$_POST['tipo_usuario']; // (int) força a conversão do valor para inteiro, garantindo que você está lidando com um número (útil por segurança e organização).
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['email'], $_POST['senha'], $_POST['tipo_usuario']) && $_POST['email'] !== '' && $_POST['senha'] !== '') {
+    $email = trim($_POST['email']);
+    $senha = trim($_POST['senha']);
+    $tipo_usuario = (int)$_POST['tipo_usuario'];
 
     $sql_code = "SELECT 
-    u.usu_id, u.usu_email, u.usu_nome, u.usu_senha, u.usu_tipo_usuario, 
-    u.usu_data_criacao, u.usu_status,
+        u.usu_id, u.usu_email, u.usu_nome, u.usu_senha, u.usu_tipo_usuario, u.usu_status,
 
-    r.res_id, r.tit_id, r.res_nome_fantasia, r.res_cidade, r.res_estado, 
-    r.res_telefone, r.res_foto, r.res_perfil, r.res_social,
+        r.res_id, r.res_foto,
 
-    l.liv_id, l.liv_nome, l.liv_cidade, l.liv_estado, l.liv_endereco, 
-    l.liv_telefone, l.liv_email, l.liv_foto, l.liv_perfil, l.liv_social
+        l.liv_id, l.liv_foto
 
-FROM usuarios u
-LEFT JOIN resenhistas r ON r.res_id = u.usu_id
-LEFT JOIN livrarias l ON l.liv_id = u.usu_id
-WHERE u.usu_email = ? AND u.usu_tipo_usuario = ? AND u.usu_status = 1;
-"; // Aqui está sendo criada uma query SQL com parâmetros (?) para evitar SQL Injection.
-    $stmt = $conn->prepare($sql_code); // Isso permite executar a mesma consulta várias vezes com diferentes valores de forma segura.
+    FROM usuarios u
+    LEFT JOIN resenhistas r ON r.res_id = u.usu_id
+    LEFT JOIN livrarias l ON l.liv_id = u.usu_id
+    WHERE u.usu_email = ? AND u.usu_tipo_usuario = ? AND u.usu_status = 1";
+
+    $stmt = $conn->prepare($sql_code);
     $stmt->bind_param("si", $email, $tipo_usuario);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
-    /* Aqui os valores reais são vinculados aos ? da query.
-"si" indica os tipos dos parâmetros:
-"s" = string ($email)
-"i" = inteiro ($tipo_usuario) */
-
-    $stmt->execute(); // Executa a query preparada com os valores vinculados.
-    $result = $stmt->get_result(); // Recupera o resultado da execução da query.
-
-
-    if ($result->num_rows === 1) { // evita login com múltiplos ou nenhum usuário correspondente.
+    if ($result->num_rows === 0) {
+        echo "<script>alert('Nenhum usuário encontrado com este e-mail, tipo selecionado e status ativo.');</script>";
+    } else {
         $usuario_db = $result->fetch_assoc();
-
-        /* fetch_assoc() pega o resultado da consulta como um array associativo, onde os nomes das colunas viram as chaves do array.
-
-$usuario_db agora contém os dados encontrados que foram pedidos na consulta SQL*/
+        echo "<script>console.log('Usuário encontrado: tipo_usuario = {$usuario_db['usu_tipo_usuario']}, status = {$usuario_db['usu_status']}');</script>";
 
         if (password_verify($senha, $usuario_db['usu_senha'])) {
             $_SESSION['id'] = $usuario_db['usu_id'];
@@ -47,26 +37,17 @@ $usuario_db agora contém os dados encontrados que foram pedidos na consulta SQL
             $_SESSION['imagem-liv'] = $usuario_db['liv_foto'];
             $_SESSION['imagem-res'] = $usuario_db['res_foto'];
 
-            // Cria variáveis de sessão, que permitem manter o usuário logado durante a navegação no site.
-
             header("Location: ../index.php");
+            exit;
         } else {
-            echo "
-                 <script>
-                  window.alert('Falha ao logar! Senha incorreta');
-                 </script>
-                ";
+            echo "<script>alert('Falha ao logar! Senha incorreta');</script>";
         }
-    } else {
-        echo "
-              <script>
-                  window.alert('Falha ao logar! E-mail incorreto ou usuário não autorizado.');
-              </script>
-            ";
     }
 
     $stmt->close();
-
+} else if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    echo "<script>alert('Por favor, preencha todos os campos antes de continuar.');</script>";
+}
 ?>
 
 <!DOCTYPE html>
