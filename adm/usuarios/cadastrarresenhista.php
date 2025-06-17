@@ -1,10 +1,6 @@
 <?php
 include "../../conexao.php";
 
-// Ativa exibição de erros (em ambiente de desenvolvimento)
-ini_set('display_errors', 1);
-error_reporting(E_ALL);
-
 // Verifica se o ID do usuário foi passado corretamente
 if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
     echo "<script>
@@ -69,9 +65,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             window.location.href = 'usuarios.php';
         </script>";
     } else {
+        // die("Erro na execução: " . $stmt->error);
+
         echo "<script>
-            alert('Erro ao cadastrar resenhista.');
-            history.back();
+            alert('Erro ao cadastrar!');
+            window.location.href = 'usuarios.php';
         </script>";
     }
 
@@ -91,12 +89,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 </head>
 
 <body>
-    <form action="cadastrarresenhista.php?id=<?= $res_id ?>" method="POST" enctype="multipart/form-data" class='format'>
+    <form action="cadastrarresenhista.php?id=<?= htmlspecialchars($res_id) ?>" method="POST" enctype="multipart/form-data" class='format'>
         <h1>Cadastro de Resenhistas</h1>
 
 
         <label for="pseudonimo">Pseudônimo:</label>
-        <input type="text" name="pseudonimo" class='inputEditar2'>
+        <input type="text" name="pseudonimo" class='inputEditar2' required>
 
         <label for="cidade">Cidade:</label>
         <input type="text" name="cidade" required class='inputEditar2'>
@@ -110,16 +108,16 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         </select>
 
         <label for="telefone">Telefone (WhatsApp):</label>
-        <input type="text" name="telefone" placeholder="5511999999999" required class='inputEditar2'>
+        <input type="text" name="telefone" placeholder="DDD + numero" required class='inputEditar2'>
 
         <label for="instagram">Instagram (URL):</label>
         <input type="url" name="instagram" placeholder="https://instagram.com/seuperfil" class='inputEditar2'>
 
-        <label for="descricao">Perfil:</label>
-        <input type="text" name="descricao" class='inputEditar2'>
+        <label for="descricao">Descrição sobre o resenhista:</label>
+        <input type="text" name="descricao" class='inputEditar2' required>
 
         <label for="arquivo">Foto:</label>
-        <input type="file" name="arquivo" accept=".jpg,.jpeg,.png">
+        <input type="file" name="arquivo" required>
 
         <input type="submit" value="Cadastrar" class='tamanhoSubmit'>
         <a href="resenhistas.php">Voltar</a>

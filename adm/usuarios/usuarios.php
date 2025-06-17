@@ -107,6 +107,7 @@ include "../protecao.php";
                     echo "<div class='resultados'><h3>Nenhum resultado encontrado!</h3></div>";
                 } else {
                     while ($row = $sql_query->fetch_assoc()) {
+                        $id = (int) $row['usu_id'];
                         $status = (int) $row['usu_status'];
                         $usuario = (int) $row['usu_tipo_usuario'];
                         $nomeUsuario = htmlspecialchars($row['usu_nome']);
@@ -120,7 +121,7 @@ include "../protecao.php";
                          <p class='input'>$nomeUsuario</p>
                         <div class='containerBtnInput'>
                             <p class='inputID'>RESENHISTA</p>
-                          <a href='editarusuario.php?id={$row['usu_id']}'><div class='botao'>ATUALIZAR</div></a>
+                          <a href='editarusuario.php?id=$id'><div class='botao'>ATUALIZAR</div></a>
                         </div>
                        </div>
                      ";
@@ -131,7 +132,7 @@ include "../protecao.php";
                          <p class='input'>$nomeUsuario</p>
                         <div class='containerBtnInput'>
                          <p class='inputID'>LIVRARIA</p>
-                          <a href='editarusuario.php?id={$row['usu_id']}'><div class='botao'>ATUALIZAR</div></a>
+                          <a href='editarusuario.php?id=$id'><div class='botao'>ATUALIZAR</div></a>
                         </div>
                        </div>
                      ";
@@ -142,7 +143,7 @@ include "../protecao.php";
                              <p class='input'>$nomeUsuario</p>
                             <div class='containerBtnInput'>
                              <p class='inputID'>ADMINISTRADOR</p>
-                              <a href='editarusuario.php?id={$row['usu_id']}'><div class='botao'>ATUALIZAR</div></a>
+                              <a href='editarusuario.php?id=$id'><div class='botao'>ATUALIZAR</div></a>
                             </div>
                            </div>
                          ";
@@ -155,7 +156,7 @@ include "../protecao.php";
                          <p class='input'>$nomeUsuario</p>
                         <div class='containerBtnInput'>
                             <p class='inputID'>RESENHISTA</p>
-                          <a href='editarusuario.php?id={$row['usu_id']}'><div class='botao'>ATUALIZAR</div></a>
+                          <a href='editarusuario.php?id=$id'><div class='botao'>ATUALIZAR</div></a>
                         </div>
                        </div>
                      ";
@@ -166,7 +167,7 @@ include "../protecao.php";
                          <p class='input'>$nomeUsuario</p>
                         <div class='containerBtnInput'>
                          <p class='inputID'>LIVRARIA</p>
-                          <a href='editarusuario.php?id={$row['usu_id']}'><div class='botao'>ATUALIZAR</div></a>
+                          <a href='editarusuario.php?id=$id'><div class='botao'>ATUALIZAR</div></a>
                         </div>
                        </div>
                      ";
@@ -177,7 +178,7 @@ include "../protecao.php";
                             <p class='input'>$nomeUsuario</p>
                          <div class='containerBtnInput'>
                              <p class='inputID'>ADMINISTRADOR</p>
-                              <a href='editarusuario.php?id={$row['usu_id']}'><div class='botao'>ATUALIZAR</div></a>
+                              <a href='editarusuario.php?id=$id'><div class='botao'>ATUALIZAR</div></a>
                          </div>
                         </div>
                          ";
@@ -239,6 +240,7 @@ include "../protecao.php";
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
                     $status = (int) $row['usu_status'];
+                    $id = (int) $row['usu_id'];
                     $usuario = (int) $row['usu_tipo_usuario'];
                     $nomeUsuario = htmlspecialchars($row['usu_nome']);
 
@@ -251,7 +253,7 @@ include "../protecao.php";
                          <p class='input'>$nomeUsuario</p>
                         <div class='containerBtnInput'>
                             <p class='inputID'>RESENHISTA</p>
-                          <a href='editarusuario.php?id={$row['usu_id']}'><div class='botao'>ATUALIZAR</div></a>
+                          <a href='editarusuario.php?id=$id'><div class='botao'>ATUALIZAR</div></a>
                         </div>
                        </div>
                      ";
@@ -262,7 +264,7 @@ include "../protecao.php";
                          <p class='input'>$nomeUsuario</p>
                         <div class='containerBtnInput'>
                          <p class='inputID'>LIVRARIA</p>
-                          <a href='editarusuario.php?id={$row['usu_id']}'><div class='botao'>ATUALIZAR</div></a>
+                          <a href='editarusuario.php?id=$id'><div class='botao'>ATUALIZAR</div></a>
                         </div>
                        </div>
                      ";
@@ -273,7 +275,7 @@ include "../protecao.php";
                              <p class='input'>$nomeUsuario</p>
                             <div class='containerBtnInput'>
                              <p class='inputID'>ADMINISTRADOR</p>
-                              <a href='editarusuario.php?id={$row['usu_id']}'><div class='botao'>ATUALIZAR</div></a>
+                              <a href='editarusuario.php?id=$id'><div class='botao'>ATUALIZAR</div></a>
                             </div>
                            </div>
                          ";
@@ -286,7 +288,7 @@ include "../protecao.php";
                          <p class='input'>$nomeUsuario</p>
                         <div class='containerBtnInput'>
                             <p class='inputID'>RESENHISTA</p>
-                          <a href='editarusuario.php?id={$row['usu_id']}'><div class='botao'>ATUALIZAR</div></a>
+                          <a href='editarusuario.php?id=$id'><div class='botao'>ATUALIZAR</div></a>
                         </div>
                        </div>
                      ";
@@ -297,7 +299,7 @@ include "../protecao.php";
                          <p class='input'>$nomeUsuario</p>
                         <div class='containerBtnInput'>
                          <p class='inputID'>LIVRARIA</p>
-                          <a href='editarusuario.php?id={$row['usu_id']}'><div class='botao'>ATUALIZAR</div></a>
+                          <a href='editarusuario.php?id=$id'><div class='botao'>ATUALIZAR</div></a>
                         </div>
                        </div>
                      ";
@@ -308,7 +310,7 @@ include "../protecao.php";
                             <p class='input'>$nomeUsuario</p>
                          <div class='containerBtnInput'>
                              <p class='inputID'>ADMINISTRADOR</p>
-                              <a href='editarusuario.php?id={$row['usu_id']}'><div class='botao'>ATUALIZAR</div></a>
+                              <a href='editarusuario.php?id=$id'><div class='botao'>ATUALIZAR</div></a>
                          </div>
                         </div>
                          ";

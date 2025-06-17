@@ -1,7 +1,7 @@
 <?php
 include "../../conexao.php";
 
-if (isset($_GET['id']) && is_numeric($_GET['id']) && isset($_POST['status']) && ( $_POST['status'] === '0' || $_POST['status'] === '1' )) {
+if (isset($_GET['id']) && is_numeric($_GET['id']) && isset($_POST['status']) ) {
 
   $id = (int) $_GET['id'];
   $status = (int) $_POST['status'];
@@ -21,7 +21,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id']) && isset($_POST['status']) && 
     echo "
             <script>
                 alert('Erro ao executar a atualização!');
-                window.location.href = 'editarusuario.php?id={$id}';
+                window.location.href = 'editarusuario.php?id=" . htmlspecialchars($id) ."';
             </script>";
   }
   $stmt->close();
@@ -29,6 +29,6 @@ if (isset($_GET['id']) && is_numeric($_GET['id']) && isset($_POST['status']) && 
   echo "
         <script>
             alert('Erro na preparação da query.');
-            window.location.href = 'editarusuario.php?id={$id}';
+            window.location.href = 'editarusuario.php?id=" . htmlspecialchars($id) ."';
         </script>";
 }

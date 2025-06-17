@@ -1,7 +1,5 @@
 <?php
-include ("conexao.php");
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+include "../conexao.php";
 
 $mensagem = "";
 
@@ -21,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['email'], $_POST['tipo
 
         if ($result->num_rows === 1) {
             $novaSenha = substr(md5(time()), 0, 6);
-            $senhaCriptografada = $novaSenha; // ou password_hash($novaSenha, PASSWORD_DEFAULT)
+            $senhaCriptografada = password_hash($novaSenha, PASSWORD_DEFAULT);
 
             // Atualiza a senha no banco
             $update = "UPDATE usuarios SET usu_senha = ? WHERE usu_email = ?";

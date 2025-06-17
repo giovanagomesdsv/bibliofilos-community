@@ -1,23 +1,17 @@
 <?php
-include "conexao.php";
+include "../conexao.php";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $id_usuario = intval($_POST['id_usuario']);
+    $id_usuario = (int)$_GET['id_usuario'];
     $nome = trim($_POST['nome']);
     $cidade = trim($_POST['cidade']);
     $estado = $_POST['estado'];
     $endereco = trim($_POST['endereco']);
-    $telefone = trim($_POST['telefone']);
+    $telefone   = preg_replace('/[^0-9]/', '', $_POST['telefone']);
     $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
     $instagram = trim($_POST['instagram']);
     $perfil = trim($_POST['perfil']);
     $path = "";
-
-    // Validação básica
-    if (!$id_usuario || !$nome || !$cidade || !$estado || !$endereco || !$telefone || !$email || !$instagram || !$perfil) {
-        echo "<script>alert('Preencha todos os campos.'); history.back();</script>";
-        exit;
-    }
 
     // Upload da imagem
     if (isset($_FILES['arquivo']) && $_FILES['arquivo']['error'] === 0) {
@@ -35,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         $novoNome = uniqid() . '.' . $extensao;
-        $pasta = "administrador/imagens/livrarias/";
+        $pasta = "../adm/imagens/livrarias/";
         $caminho = $pasta . $novoNome;
 
         if (!move_uploaded_file($arquivo['tmp_name'], $caminho)) {
@@ -56,13 +50,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->bind_param("isssssssss", $id_usuario, $nome, $cidade, $estado, $endereco, $telefone, $email, $path, $perfil, $instagram);
 
     if ($stmt->execute()) {
-        echo "<script>alert('Livraria cadastrada com sucesso!'); location.href='aviso.php';</script>";
+        Header("Location: aviso.php");
     } else {
-        echo "<script>alert('Erro ao cadastrar livraria.'); location.href='cadastrar-livraria.php?id_usuario={$id_usuario}';</script>";
+        echo "<script>alert('Erro ao cadastrar livraria.'); location.href='cadastrar-livraria.php?id_usuario=". htmlspecialchars($id_usuario). "';</script>";
     }
 
     $stmt->close();
-    $conn->close();
 }
 ?>
 
@@ -80,7 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <body style="background-color:#DEDEDE">
     <form action="" method="POST" enctype="multipart/form-data">
-        <input type="hidden" name="id_usuario" value="<?php echo htmlspecialchars($_GET['id_usuario'] ?? ''); ?>">
+        <input type="hidden" name="id_usuario" value="<?php echo htmlspecialchars($id_usuario); ?>">
 
         <label for="nome">Nome da livraria:</label>
         <input type="text" name="nome" required>
@@ -100,7 +93,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <input type="text" name="endereco" required>
 
         <label for="telefone">Telefone:</label>
-        <input type="number" name="telefone" placeholder="11987543211" required>
+        <input type="text" name="telefone" placeholder="DDD + numero" required>
 
         <label for="email">E-mail da livraria:</label>
         <input type="email" name="email" required>
