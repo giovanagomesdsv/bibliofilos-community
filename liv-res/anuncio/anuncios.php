@@ -93,6 +93,7 @@ $fotoLiv = $_SESSION['imagem-liv'];
         </ul>
     </nav>
     <main>
+        
 
     </main>
     <script src="../script.js"></script>

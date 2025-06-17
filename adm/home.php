@@ -43,7 +43,7 @@ include "../conexao.php";
             </div>
             <li>
                 <a href="../index.php">
-                <i class='bx  bx-reply-stroke'></i> 
+                    <i class='bx  bx-reply-stroke'></i>
                     <span class="link_name">Bibliófilos Community</span>
                 </a>
             </li>
@@ -128,7 +128,7 @@ include "../conexao.php";
                </a>
             </div>
           </div>";
-                }  
+                }
             }
             $stmt->close();
 
@@ -164,7 +164,7 @@ include "../conexao.php";
           </div>";
                 }
             }
-             $stmt->close();
+            $stmt->close();
             ?>
         </div>
     </main>

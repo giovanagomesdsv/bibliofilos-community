@@ -104,7 +104,7 @@ $usuario = isset($_SESSION['usuario']) ? $_SESSION['usuario'] : null;
                         <li>
                             <a href='liv-res/anuncio/anuncios.php'>
                                 <i class='bx bx-user'></i>
-                                <span class='link_name'>Criar resenhas</span>
+                                <span class='link_name'>Anúncios</span>
                             </a>
                         </li>
                     ";
