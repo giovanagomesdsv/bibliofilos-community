@@ -33,23 +33,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastrar Usuário</title>
-    <link rel="stylesheet" href="administrador/usuarios/cadastrarusuario.css">
+    <link rel="stylesheet" href="login.css">
     <link rel="stylesheet" type="text/css" href="../geral.css">
 
 </head>
 
 <body style="background-color:#DEDEDE">
-    <form action="" method="post">
-        <label for="email">E-mail do administrador:</label>
-        <input type="email" name="email" required>
-
-        <label for="nome">Nome do administrador:</label>
-        <input type="text" name="nome" required>
-
-        <label for="senha">Senha:</label>
-        <input type="password" name="senha" required>
-
-        <input type="submit" value="Cadastrar usuário">
+    <form action="" method="post" class="form-cadastro-usuario">
+        <label for="email" class="form-label">E-mail do administrador:</label>
+        <input type="email" name="email" required class="form-input">
+    
+        <label for="nome" class="form-label">Nome do administrador:</label>
+        <input type="text" name="nome" required class="form-input">
+    
+        <label for="senha" class="form-label">Senha:</label>
+        <input type="password" name="senha" required class="form-input">
+    
+        <input type="submit" value="Cadastrar usuário" class="form-submit">
     </form>
 </body>
 

@@ -32,6 +32,19 @@ p {
     margin-bottom: 10px;
 }
 
+button{
+background-color: #2c4e6e;
+  color: white;
+  border: none;
+  padding: 10px 25px;
+  cursor: pointer;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: background-color 0.3s;
+  margin-top: 10px;
+
+}
+
 /* Confetes animados */
 .confetti {
     position: absolute;

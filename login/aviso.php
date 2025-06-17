@@ -12,6 +12,8 @@
     <h2>Parabéns por se cadastrar!</h2>
     <p>Em breve entraremos em contato por e-mail para que possa acessar nosso site por meio do login.</p>
     <p>Até mais!</p>
+    <br><br><br>
+    <a href="home.php"><button type="submit" class="button">Voltar</button></a>
 </body>
 
 <script>
