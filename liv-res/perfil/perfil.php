@@ -38,20 +38,19 @@ $fotoLiv = $_SESSION['imagem-liv'];
         <ul class='nav-list'>
             <div class='nome'>
 
-                <li class='logo_name'>
-                    <a href='#'>
+                <li>
+                    <a href='../perfil/perfil.php' class="perfil">
 
                         <?php
                         if ($usuario == 0) {
-                            $imgCaminho = "../../adm/imagens/resenhistas/" . $_SESSION['imagem-res'];
+                            $imgCaminho = "../../adm/imagens/resenhistas/" . $fotoRes;
                         } else if ($usuario == 1) {
-                            $imgCaminho = "../../adm/imagens/livrarias/" . $_SESSION['imagem-liv'];
+                            $imgCaminho = "../../adm/imagens/livrarias/" . $fotoLiv;
                         }
                         ?>
 
-                        <img src="<?php echo $imgCaminho; ?>" alt="" style="width:100px">
-
-                        <span class='link_name'><?php echo $_SESSION['nome'] ?></span>
+                        <img src="<?php echo $imgCaminho; ?>" alt="" class="img-perfil">
+                        <span class='link_name'><?php echo $nome ?></span>
                     </a>
                 </li>
 
@@ -61,7 +60,7 @@ $fotoLiv = $_SESSION['imagem-liv'];
             </div>
             <li>
                 <a href='../../index.php'>
-                    <i class='bx bx-user'></i>
+                    <i class='bx  bx-reply-stroke'></i>
                     <span class='link_name'>BIBLIÓFILOS Community</span>
                 </a>
             </li>
@@ -74,16 +73,16 @@ $fotoLiv = $_SESSION['imagem-liv'];
                     </a>
                 </li>
             <?php endif; ?>
-            <li>
-                <a href='../resenha/resenhas.php'>
-                    <i class='bx bx-user'></i>
-                    <span class='link_name'>Criar resenhas</span>
+            <li class="fix">
+                <a href='#' class="#">
+                    <i class='bx  bx-pencil-circle'></i>
+                    <span class='link_name'>CRIAR RESENHAS</span>
                 </a>
             </li>
             <li>
                 <a href='../m-resenha/m-resenhas.php'>
-                    <i class='bx bx-user-pin'></i>
-                    <span class='link_name'>Minhas resenhas</span>
+                   <i class='bx bx-book-bookmark'></i>
+                    <span class='link_name'>MINHAS RESENHAS</span>
                 </a>
             </li>
 

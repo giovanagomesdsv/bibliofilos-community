@@ -39,26 +39,66 @@ $id =  $_SESSION['id'];
     <header>
         BACKSTAGE Community
     </header>
+
+
+    <style>
+        main {
+            padding: 4rem 2rem;
+            background-color: #DEDEDE;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        main > div {
+            background-color: #406E96;
+            border: 1px solid #ccc;
+            padding: 1.5rem;
+            border-radius: 1rem;
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.05);
+        }
+
+        main img {
+            width: 120px;
+            height: auto;
+            border-radius: .5rem;
+        }
+
+        main button {
+            background-color: #2A4A64;
+            color: white;
+            padding: .5rem 1rem;
+            border: none;
+            border-radius: .3rem;
+            cursor: pointer;
+            margin: .5rem;
+            transition: background-color 0.3s ease;
+        }
+
+        main button:hover {
+            background-color: #2f516f;
+        }
+    </style>
+
+
+
     <nav class='sidebar' id='sidebar'>
         <ul class='nav-list'>
             <div class='nome'>
 
-                <li class='logo_name'>
-                    <a href='../perfil/perfil.php'>
+                <li>
+                    <a href='../perfil/perfil.php' class="perfil">
 
                         <?php
                         if ($usuario == 0) {
-                            $imgCaminho = "../../adm/imagens/resenhistas/" . $_SESSION['imagem-res'];
+                            $imgCaminho = "../../adm/imagens/resenhistas/" . $fotoRes;
                         } else if ($usuario == 1) {
-                            $imgCaminho = "../../adm/imagens/livrarias/" . $_SESSION['imagem-liv'];
+                            $imgCaminho = "../../adm/imagens/livrarias/" . $fotoLiv;
                         }
                         ?>
 
-                        <img src="<?php echo $imgCaminho; ?>" alt="" style="width:100px">
-
-                        <span class='link_name'>
-                            <?php echo $_SESSION['nome'] ?>
-                        </span>
+                        <img src="<?php echo $imgCaminho; ?>" alt="" class="img-perfil">
+                        <span class='link_name'><?php echo $nome ?></span>
                     </a>
                 </li>
 
@@ -68,7 +108,7 @@ $id =  $_SESSION['id'];
             </div>
             <li>
                 <a href='../../index.php'>
-                    <i class='bx bx-reply-stroke'></i>
+                    <i class='bx  bx-reply-stroke'></i>
                     <span class='link_name'>BIBLIÓFILOS Community</span>
                 </a>
             </li>
@@ -83,14 +123,14 @@ $id =  $_SESSION['id'];
             <?php endif; ?>
             <li>
                 <a href='../resenha/resenhas.php'>
-                    <i class='bx bx-pencil-circle'></i>
+                    <i class='bx  bx-pencil-circle'></i>
                     <span class='link_name'>CRIAR RESENHAS</span>
                 </a>
             </li>
             <li class="fix">
                 <a href='#'>
-                <i class='bx bx-book-bookmark'></i>    
-                <span class='link_name'>MINHAS RESENHAS</span>
+                   <i class='bx bx-book-bookmark'></i>
+                    <span class='link_name'>MINHAS RESENHAS</span>
                 </a>
             </li>
 
