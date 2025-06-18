@@ -27,7 +27,7 @@ $fotoLiv = $_SESSION['imagem-liv'];
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
     <link rel="stylesheet" href="../geral.css">
-    <title>Anúnucios - BACKSTAGE Community</title>
+    <title>Anúncios - BACKSTAGE Community</title>
 </head>
 
 <body>
@@ -38,20 +38,19 @@ $fotoLiv = $_SESSION['imagem-liv'];
         <ul class='nav-list'>
             <div class='nome'>
 
-                <li class='logo_name'>
-                    <a href='../perfil/perfil.php'>
+                <li>
+                    <a href='../perfil/perfil.php' class="perfil">
 
                         <?php
                         if ($usuario == 0) {
-                            $imgCaminho = "../../adm/imagens/resenhistas/" . $_SESSION['imagem-res'];
+                            $imgCaminho = "../../adm/imagens/resenhistas/" . $fotoRes;
                         } else if ($usuario == 1) {
-                            $imgCaminho = "../../adm/imagens/livrarias/" . $_SESSION['imagem-liv'];
+                            $imgCaminho = "../../adm/imagens/livrarias/" . $fotoLiv;
                         }
                         ?>
 
-                        <img src="<?php echo $imgCaminho; ?>" alt="" style="width:100px">
-
-                        <span class='link_name'><?php echo $_SESSION['nome'] ?></span>
+                        <img src="<?php echo $imgCaminho; ?>" alt="" class="img-perfil">
+                        <span class='link_name'><?php echo $nome ?></span>
                     </a>
                 </li>
 
@@ -61,29 +60,29 @@ $fotoLiv = $_SESSION['imagem-liv'];
             </div>
             <li>
                 <a href='../../index.php'>
-                    <i class='bx bx-user'></i>
+                    <i class='bx  bx-reply-stroke'></i>
                     <span class='link_name'>BIBLIÓFILOS Community</span>
                 </a>
             </li>
             <!-- Apenas para livrarias -->
             <?php if ($usuario == 1): ?>
                 <li class="fix">
-                    <a href='../anuncio/anuncios.php'>
+                    <a href='#'>
                         <i class='bx bx-user'></i>
                         <span class='link_name'>Anúncios</span>
                     </a>
                 </li>
             <?php endif; ?>
-            <li>
+            <li >
                 <a href='../resenha/resenhas.php'>
-                    <i class='bx bx-user'></i>
-                    <span class='link_name'>Criar resenhas</span>
+                    <i class='bx  bx-pencil-circle'></i>
+                    <span class='link_name'>CRIAR RESENHAS</span>
                 </a>
             </li>
             <li>
                 <a href='../m-resenha/m-resenhas.php'>
-                    <i class='bx bx-user-pin'></i>
-                    <span class='link_name'>Minhas resenhas</span>
+                   <i class='bx bx-book-bookmark'></i>
+                    <span class='link_name'>MINHAS RESENHAS</span>
                 </a>
             </li>
 
@@ -93,7 +92,75 @@ $fotoLiv = $_SESSION['imagem-liv'];
         </ul>
     </nav>
     <main>
-        
+        <div class="busca-container">
+
+            <div>
+                <a href="criar-anuncio.php">
+                    <button>Criar Anúncio</button>
+                </a>
+            </div>
+
+            <form action="" method="GET" class="busca-form">
+                <input type="text" name="busca" placeholder="nome do usuário">
+                <button type="submit"><i class='bx bx-search'></i></button>
+            </form>
+        </div>
+        <div class="pesquisa"> <!-- DIV DA CAIXA ONDE DENTRO APARECERÁ OS CARDS DO RESULTADO DA BUSCA-->
+            <?php
+            if (!isset($_GET['busca']) || empty($_GET['busca'])) {
+                echo "<div class='resultados'></div>";
+            } else {
+                $pesquisa = $_GET['busca'];
+                $res_id = $id;
+
+                $pesquisa_como_like = "%$pesquisa%";
+
+
+                $sql_code = "SELECT livro_foto, resenha_titulo, livro_sinopse, resenha_id FROM RESENHAS INNER JOIN LIVROS ON LIVROS.livro_id = RESENHA.livro_id WHERE resenha_titulo LIKE ? AND res_id = ?";
+
+                $stmt = $conn->prepare($sql_code) or die("Erro ao preparar: " . $conn->error);
+                $stmt->bind_param("si", $pesquisa_como_like, $res_id);
+                $stmt->execute();
+                $result = $stmt->get_result();
+
+                if ($result->num_rows == 0) {
+                    echo "<div class='resultados'><h3>Nenhum resultado encontrado!</h3></div>";
+                } else {
+                    while ($row = $result->fetch_assoc()) {
+                        $resenha = htmlspecialchars($row['resenha_titulo']);
+                        $foto = htmlspecialchars($row['livro_foto']);
+                        $sinopse = htmlspecialchars($row['livro_sinopse']);
+                        $idResenha = (int) $row['resenha_id'];
+
+                        echo "
+            <div>
+               <div>
+                  <img src='../../adm/imagens/livros/$foto' alt=''>
+                  <div>
+                     <h2> $resenha</h2>
+                     <p>$sinopse</p>
+                  </div>
+               </div>
+               <div>
+                  <a href='abrir.php?id={$idResenha}'> 
+                     <button>Abrir resenha</button>
+                  </a>
+                  <a href='abrir.php?id={$idResenha}'> 
+                     <button>Atualizar resenha</button>
+                  </a>
+               </div>
+            </div>
+            ";
+                    }
+                }
+                $stmt->close();
+            }
+            ?>
+        </div>
+
+        <?php
+            $select = "SELECT liv_livro_id,liv_livro_idioma,liv_livro_pag,liv_livro_tipo,liv_livro_preco,liv_livro_obsadicionais,liv_livro_status, livro_titulo FROM livrarias_livros INNER JOIN LIVROS ON livros.livro_id = livrarias_livros.livro_id  ORDER BY liv_livro_dtpublicacao DESC;";
+        ?>
 
     </main>
     <script src="../script.js"></script>

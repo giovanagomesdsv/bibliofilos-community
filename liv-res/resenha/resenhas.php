@@ -156,7 +156,7 @@ $fotoLiv = $_SESSION['imagem-liv'];
 
             <div>
                 <?php
-                $select = "SELECT livro_id, livro_foto, livro_titulo, livro_sinopse FROM LIVROS";
+                $select = "SELECT livro_id, livro_foto, livro_titulo, livro_sinopse FROM LIVROS order by livro_dtpublicacao desc";
                 $stmt = $conn->prepare($select);
                 $stmt->execute();
                 $result = $stmt->get_result();
