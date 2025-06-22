@@ -11,6 +11,7 @@ if (!isset($_SESSION['id'])) {
     exit;
 }
 
+$id = $_SESSION['id'];
 $usuario = $_SESSION['tipo'];
 $nome = $_SESSION['nome'];
 $fotoRes = $_SESSION['imagem-res'];
@@ -73,7 +74,7 @@ $fotoLiv = $_SESSION['imagem-liv'];
                     </a>
                 </li>
             <?php endif; ?>
-            <li >
+            <li>
                 <a href='../resenha/resenhas.php'>
                     <i class='bx  bx-pencil-circle'></i>
                     <span class='link_name'>CRIAR RESENHAS</span>
@@ -81,7 +82,7 @@ $fotoLiv = $_SESSION['imagem-liv'];
             </li>
             <li>
                 <a href='../m-resenha/m-resenhas.php'>
-                   <i class='bx bx-book-bookmark'></i>
+                    <i class='bx bx-book-bookmark'></i>
                     <span class='link_name'>MINHAS RESENHAS</span>
                 </a>
             </li>
@@ -111,15 +112,12 @@ $fotoLiv = $_SESSION['imagem-liv'];
                 echo "<div class='resultados'></div>";
             } else {
                 $pesquisa = $_GET['busca'];
-                $res_id = $id;
-
                 $pesquisa_como_like = "%$pesquisa%";
 
-
-                $sql_code = "SELECT livro_foto, resenha_titulo, livro_sinopse, resenha_id FROM RESENHAS INNER JOIN LIVROS ON LIVROS.livro_id = RESENHA.livro_id WHERE resenha_titulo LIKE ? AND res_id = ?";
+                $sql_code = "SELECT liv_livro_id,liv_livro_idioma,liv_livro_pag,liv_livro_tipo,liv_livro_preco,liv_livro_obsadicionais,liv_livro_status, livro_titulo, livro_dtpublicacao, livro_foto FROM livrarias_livros INNER JOIN LIVROS ON livros.livro_id = livrarias_livros.livro_id WHERE livro_titulo LIKE ? AND liv_id = ?";
 
                 $stmt = $conn->prepare($sql_code) or die("Erro ao preparar: " . $conn->error);
-                $stmt->bind_param("si", $pesquisa_como_like, $res_id);
+                $stmt->bind_param("si", $pesquisa_como_like, $id);
                 $stmt->execute();
                 $result = $stmt->get_result();
 
@@ -127,39 +125,100 @@ $fotoLiv = $_SESSION['imagem-liv'];
                     echo "<div class='resultados'><h3>Nenhum resultado encontrado!</h3></div>";
                 } else {
                     while ($row = $result->fetch_assoc()) {
-                        $resenha = htmlspecialchars($row['resenha_titulo']);
+                        $titulo = htmlspecialchars($row['livro_titulo']);
+                        $idioma = htmlspecialchars($row['liv_livro_idioma']);
+                        $tipo = htmlspecialchars($row['liv_livro_tipo']);
+                        $preco = htmlspecialchars($row['liv_livro_preco']);
+                        $obs = htmlspecialchars($row['liv_livro_obsadicionais']);
+                        $data = htmlspecialchars($row['livro_dtpublicacao']);
                         $foto = htmlspecialchars($row['livro_foto']);
-                        $sinopse = htmlspecialchars($row['livro_sinopse']);
-                        $idResenha = (int) $row['resenha_id'];
+                        $id = (int) $row['liv_livro_id'];
+                        $pag = (int) $row['liv_livro_pag'];
+                        $status = (int) $row['liv_livro_status'];
+
+                        $statusTexto = $status === 1 ? "Disponível" : "Indisponível";
+                        $statusClasse = $status === 1 ? "ativo" : "inativo";
 
                         echo "
-            <div>
-               <div>
+            <div class='$statusClasse'>
+              <div>
+                <div>
                   <img src='../../adm/imagens/livros/$foto' alt=''>
-                  <div>
-                     <h2> $resenha</h2>
-                     <p>$sinopse</p>
-                  </div>
-               </div>
-               <div>
-                  <a href='abrir.php?id={$idResenha}'> 
-                     <button>Abrir resenha</button>
-                  </a>
-                  <a href='abrir.php?id={$idResenha}'> 
-                     <button>Atualizar resenha</button>
-                  </a>
-               </div>
-            </div>
-            ";
+                  <p>Publicado: $data</p>
+                </div>
+                <div>
+                  <p>$titulo</p>
+                  <p>$idioma</p>
+                  <p>Páginas: $pag</p>
+                  <p>$tipo</p>
+                  <p>R$ $preco</p>
+                  <p>$obs</p>
+                  <p>$statusTexto</p>  
+                </div>
+              </div>
+              <div>
+                <a href='atualizar.php?id=$id'>
+                  <button>Atualizar</button>
+                </a>
+              </div>
+            </div>";
                     }
+                    $stmt->close();
                 }
-                $stmt->close();
             }
             ?>
         </div>
-
+        
         <?php
-            $select = "SELECT liv_livro_id,liv_livro_idioma,liv_livro_pag,liv_livro_tipo,liv_livro_preco,liv_livro_obsadicionais,liv_livro_status, livro_titulo FROM livrarias_livros INNER JOIN LIVROS ON livros.livro_id = livrarias_livros.livro_id  ORDER BY liv_livro_dtpublicacao DESC;";
+        $select = "SELECT liv_livro_id,liv_livro_idioma,liv_livro_pag,liv_livro_tipo,liv_livro_preco,liv_livro_obsadicionais,liv_livro_status, livro_titulo, livro_dtpublicacao, livro_foto FROM livrarias_livros INNER JOIN LIVROS ON livros.livro_id = livrarias_livros.livro_id WHERE liv_id = ? ORDER BY liv_livro_dtpublicacao DESC";
+        $stmt = $conn->prepare($select);
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows > 0) {
+
+            while ($row = $result->fetch_assoc()) {
+                $titulo = htmlspecialchars($row['livro_titulo']);
+                $idioma = htmlspecialchars($row['liv_livro_idioma']);
+                $tipo = htmlspecialchars($row['liv_livro_tipo']);
+                $preco = htmlspecialchars($row['liv_livro_preco']);
+                $obs = htmlspecialchars($row['liv_livro_obsadicionais']);
+                $data = htmlspecialchars($row['livro_dtpublicacao']);
+                $foto = htmlspecialchars($row['livro_foto']);
+                $id = (int) $row['liv_livro_id'];
+                $pag = (int) $row['liv_livro_pag'];
+                $status = (int) $row['liv_livro_status'];
+
+                $statusTexto = $status === 1 ? "Disponível" : "Indisponível";
+                $statusClasse = $status === 1 ? "ativo" : "inativo";
+
+                echo "
+                <div class='$statusClasse'>
+                  <div>
+                    <div>
+                      <img src='../../adm/imagens/livros/$foto' alt=''>
+                      <p>Publicado: $data</p>
+                    </div>
+                    <div>
+                      <p>$titulo</p>
+                      <p>$idioma</p>
+                      <p>Páginas: $pag</p>
+                      <p>$tipo</p>
+                      <p>R$ $preco</p>
+                      <p>$obs</p>
+                      <p>$statusTexto</p>  
+                    </div>
+                  </div>
+                 <div>
+                   <a href='atualizar.php?id=$id'>
+                     <button>Atualizar</button>
+                   </a>
+                 </div>
+                </div>
+                    ";
+            }
+        }
         ?>
 
     </main>

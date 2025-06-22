@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['genero_id'])) {
         if ($stmt->execute()) {
             echo "
             <script>
-            alert('Livro cadastrado com sucesso! Ao voltar para resenhas selecione o livro cadastrado e crie sua resenhas.');
+            alert('Livro cadastrado com sucesso! Ao voltar para a página anterior selecione o livro cadastrado.');
             window.location.href = 'resenhas.php';
             </script>
             ";
