@@ -99,6 +99,9 @@ $fotoLiv = $_SESSION['imagem-liv'];
                 <a href="criar-anuncio.php">
                     <button>Criar Anúncio</button>
                 </a>
+                <a href="#indisponivel">
+                    <button>Livros sem estoque</button>
+                </a>
             </div>
 
             <form action="" method="GET" class="busca-form">
@@ -157,7 +160,7 @@ $fotoLiv = $_SESSION['imagem-liv'];
                 </div>
               </div>
               <div>
-                <a href='atualizar.php?id=$id'>
+                <a href='editar-anuncio.php?id=$id'>
                   <button>Atualizar</button>
                 </a>
               </div>
@@ -168,58 +171,97 @@ $fotoLiv = $_SESSION['imagem-liv'];
             }
             ?>
         </div>
-        
+
         <?php
-        $select = "SELECT liv_livro_id,liv_livro_idioma,liv_livro_pag,liv_livro_tipo,liv_livro_preco,liv_livro_obsadicionais,liv_livro_status, livro_titulo, livro_dtpublicacao, livro_foto FROM livrarias_livros INNER JOIN LIVROS ON livros.livro_id = livrarias_livros.livro_id WHERE liv_id = ? ORDER BY liv_livro_dtpublicacao DESC";
-        $stmt = $conn->prepare($select);
-        $stmt->bind_param("i", $id);
-        $stmt->execute();
-        $result = $stmt->get_result();
+$select = "SELECT liv_livro_id, liv_livro_idioma, liv_livro_pag, liv_livro_tipo, liv_livro_preco, liv_livro_obsadicionais, liv_livro_status, livro_titulo, livro_dtpublicacao, livro_foto 
+           FROM livrarias_livros 
+           INNER JOIN LIVROS ON livros.livro_id = livrarias_livros.livro_id 
+           WHERE liv_id = ? 
+           ORDER BY liv_livro_dtpublicacao DESC";
 
-        if ($result->num_rows > 0) {
+$stmt = $conn->prepare($select);
+$stmt->bind_param("i", $id); // ID da sessão/livraria
+$stmt->execute();
+$result = $stmt->get_result();
 
-            while ($row = $result->fetch_assoc()) {
-                $titulo = htmlspecialchars($row['livro_titulo']);
-                $idioma = htmlspecialchars($row['liv_livro_idioma']);
-                $tipo = htmlspecialchars($row['liv_livro_tipo']);
-                $preco = htmlspecialchars($row['liv_livro_preco']);
-                $obs = htmlspecialchars($row['liv_livro_obsadicionais']);
-                $data = htmlspecialchars($row['livro_dtpublicacao']);
-                $foto = htmlspecialchars($row['livro_foto']);
-                $id = (int) $row['liv_livro_id'];
-                $pag = (int) $row['liv_livro_pag'];
-                $status = (int) $row['liv_livro_status'];
+$disponiveis = [];
+$indisponiveis = [];
 
-                $statusTexto = $status === 1 ? "Disponível" : "Indisponível";
-                $statusClasse = $status === 1 ? "ativo" : "inativo";
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $livro = [
+            'titulo' => htmlspecialchars($row['livro_titulo']),
+            'idioma' => htmlspecialchars($row['liv_livro_idioma']),
+            'tipo' => htmlspecialchars($row['liv_livro_tipo']),
+            'preco' => htmlspecialchars($row['liv_livro_preco']),
+            'obs' => htmlspecialchars($row['liv_livro_obsadicionais']),
+            'data' => htmlspecialchars($row['livro_dtpublicacao']),
+            'foto' => htmlspecialchars($row['livro_foto']),
+            'id' => (int) $row['liv_livro_id'],
+            'pag' => (int) $row['liv_livro_pag'],
+            'status' => (int) $row['liv_livro_status']
+        ];
 
-                echo "
-                <div class='$statusClasse'>
-                  <div>
-                    <div>
-                      <img src='../../adm/imagens/livros/$foto' alt=''>
-                      <p>Publicado: $data</p>
-                    </div>
-                    <div>
-                      <p>$titulo</p>
-                      <p>$idioma</p>
-                      <p>Páginas: $pag</p>
-                      <p>$tipo</p>
-                      <p>R$ $preco</p>
-                      <p>$obs</p>
-                      <p>$statusTexto</p>  
-                    </div>
-                  </div>
-                 <div>
-                   <a href='atualizar.php?id=$id'>
-                     <button>Atualizar</button>
-                   </a>
-                 </div>
-                </div>
-                    ";
-            }
+        if ($livro['status'] == 1) {
+            $disponiveis[] = $livro;
+        } else {
+            $indisponiveis[] = $livro;
         }
-        ?>
+    }
+}
+?>
+
+<?php foreach ($disponiveis as $livro): ?>
+    <div class="ativo">
+        <div>
+            <div>
+                <img src='../../adm/imagens/livros/<?= $livro['foto'] ?>' alt=''>
+                <p>Publicado: <?= $livro['data'] ?></p>
+            </div>
+            <div>
+                <p><?= $livro['titulo'] ?></p>
+                <p><?= $livro['idioma'] ?></p>
+                <p>Páginas: <?= $livro['pag'] ?></p>
+                <p><?= $livro['tipo'] ?></p>
+                <p>R$ <?= $livro['preco'] ?></p>
+                <p><?= $livro['obs'] ?></p>
+                <p>Disponível</p>
+            </div>
+        </div>
+        <div>
+            <a href='editar-anuncio.php?id=<?= $livro['id'] ?>'>
+                <button>Atualizar</button>
+            </a>
+        </div>
+    </div>
+<?php endforeach; ?>
+
+<h2 id="indisponivel">Livros sem estoque</h2>
+<?php foreach ($indisponiveis as $livro): ?>
+    <div class="inativo">
+        <div>
+            <div>
+                <img src='../../adm/imagens/livros/<?= $livro['foto'] ?>' alt=''>
+                <p>Publicado: <?= $livro['data'] ?></p>
+            </div>
+            <div>
+                <p><?= $livro['titulo'] ?></p>
+                <p><?= $livro['idioma'] ?></p>
+                <p>Páginas: <?= $livro['pag'] ?></p>
+                <p><?= $livro['tipo'] ?></p>
+                <p>R$ <?= $livro['preco'] ?></p>
+                <p><?= $livro['obs'] ?></p>
+                <p>Indisponível</p>
+            </div>
+        </div>
+        <div>
+            <a href='editar-anuncio.php?id=<?= $livro['id'] ?>'>
+                <button>Atualizar</button>
+            </a>
+        </div>
+    </div>
+<?php endforeach; ?>
+
 
     </main>
     <script src="../script.js"></script>

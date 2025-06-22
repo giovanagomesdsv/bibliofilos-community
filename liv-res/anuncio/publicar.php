@@ -2,12 +2,25 @@
 include "../../conexao.php";
 session_start();
 
-if (!isset($_GET['id']) || empty($_GET['id'])) {
-    die("ID não fornecido!");
+// Verifica se veio o ID do livro
+if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
+    echo "<script>
+        alert('ID do livro inválido.');
+        window.location.href = 'anuncios.php';
+    </script>";
+    exit;
 }
 
 $livro_id = (int) $_GET['id'];
-$liv_id = $_SESSION['id'];      
+$liv_id = $_SESSION['id'];
+
+if (!$liv_id) {
+    echo "<script>
+        alert('Usuário não autenticado.');
+        window.location.href = '../../login.php';
+    </script>";
+    exit;
+}
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $idioma = trim($_POST['idioma']);
@@ -42,19 +55,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         );
 
         if ($stmt->execute()) {
-            header("Location: anuncios.php");
-            exit();
+            echo "<script>
+                alert('Publicado com sucesso!');
+                window.location.href = 'anuncios.php';
+            </script>";
         } else {
-            echo "<p>Erro ao publicar: " . $stmt->error . "</p>";
+            echo "<script>
+                alert('Erro ao publicar: " . addslashes($stmt->error) . "');
+                history.back();
+            </script>";
         }
 
         $stmt->close();
     } else {
-        echo "<p>Erro ao preparar: " . $conn->error . "</p>";
+        echo "<script>
+            alert('Erro ao preparar SQL: " . addslashes($conn->error) . "');
+            history.back();
+        </script>";
     }
+    exit;
 }
 ?>
-
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -63,30 +84,35 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Publicar Anúncios - BACKSTAGE Community</title>
+    <link rel="stylesheet" href="../geral.css">
+    <link rel="stylesheet" href="usuarios.css">
 </head>
 
 <body>
-    <form action="" method="POST">
+    <form action="publicar.php?id=<?= htmlspecialchars($livro_id) ?>" method="POST" class="format2">
+        <h1>Publicar Anúncio</h1>
+
         <label for="idioma">Idioma:</label>
-        <input type="text" name="idioma" required>
+        <input type="text" name="idioma" required class="inputEditar2">
 
         <label for="pagina">Páginas:</label>
-        <input type="number" name="pagina" required>
+        <input type="number" name="pagina" required class="inputEditar2">
 
         <label for="tipo">Tipo do livro:</label>
-        <select name="tipo" required>
+        <select name="tipo" required class="selectResenhista">
             <option value="">Selecione...</option>
             <option value="Físico">Físico</option>
             <option value="Digital">Digital</option>
         </select>
 
         <label for="preco">Preço:</label>
-        <input type="number" step="0.01" name="preco" required>
+        <input type="number" step="0.01" name="preco" required class="inputEditar2">
 
         <label for="obs">Observações adicionais:</label>
-        <input type="text" name="obs">
+        <input type="text" name="obs" class="inputEditar2">
 
-        <button type="submit">Publicar</button>
+        <input type="submit" value="Publicar" class="inputConfirmar">
+        <a href="anuncios.php">Voltar</a>
     </form>
 </body>
 
