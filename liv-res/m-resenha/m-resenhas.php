@@ -247,19 +247,19 @@ $id =  $_SESSION['id'];
 
                 echo "
                         <div class='card'>
-                           <div>
+                           <div class='cont'>
                               <img src='../../adm/imagens/livros/$foto' alt=''>
                               <div>
                                  <h2> $resenha</h2>
                                  <p>$sinopse</p>
                               </div>
                            </div>
-                           <div>
+                           <div class='cont2'>
                               <a href='abrir.php?id={$idResenha}'> 
-                                 <button>Abrir resenha</button>
+                                 <button class='botao'>ABRIR</button>
                               </a>
                               <a href='atualizar.php?id={$idResenha}'> 
-                                 <button>Atualizar resenha</button>
+                                 <button class='botao'>ATUALIZAR</button>
                               </a>
                            </div>
                         </div>
