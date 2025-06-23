@@ -1,3 +1,4 @@
+
 .box-card {
     display: flex;
     flex-wrap: wrap;
@@ -5,13 +6,16 @@
     gap: 2rem; /* espaço entre os cards */
 }
 
+
 .box-card > .card {
-    width: calc(50% - 0.5rem); /* dois cards por linha com gap */
+    flex: 1 1 calc(50% - 1rem); /* dois cards por linha com gap */
     margin-bottom: 1rem;
+    box-sizing: border-box;    /* importante para considerar padding/border no cálculo */
     height: 50rem;
     display: flex;
     flex-direction: column;
 }
+
 
     .card .cont {
         height: 80%;
