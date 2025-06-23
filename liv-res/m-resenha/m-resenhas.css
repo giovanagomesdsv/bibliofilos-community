@@ -1,36 +1,63 @@
+:root {
+    --bg: #f4f4f4;
+    --text: #000000;
+    --principal: #406E96;
+    --secundaria: #2A4A64;
+    --terciaria: #1F3A50;
+    /* Transições */
+    --transition-fast: 0.2s ease;
+    --transition-base: 0.3s ease;
+    --padding: 1rem;
+    /* Controla a síntese de fontes (negrito, itálico) pelo navegador */
+    font-synthesis: none;
+    /* Otimiza a renderização do texto para melhor legibilidade */
+    text-rendering: optimizeLegibility;
+    /* Melhora a renderização de fontes em navegadores baseados em WebKit (Chrome, Safari) */
+    -webkit-font-smoothing: antialiased;
+    /* Melhora a renderização de fontes em navegadores Firefox no macOS */
+    -moz-osx-font-smoothing: grayscale;
+    text-decoration: none;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 .busca-container {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     flex-direction: row;
     height: 5rem;
-    border: 1px solid;
+    padding: 1rem;
+    box-sizing: border-box;
 }
+.busca-container > form{
+    margin-top: 2rem;
+}
+
 .busca-container .contador{
     display: flex;
     align-items: center;
     justify-content: center;
     width: 50%;
+    height: 3rem;
+    background-color: var(--principal);
+}
+.busca-container .contador span{
+    background-color: #f4f4f4; 
+    padding: .4rem;
+}
+
+.box-card {
+    display: flex;
+    flex-wrap: wrap;
     border: 1px solid;
+    gap: 1rem; /* espaço entre os cards */
 }
 
-
-main img {
-    width: 120px;
-    height: auto;
-    border-radius: .5rem;
+.box-card > .card {
+    width: calc(50% - 0.5rem); /* dois cards por linha com gap */
+    margin-bottom: 1rem;
+    
 }
 
-main button {
-    background-color: #2A4A64;
-    color: white;
-    padding: .5rem 1rem;
-    border: none;
-    border-radius: .3rem;
-    cursor: pointer;
-    margin: .5rem;
-    transition: background-color 0.3s ease;
-}
-
-main button:hover {
-    background-color: #2f516f;
-}

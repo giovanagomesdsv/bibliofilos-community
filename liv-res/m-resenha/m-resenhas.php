@@ -119,7 +119,7 @@ $id =  $_SESSION['id'];
 
                     echo "
                     <div>
-                       <p>Resenhas publicadas: $contagem</p>
+                       <p>Resenhas publicadas: <span> $contagem </span></p>
                     </div>
                     ";
                 }
@@ -229,6 +229,8 @@ $id =  $_SESSION['id'];
             ?>
 
         </div>
+
+        <div class="box-card">
         <?php
         $code = "SELECT livro_foto, resenha_titulo, livro_sinopse, resenha_id FROM RESENHAS INNER JOIN LIVROS ON LIVROS.livro_id = RESENHAS.livro_id WHERE res_id = ? order by resenha_dtpublicacao desc";
         $stmt = $conn->prepare($code);
@@ -244,7 +246,7 @@ $id =  $_SESSION['id'];
                 $idResenha = (int) $row['resenha_id'];
 
                 echo "
-                        <div>
+                        <div class='card'>
                            <div>
                               <img src='../../adm/imagens/livros/$foto' alt=''>
                               <div>
@@ -266,6 +268,7 @@ $id =  $_SESSION['id'];
         }
         $stmt->close();
         ?>
+        </div>
 
     </main>
     <script src="../script.js"></script>
