@@ -106,6 +106,7 @@ $fotoLiv = $_SESSION['imagem-liv'];
             </form>
         </div>
         <div class="pesquisa"> <!-- DIV DA CAIXA ONDE DENTRO APARECERÁ OS CARDS DO RESULTADO DA BUSCA-->
+            
             <?php
             if (!isset($_GET['busca']) || empty($_GET['busca'])) {
                 echo "<div class='resultados'></div>";
@@ -131,11 +132,13 @@ $fotoLiv = $_SESSION['imagem-liv'];
 
                         echo "
                         <div class='card'>
-                           <div class='its'>
-                              <img class='imagem imgliv' src='../../adm/imagens/livros/$foto' alt=''>
+                           <div class='cont'>
+                              <img src='../../adm/imagens/livros/$foto' alt=''>
                               <div>
                                  <h2> $titulo</h2>
-                                 <p>$sinopse</p>
+                                 <p>$orem ipsum dolor sit amet consectetur adipisicing elit. Id accusamus atque repudiandae. Architecto nulla dolorum nisi nihil aperiam sunt maxime et. Quibusdam rem beatae fugiat quidem? Repellendus dignissimos error molestias.lorem
+                                    lorem
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum explicabo animi reprehenderit culpa repellendus, ex dolorem molestiae in excepturi distinctio autem harum totam non minima quam illum quibusdam facilis natus.</p>
                               </div>
                            </div>
                            <div>
@@ -157,7 +160,7 @@ $fotoLiv = $_SESSION['imagem-liv'];
             }
             ?>
 
-            <div>
+            <div class="box-card">
                 <?php
                 $select = "SELECT livro_id, livro_foto, livro_titulo, livro_sinopse FROM LIVROS order by livro_dtpublicacao desc";
                 $stmt = $conn->prepare($select);
@@ -172,13 +175,17 @@ $fotoLiv = $_SESSION['imagem-liv'];
                         $idLivro = (int) $row['livro_id'];
                          echo "
                         <div class='card'>
-                           <div class='its'>
-                            <img class='imagem imgliv' src='../../adm/imagens/livros/$foto' alt=''>
+                           <div class='cont'>
+                            <img src='../../adm/imagens/livros/$foto' alt=''>
                                 <div>
                             <h2> $titulo</h2>
                               
                               
-                                 <p>$sinopse</p>
+                                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Id accusamus atque repudiandae. Architecto nulla dolorum nisi nihil aperiam sunt maxime et. Quibusdam rem beatae fugiat quidem? Repellendus dignissimos error molestias.lorem
+                                    lorem
+                                    m ipsum dolor sit amet consectetur adipisicing elit. Id accusamus atque repudiandae. Architecto nulla dolorum nisi nihil aperiam sunt maxime et. Quibusdam rem beatae fugiat quidem? Repellendus dignissimos error molestias.lorem
+                                    loremLorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum explicabo animi reprehenderit culpa repellendus, ex dolorem molestiae in excepturi distinctio autem harum totam non minima quam illum quibusdam facilis natus.
+                                 </p>
                                 </div>
                            </div>
                            <div>
