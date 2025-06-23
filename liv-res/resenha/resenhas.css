@@ -1,0 +1,10 @@
+.its{
+    display: flex;
+    flex-direction: row;
+    border: solid 1px red;
+}
+
+.imgliv{
+    border: solid 1px red;
+    margin: 2rem;
+}

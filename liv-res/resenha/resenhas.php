@@ -30,7 +30,7 @@ $fotoLiv = $_SESSION['imagem-liv'];
     <link href='https://cdn.boxicons.com/fonts/basic/boxicons.min.css' rel='stylesheet'>
 
     <link rel="stylesheet" href="../geral.css">
-    <link rel="stylesheet" href="resenhase.css">
+    <link rel="stylesheet" href="resenhas.css">
     <title>Criar resenhas - BACKSTAGE Community</title>
 </head>
 
@@ -54,7 +54,9 @@ $fotoLiv = $_SESSION['imagem-liv'];
                         ?>
 
                         <img src="<?php echo $imgCaminho; ?>" alt="" class="img-perfil">
-                        <span class='link_name'><?php echo $nome ?></span>
+                        <span class='link_name'>
+                            <?php echo $nome ?>
+                        </span>
                     </a>
                 </li>
 
@@ -70,12 +72,12 @@ $fotoLiv = $_SESSION['imagem-liv'];
             </li>
             <!-- Apenas para livrarias -->
             <?php if ($usuario == 1): ?>
-                <li>
-                    <a href='../anuncio/anuncios.php'>
-                        <i class='bx bx-user'></i>
-                        <span class='link_name'>Anúncios</span>
-                    </a>
-                </li>
+            <li>
+                <a href='../anuncio/anuncios.php'>
+                    <i class='bx bx-user'></i>
+                    <span class='link_name'>Anúncios</span>
+                </a>
+            </li>
             <?php endif; ?>
             <li class="fix">
                 <a href='#' class="#">
@@ -85,7 +87,7 @@ $fotoLiv = $_SESSION['imagem-liv'];
             </li>
             <li>
                 <a href='../m-resenha/m-resenhas.php'>
-                   <i class='bx bx-book-bookmark'></i>
+                    <i class='bx bx-book-bookmark'></i>
                     <span class='link_name'>MINHAS RESENHAS</span>
                 </a>
             </li>
@@ -128,9 +130,9 @@ $fotoLiv = $_SESSION['imagem-liv'];
                         $idLivro = (int) $row['livro_id'];
 
                         echo "
-                        <div>
-                           <div>
-                              <img src='../../adm/imagens/livros/$foto' alt=''>
+                        <div class='card'>
+                           <div class='its'>
+                              <img class='imagem imgliv' src='../../adm/imagens/livros/$foto' alt=''>
                               <div>
                                  <h2> $titulo</h2>
                                  <p>$sinopse</p>
@@ -169,15 +171,15 @@ $fotoLiv = $_SESSION['imagem-liv'];
                         $sinopse = htmlspecialchars($row['livro_sinopse']);
                         $idLivro = (int) $row['livro_id'];
                          echo "
-                        <div>
-                           <div>
-                              <div>
-                                 <img src='../../adm/imagens/livros/$foto' alt=''>
-                                 <h2> $titulo</h2>
-                              </div>
-                              <div>
+                        <div class='card'>
+                           <div class='its'>
+                            <img class='imagem imgliv' src='../../adm/imagens/livros/$foto' alt=''>
+                                <div>
+                            <h2> $titulo</h2>
+                              
+                              
                                  <p>$sinopse</p>
-                              </div>
+                                </div>
                            </div>
                            <div>
 
