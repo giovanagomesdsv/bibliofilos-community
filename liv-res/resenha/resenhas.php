@@ -30,6 +30,7 @@ $fotoLiv = $_SESSION['imagem-liv'];
     <link href='https://cdn.boxicons.com/fonts/basic/boxicons.min.css' rel='stylesheet'>
 
     <link rel="stylesheet" href="../geral.css">
+    <link rel="stylesheet" href="resenhase.css">
     <title>Criar resenhas - BACKSTAGE Community</title>
 </head>
 
