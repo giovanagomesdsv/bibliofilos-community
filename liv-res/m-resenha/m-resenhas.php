@@ -30,8 +30,7 @@ $id =  $_SESSION['id'];
     <link href='https://cdn.boxicons.com/fonts/basic/boxicons.min.css' rel='stylesheet'>
 
     <link rel="stylesheet" href="../geral.css">
-    <link rel="stylesheet" href="m-resenhas.css">
-    <title>Minhas resenhas - BACKSTAGE Community</title>
++    <title>Minhas resenhas - BACKSTAGE Community</title>
 </head>
 <body>
     <header>
@@ -143,7 +142,7 @@ $id =  $_SESSION['id'];
                 $pesquisa_como_like = "%$pesquisa%";
 
                
-                $sql_code = "SELECT livro_foto, resenha_titulo, livro_sinopse, resenha_id FROM RESENHAS INNER JOIN LIVROS ON LIVROS.livro_id = RESENHA.livro_id WHERE resenha_titulo LIKE ? AND res_id = ?";
+                $sql_code = "SELECT livro_foto, resenha_titulo, livro_sinopse, resenha_id FROM RESENHAS INNER JOIN LIVROS ON LIVROS.livro_id = RESENHAS.livro_id WHERE resenha_titulo LIKE ? AND res_id = ?";
 
                 $stmt = $conn->prepare($sql_code) or die("Erro ao preparar: " . $conn->error);
                 $stmt->bind_param("si", $pesquisa_como_like, $res_id);
@@ -160,20 +159,20 @@ $id =  $_SESSION['id'];
                         $idResenha = (int) $row['resenha_id'];
 
                         echo "
-                        <div>
-                           <div>
+                          <div class='card'>
+                           <div class='cont'>
                               <img src='../../adm/imagens/livros/$foto' alt=''>
                               <div>
                                  <h2> $resenha</h2>
                                  <p>$sinopse</p>
                               </div>
                            </div>
-                           <div>
+                           <div class='cont2'>
                               <a href='abrir.php?id={$idResenha}'> 
-                                 <button>Abrir resenha</button>
+                                 <button class='botao'>ABRIR</button>
                               </a>
-                              <a href='abrir.php?id={$idResenha}'> 
-                                 <button>Atualizar resenha</button>
+                              <a href='atualizar.php?id={$idResenha}'> 
+                                 <button class='botao'>ATUALIZAR</button>
                               </a>
                            </div>
                         </div>
