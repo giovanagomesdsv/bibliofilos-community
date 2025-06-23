@@ -1,0 +1,36 @@
+.busca-container {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    height: 5rem;
+    border: 1px solid;
+}
+.busca-container .contador{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    border: 1px solid;
+}
+
+
+main img {
+    width: 120px;
+    height: auto;
+    border-radius: .5rem;
+}
+
+main button {
+    background-color: #2A4A64;
+    color: white;
+    padding: .5rem 1rem;
+    border: none;
+    border-radius: .3rem;
+    cursor: pointer;
+    margin: .5rem;
+    transition: background-color 0.3s ease;
+}
+
+main button:hover {
+    background-color: #2f516f;
+}

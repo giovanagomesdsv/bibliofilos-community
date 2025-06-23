@@ -30,57 +30,13 @@ $id =  $_SESSION['id'];
     <link href='https://cdn.boxicons.com/fonts/basic/boxicons.min.css' rel='stylesheet'>
 
     <link rel="stylesheet" href="../geral.css">
+    <link rel="stylesheet" href="m-resenhas.css">
     <title>Minhas resenhas - BACKSTAGE Community</title>
 </head>
-
-
-
 <body>
     <header>
         BACKSTAGE Community
     </header>
-
-
-    <style>
-        main {
-            padding: 4rem 2rem;
-            background-color: #DEDEDE;
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-        }
-
-        main > div {
-            background-color: #406E96;
-            border: 1px solid #ccc;
-            padding: 1.5rem;
-            border-radius: 1rem;
-            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.05);
-        }
-
-        main img {
-            width: 120px;
-            height: auto;
-            border-radius: .5rem;
-        }
-
-        main button {
-            background-color: #2A4A64;
-            color: white;
-            padding: .5rem 1rem;
-            border: none;
-            border-radius: .3rem;
-            cursor: pointer;
-            margin: .5rem;
-            transition: background-color 0.3s ease;
-        }
-
-        main button:hover {
-            background-color: #2f516f;
-        }
-    </style>
-
-
 
     <nav class='sidebar' id='sidebar'>
         <ul class='nav-list'>
@@ -144,7 +100,7 @@ $id =  $_SESSION['id'];
         <div class="busca-container">
 
             <!--Total de resenhas publicadas-->
-            <div>
+            <div class="contador">
                 <?php
                 $count = "SELECT 
                            COUNT(resenhas.res_id) as total_resenhas
@@ -163,8 +119,7 @@ $id =  $_SESSION['id'];
 
                     echo "
                     <div>
-                       <p>Resenhas publicadas:</p>
-                       <p>$contagem</p>
+                       <p>Resenhas publicadas: $contagem</p>
                     </div>
                     ";
                 }
