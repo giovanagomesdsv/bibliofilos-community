@@ -60,9 +60,63 @@ button {
 }
 
 /*CSS DE CRIAR RESENHA--------------------------------------------*/
-.teste{
+.card1 {
+    height: 90%;
+}
+
+.its {
+    display: flex;
+    flex-direction: row;
+    border: solid 1px red;
+}
+
+.cardimgsinopse {
+    display: flex;
+    flex-direction: row;
+}
+
+.imgliv {
+    margin: 2rem;
+}
+
+/* texto de sinopse */
+.cardimgsinopse p {
+    margin: 3rem;
+    font-size: 2rem;
+    text-align: start;
+    align-items: start;
+    color: var(--text);
+}
+
+.cardimgsinopse p {
+    margin: 2rem;
+}
+
+.resenhabox {
+    display: flex;
+    text-align: start;
+    margin: 0 2rem;
+}
+
+.resenha {
+    height: 40rem;
+    width: 95%;
+    text-align: justify;
     color: black;
 }
+
+.botao1 {
+    width: 98%;
+    padding: 1.2rem;
+    background-color: var(--terciaria);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.6rem;
+    cursor: pointer;
+    margin-bottom: 0.5rem;
+}
+
 .rating {
     direction: rtl;
     unicode-bidi: bidi-override;

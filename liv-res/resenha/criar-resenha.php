@@ -54,53 +54,68 @@ if ($result->num_rows > 0) {
 <head>
     <meta charset='UTF-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    
+
     <link rel="stylesheet" href="../geral.css">
     <link rel="stylesheet" href="resenhas.css">
     <title>Resenha - BACKSTAGE Community
     </title>
-   
-  
+
+
 
 </head>
+
 <body>
     <main>
+        <div class='card card1'>
 
-        <div class="card teste">
-            <img src='../../adm/imagens/livros/<?php echo $foto ?>' alt=''>
-            <div>
-                <h1><?php echo $titulo ?></h1>
-                <div>
-                    <p><?php echo $sinopse ?></p>
+
+
+
+
+            <div class='cardimgsinopse'>
+                <img class='imagem imgliv' src='../../adm/imagens/livros/<?php echo $foto ?>' alt=''>
+                <div class="sinopse">
+                    <h1>
+                        Titulo:
+                        <?php echo $titulo ?>
+                    </h1>
+
+                    <p>
+                        Sinopse:
+                        <?php echo $sinopse ?>
+                    </p>
+
                 </div>
+
             </div>
-        </div>
-        <div>
             <div>
-                <form method="POST">
-                    <label for="titulo">Título:</label><br>
-                    <input type="text" name="titulo" required><br><br>
+                <div>
+                    <form method="POST">
 
-                    <label for="resenha">Resenha:</label><br>
-                    <textarea name="resenha" id="resenha" rows="5" cols="60" required></textarea><br><br>
+                        <div>
+                            <label class="resenhabox" for="resenha">Resenha:</label><br>
+                            <textarea class="resenha" name="resenha" id="resenha" rows="5" cols="60"
+                                required></textarea><br><br>
+                        </div>
 
-                    <label for="avaliacao">Avaliação do livro:</label><br>
-                    <div class="rating">
-                        <input type="radio" id="estrela5" name="avaliacao" value="5"><label for="estrela5">★</label>
-                        <input type="radio" id="estrela4" name="avaliacao" value="4"><label for="estrela4">★</label>
-                        <input type="radio" id="estrela3" name="avaliacao" value="3"><label for="estrela3">★</label>
-                        <input type="radio" id="estrela2" name="avaliacao" value="2"><label for="estrela2">★</label>
-                        <input type="radio" id="estrela1" name="avaliacao" value="1" required><label for="estrela1">★</label>
-                    </div><br><br>
+                        <label for="avaliacao">Avaliação do livro:</label><br>
+                        <div class="rating">
+                            <input type="radio" id="estrela5" name="avaliacao" value="5"><label for="estrela5">★</label>
+                            <input type="radio" id="estrela4" name="avaliacao" value="4"><label for="estrela4">★</label>
+                            <input type="radio" id="estrela3" name="avaliacao" value="3"><label for="estrela3">★</label>
+                            <input type="radio" id="estrela2" name="avaliacao" value="2"><label for="estrela2">★</label>
+                            <input type="radio" id="estrela1" name="avaliacao" value="1" required><label
+                                for="estrela1">★</label>
+                        </div><br><br>
 
-                    <input type="submit" value="Enviar">
-                </form>
+                        <input class="botao1" type="submit" value="Enviar">
+                    </form>
+                </div>
+                <a class="notas" href='m-resenhas.php'>
+                    <button class="botao1">Cancela</button>
+                </a>
             </div>
-            <a href='m-resenhas.php'>
-                <button>Cancela</button>
-            </a>
         </div>
-
     </main>
 
 </body>
