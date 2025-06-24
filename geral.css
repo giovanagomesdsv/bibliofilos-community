@@ -16,9 +16,8 @@
 
     --bg: #f4f4f4;
     --text: #f5f5f5;
-    --principal: #406E96;
-    --secundaria: #2A4A64;
-    --terciaria: #1F3A50;
+    --principal: #56070C;
+    --secundaria: #11114E;
 
 
     /* Transições */
@@ -97,33 +96,105 @@ main {
     background: var(--text);
     border-radius: .5rem;
 }
+/*menu usuarios sem login*/
+.navbarB {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 10px 40px;
+    background-color: var(--principal);
+    font-size: 1.6rem;
+    display: flex;
+   
+}
+.navbarB > div{
+    width: 25%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.navbarB div.links{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    width: 30%;
+}
+
+.navbarB img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+
+.navbarB .links a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.6rem;
+    transition: .3s ease-in-out;
+}
+
+.navbarB .links a:hover {
+    text-shadow: 0 0 30px #fd4b4b;
+    border-bottom: 1px solid;
+    margin-bottom: .5rem;
+}
+.navbarB a.active {
+    background-color: var(--secundaria); /* azul escuro */
+    padding: 6px 10px;
+    border-radius: 5px;
+}
+/*menu lateral*/
+/* Botão hamburguer */
+.hamburguer-btn {
+    font-size: 2rem;
+    cursor: pointer;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 2000;
+    color: white;
+}
+
+/* Sidebar oculta por padrão */
+#menu-container .sidebar {
+    position: fixed;
+    width: 250px;
+    height: 100vh;
+    background: #0400ff;
+    transition: left 0.3s ease-in-out;
+}
+
+/* Quando ativado 
+#menu-container.active .sidebar {
+    left: 0;
+}*/
 
 /* padrao de pesquisa */
 .busca-container {
     float: right;
     padding-top: 1rem;
+    width: 50%;
 }
 .busca-form {
     display: flex;
     align-items: center;
     border-radius: 0.5rem;
     justify-content: flex-end;
-    background-color: var(--pesquisa);
-    margin-bottom: 2rem;
+    background-color: transparent;
     gap: 1rem;
-    border: 1px solid #000;
+    border: 1px solid #ffffff;
+    width: 100%;
+    color: var(--text);
 }
 .busca-form input[type="text"] {
     border: none;
-    /* remove a borda preta */
     outline: none;
-    /* remove o contorno ao focar */
     padding: 0.8rem 1rem;
-    font-size: 1rem;
-    background-color: var(--pesquisa);
+    font-size: 1.4rem;
+    background-color: transparent;
     border-radius: 0.5rem 0 0 0.5rem;
-    /* arredonda o lado esquerdo */
-    color: #000;
+    width: 100%;
 }
 .busca-form button {
     background: none;
@@ -134,7 +205,12 @@ main {
     padding: 0 1rem;
     font-size: 1.4rem;
     cursor: pointer;
-    color: #000000;
+    color: #ffffff;
 }
 
+/*home*/
+section {
+    height: 100vh;
+    width: 100%;
+}
 

@@ -36,5 +36,13 @@ let changeText = () => {
     currentWordIndex = currentWordIndex === maxWordIndex ? 0 : currentWordIndex + 1;
 };
 
+/*menu latera/*/
 changeText();
 setInterval(changeText, 20000); 
+
+const btn = document.getElementById("hamburguer-btn");
+const menuContainer = document.getElementById("menu-container");
+
+btn.addEventListener("click", () => {
+    menuContainer.classList.toggle("active");
+});

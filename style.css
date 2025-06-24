@@ -1,62 +1,12 @@
 
 section.tela1 {
-    border: 1px solid red;
-    height: 100vh;
-    width: 100%;
-    background-color: #4A0000;
+    background-color: var(--principal);
     color: #ffffff;
-}
-
-/* GERAL */
-
-/* NAVBAR */
-nav {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    padding: 10px 40px;
-    background-color: #4A0000;
-    font-size: 1.6rem;
-    border: 1px solid;
-    display: flex;
-   
-}
-nav div{
-    border: 1px solid;
-    width: 25%;
-}
-nav div.links{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-direction: row;
-}
-
-nav img {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-}
-
-nav a {
-    color: white;
-    text-decoration: none;
-    font-size: 1.6rem;
-}
-
-nav a:hover {
-    text-shadow: 0 0 5px #000a52;
-}
-nav a.active {
-    background-color: #000a52; /* azul escuro */
-    padding: 6px 10px;
-    border-radius: 5px;
 }
 
 /* TEXTO DESTAQUE */
 .letreiro {
     text-align: center;
-    border: 1px solid;
     height: 80%;
     display: flex;
     justify-content: center;
@@ -68,16 +18,15 @@ nav a.active {
     margin: 0;
 }
 .letreiro h3.nome1 {
-    text-indent: -20%;
+    text-indent: -30%;
 }
 .letreiro h3.nome2 {
-    text-indent: 20%;
+    text-indent: 30%;
 }
 
 /*carrossel*/
 .change-text {
     background-color: #000a52;
-    border: 1px solid;
     width: 80%;
     height: 4rem; 
     font-size: 1.5rem;
