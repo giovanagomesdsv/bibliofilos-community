@@ -1,4 +1,4 @@
-<?php
+<!--<?php
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -110,33 +110,17 @@ if (isset($_GET['busca'])) {
     // Lista todos autores sem filtro (ou poderia limitar a poucos)
     $result = $conn->query("SELECT aut_id, aut_nome, aut_foto FROM autores ORDER BY aut_nome ASC");
 }
-?>
+?>-->
 
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8" />
     <title>Selecionar ou Cadastrar Autor</title>
-    <style>
-        .autor-card {
-            display: flex;
-            align-items: center;
-            margin-bottom: 10px;
-        }
-        .autor-card img {
-            width: 60px;
-            height: 60px;
-            object-fit: cover;
-            border-radius: 50%;
-            margin-right: 10px;
-        }
-        .mensagem-sucesso {
-            color: green;
-        }
-        .mensagem-erro {
-            color: red;
-        }
-    </style>
+    <link rel="stylesheet" href="../geral.css">
+    <link rel="stylesheet" href="resenhas.css">
+   
+    
 </head>
 <body>
     <h2>Selecione um autor para o livro</h2>

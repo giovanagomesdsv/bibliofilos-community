@@ -54,24 +54,14 @@ if ($result->num_rows > 0) {
 <head>
     <meta charset='UTF-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-
     <link rel="stylesheet" href="../geral.css">
     <link rel="stylesheet" href="resenhas.css">
     <title>Resenha - BACKSTAGE Community
     </title>
-
-
-
 </head>
-
 <body>
     <main>
         <div class='card card1'>
-
-
-
-
-
             <div class='cardimgsinopse'>
                 <img class='imagem imgliv' src='../../adm/imagens/livros/<?php echo $foto ?>' alt=''>
                 <div class="sinopse">
@@ -79,14 +69,11 @@ if ($result->num_rows > 0) {
                         Titulo:
                         <?php echo $titulo ?>
                     </h1>
-
                     <p>
                         Sinopse:
                         <?php echo $sinopse ?>
                     </p>
-
                 </div>
-
             </div>
             <div>
                 <div>
@@ -107,7 +94,6 @@ if ($result->num_rows > 0) {
                             <input type="radio" id="estrela1" name="avaliacao" value="1" required><label
                                 for="estrela1">★</label>
                         </div><br><br>
-
                         <input class="botao1" type="submit" value="Enviar">
                     </form>
                 </div>

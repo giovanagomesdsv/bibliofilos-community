@@ -200,3 +200,24 @@ button {
     margin: 2rem 0;
 }
 
+/*CSS DE cadastrar autor--------------------------------------------*/
+
+
+.autor-card {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.autor-card img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+.mensagem-sucesso {
+    color: green;
+}
+.mensagem-erro {
+    color: red;
+}
