@@ -1,49 +1,53 @@
-
 .box-card {
     display: flex;
     flex-wrap: wrap;
     border: 1px solid;
-    gap: 2rem; /* espaço entre os cards */
+    gap: 2rem;
+    /* espaço entre os cards */
 }
 
-
-.box-card > .card {
-    flex: 1 1 calc(50% - 1rem); /* dois cards por linha com gap */
+.box-card>.card {
+    flex: 1 1 calc(50% - 1rem);
+    /* dois cards por linha com gap */
     margin-bottom: 1rem;
-    box-sizing: border-box;    /* importante para considerar padding/border no cálculo */
+    box-sizing: border-box;
+    /* importante para considerar padding/border no cálculo */
     height: 50rem;
     display: flex;
     flex-direction: column;
 }
 
 
-    .card .cont {
-        height: 80%;
-        display: flex;
-        flex-direction: row;
-    }
+.card .cont {
+    height: 80%;
+    display: flex;
+    flex-direction: row;
+}
 
-    .card .cont img{
-        width: 40%;
-        height: auto;
-    margin:1rem;
-    }
-    .card .cont div{
-        width: 60%;
-        background-color: var(--bg);
-        height: auto;
-        margin: 1rem;
-    }
-    p{
-        color: black;
-        text-align: justify;
+.card .cont img {
+    width: 40%;
+    height: auto;
+    margin: 1rem;
+}
+
+.card .cont div {
+    width: 60%;
+    background-color: var(--bg);
+    height: auto;
+    margin: 1rem;
+}
+
+p {
+    color: black;
+    text-align: justify;
     margin: 0.5rem;
-    }
-    h2{
-        color: black;
-    }
-   
-button{
+}
+
+h2 {
+    color: black;
+}
+
+button {
     width: 98%;
     padding: 1.2rem;
     background-color: var(--terciaria);
@@ -53,4 +57,30 @@ button{
     font-size: 1.6rem;
     cursor: pointer;
     margin-bottom: 0.5rem;
+}
+
+/*CSS DE CRIAR RESENHA--------------------------------------------*/
+.teste{
+    color: black;
+}
+.rating {
+    direction: rtl;
+    unicode-bidi: bidi-override;
+    display: inline-block;
+}
+
+.rating input {
+    display: none;
+}
+
+.rating label {
+    font-size: 2em;
+    color: #ccc;
+    cursor: pointer;
+}
+
+.rating input:checked~label,
+.rating label:hover,
+.rating label:hover~label {
+    color: gold;
 }

@@ -1,4 +1,4 @@
-<?php
+<!--<?php
 include "../../conexao.php";
 if (!isset($_GET['id']) || empty($_GET['id'])) {
     die("ID não fornecido!");
@@ -47,43 +47,26 @@ if ($result->num_rows > 0) {
     $foto = htmlspecialchars($row['livro_foto']);
     $sinopse = htmlspecialchars($row['livro_sinopse']);
 }
-?>
+?>-->
 <!DOCTYPE html>
 <html lang='pt-br'>
 
 <head>
     <meta charset='UTF-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    
+    <link rel="stylesheet" href="../geral.css">
+    <link rel="stylesheet" href="resenhas.css">
     <title>Resenha - BACKSTAGE Community
     </title>
-    <style>
-    .rating {
-        direction: rtl;
-        unicode-bidi: bidi-override;
-        display: inline-block;
-    }
+   
+  
 
-    .rating input {
-        display: none;
-    }
-
-    .rating label {
-        font-size: 2em;
-        color: #ccc;
-        cursor: pointer;
-    }
-
-    .rating input:checked~label,
-    .rating label:hover,
-    .rating label:hover~label {
-        color: gold;
-    }
-</style>
 </head>
 <body>
     <main>
 
-        <div>
+        <div class="card teste">
             <img src='../../adm/imagens/livros/<?php echo $foto ?>' alt=''>
             <div>
                 <h1><?php echo $titulo ?></h1>
