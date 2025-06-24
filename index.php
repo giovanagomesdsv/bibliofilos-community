@@ -11,11 +11,6 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-if (!isset($_SESSION['id'])) {
-    header("Location: ../index.php");
-    exit;
-}
-
 $usuario = $_SESSION['tipo'];
 $nome = $_SESSION['nome'];
 ?>
