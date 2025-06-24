@@ -98,6 +98,8 @@ button {
     display: flex;
     text-align: start;
     margin: 0 2rem;
+    font-size: 2rem;
+
 }
 
 .resenha {
@@ -143,15 +145,25 @@ button {
 }
 
 /*CSS DE cadastrar livro--------------------------------------------*/
-
+.textnotificaçao1{
+    width: 100%;
+    border-bottom: 2px solid var(--terciaria);
+    color: var(--terciaria);
+    font-weight: bold;
+    padding-bottom: 0.5rem;
+    margin: 3rem 0 0 0;
+    text-align: center;
+}
 .card2{
-    height: 100%;
+    height: auto;
 }
 
 .titulo{
     display: flex;
     flex-direction: column;
     margin: 1rem;
+    font-size: 2rem;
+
 }
 
 .ismbimgano {
@@ -161,6 +173,7 @@ button {
     gap: 2rem;
     margin: 1rem;
     color: black;
+    font-size: 2rem;
   }
   
   .input-wrapper {
@@ -168,5 +181,22 @@ button {
     flex-direction: column;
     flex: 1;
     margin: 1rem 0.5rem;
+   
   }
+
+  .teste{
+    height: 2.5rem;
+    color: black;
+  }
+  .botao2 {
+    width: 98%;
+    padding: 1.2rem;
+    background-color: var(--terciaria);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.6rem;
+    cursor: pointer;
+    margin: 2rem 0;
+}
 

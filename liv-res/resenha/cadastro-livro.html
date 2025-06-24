@@ -73,55 +73,57 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
 
 <body>
     <main>
+
+        <p class='textnotificaçao1'>CADASTRAR LIVRO</p>
         <div class="card card2">
             <form method="POST" enctype="multipart/form-data">
 
 
                 <div class="titulo">
                     <label for="titulo">Título:</label>
-                    <input type="text" name="titulo" required>
+                    <input class="teste" type="text" name="titulo" required>
                 </div>
                 <div class="ismbimgano">
                     <div class="input-wrapper">
                         <label class="texto" for="arquivo" required>Imagem do livro:</label>
-                        <input type="file" name="arquivo" accept=".jpg,.jpeg,.png">
+                        <input class="teste" type="file" name="arquivo" accept=".jpg,.jpeg,.png">
                     </div>
 
                     <div class="input-wrapper">
                         <label for="isbn">Isbn:</label>
-                        <input type="text" name="isbn">
+                        <input class="teste" type="text" name="isbn">
                     </div>
                     <div class="input-wrapper">
                         <label for="ano">Ano de publicação:</label>
-                        <input type="year" name="ano" required>
+                        <input class="teste" type="year" name="ano" required>
                     </div>
                 </div>
                 <div class="ismbimgano">
                     <div class="input-wrapper">
-                    <label for="idd">Classificação de idade:</label>
-                    <select name="idd" required>
-                        <option value="Livre">Livre</option>
-                        <option value="10+">10+</option>
-                        <option value="12+">12+</option>
-                        <option value="14+">14+</option>
-                        <option value="16+">16+</option>
-                        <option value="18+">18+</option>
-                    </select>
-                </div>
+                        <label for="idd">Classificação de idade:</label>
+                        <select class="teste" name="idd" required>
+                            <option class="teste" value="Livre">Livre</option>
+                            <option class="teste" value="10+">10+</option>
+                            <option class="teste" value="12+">12+</option>
+                            <option class="teste" value="14+">14+</option>
+                            <option class="teste" value="16+">16+</option>
+                            <option class="teste" value="18+">18+</option>
+                        </select>
+                    </div>
                     <div class="input-wrapper">
-                    <label for="editora">Editora:</label>
-                    <input type="text" name="editora" required>
-                </div>
+                        <label for="editora">Editora:</label>
+                        <input class="teste" type="text" name="editora" required>
+                    </div>
                     <div class="input-wrapper">
-                    <label for="autor">Autor do livro:</label>
-                    <input type="text" name="autor" required>
-                </div>
+                        <label for="autor">Autor do livro:</label>
+                        <input class="teste" type="text" name="autor" required>
+                    </div>
                 </div>
                 <div class="sinop">
                     <label class="resenhabox" for="sinopse">Sinopse:</label>
                     <textarea class="resenha" name="sinopse" required></textarea>
                 </div>
-                <input class="botao1" type="submit" value="Enviar">
+                <input class="botao2" type="submit" value="Enviar">
             </form>
 
         </div>
