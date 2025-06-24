@@ -5,7 +5,7 @@
     font-family: 'Roboto', sans-serif;
     text-decoration: none;
     list-style-type: none;
-    color: #000;
+    color: #ffffff;
     scroll-behavior: smooth;
     box-sizing: border-box;
 
@@ -97,4 +97,44 @@ main {
     background: var(--text);
     border-radius: .5rem;
 }
+
+/* padrao de pesquisa */
+.busca-container {
+    float: right;
+    padding-top: 1rem;
+}
+.busca-form {
+    display: flex;
+    align-items: center;
+    border-radius: 0.5rem;
+    justify-content: flex-end;
+    background-color: var(--pesquisa);
+    margin-bottom: 2rem;
+    gap: 1rem;
+    border: 1px solid #000;
+}
+.busca-form input[type="text"] {
+    border: none;
+    /* remove a borda preta */
+    outline: none;
+    /* remove o contorno ao focar */
+    padding: 0.8rem 1rem;
+    font-size: 1rem;
+    background-color: var(--pesquisa);
+    border-radius: 0.5rem 0 0 0.5rem;
+    /* arredonda o lado esquerdo */
+    color: #000;
+}
+.busca-form button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+.busca-form button i {
+    padding: 0 1rem;
+    font-size: 1.4rem;
+    cursor: pointer;
+    color: #000000;
+}
+
 
