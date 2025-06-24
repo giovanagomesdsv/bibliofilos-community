@@ -37,12 +37,12 @@ let changeText = () => {
 };
 
 /*menu latera/*/
-changeText();
-setInterval(changeText, 20000); 
 
-const btn = document.getElementById("hamburguer-btn");
-const menuContainer = document.getElementById("menu-container");
+document.addEventListener("DOMContentLoaded", function () {
+    const btn = document.getElementById("hamburguer-btn");
+    const menuContainer = document.getElementById("menu-container");
 
-btn.addEventListener("click", () => {
-    menuContainer.classList.toggle("active");
+    btn.addEventListener("click", () => {
+        menuContainer.classList.toggle("active");
+    });
 });

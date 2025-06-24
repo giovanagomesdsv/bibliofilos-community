@@ -3,9 +3,21 @@ include "conexao.php";
 
 session_start();
 
-// Corrigido: variável $_SESSION[''] estava sem índice. Use o índice correto.
-// Exemplo:
-$usuario = isset($_SESSION['usuario']) ? $_SESSION['usuario'] : null;
+include "../../conexao.php";
+include "../protecao.php";
+
+
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+if (!isset($_SESSION['id'])) {
+    header("Location: ../index.php");
+    exit;
+}
+
+$usuario = $_SESSION['tipo'];
+$nome = $_SESSION['nome'];
 ?>
 
 <!DOCTYPE html>
@@ -27,111 +39,122 @@ $usuario = isset($_SESSION['usuario']) ? $_SESSION['usuario'] : null;
     <!-- Primeira tela -->
     <section class="tela1" id="sec1">
 
-    <!-- Navbar principal -->
+        <!-- Navbar principal -->
 
         <nav class="navbarB">
-            <div>
-                 <!-- Botão Hamburguer -->
-     <div class="hamburguer-btn" id="hamburguer-btn">
-        <i class='bx bx-menu'></i>
-    </div>
+            <div class="cont">
+                <?php if (isset($usuario)): ?>
+                    <div class="hamburguer-btn" id="hamburguer-btn">
+                        <i class='bx bx-menu'></i>
+                    </div>
+                <?php endif; ?>
 
-    <!-- Menu lateral controlado pelo JS -->
-    <div id="menu-container">
-        <?php
-        if (isset($_SESSION['tipo']) && $_SESSION['tipo'] == 2) {
-            // Menu administrador
-            echo "
-            <nav class='sidebar' id='sidebar'>
-                <div class='nome'>
-                    <li class='logo_name'>
-                        <a href='adm/perfil/perfil.php'>
-                            <span class='link_name'>" . htmlspecialchars($_SESSION['nome']) . "</span>
-                        </a>
-                    </li>
-                </div>
-                <ul class='nav-list'>
-                    <li class='fix'>
-                        <a href='adm/home.php'>
-                            <i class='bx bx-home-alt-2'></i>
-                            <span class='link_name'>Home</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href='adm/livrarias/livrarias.php'>
-                            <i class='bx bx-user'></i>
-                            <span class='link_name'>Livrarias</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href='adm/resenhistas/resenhistas.php'>
-                            <i class='bx bx-user-pin'></i>
-                            <span class='link_name'>Resenhistas</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href='adm/livro/livros.php'>
-                            <i class='bx bx-book-bookmark'></i>
-                            <span class='link_name'>Livros</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href='adm/usuarios/usuarios.php'>
-                            <i class='bx bx-book-content'></i>
-                            <span class='link_name'>Usuários</span>
-                        </a>
-                    </li>
-                    <li class='sair' style='background-color: #000'>
-                        <a href='adm/logout.php'><i class='bx bx-log-out'></i></a>
-                    </li>
-                </ul>
-            </nav>
-            ";
-        } elseif (isset($_SESSION['tipo']) && ($_SESSION['tipo'] == 0 || $_SESSION['tipo'] == 1)) {
-            $usuarioTipo = $_SESSION['tipo'];
-            $imgCaminho = ($usuarioTipo == 0)
-                ? "adm/imagens/resenhistas/" . htmlspecialchars($_SESSION['imagem-res'])
-                : "adm/imagens/livrarias/" . htmlspecialchars($_SESSION['imagem-liv']);
-            $nome = htmlspecialchars($_SESSION['nome']);
+                <!-- Menu lateral controlado pelo JS -->
+                <div id="menu-container">
+                    <?php
+                    if (isset($_SESSION['tipo']) && $_SESSION['tipo'] == 2) {
+                        // Menu administrador
+                        echo "
+    <nav class='sidebar' id='sidebar'>
+    
+        <div class='nome'>
+            <li>
+                <a href='adm/perfil/perfil.php'>
+                  <br>  <span class='link_name'>" . htmlspecialchars($_SESSION['nome']) . "</span>
+                </a>
+            </li>
+            <div class='menu' id='menu-toggle'>
+              <i class='bx bx-menu'></i>
+            </div>
+        </div>
+        <ul class='nav-list'>
+            <li class='fix'>
+                <a href='adm/home.php'>
+                    <i class='bx bx-home-alt-2'></i>
+                    <span class='link_name'>Home</span>
+                </a>
+            </li>
+            <li>
+                <a href='adm/livrarias/livrarias.php'>
+                    <i class='bx bx-user'></i>
+                    <span class='link_name'>Livrarias</span>
+                </a>
+            </li>
+            <li>
+                <a href='adm/resenhistas/resenhistas.php'>
+                    <i class='bx bx-user-pin'></i>
+                    <span class='link_name'>Resenhistas</span>
+                </a>
+            </li>
+            <li>
+                <a href='adm/livro/livros.php'>
+                    <i class='bx bx-book-bookmark'></i>
+                    <span class='link_name'>Livros</span>
+                </a>
+            </li>
+            <li>
+                <a href='adm/usuarios/usuarios.php'>
+                    <i class='bx bx-book-content'></i>
+                    <span class='link_name'>Usuários</span>
+                </a>
+            </li>
+            <li class='sair'>
+                <a href='adm/logout.php'><i class='bx bx-log-out'></i></a>
+            </li>
+        </ul>
+    </nav>
+    ";
+                    } elseif (isset($_SESSION['tipo']) && ($_SESSION['tipo'] == 0 || $_SESSION['tipo'] == 1)) {
+                        $usuarioTipo = $_SESSION['tipo'];
+                        $imgCaminho = ($usuarioTipo == 0)
+                            ? "adm/imagens/resenhistas/" . htmlspecialchars($_SESSION['imagem-res'])
+                            : "adm/imagens/livrarias/" . htmlspecialchars($_SESSION['imagem-liv']);
+                        $nome = htmlspecialchars($_SESSION['nome']);
 
-            echo "
-            <nav class='sidebar' id='sidebar'>
-                <div class='nome'>
-                    <li class='logo_name'>
-                        <a href='liv-res/perfil/perfil.php'>
-                            <img src='" . $imgCaminho . "' alt='Foto de perfil' style='width:100px' />
-                            <span class='link_name'>{$nome}</span>
-                        </a>
-                    </li>
+                        echo "
+    <nav class='sidebar' id='sidebar'>
+        <div class='nome'>
+            <li class='logo_name'>
+                <a href='liv-res/perfil/perfil.php'>
+                    <img src='" . $imgCaminho . "' alt='Foto de perfil' style='width:100px' />
+                    <span class='link_name'>{$nome}</span>
+                </a>
+            </li>
+            <div class='menu' id='menu-toggle'>
+                <i class='bx bx-menu'></i>
+            </div>
+        </div>
+        <ul class='nav-list'>";
+                        if ($usuarioTipo == 1) {
+                            echo "
+            <li>
+                <a href='liv-res/anuncio/anuncios.php'>
+                    <i class='bx bx-user'></i>
+                    <span class='link_name'>Anúncios</span>
+                </a>
+            </li>";
+                        }
+                        echo "
+            <li>
+                <a href='liv-res/resenha/resenhas.php'>
+                    <i class='bx bx-user'></i>
+                    <span class='link_name'>Criar resenhas</span>
+                </a>
+            </li>
+            <li>
+                <a href='liv-res/m-resenha/m-resenhas.php'>
+                    <i class='bx bx-user-pin'></i>
+                    <span class='link_name'>Minhas resenhas</span>
+                </a>
+            </li>
+             <li class='sair'>
+                <a href='adm/logout.php'><i class='bx bx-log-out'></i></a>
+            </li>
+        </ul>
+    </nav>";
+                    }
+                    ?>
                 </div>
-                <ul class='nav-list'>";
-            if ($usuarioTipo == 1) {
-                echo "
-                    <li>
-                        <a href='liv-res/anuncio/anuncios.php'>
-                            <i class='bx bx-user'></i>
-                            <span class='link_name'>Anúncios</span>
-                        </a>
-                    </li>";
-            }
-            echo "
-                    <li>
-                        <a href='liv-res/resenha/resenhas.php'>
-                            <i class='bx bx-user'></i>
-                            <span class='link_name'>Criar resenhas</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href='liv-res/m-resenha/m-resenhas.php'>
-                            <i class='bx bx-user-pin'></i>
-                            <span class='link_name'>Minhas resenhas</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>";
-        }
-        ?>
-    </div>
                 <a href="#sec1">
                     <img src="logo.png" alt="Logo do site">
                 </a>
@@ -163,29 +186,41 @@ $usuario = isset($_SESSION['usuario']) ? $_SESSION['usuario'] : null;
         <div class="carrossel">
             <div class="change-text">
                 <h3>
-                    <span class="word">"Um&nbsp;livro&nbsp;é&nbsp;um&nbsp;sonho&nbsp;que&nbsp;você&nbsp;segura&nbsp;nas&nbsp;mãos."&nbsp;–&nbsp;Neil&nbsp;Gaiman</span>
+                    <span
+                        class="word">"Um&nbsp;livro&nbsp;é&nbsp;um&nbsp;sonho&nbsp;que&nbsp;você&nbsp;segura&nbsp;nas&nbsp;mãos."&nbsp;–&nbsp;Neil&nbsp;Gaiman</span>
 
-                    <span class="word">"Os&nbsp;livros&nbsp;são&nbsp;os&nbsp;amigos&nbsp;mais&nbsp;silenciosos&nbsp;e&nbsp;constantes;&nbsp;os&nbsp;conselheiros&nbsp;mais&nbsp;acessíveis&nbsp;e&nbsp;sábios&nbsp;e&nbsp;os&nbsp;professores&nbsp;mais&nbsp;pacientes."&nbsp;–&nbsp;Charles&nbsp;W.&nbsp;Eliot</span>
+                    <span
+                        class="word">"Os&nbsp;livros&nbsp;são&nbsp;os&nbsp;amigos&nbsp;mais&nbsp;silenciosos&nbsp;e&nbsp;constantes;&nbsp;os&nbsp;conselheiros&nbsp;mais&nbsp;acessíveis&nbsp;e&nbsp;sábios&nbsp;e&nbsp;os&nbsp;professores&nbsp;mais&nbsp;pacientes."&nbsp;–&nbsp;Charles&nbsp;W.&nbsp;Eliot</span>
 
-                    <span class="word">"Um&nbsp;quarto&nbsp;sem&nbsp;livros&nbsp;é&nbsp;como&nbsp;um&nbsp;corpo&nbsp;sem&nbsp;alma."&nbsp;–&nbsp;Cícero</span>
+                    <span
+                        class="word">"Um&nbsp;quarto&nbsp;sem&nbsp;livros&nbsp;é&nbsp;como&nbsp;um&nbsp;corpo&nbsp;sem&nbsp;alma."&nbsp;–&nbsp;Cícero</span>
 
-                    <span class="word">"Os&nbsp;livros&nbsp;são&nbsp;uma&nbsp;magia&nbsp;portátil&nbsp;única."&nbsp;–&nbsp;Stephen&nbsp;King</span>
+                    <span
+                        class="word">"Os&nbsp;livros&nbsp;são&nbsp;uma&nbsp;magia&nbsp;portátil&nbsp;única."&nbsp;–&nbsp;Stephen&nbsp;King</span>
 
-                    <span class="word">"A&nbsp;leitura&nbsp;de&nbsp;um&nbsp;bom&nbsp;livro&nbsp;é&nbsp;um&nbsp;diálogo&nbsp;incessante:&nbsp;o&nbsp;livro&nbsp;fala&nbsp;e&nbsp;a&nbsp;alma&nbsp;responde."&nbsp;–&nbsp;André&nbsp;Maurois</span>
+                    <span
+                        class="word">"A&nbsp;leitura&nbsp;de&nbsp;um&nbsp;bom&nbsp;livro&nbsp;é&nbsp;um&nbsp;diálogo&nbsp;incessante:&nbsp;o&nbsp;livro&nbsp;fala&nbsp;e&nbsp;a&nbsp;alma&nbsp;responde."&nbsp;–&nbsp;André&nbsp;Maurois</span>
 
-                    <span class="word">"Sempre&nbsp;imaginei&nbsp;que&nbsp;o&nbsp;paraíso&nbsp;fosse&nbsp;uma&nbsp;espécie&nbsp;de&nbsp;biblioteca."&nbsp;–&nbsp;Jorge&nbsp;Luis&nbsp;Borges</span>
+                    <span
+                        class="word">"Sempre&nbsp;imaginei&nbsp;que&nbsp;o&nbsp;paraíso&nbsp;fosse&nbsp;uma&nbsp;espécie&nbsp;de&nbsp;biblioteca."&nbsp;–&nbsp;Jorge&nbsp;Luis&nbsp;Borges</span>
 
-                    <span class="word">"A&nbsp;leitura&nbsp;é&nbsp;para&nbsp;a&nbsp;mente&nbsp;o&nbsp;que&nbsp;o&nbsp;exercício&nbsp;é&nbsp;para&nbsp;o&nbsp;corpo."&nbsp;–&nbsp;Joseph&nbsp;Addison</span>
+                    <span
+                        class="word">"A&nbsp;leitura&nbsp;é&nbsp;para&nbsp;a&nbsp;mente&nbsp;o&nbsp;que&nbsp;o&nbsp;exercício&nbsp;é&nbsp;para&nbsp;o&nbsp;corpo."&nbsp;–&nbsp;Joseph&nbsp;Addison</span>
 
-                    <span class="word">"A&nbsp;pessoa&nbsp;que&nbsp;lê&nbsp;vive&nbsp;mil&nbsp;vidas&nbsp;antes&nbsp;de&nbsp;morrer.&nbsp;Quem&nbsp;não&nbsp;lê&nbsp;vive&nbsp;apenas&nbsp;uma."&nbsp;–&nbsp;George&nbsp;R.&nbsp;R.&nbsp;Martin</span>
+                    <span
+                        class="word">"A&nbsp;pessoa&nbsp;que&nbsp;lê&nbsp;vive&nbsp;mil&nbsp;vidas&nbsp;antes&nbsp;de&nbsp;morrer.&nbsp;Quem&nbsp;não&nbsp;lê&nbsp;vive&nbsp;apenas&nbsp;uma."&nbsp;–&nbsp;George&nbsp;R.&nbsp;R.&nbsp;Martin</span>
 
-                    <span class="word">"Quando&nbsp;penso&nbsp;em&nbsp;todos&nbsp;os&nbsp;livros&nbsp;que&nbsp;ainda&nbsp;quero&nbsp;ler,&nbsp;tenho&nbsp;a&nbsp;certeza&nbsp;de&nbsp;ser&nbsp;feliz."&nbsp;–&nbsp;Jules&nbsp;Renard</span>
+                    <span
+                        class="word">"Quando&nbsp;penso&nbsp;em&nbsp;todos&nbsp;os&nbsp;livros&nbsp;que&nbsp;ainda&nbsp;quero&nbsp;ler,&nbsp;tenho&nbsp;a&nbsp;certeza&nbsp;de&nbsp;ser&nbsp;feliz."&nbsp;–&nbsp;Jules&nbsp;Renard</span>
 
-                    <span class="word">"Os&nbsp;livros&nbsp;são&nbsp;o&nbsp;alimento&nbsp;da&nbsp;juventude&nbsp;e&nbsp;a&nbsp;alegria&nbsp;da&nbsp;velhice."&nbsp;–&nbsp;Marco&nbsp;Túlio&nbsp;Cícero</span>
+                    <span
+                        class="word">"Os&nbsp;livros&nbsp;são&nbsp;o&nbsp;alimento&nbsp;da&nbsp;juventude&nbsp;e&nbsp;a&nbsp;alegria&nbsp;da&nbsp;velhice."&nbsp;–&nbsp;Marco&nbsp;Túlio&nbsp;Cícero</span>
 
-                    <span class="word">"Um&nbsp;livro&nbsp;é&nbsp;uma&nbsp;arma&nbsp;carregada&nbsp;na&nbsp;casa&nbsp;ao&nbsp;lado.&nbsp;Queimar&nbsp;livros&nbsp;é&nbsp;o&nbsp;mesmo&nbsp;que&nbsp;matar&nbsp;a&nbsp;liberdade."&nbsp;–&nbsp;Ray&nbsp;Bradbury,&nbsp;Fahrenheit&nbsp;451</span>
+                    <span
+                        class="word">"Um&nbsp;livro&nbsp;é&nbsp;uma&nbsp;arma&nbsp;carregada&nbsp;na&nbsp;casa&nbsp;ao&nbsp;lado.&nbsp;Queimar&nbsp;livros&nbsp;é&nbsp;o&nbsp;mesmo&nbsp;que&nbsp;matar&nbsp;a&nbsp;liberdade."&nbsp;–&nbsp;Ray&nbsp;Bradbury,&nbsp;Fahrenheit&nbsp;451</span>
 
-                    <span class="word">"Livros&nbsp;nos&nbsp;dão&nbsp;a&nbsp;chance&nbsp;de&nbsp;viver&nbsp;vidas&nbsp;diferentes&nbsp;em&nbsp;cada&nbsp;página."&nbsp;–&nbsp;Anônimo</span>
+                    <span
+                        class="word">"Livros&nbsp;nos&nbsp;dão&nbsp;a&nbsp;chance&nbsp;de&nbsp;viver&nbsp;vidas&nbsp;diferentes&nbsp;em&nbsp;cada&nbsp;página."&nbsp;–&nbsp;Anônimo</span>
                 </h3>
             </div>
         </div>
@@ -499,6 +534,29 @@ $usuario = isset($_SESSION['usuario']) ? $_SESSION['usuario'] : null;
 
 
     </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburguerBtn = document.getElementById('hamburguer-btn');
+            const menuContainer = document.getElementById('menu-container');
+            const menuToggle = document.getElementById('menu-toggle');
+
+            // Abre/fecha o menu lateral (slide-in)
+            hamburguerBtn.addEventListener('click', () => {
+                menuContainer.classList.toggle('active');
+                sidebar.classList.toggle('abrir');
+            });
+
+            // Abre/fecha o menu lateral (slide-in)
+            menuToggle.addEventListener('click', () => {
+                menuContainer.classList.toggle('active');
+                sidebar.classList.toggle('abrir');
+            });
+
+
+        });
+    </script>
+
 
 
     <script src="script.js"></script>

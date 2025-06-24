@@ -89,6 +89,9 @@ header {
     padding: 1rem 1rem 1rem 20rem;
 }
 
+
+
+
 /*menu*/
 .sidebar {
     height: 100vh;
@@ -98,8 +101,9 @@ header {
     position: fixed;
     z-index: 1000;
     overflow: hidden;
+    overflow-y: hidden;
+
 }
-/*problema do menu*/
 .nome {
     display: flex;
     flex-direction: column;
@@ -109,7 +113,6 @@ header {
 .nome .usuario{
     display: none;
 }
-/*problema do menu*/
 .menu {
     font-size: 1.6rem;
     cursor: pointer;
@@ -218,6 +221,14 @@ header {
 .link_name{
     font-size: 1.4rem;
 }
+
+
+
+
+
+
+
+
 
 /* padrao de pesquisa */
 .busca-container {
