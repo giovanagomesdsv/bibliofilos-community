@@ -181,7 +181,7 @@ $fotoLiv = $_SESSION['imagem-liv'];
                             <h2> $titulo</h2>
                               
                               
-                                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Id accusamus atque repudiandae. Architecto nulla dolorum nisi nihil aperiam sunt maxime et. Quibusdam rem beatae fugiat quidem? Repellendus dignissimos error molestias.lorem
+                                 <p>VAR SINOPSE Lorem ipsum dolor sit amet consectetur adipisicing elit. Id accusamus atque repudiandae. Architecto nulla dolorum nisi nihil aperiam sunt maxime et. Quibusdam rem beatae fugiat quidem? Repellendus dignissimos error molestias.lorem
                                     lorem
                                     m ipsum dolor sit amet consectetur adipisicing elit. Id accusamus atque repudiandae. Architecto nulla dolorum nisi nihil aperiam sunt maxime et. Quibusdam rem beatae fugiat quidem? Repellendus dignissimos error molestias.lorem
                                     loremLorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum explicabo animi reprehenderit culpa repellendus, ex dolorem molestiae in excepturi distinctio autem harum totam non minima quam illum quibusdam facilis natus.
