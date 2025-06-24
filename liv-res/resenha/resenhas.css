@@ -141,3 +141,32 @@ button {
 .rating label:hover~label {
     color: gold;
 }
+
+/*CSS DE cadastrar livro--------------------------------------------*/
+
+.card2{
+    height: 100%;
+}
+
+.titulo{
+    display: flex;
+    flex-direction: column;
+    margin: 1rem;
+}
+
+.ismbimgano {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 2rem;
+    margin: 1rem;
+    color: black;
+  }
+  
+  .input-wrapper {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    margin: 1rem 0.5rem;
+  }
+
