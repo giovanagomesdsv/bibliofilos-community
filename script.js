@@ -1,4 +1,5 @@
 let words = document.querySelectorAll(".word");
+
 words.forEach((word) => {
     let letters = word.textContent.split(""); 
     word.textContent = "";
@@ -36,13 +37,26 @@ let changeText = () => {
     currentWordIndex = currentWordIndex === maxWordIndex ? 0 : currentWordIndex + 1;
 };
 
-/*menu latera/*/
+// ✅ Chamar a troca de texto a cada 4 segundos = 4000
+setInterval(changeText, 10000);
 
-document.addEventListener("DOMContentLoaded", function () {
-    const btn = document.getElementById("hamburguer-btn");
-    const menuContainer = document.getElementById("menu-container");
 
-    btn.addEventListener("click", () => {
-        menuContainer.classList.toggle("active");
-    });
-});
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburguerBtn = document.getElementById('hamburguer-btn');
+            const menuContainer = document.getElementById('menu-container');
+            const menuToggle = document.getElementById('menu-toggle');
+
+            // Abre/fecha o menu lateral (slide-in)
+            hamburguerBtn.addEventListener('click', () => {
+                menuContainer.classList.toggle('active');
+                sidebar.classList.toggle('abrir');
+            });
+
+            // Abre/fecha o menu lateral (slide-in)
+            menuToggle.addEventListener('click', () => {
+                menuContainer.classList.toggle('active');
+                sidebar.classList.toggle('abrir');
+            });
+
+
+        });

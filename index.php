@@ -1,36 +1,26 @@
 <?php
 include "conexao.php";
-
 session_start();
 
-include "../../conexao.php";
-include "../protecao.php";
-
-
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
-
-$usuario = $_SESSION['tipo'];
-$nome = $_SESSION['nome'];
+$usuario = isset($_SESSION['tipo']) ? $_SESSION['tipo'] : null;
+$nome = isset($_SESSION['nome']) ? $_SESSION['nome'] : 'Visitante';
 ?>
 
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link href='https://cdn.boxicons.com/fonts/basic/boxicons.min.css' rel='stylesheet'>
-    <link href='https://cdn.boxicons.com/fonts/brands/boxicons-brands.min.css' rel='stylesheet'>
     
-    <link rel="stylesheet" type="text/css" href="geral.css" />
-    <link rel="stylesheet" type="text/css" href="style.css" />
+    <!-- Ícones -->
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="global.css">
+    <link rel="stylesheet" href="style.css">
+
     <title>BIBLIÓFILOS Community - HOME</title>
 </head>
-
 <body>
     <!--Primeira tela______________________________________________________________________________________________________________-->
     <section class="tela1" id="sec1">
@@ -273,17 +263,79 @@ $nome = $_SESSION['nome'];
 
     <!--Segunda tela______________________________________________________________________________________________________________-->
     <section class="tela2" id="sec2">
-        
+        <div>
+            <?php
+            $consulta = "SELECT liv_foto, liv_nome FROM livrarias";
+            $stmt = $conn->prepare($consulta);
+            $stmt->execute();
+            $result = $stmt->get_result();
+
+            if ($result -> num_rows > 0) {
+                while ($icon = $result->fetch_assoc()) {
+
+                    echo "
+                    <div>
+                       <img src='adm/imagens/livrarias/{$icon['liv_foto']}' alt=''>
+                       <p>{$icon['liv_nome']}</p>
+                    </div>
+                    ";
+                }
+            }
+
+            ?>
+        </div>
     </section>
 
     <!--Terceira tela______________________________________________________________________________________________________________-->
     <section>
-
         <main></main>
 
     </section>
 
     <script>
+let words = document.querySelectorAll(".word");
+
+words.forEach((word) => {
+    let letters = word.textContent.split(""); 
+    word.textContent = "";
+    
+    letters.forEach((letter) => {
+        let span = document.createElement("span");
+        span.textContent = letter;
+        span.className = "letter";
+        word.append(span);
+    });
+});
+
+let currentWordIndex = 0;
+let maxWordIndex = words.length - 1;
+words[currentWordIndex].style.opacity = "1";
+
+let changeText = () => {
+    let currentWord = words[currentWordIndex];
+    let nextWord = currentWordIndex === maxWordIndex ? words[0] : words[currentWordIndex + 1];
+
+    Array.from(currentWord.children).forEach((letter, i) => {
+        setTimeout(() => {
+            letter.className = "letter out";
+        }, i * 80);
+    });
+
+    nextWord.style.opacity = "1";
+    Array.from(nextWord.children).forEach((letter, i) => {
+        letter.className = "letter behind";
+        setTimeout(() => {
+            letter.className = "letter in";
+        }, 340 + i * 80);
+    });
+
+    currentWordIndex = currentWordIndex === maxWordIndex ? 0 : currentWordIndex + 1;
+};
+
+// ✅ Chamar a troca de texto a cada 4 segundos = 4000
+setInterval(changeText, 10000);
+
+
         document.addEventListener('DOMContentLoaded', () => {
             const hamburguerBtn = document.getElementById('hamburguer-btn');
             const menuContainer = document.getElementById('menu-container');
@@ -303,8 +355,36 @@ $nome = $_SESSION['nome'];
 
 
         });
+
+
+
+
+
+
+
+
+
+
+
+
+        document.addEventListener("DOMContentLoaded", () => {
+    const sections = document.querySelectorAll("section");
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("ativo");
+            }
+        });
+    }, {
+        threshold: 0.2 // quanto da section precisa aparecer (20%)
+    });
+
+    sections.forEach(section => {
+        observer.observe(section);
+    });
+});
     </script>
-    <script src="script.js"></script>
 </body>
 
 </html>
