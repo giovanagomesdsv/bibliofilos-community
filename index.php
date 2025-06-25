@@ -8,10 +8,11 @@ $nome = isset($_SESSION['nome']) ? $_SESSION['nome'] : 'Visitante';
 
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    
+
     <!-- Ícones -->
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
 
@@ -21,6 +22,7 @@ $nome = isset($_SESSION['nome']) ? $_SESSION['nome'] : 'Visitante';
 
     <title>BIBLIÓFILOS Community - HOME</title>
 </head>
+
 <body>
     <!--Primeira tela______________________________________________________________________________________________________________-->
     <section class="tela1" id="sec1">
@@ -263,19 +265,78 @@ $nome = isset($_SESSION['nome']) ? $_SESSION['nome'] : 'Visitante';
 
     <!--Segunda tela______________________________________________________________________________________________________________-->
     <section class="tela2" id="sec2">
-        <div>
+
+        <?php
+        include "conexao.php";
+
+        // Buscar as 7 resenhas com maior avaliação (ativas)
+        $sql = "
+SELECT resenha_id, res_id, livro_id, resenha_titulo, resenha_texto, resenha_status, resenha_avaliacao, resenha_dtpublicacao, resenha_dtatualizacao
+FROM resenhas
+WHERE resenha_status = 0
+ORDER BY resenha_avaliacao DESC
+LIMIT 7
+";
+        $result = $conn->query($sql);
+        $resenhas = [];
+
+        if ($result && $result->num_rows > 0) {
+            while ($res = $result->fetch_assoc()) {
+                $resenhas[] = $res;
+            }
+        }
+        ?>
+
+        <div class="destaques">
+            <div>
+                <div>
+                    <?= isset($resenhas[0]) ? $resenhas[0]['resenha_titulo'] : '' ?>
+                </div>
+                <div>
+                    <div>
+                        <?= isset($resenhas[1]) ? $resenhas[1]['resenha_titulo'] : '' ?>
+                    </div>
+                    <div>
+                        <div>
+                            <?= isset($resenhas[2]) ? $resenhas[2]['resenha_titulo'] : '' ?>
+                        </div>
+                        <div>
+                            <?= isset($resenhas[3]) ? $resenhas[3]['resenha_titulo'] : '' ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div>
+                    <div>
+                        <?= isset($resenhas[4]) ? $resenhas[4]['resenha_titulo'] : '' ?>
+                    </div>
+                    <div>
+                        <?= isset($resenhas[5]) ? $resenhas[5]['resenha_titulo'] : '' ?>
+                    </div>
+                </div>
+                <div>
+                    <?= isset($resenhas[6]) ? $resenhas[6]['resenha_titulo'] : '' ?>
+                </div>
+            </div>
+        </div>
+
+        <div class="carrossel-cards">
             <?php
-            $consulta = "SELECT liv_foto, liv_nome FROM livrarias";
+            $consulta = "SELECT liv_foto, liv_nome, liv_telefone FROM livrarias";
             $stmt = $conn->prepare($consulta);
             $stmt->execute();
             $result = $stmt->get_result();
 
-            if ($result -> num_rows > 0) {
+            if ($result->num_rows > 0) {
                 while ($icon = $result->fetch_assoc()) {
+                    $mensagem = urlencode("Olá, entro em contato através do Bibliófilos Community. Gostaria de obter maiores informações!");
 
                     echo "
                     <div>
-                       <img src='adm/imagens/livrarias/{$icon['liv_foto']}' alt=''>
+                       <a href=\"https://wa.me/{$icon['liv_telefone']}?text=$mensagem\" target=\"_blank\">
+                          <img src='adm/imagens/livrarias/{$icon['liv_foto']}' alt=''>
+                       </a>
                        <p>{$icon['liv_nome']}</p>
                     </div>
                     ";
@@ -284,56 +345,59 @@ $nome = isset($_SESSION['nome']) ? $_SESSION['nome'] : 'Visitante';
 
             ?>
         </div>
+
     </section>
 
     <!--Terceira tela______________________________________________________________________________________________________________-->
-    <section>
-        <main></main>
+    <section class="tela3">
+        <main>
+            <p>olá</p>
+        </main>
 
     </section>
 
     <script>
-let words = document.querySelectorAll(".word");
+        let words = document.querySelectorAll(".word");
 
-words.forEach((word) => {
-    let letters = word.textContent.split(""); 
-    word.textContent = "";
-    
-    letters.forEach((letter) => {
-        let span = document.createElement("span");
-        span.textContent = letter;
-        span.className = "letter";
-        word.append(span);
-    });
-});
+        words.forEach((word) => {
+            let letters = word.textContent.split("");
+            word.textContent = "";
 
-let currentWordIndex = 0;
-let maxWordIndex = words.length - 1;
-words[currentWordIndex].style.opacity = "1";
+            letters.forEach((letter) => {
+                let span = document.createElement("span");
+                span.textContent = letter;
+                span.className = "letter";
+                word.append(span);
+            });
+        });
 
-let changeText = () => {
-    let currentWord = words[currentWordIndex];
-    let nextWord = currentWordIndex === maxWordIndex ? words[0] : words[currentWordIndex + 1];
+        let currentWordIndex = 0;
+        let maxWordIndex = words.length - 1;
+        words[currentWordIndex].style.opacity = "1";
 
-    Array.from(currentWord.children).forEach((letter, i) => {
-        setTimeout(() => {
-            letter.className = "letter out";
-        }, i * 80);
-    });
+        let changeText = () => {
+            let currentWord = words[currentWordIndex];
+            let nextWord = currentWordIndex === maxWordIndex ? words[0] : words[currentWordIndex + 1];
 
-    nextWord.style.opacity = "1";
-    Array.from(nextWord.children).forEach((letter, i) => {
-        letter.className = "letter behind";
-        setTimeout(() => {
-            letter.className = "letter in";
-        }, 340 + i * 80);
-    });
+            Array.from(currentWord.children).forEach((letter, i) => {
+                setTimeout(() => {
+                    letter.className = "letter out";
+                }, i * 80);
+            });
 
-    currentWordIndex = currentWordIndex === maxWordIndex ? 0 : currentWordIndex + 1;
-};
+            nextWord.style.opacity = "1";
+            Array.from(nextWord.children).forEach((letter, i) => {
+                letter.className = "letter behind";
+                setTimeout(() => {
+                    letter.className = "letter in";
+                }, 340 + i * 80);
+            });
 
-// ✅ Chamar a troca de texto a cada 4 segundos = 4000
-setInterval(changeText, 10000);
+            currentWordIndex = currentWordIndex === maxWordIndex ? 0 : currentWordIndex + 1;
+        };
+
+        // ✅ Chamar a troca de texto a cada 4 segundos = 4000
+        setInterval(changeText, 10000);
 
 
         document.addEventListener('DOMContentLoaded', () => {
@@ -355,35 +419,6 @@ setInterval(changeText, 10000);
 
 
         });
-
-
-
-
-
-
-
-
-
-
-
-
-        document.addEventListener("DOMContentLoaded", () => {
-    const sections = document.querySelectorAll("section");
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add("ativo");
-            }
-        });
-    }, {
-        threshold: 0.2 // quanto da section precisa aparecer (20%)
-    });
-
-    sections.forEach(section => {
-        observer.observe(section);
-    });
-});
     </script>
 </body>
 

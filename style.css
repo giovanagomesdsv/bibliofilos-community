@@ -76,18 +76,12 @@
  .tela2 {
     background-color: var(--secundaria);
     color: #ffffff;
+    padding: 1rem;
+}
+.tela2 .carrossel-cards {
+    display: flex;
+    margin: 30% 10% 0 10%;
+    height: 20%;
+    background-color: var(--principal);
 }
 
-
-
-section {
-    opacity: 0;
-    transform: translateY(50px);
-    transition: all 0.8s ease;
-}
-
-/* Quando visível na tela */
-section.ativo {
-    opacity: 1;
-    transform: translateY(0);
-}
