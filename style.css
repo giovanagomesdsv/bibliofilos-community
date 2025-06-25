@@ -1,4 +1,13 @@
+:root {
+    padding: 1rem;
 
+    --bg: #f4f4f4;
+    --text: #f5f5f5;
+    --principal: #56070C;
+    --secundaria: #11114E;
+}
+
+/*primeira tela__________________________________________________________________________________________*/
 section.tela1 {
     background-color: var(--principal);
     color: #ffffff;
@@ -12,7 +21,6 @@ section.tela1 {
     justify-content: center;
     flex-direction: column;
 }
-
 .letreiro h3 {
     font-size: 15rem;
     margin: 0;
@@ -42,7 +50,6 @@ section.tela1 {
     font-weight: 300;
     vertical-align: top;
 }
-
 .change-text h3 .word {
     position: absolute;
     display: flex;
@@ -54,18 +61,22 @@ section.tela1 {
 .change-text h3 .word .letter {
     transform-origin: center center 25px;
 }
-
 .change-text h3 .word .letter.out{
     transform: rotateX(90deg);
     transition: 0.32s cubic-bezier(0.6, 0, 0.7, 0.2);
 }
 
 /*entrada das letras*/
-
 .change-text h3 .word .letter.in {
     transition: .38s ease;
 }
-
 .change-text h3 .word .letter.behind {
     transform: rotateX(-90deg);
 }
+
+/*segunda tela__________________________________________________________________________________________*/
+section.tela2 {
+    background-color: var(--secundaria);
+    color: #ffffff;
+}
+

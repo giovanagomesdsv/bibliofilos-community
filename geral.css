@@ -8,23 +8,13 @@
     color: #ffffff;
     scroll-behavior: smooth;
     box-sizing: border-box;
-
 }
 
 :root {
-    padding: 1rem;
-
     --bg: #f4f4f4;
     --text: #f5f5f5;
     --principal: #56070C;
     --secundaria: #11114E;
-
-
-    /* Transições */
-    --transition-fast: 0.2s ease;
-    --transition-base: 0.3s ease;
-
-    --padding: 1rem;
 
     /* Controla a síntese de fontes (negrito, itálico) pelo navegador */
     font-synthesis: none;
@@ -40,7 +30,6 @@
     margin: 0;
     padding: 0;
 }
-
 html {
     scroll-behavior: smooth;
     /* Define o tamanho da fonte base como 10px (para facilitar o uso de rem) */
@@ -48,26 +37,18 @@ html {
     /* Garante que o elemento html não seja maior que a largura da viewport */
     max-width: 100vw;
 }
-
 body {
-
     /* Define a fonte primária usando uma variável CSS */
     font-size: 1.6rem;
-
     /* Garante uma largura mínima de 320px para evitar layouts quebrados em telas pequenas */
     min-height: 100vh;
-
     /* Adiciona um preenchimento ao redor do conteúdo do body usando uma variável CSS */
-
-
     /* Força a exibição da barra de rolagem vertical, evitando o deslocamento de elementos quando o conteúdo se torna longo o suficiente para precisar da barra */
     overflow-y: scroll;
-
     margin: 0 auto;
     text-align: center;
     width: 100%;
 }
-
 main {
     height: 100vh;
     width: 80%;
@@ -78,20 +59,15 @@ main {
     align-items: center;
     flex-direction: column;
     position: absolute;
-    padding: var(--padding);
 }
-
-
 ::-webkit-scrollbar {
     height: 0;
     width: 0.5rem;
 
 }
-
 ::-webkit-scrollbar-track {
-    background: var(--terciaria);
+    background: var(--secundaria);
 }
-
 ::-webkit-scrollbar-thumb {
     background: var(--text);
     border-radius: .5rem;
@@ -108,7 +84,6 @@ main {
     display: flex;
 
 }
-
 .navbarB > div {
     width: 25%;
     display: flex;
@@ -119,7 +94,6 @@ main {
     display: flex;
     justify-content: space-around;
 }
-
 .navbarB div.links {
     display: flex;
     justify-content: space-between;
@@ -127,26 +101,22 @@ main {
     flex-direction: row;
     width: 30%;
 }
-
 .navbarB img {
     width: 60px;
     height: 60px;
     border-radius: 50%;
 }
-
 .navbarB .links a {
     color: white;
     text-decoration: none;
     font-size: 1.6rem;
     transition: .3s ease-in-out;
 }
-
 .navbarB .links a:hover {
     text-shadow: 0 0 30px #fd4b4b;
     border-bottom: 1px solid;
     margin-bottom: .5rem;
 }
-
 .navbarB a.active {
     background-color: var(--secundaria);
     /* azul escuro */
@@ -154,64 +124,11 @@ main {
     border-radius: 5px;
 }
 
-/*menu lateral*/
-
-
-/* padrao de pesquisa */
-.busca-container {
-    float: right;
-    padding-top: 1rem;
-    width: 50%;
-}
-
-.busca-form {
-    display: flex;
-    align-items: center;
-    border-radius: 0.5rem;
-    justify-content: flex-end;
-    background-color: transparent;
-    gap: 1rem;
-    border: 1px solid #ffffff;
-    width: 100%;
-    color: var(--text);
-}
-
-.busca-form input[type="text"] {
-    border: none;
-    outline: none;
-    padding: 0.8rem 1rem;
-    font-size: 1.4rem;
-    background-color: transparent;
-    border-radius: 0.5rem 0 0 0.5rem;
-    width: 100%;
-}
-
-.busca-form button {
-    background: none;
-    border: none;
-    cursor: pointer;
-}
-
-.busca-form button i {
-    padding: 0 1rem;
-    font-size: 1.4rem;
-    cursor: pointer;
-    color: #ffffff;
-}
-
-/*home*/
-section {
-    height: 100vh;
-    width: 100%;
-}
-
-
-
+/*menu lateral-------------------------------------------------------------------------------------------------------------------------------------------------*/
 /* Botão hamburguer flutuante */
 .hamburguer-btn {
     font-size: 2rem;
     cursor: pointer;
-    position: fixed;
     color: white;
     margin-left: -10%;
 }
@@ -241,7 +158,6 @@ section {
     padding-left: 1rem;
     transition: 0.3s ease-in-out;
     color: white;
-    border: 1px solid;
 }
 
 /* Quando expandida */
@@ -257,17 +173,14 @@ section {
     align-items: center;
     margin-top: 2rem;
 }
-
 .logo_name {
     list-style: none;
 }
-
 .logo_name a {
     color: var(--text);
     font-size: 1.4rem;
     text-decoration: none;
 }
-
 .menu {
     font-size: 2rem;
     cursor: pointer;
@@ -280,11 +193,9 @@ section {
     padding: 2rem 0;
     list-style: none;
 }
-
 .nav-list li {
-    margin: 2rem 0;
+    margin: 3rem 0;
 }
-
 .nav-list li a {
     display: flex;
     align-items: center;
@@ -294,12 +205,10 @@ section {
     transition: 0.2s;
     padding: 0.5rem;
 }
-
 .nav-list li a:hover {
     background-color: var(--principal);
     border-radius: 8px;
 }
-
 .link_name {
     font-size: 1.4rem;
 }
@@ -316,7 +225,51 @@ section {
     padding: 1rem;
     text-align: center;
 }
-
 .sair a {
     font-size: 2rem;
 }
+
+/*pesquisa */
+.busca-container {
+    float: right;
+    padding-top: 1rem;
+    width: 50%;
+}
+.busca-form {
+    display: flex;
+    align-items: center;
+    border-radius: 0.5rem;
+    justify-content: flex-end;
+    background-color: transparent;
+    gap: 1rem;
+    border: 1px solid #ffffff;
+    width: 100%;
+    color: var(--text);
+}
+.busca-form input[type="text"] {
+    border: none;
+    outline: none;
+    padding: 0.8rem 1rem;
+    font-size: 1.4rem;
+    background-color: transparent;
+    border-radius: 0.5rem 0 0 0.5rem;
+    width: 100%;
+}
+.busca-form button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+.busca-form button i {
+    padding: 0 1rem;
+    font-size: 1.4rem;
+    cursor: pointer;
+    color: #ffffff;
+}
+
+/*home*/
+section {
+    height: 100vh;
+    width: 100%;
+}
+
