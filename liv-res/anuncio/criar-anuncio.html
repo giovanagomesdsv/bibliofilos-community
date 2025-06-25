@@ -4,6 +4,9 @@ include "../../conexao.php";
 <!DOCTYPE html>
 <html lang="pt-br">
 
+    <link rel="stylesheet" href="anuncios.css">
+    <link rel="stylesheet" href="geral.css">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,19 +16,26 @@ include "../../conexao.php";
 
 <body>
 
-    <form action="" method="POST" class="busca-form">
-        <label for="nome">Nome do livro:</label>
-        <input type="text" name="nome" required>
-
+  <form action="" method="POST" class="busca-form margin">
+    <div class="form-group full-width">
+      <label for="nome">Nome do livro:</label>
+      <input type="text" name="nome" required>
+    </div>
+  
+    <div class="form-row">
+      <div class="form-group half-width">
         <label for="editora">Editora:</label>
         <input type="text" name="editora" required>
-
+      </div>
+      <div class="form-group half-width">
         <label for="ano">Ano de publicação:</label>
         <input type="number" name="ano" required>
-
-        <button type="submit"><i class='bx bx-search'></i></button>
-    </form>
-
+      </div>
+      
+      <button type="submit"><i class='bx bx-search'></i>PROCURAR LIVRO</button>
+    </div>
+  </form>
+<!--
     <?php
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $nome = trim($_POST['nome']);
@@ -53,7 +63,7 @@ include "../../conexao.php";
                 $foto = htmlspecialchars($row['livro_foto']);
                 $id = (int) $row['livro_id'];
 
-                echo "
+                echo
              <div>
               <div>
                 <img src='../../adm/imagens/livros/$foto' alt='Capa do livro'>
@@ -79,7 +89,7 @@ include "../../conexao.php";
 
         $stmt->close();
     }
-    ?>
+    ?> -->
 
 </body>
 
