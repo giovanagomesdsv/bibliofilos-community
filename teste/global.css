@@ -80,7 +80,6 @@ main {
     padding: 10px 40px;
     background-color: var(--principal);
     font-size: 1.6rem;
-    position: fixed;
 }
 .navbarB > div {
     width: 25%;
