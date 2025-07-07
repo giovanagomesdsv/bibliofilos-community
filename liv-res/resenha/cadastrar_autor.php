@@ -125,6 +125,9 @@ if (isset($_GET['busca'])) {
 </head>
 
 <body>
+      <header>
+        BACKSTAGE Community
+    </header>
  <main>
         <h2>Selecione um autor para o livro</h2>
 
@@ -139,14 +142,14 @@ if (isset($_GET['busca'])) {
         </p>
         <?php endif; ?>
 
-        <form method="GET" style="margin-bottom: 20px;">
+        <form class="form1" method="GET" style="margin-bottom: 20px;">
             <input type="hidden" name="id_livro" value="<?= esc($id_livro) ?>" />
             <input type="text" name="busca" placeholder="Pesquisar autor pelo nome" value="<?= esc($busca) ?>" />
             <button type="submit">Buscar</button>
             <a href="cadastrar_autor.php?id_livro=<?= esc($id_livro) ?>">Limpar</a>
         </form>
 
-        <form method="POST" enctype="multipart/form-data">
+        <form class="form1" method="POST" enctype="multipart/form-data">
             <input type="hidden" name="id_livro" value="<?= esc($id_livro) ?>">
 
             <?php if ($result && $result->num_rows > 0): ?>
@@ -180,8 +183,8 @@ if (isset($_GET['busca'])) {
                     </div>
                 </div>
                 <div class="input-wrapper">
-                    <label for="novo_bio">Biografia:</label>
-                    <textarea name="novo_bio" id="novo_bio"></textarea>
+                    <label class="resenhabox1"  for="novo_bio">Biografia:</label>
+                    <textarea class="resenha1"  name="novo_bio" id="novo_bio"></textarea>
                 </div>
 
 

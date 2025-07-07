@@ -60,6 +60,9 @@ if ($result->num_rows > 0) {
     </title>
 </head>
 <body>
+      <header>
+        BACKSTAGE Community
+    </header>
     <main>
         <div class='card card1'>
             <div class='cardimgsinopse'>

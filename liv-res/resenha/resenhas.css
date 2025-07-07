@@ -213,9 +213,7 @@ button {
 .card3{
     background-color: var(--principal);
     width: 100%;
- 
     border-radius: 10px;
-  
 }
 .autor-card {
     display: flex;
@@ -235,3 +233,29 @@ button {
 .mensagem-erro {
     color: red;
 }
+
+.form1 {
+    width: 100%;
+    max-width: 100%;
+ 
+}
+
+
+.resenhabox1 {
+    display: flex;
+    text-align: start;
+    margin: 0 2rem;
+    font-size: 2rem;
+ 
+
+}
+
+.resenha1 {
+    height: 40rem;
+    width: 98%;
+    text-align: justify;
+    color: black;
+
+    padding: 1.2rem;
+}
+
