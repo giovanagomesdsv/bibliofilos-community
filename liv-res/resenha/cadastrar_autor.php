@@ -1,4 +1,4 @@
-<!--<?php
+<?php
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -110,7 +110,7 @@ if (isset($_GET['busca'])) {
     // Lista todos autores sem filtro (ou poderia limitar a poucos)
     $result = $conn->query("SELECT aut_id, aut_nome, aut_foto FROM autores ORDER BY aut_nome ASC");
 }
-?>-->
+?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -141,29 +141,31 @@ if (isset($_GET['busca'])) {
             <?= esc($erro) ?>
         </p>
         <?php endif; ?>
-
-        <form class="form1" method="GET" style="margin-bottom: 20px;">
-            <input type="hidden" name="id_livro" value="<?= esc($id_livro) ?>" />
-            <input type="text" name="busca" placeholder="Pesquisar autor pelo nome" value="<?= esc($busca) ?>" />
-            <button type="submit">Buscar</button>
-            <a href="cadastrar_autor.php?id_livro=<?= esc($id_livro) ?>">Limpar</a>
-        </form>
+        <div class="pesquisa">
+          <form method="GET" style="margin-bottom: 20px;"
+              <input type="hidden" name="id_livro" value="<?= esc($id_livro) ?>" />
+              <input type="text" name="busca" placeholder="Pesquisar autor pelo nome" value="<?= esc($busca) ?>" />
+              <button class="botao" type="submit">Buscar</button>
+          </form>
+        </div>
 
         <form class="form1" method="POST" enctype="multipart/form-data">
             <input type="hidden" name="id_livro" value="<?= esc($id_livro) ?>">
 
             <?php if ($result && $result->num_rows > 0): ?>
-            <?php while ($row = $result->fetch_assoc()): ?>
-            <div class="autor-card">
-                <input type="radio" name="autor_existente" value="<?= esc($row['aut_id']) ?>"
-                    id="autor_<?= esc($row['aut_id']) ?>">
-                <label for="autor_<?= esc($row['aut_id']) ?>">
-                    <img src="../../adm/imagens/autores/<?= esc($row['aut_foto']) ?>"
-                        alt="<?= esc($row['aut_nome']) ?>">
-                    <?= esc($row['aut_nome']) ?>
-                </label>
-            </div>
-            <?php endwhile; ?>
+            <div class="autor-container">
+    <?php while ($row = $result->fetch_assoc()): ?>
+        <div class="autor-card">
+            <input type="radio" name="autor_existente" value="<?= esc($row['aut_id']) ?>"
+                id="autor_<?= esc($row['aut_id']) ?>">
+            <label for="autor_<?= esc($row['aut_id']) ?>">
+                <img src="../../adm/imagens/autores/<?= esc($row['aut_foto']) ?>"
+                    alt="<?= esc($row['aut_nome']) ?>">
+                <?= esc($row['aut_nome']) ?>
+            </label>
+        </div>
+    <?php endwhile; ?>
+</div>
             <?php else: ?>
             <p>Nenhum autor encontrado.</p>
             <?php endif; ?>

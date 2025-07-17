@@ -66,26 +66,8 @@ if (isset($_GET['busca'])) {
 <head>
     <meta charset="UTF-8">
     <title>Relacionar Gênero ao Livro</title>
-    <style>
-        .genero-card {
-            display: flex;
-            align-items: center;
-            margin-bottom: 10px;
-        }
-        .genero-card img {
-            width: 40px;
-            height: 40px;
-            object-fit: cover;
-            border-radius: 8px;
-            margin-right: 10px;
-        }
-        .mensagem-sucesso {
-            color: green;
-        }
-        .mensagem-erro {
-            color: red;
-        }
-    </style>
+    <link rel="stylesheet" href="../geral.css">
+    <link rel="stylesheet" href="resenhas.css">
 </head>
 <body>
     <h2>Relacionar Gênero ao Livro</h2>
@@ -97,34 +79,37 @@ if (isset($_GET['busca'])) {
         <p class="mensagem-erro"><?= esc($erro) ?></p>
     <?php endif; ?>
 
-    <form method="GET" style="margin-bottom: 20px;">
-        <input type="hidden" name="id_livro" value="<?= esc($id_livro) ?>" />
-        <input type="text" name="busca" placeholder="Pesquisar gênero" value="<?= esc($busca) ?>" />
-        <button type="submit">Buscar</button>
-        <a href="relacionar_genero.php?id_livro=<?= esc($id_livro) ?>">Limpar</a>
-    </form>
+    <div class="pesquisa">
+          <form method="GET" style="margin-bottom: 20px;"
+              <input type="hidden" name="id_livro" value="<?= esc($id_livro) ?>" />
+              <input type="text" name="busca" placeholder="Pesquisar genero" value="<?= esc($busca) ?>" />
+              <button class="botao" type="submit">Buscar</button>
+          </form>
+    </div>
 
-    <form method="POST">
-        <input type="hidden" name="id_livro" value="<?= esc($id_livro) ?>">
+   <form method="POST">
+            <input type="hidden" name="id_livro" value="<?= esc($id_livro) ?>">
 
-        <?php if ($result && $result->num_rows > 0): ?>
-            <?php while ($row = $result->fetch_assoc()): ?>
-                <div class="genero-card">
-                    <input type="radio" name="genero_id" value="<?= esc($row['gen_id']) ?>" id="gen_<?= esc($row['gen_id']) ?>">
-                    <label for="gen_<?= esc($row['gen_id']) ?>">
-                        <?php if (!empty($row['gen_icone'])): ?>
-                            <img src="../../adm/imagens/generos/<?= esc($row['gen_icone']) ?>" alt="<?= esc($row['gen_nome']) ?>">
-                        <?php endif; ?>
-                        <?= esc($row['gen_nome']) ?>
-                    </label>
+            <?php if ($result && $result->num_rows > 0): ?>
+                <div class="genero-container">
+                    <?php while ($row = $result->fetch_assoc()): ?>
+                        <div class="genero-card">
+                            <input type="radio" name="genero_id" value="<?= esc($row['gen_id']) ?>" id="gen_<?= esc($row['gen_id']) ?>">
+                            <label for="gen_<?= esc($row['gen_id']) ?>">
+                                <?php if (!empty($row['gen_icone'])): ?>
+                                    <img src="../../adm/imagens/generos/<?= esc($row['gen_icone']) ?>" alt="<?= esc($row['gen_nome']) ?>">
+                                <?php endif; ?>
+                                <span><?= esc($row['gen_nome']) ?></span>
+                            </label>
+                        </div>
+                    <?php endwhile; ?>
                 </div>
-            <?php endwhile; ?>
-        <?php else: ?>
-            <p>Nenhum gênero encontrado.</p>
-        <?php endif; ?>
+            <?php else: ?>
+                <p>Nenhum gênero encontrado.</p>
+            <?php endif; ?>
 
-        <br>
-        <input type="submit" value="Relacionar Gênero">
-    </form>
+            <br><br>
+            <input type="submit" value="Relacionar Gênero">
+        </form>
 </body>
 </html>

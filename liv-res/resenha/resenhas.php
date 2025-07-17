@@ -127,33 +127,28 @@ $fotoLiv = $_SESSION['imagem-liv'];
                     while ($row = $result->fetch_assoc()) {
                         $titulo = htmlspecialchars($row['livro_titulo']);
                         $foto = htmlspecialchars($row['livro_foto']);
-                        $sinopse = htmlspecialchars($row['livro_sinopse']);
+                        $sinopse = mb_strimwidth($sinopseCompleta, 0, 150, '...');
                         $idLivro = (int) $row['livro_id'];
-
-                        echo "
+                         echo "
                         <div class='card'>
                            <div class='cont'>
-                              <img src='../../adm/imagens/livros/$foto' alt=''>
-                              <div>
-                                 <h2> $titulo</h2>
-                                 <p>$orem ipsum dolor sit amet consectetur adipisicing elit. Id accusamus atque repudiandae. Architecto nulla dolorum nisi nihil aperiam sunt maxime et. Quibusdam rem beatae fugiat quidem? Repellendus dignissimos error molestias.lorem
-                                    lorem
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum explicabo animi reprehenderit culpa repellendus, ex dolorem molestiae in excepturi distinctio autem harum totam non minima quam illum quibusdam facilis natus.</p>
-                              </div>
+                            <img src='../../adm/imagens/livros/$foto' alt=''>
+                                <div>
+                                   <h2>$titulo</h2>
+                                   <p>$sinopse</p>
+                                </div>
                            </div>
                            <div>
                               <a href='criar-resenha.php?id={$idLivro}'> 
                                  <button>Criar Resenha</button>
                               </a>
-                              
                            </div>
                         </div>
                         ";
                     }
                 } else {
                      echo "
-                    <p>Livro não encontrado!</p>
-                    <a href='cadastro-livro.php'>Cadastre aqui.</a>
+                    <p>Livro não encontrado! <a href='cadastro-livro.php'>Cadastre agora.</a></p>
                     ";
                 }
                 $stmt->close();
@@ -171,29 +166,22 @@ $fotoLiv = $_SESSION['imagem-liv'];
                     while ($row = $result->fetch_assoc()) {
                         $titulo = htmlspecialchars($row['livro_titulo']);
                         $foto = htmlspecialchars($row['livro_foto']);
-                        $sinopse = htmlspecialchars($row['livro_sinopse']);
+                        $sinopseCompleta = htmlspecialchars($row['livro_sinopse']);
+                        $sinopse = mb_strimwidth($sinopseCompleta, 0, 150, '...');
                         $idLivro = (int) $row['livro_id'];
                          echo "
                         <div class='card'>
                            <div class='cont'>
                             <img src='../../adm/imagens/livros/$foto' alt=''>
                                 <div>
-                            <h2> $titulo</h2>
-                              
-                              
-                                 <p>VAR SINOPSE Lorem ipsum dolor sit amet consectetur adipisicing elit. Id accusamus atque repudiandae. Architecto nulla dolorum nisi nihil aperiam sunt maxime et. Quibusdam rem beatae fugiat quidem? Repellendus dignissimos error molestias.lorem
-                                    lorem
-                                    m ipsum dolor sit amet consectetur adipisicing elit. Id accusamus atque repudiandae. Architecto nulla dolorum nisi nihil aperiam sunt maxime et. Quibusdam rem beatae fugiat quidem? Repellendus dignissimos error molestias.lorem
-                                    loremLorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum explicabo animi reprehenderit culpa repellendus, ex dolorem molestiae in excepturi distinctio autem harum totam non minima quam illum quibusdam facilis natus.
-                                 </p>
+                                   <h2>$titulo</h2>
+                                   <p>$sinopse</p>
                                 </div>
                            </div>
                            <div>
-
                               <a href='criar-resenha.php?id={$idLivro}'> 
                                  <button>Criar Resenha</button>
                               </a>
-                              
                            </div>
                         </div>
                         ";

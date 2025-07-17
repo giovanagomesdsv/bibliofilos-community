@@ -1,7 +1,6 @@
 .box-card {
     display: flex;
     flex-wrap: wrap;
-    border: 1px solid;
     gap: 2rem;
     /* espaço entre os cards */
 }
@@ -10,9 +9,7 @@
     flex: 1 1 calc(50% - 1rem);
     /* dois cards por linha com gap */
     margin-bottom: 1rem;
-    box-sizing: border-box;
-    /* importante para considerar padding/border no cálculo */
-    height: 50rem;
+    height: 30rem;
     display: flex;
     flex-direction: column;
 }
@@ -38,9 +35,17 @@
 }
 
 p {
+    text-align: center;
     color: black;
     text-align: justify;
     margin: 0.5rem;
+}
+p a{
+    color: black;
+    text-decoration: underline;
+}
+p a:hover{
+    color: #ff0000ff;
 }
 
 h2 {
@@ -49,6 +54,7 @@ h2 {
 
 button {
     width: 98%;
+    height: 15%;
     padding: 1.2rem;
     background-color: var(--terciaria);
     color: #fff;
@@ -61,37 +67,36 @@ button {
 
 /*CSS DE CRIAR RESENHA--------------------------------------------*/
 .card1 {
-    height: 90%;
+    height: auto;
 }
 
 .its {
     display: flex;
     flex-direction: row;
-    border: solid 1px red;
 }
 
 .cardimgsinopse {
     display: flex;
     flex-direction: row;
+    width:100%;
+}
+.cardimgsinopse .box-img{
+    width: 20%;
 }
 .sinopse{
-    color:#f5f5f5;
+    color: #f5f5f5;
+    border: 1px solid red;
+    width: 80%;
 }
 .imgliv {
-    margin: 2rem;
+    width: 20%;
 }
 
 /* texto de sinopse */
-.cardimgsinopse p {
-    margin: 3rem;
+.cardimgsinopse .sinopse h1{
     font-size: 2rem;
-    text-align: start;
-    align-items: start;
-    color: var(--text);
-}
-
-.cardimgsinopse p {
-    margin: 2rem;
+    text-align: center;
+    align-items: center;
 }
 
 .resenhabox {
@@ -200,6 +205,63 @@ button {
 }
 
 /*CSS DE cadastrar autor--------------------------------------------*/
+.pesquisa {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.pesquisa input,
+.pesquisa .botao{
+    width: 30rem;
+    color: #000;
+}
+.pesquisa .botao{
+    margin-top: 1rem;
+    color: #fff;
+}
+
+.autor-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: flex-start;
+    margin: 2rem;
+}
+
+.autor-card {
+    flex: 1 0 18%; /* Aproximadamente 5 por linha com espaçamento */
+    max-width: 18%;
+    min-width: 160px;
+    background-color: var(--secundaria);
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 0.5rem;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.autor-card input[type="radio"] {
+    display: none;
+}
+
+.autor-card label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    color: black;
+}
+
+.autor-card img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 0.5rem;
+}
 .namebio{
     display: flex;
     flex-direction: row;
@@ -209,23 +271,11 @@ button {
     color: black;
     font-size: 2rem;
 }
-
 .card3{
     background-color: var(--principal);
     width: 100%;
     border-radius: 10px;
-}
-.autor-card {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-}
-.autor-card img {
-    width: 60px;
-    height: 60px;
-    object-fit: cover;
-    border-radius: 50%;
-    margin-right: 10px;
+    padding: 1.5rem
 }
 .mensagem-sucesso {
     color: green;
@@ -233,29 +283,65 @@ button {
 .mensagem-erro {
     color: red;
 }
-
 .form1 {
     width: 100%;
-    max-width: 100%;
- 
 }
-
-
 .resenhabox1 {
     display: flex;
     text-align: start;
     margin: 0 2rem;
     font-size: 2rem;
- 
-
 }
-
 .resenha1 {
     height: 40rem;
-    width: 98%;
+    width: 100%;
     text-align: justify;
     color: black;
-
-    padding: 1.2rem;
 }
 
+
+/*GENERO*/
+
+  .genero-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: flex-start;
+        }
+
+        .genero-card {
+            flex: 1 0 18%;
+            max-width: 18%;
+            min-width: 160px;
+            background-color: var(--principal);
+            border-radius: 10px;
+            padding: 1rem;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            transition: transform 0.2s ease;
+            cursor: pointer;
+            color: #fff;
+        }
+
+        .genero-card:hover {
+            transform: scale(1.05);
+        }
+
+        .genero-card input[type="radio"] {
+            display: none;
+        }
+
+        .genero-card label {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+        }
+
+        .genero-card img {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 8px;
+        }

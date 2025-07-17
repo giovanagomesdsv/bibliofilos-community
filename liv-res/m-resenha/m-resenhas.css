@@ -1,26 +1,3 @@
-:root {
-    --bg: #f4f4f4;
-    --text: #000000;
-    --principal: #406E96;
-    --secundaria: #2A4A64;
-    --terciaria: #1F3A50;
-    /* Transições */
-    --transition-fast: 0.2s ease;
-    --transition-base: 0.3s ease;
-    --padding: 1rem;
-    /* Controla a síntese de fontes (negrito, itálico) pelo navegador */
-    font-synthesis: none;
-    /* Otimiza a renderização do texto para melhor legibilidade */
-    text-rendering: optimizeLegibility;
-    /* Melhora a renderização de fontes em navegadores baseados em WebKit (Chrome, Safari) */
-    -webkit-font-smoothing: antialiased;
-    /* Melhora a renderização de fontes em navegadores Firefox no macOS */
-    -moz-osx-font-smoothing: grayscale;
-    text-decoration: none;
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
 
 .busca-container {
     display: flex;
@@ -61,6 +38,7 @@
     height: 50rem;
     display: flex;
     flex-direction: column;
+    padding: 1rem;
     
 }
 
@@ -70,10 +48,12 @@
         display: flex;
         flex-direction: row;
     }
-
     .card .cont img{
         width: 40%;
         height: auto;
+    }
+    .card .cont p{
+        text-align: justify;
     }
     .card .cont div{
         width: 60%;

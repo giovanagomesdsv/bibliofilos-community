@@ -30,7 +30,7 @@ $id =  $_SESSION['id'];
     <link href='https://cdn.boxicons.com/fonts/basic/boxicons.min.css' rel='stylesheet'>
 
     <link rel="stylesheet" href="../geral.css">
-+    <title>Minhas resenhas - BACKSTAGE Community</title>
+    <title>Minhas resenhas - BACKSTAGE Community</title>
 </head>
 <body>
     <header>

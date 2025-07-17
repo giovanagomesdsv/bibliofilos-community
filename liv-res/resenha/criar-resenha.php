@@ -1,4 +1,4 @@
-<!--<?php
+<?php
 include "../../conexao.php";
 if (!isset($_GET['id']) || empty($_GET['id'])) {
     die("ID não fornecido!");
@@ -47,7 +47,7 @@ if ($result->num_rows > 0) {
     $foto = htmlspecialchars($row['livro_foto']);
     $sinopse = htmlspecialchars($row['livro_sinopse']);
 }
-?>-->
+?>
 <!DOCTYPE html>
 <html lang='pt-br'>
 
@@ -66,13 +66,14 @@ if ($result->num_rows > 0) {
     <main>
         <div class='card card1'>
             <div class='cardimgsinopse'>
-                <img class='imagem imgliv' src='../../adm/imagens/livros/<?php echo $foto ?>' alt=''>
+                <div class="box-img">
+                    <img class='imagem' src='../../adm/imagens/livros/<?php echo $foto ?>' alt=''>
+                </div>
                 <div class="sinopse">
                     <h1>
-                        Titulo:
                         <?php echo $titulo ?>
                     </h1>
-                    <p>
+                    <p style="color: #fff">
                         Sinopse:
                         <?php echo $sinopse ?>
                     </p>
@@ -101,7 +102,7 @@ if ($result->num_rows > 0) {
                     </form>
                 </div>
                 <a class="notas" href='m-resenhas.php'>
-                    <button class="botao1">Cancela</button>
+                    <button class="botao1">Cancelar</button>
                 </a>
             </div>
         </div>

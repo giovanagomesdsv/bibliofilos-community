@@ -1,4 +1,4 @@
-<!--<?php
+<?php
 include "../../conexao.php";
 if ($_SERVER['REQUEST_METHOD'] === "POST") {
     $titulo = $_POST['titulo'];
@@ -59,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
     }
 }
 
-?> -->
+?> 
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -114,10 +114,6 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
                         <label for="editora">Editora:</label>
                         <input class="teste" type="text" name="editora" required>
                     </div>
-                    <div class="input-wrapper">
-                        <label for="autor">Autor do livro:</label>
-                        <input class="teste" type="text" name="autor" required>
-                    </div>
                 </div>
                 <div class="sinop">
                     <label class="resenhabox" for="sinopse">Sinopse:</label>
@@ -128,7 +124,6 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
 
         </div>
     </main>
-    <!-- window.location.href = 'cadastrar_autor.php?id_livro=$livro_id'; -->
 </body>
 
 </html>
