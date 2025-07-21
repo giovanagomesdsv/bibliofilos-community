@@ -98,11 +98,18 @@ button {
 }
 .sinopse{
     color: #f5f5f5;
-    border: 1px solid red;
     width: 80%;
+    margin: 0 2rem;
 }
 .imgliv {
     width: 20%;
+    
+}
+
+.imagem1 {
+    width: 10rem;
+    height: 15rem;
+    margin: 2rem;
 }
 
 /* texto de sinopse */
@@ -249,7 +256,7 @@ button {
     background-color: var(--secundaria);
     border: 1px solid #ccc;
     border-radius: 8px;
-    padding: 0.5rem;
+        
     text-align: center;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     cursor: pointer;
