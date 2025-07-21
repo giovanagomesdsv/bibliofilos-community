@@ -180,7 +180,7 @@ $fotoLiv = $_SESSION['imagem-liv'];
                            </div>
                            <div>
                               <a href='criar-resenha.php?id={$idLivro}'> 
-                                 <button>Criar Resenha</button>
+                                 <button class='button1'>Criar Resenha</button>
                               </a>
                            </div>
                         </div>
