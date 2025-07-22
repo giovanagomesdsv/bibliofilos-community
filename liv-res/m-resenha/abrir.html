@@ -1,4 +1,4 @@
-<?php
+<!-- <?php
 include "../../conexao.php";
 if (!isset($_GET['id']) || empty($_GET['id'])) {
     die("ID não fornecido!");
@@ -24,38 +24,40 @@ if ($result->num_rows > 0) {
     $atualizacao = htmlspecialchars($row['resenha_dtatualizacao']);
     $avaliacao = (int) ($row['resenha_avaliacao']);
 
-    echo "
+    echo " -->
     <!DOCTYPE html>
 <html lang='pt-br'>
 
 <head>
     <meta charset='UTF-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <link rel="stylesheet" type="text/css" href="../geral.css">
+    <link rel="stylesheet" type="text/css" href="m-resenhas.css">
     <title>Resenha - BACKSTAGE Community
     </title>
+
 </head>
 
 <body>
-    <main>
+    <main class='containA'>
 
         <div>
-            <img src='../../adm/imagens/livros/$foto' alt=''>
-            <div>
-                <h1>$titulo</h1>
-                <div>
-                    <p> $sinopse</p>
+            <h1>$titulo</h1>
+            <p class='titulos2'>Sinopse:</p>
+            <div class='display'>
+                <img src='../../adm/imagens/livros/$foto' alt='foto.png' class='preview'>
+                <div class='sinopsebox'>
+                    <p class='resenhaText'> $sinopse</p>
                 </div>
-                <p>Avaliação: $avaliacao</p>
-                <p>Publicação: $publicacao</p>
-                <p>Atualizado: $atualizacao</p>
             </div>
         </div>
         <div>
-            <div>
-                <p>$resenha</p>
+            <p class='titulos'>Resenha:</p>
+            <div class='resenhaBox'>
+                <p class='resenhaText'>$resenha</p>
             </div>
             <a href='m-resenhas.php'>
-                <button>Voltar</button>
+                <button class="btn">Voltar</button>
             </a>
         </div>
 
@@ -64,6 +66,7 @@ if ($result->num_rows > 0) {
 </body>
 
 </html>
-    ";
+<!--    ";
 }
 ?>
+-->

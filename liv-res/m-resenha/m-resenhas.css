@@ -1,4 +1,47 @@
+/*Abrir.php*/
 
+.containA{
+    background-color:var(--principal) ;
+}
+.preview{
+    width:20rem;
+}
+.sinopsebox{
+    background-color: white;
+    width:66rem;
+    height:20rem;
+    overflow:scroll;
+}
+.display{
+    gap:20px;
+    display:flex;
+}
+.titulos{
+    margin-right:85rem;
+}
+.titulos2{
+    margin-right:38rem;
+}
+.resenhaBox{
+    background-color: white;
+    width:90rem;
+    height:20rem;
+    overflow:scroll;
+}
+.resenhaText{
+    color:black;
+    align-items: flex-start;
+    justify-content: left;
+}
+.btn{
+    margin-top:1rem;
+    background-color:var(--secundaria);
+    width:25rem;
+    height:5rem;
+
+}
+
+/*M-Resenhas.php*/
 .busca-container {
     display: flex;
     justify-content: space-between;
@@ -21,7 +64,6 @@
     background-color: var(--principal);
 }
 .busca-container .contador span{
-    background-color: #f4f4f4; 
     padding: .4rem;
 }
 
