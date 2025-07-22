@@ -1,4 +1,4 @@
-<!-- <?php
+<?php
 include "../../conexao.php";
 if (!isset($_GET['id']) || empty($_GET['id'])) {
     die("ID não fornecido!");
@@ -24,7 +24,7 @@ if ($result->num_rows > 0) {
     $atualizacao = htmlspecialchars($row['resenha_dtatualizacao']);
     $avaliacao = (int) ($row['resenha_avaliacao']);
 
-    echo " -->
+    echo "
     <!DOCTYPE html>
 <html lang='pt-br'>
 
@@ -57,7 +57,7 @@ if ($result->num_rows > 0) {
                 <p class='resenhaText'>$resenha</p>
             </div>
             <a href='m-resenhas.php'>
-                <button class="btn">Voltar</button>
+                <button class='btn'Voltar</button>
             </a>
         </div>
 
@@ -65,8 +65,6 @@ if ($result->num_rows > 0) {
 
 </body>
 
-</html>
-<!--    ";
+</html>    ";
 }
 ?>
--->
