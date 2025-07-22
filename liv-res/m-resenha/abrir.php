@@ -45,9 +45,13 @@ if ($result->num_rows > 0) {
             <h1>$titulo</h1>
             <p class='titulos2'>Sinopse:</p>
             <div class='display'>
-                <img src='../../adm/imagens/livros/$foto' alt='foto.png' class='preview'>
-                <div class='sinopsebox'>
+                <img src='../../adm/imagens/livros/$foto' alt='foto.png' class='fotos'>
+                <div class='sinopseBox'>
                     <p class='resenhaText'> $sinopse</p>
+                    <p class='titulos'> $avaliacao</p>
+                    <p class='titulos'> $publicacao</p>
+                    <p class='titulos'> $atualizacaop</p>
+                    
                 </div>
             </div>
         </div>

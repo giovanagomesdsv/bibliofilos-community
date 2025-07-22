@@ -1,4 +1,4 @@
-<?php
+ <!-- <?php
 include "../../conexao.php";
 if (!isset($_GET['id']) || empty($_GET['id'])) {
     die("ID não fornecido!");
@@ -50,75 +50,56 @@ if ($result->num_rows > 0) {
     $atualizacao = htmlspecialchars($row['resenha_dtatualizacao']);
     $avaliacao = (int) ($row['resenha_avaliacao']);
 }
-?>
+?> -->
 <!DOCTYPE html>
 <html lang='pt-br'>
 
 <head>
     <meta charset='UTF-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <link rel="stylesheet" type="text/css" href="../geral.css">
+    <link rel="stylesheet" type="text/css" href="m-resenhas.css">
     <title>Resenha - BACKSTAGE Community
     </title>
-    <style>
-        .rating {
-            direction: rtl;
-            unicode-bidi: bidi-override;
-            display: inline-block;
-        }
-
-        .rating input {
-            display: none;
-        }
-
-        .rating label {
-            font-size: 2em;
-            color: #ccc;
-            cursor: pointer;
-        }
-
-        .rating input:checked~label,
-        .rating label:hover,
-        .rating label:hover~label {
-            color: gold;
-        }
-    </style>
 </head>
 
 <body>
-    <main>
+    <main class='containA'>
 
         <div>
-            <img src='../../adm/imagens/livros/<?php echo $foto ?>' alt=''>
             <div>
+                <p class='titulos'>Publicação:<?php echo $publicacao ?></p>
                 <h1><?php echo $titulo ?></h1>
-                <div>
-                    <p><?php echo $sinopse ?></p>
+                <div class='display'>
+                <img src='../../adm/imagens/livros/<?php echo $foto ?>' alt='foto' class='fotos'>
+                    <p class='sinopseBox'><?php echo $sinopse ?></p>
                 </div>
-                <p>Publicação:<?php echo $publicacao ?></p>
-                <p>Atualizado:<?php echo $atualizacao ?></p>
+                <p class='titulos'>Atualizado:<?php echo $atualizacao ?></p>
 
             </div>
         </div>
         <div>
             <div>
                 <form method="POST">
-                    <textarea name="resenha" id="resenha" rows="10" cols="70"><?php echo htmlspecialchars($resenha); ?></textarea><br>
-
-                    <label for="avaliacao">Avaliação do livro:</label><br>
-                    <div class="rating">
-                        <input type="radio" id="estrela5" name="avaliacao" value="5" <?php if ($avaliacao === 5) echo 'checked'; ?>><label for="estrela5">★</label>
-                        <input type="radio" id="estrela4" name="avaliacao" value="4" <?php if ($avaliacao === 4) echo 'checked'; ?>><label for="estrela4">★</label>
-                        <input type="radio" id="estrela3" name="avaliacao" value="3" <?php if ($avaliacao === 3) echo 'checked'; ?>><label for="estrela3">★</label>
-                        <input type="radio" id="estrela2" name="avaliacao" value="2" <?php if ($avaliacao === 2) echo 'checked'; ?>><label for="estrela2">★</label>
-                        <input type="radio" id="estrela1" name="avaliacao" value="1" <?php if ($avaliacao === 1) echo 'checked'; ?> required><label for="estrela1">★</label>
+                    <textarea name="resenha" id="resenha" rows="10" cols="70" class='resenhaText'><?php echo htmlspecialchars($resenha); ?></textarea><br>
+                <div class='display'>
+                    <label for="avaliacao" class='avali'>Avaliação do livro:</label><br>
+                    <div class='rating ratingstylish'>
+                        <input type="radio" id="estrela5" name="avaliacao" value="5" <?php if ($avaliacao === 5) echo 'checked'; ?><label for="estrela5">★</label>
+                        <input type="radio" id="estrela4" name="avaliacao" value="4" <?php if ($avaliacao === 4) echo 'checked'; ?><label for="estrela4">★</label>
+                        <input type="radio" id="estrela3" name="avaliacao" value="3" <?php if ($avaliacao === 3) echo 'checked'; ?><label for="estrela3">★</label>
+                        <input type="radio" id="estrela2" name="avaliacao" value="2" <?php if ($avaliacao === 2) echo 'checked'; ?><label for="estrela2">★</label>
+                        <input type="radio" id="estrela1" name="avaliacao" value="1" <?php if ($avaliacao === 1) echo 'checked'; ?><label for="estrela1">★</label>
                     </div><br><br>
-
-                    <input type="submit" value="Enviar">
+                </div>
+        <div class='display'>
+                    <input type="submit" value="Enviar" class='btn'>
+                    <a href='m-resenhas.php'>
+                <button class='btn'>Cancelar</button>
+            </a>
+        </div>
                 </form>
             </div>
-            <a href='m-resenhas.php'>
-                <button>Cancela</button>
-            </a>
         </div>
 
     </main>

@@ -3,10 +3,10 @@
 .containA{
     background-color:var(--principal) ;
 }
-.preview{
+.fotos{
     width:20rem;
 }
-.sinopsebox{
+.sinopseBox{
     background-color: white;
     width:66rem;
     height:20rem;
@@ -40,6 +40,38 @@
     height:5rem;
 
 }
+
+/*Atualizar.php*/
+
+.rating {
+            direction: rtl;
+            unicode-bidi: bidi-override;
+            display: inline-block;
+        }
+
+        .rating input {
+            display: none;
+        }
+
+        .rating label {
+            font-size: 2em;
+            color: #ccc;
+            cursor: pointer;
+        }
+
+        .rating input:checked~label,
+        .rating label:hover,
+        .rating label:hover~label {
+            color: gold;
+        }
+ .ratingstyle{
+
+ }
+
+ .avali{
+    margin-left:10rem;
+    margin-top:1.5rem;
+ }
 
 /*M-Resenhas.php*/
 .busca-container {
