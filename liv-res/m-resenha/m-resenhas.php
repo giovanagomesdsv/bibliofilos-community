@@ -30,6 +30,7 @@ $id =  $_SESSION['id'];
     <link href='https://cdn.boxicons.com/fonts/basic/boxicons.min.css' rel='stylesheet'>
 
     <link rel="stylesheet" href="../geral.css">
+    <link rel="stylesheet" type="text/css" href="m-resenhas.css">
     <title>Minhas resenhas - BACKSTAGE Community</title>
 </head>
 <body>
@@ -99,7 +100,7 @@ $id =  $_SESSION['id'];
         <div class="busca-container">
 
             <!--Total de resenhas publicadas-->
-            <div class="contador">
+            <div class="contador" style='padding:0.5rem; margin-top:1rem;'>
                 <?php
                 $count = "SELECT 
                            COUNT(resenhas.res_id) as total_resenhas
@@ -118,7 +119,7 @@ $id =  $_SESSION['id'];
 
                     echo "
                     <div>
-                       <p>Resenhas publicadas: <span> $contagem </span></p>
+                       <p>Resenhas publicadas: <span class='sinopseBox2'> $contagem </span></p>
                     </div>
                     ";
                 }
@@ -127,12 +128,12 @@ $id =  $_SESSION['id'];
             </div>
 
             <form action="" method="GET" class="busca-form">
-                <input type="text" name="busca" placeholder="nome do usuário">
+                <input type="text" name="busca" placeholder="pesquisar resenha">
                 <button type="submit"><i class='bx bx-search'></i></button>
             </form>
         </div>
         <div class="pesquisa"> <!-- DIV DA CAIXA ONDE DENTRO APARECERÁ OS CARDS DO RESULTADO DA BUSCA-->
-            <?php
+             <?php
             if (!isset($_GET['busca']) || empty($_GET['busca'])) {
                 echo "<div class='resultados'></div>";
             } else {
@@ -161,10 +162,10 @@ $id =  $_SESSION['id'];
                         echo "
                           <div class='card'>
                            <div class='cont'>
-                              <img src='../../adm/imagens/livros/$foto' alt=''>
+                              <img src='../../adm/imagens/livros/$foto' alt='foto.png' style='border: 2px solid red;'>
                               <div>
-                                 <h2> $resenha</h2>
-                                 <p>$sinopse</p>
+                                 <h2 style='color: black'>$titulo</h2>
+                                 <p style='color: black'>$sinopse</p>
                               </div>
                            </div>
                            <div class='cont2'>
@@ -185,7 +186,7 @@ $id =  $_SESSION['id'];
         </div>
 
         <div>
-            <?php
+             <?php
             $consulta = "SELECT livro_foto, resenha_titulo, livro_sinopse, resenha_id, resenha_status FROM RESENHAS INNER JOIN LIVROS ON LIVROS.livro_id = RESENHAS.livro_id  WHERE res_id = ?";
             $stmt = $conn->prepare($consulta);
             $stmt->bind_param("i", $id);
@@ -202,24 +203,37 @@ $id =  $_SESSION['id'];
 
                     if ($status ==  3) {
                         echo "
+                    
+                        <div class="containC">
+                    <div class="display">
+                        <img src='../../adm/imagens/livros/$foto' alt='foto.png' class='fotos2'>
+
                         <div>
-                          <img src='../../adm/imagens/livros/$foto' alt=''>
-                          <p>$resenha</p>
-                          <p>$sinopse</p>
-                          <a href='atualizar.php?id={$idResenha}'>
-                            <button>CORRIGIR</button>
-                          </a>
+                        <p>$titulo</p>
+                        <p class='sinopseBox2'>$sinopse</p>
                         </div>
+
+                        <a href='atualizar.php?id={$idResenha}'>
+                        <button class="ContainCBtn">CORRIGIR</button>
+                        </a>
+                    </div>
+                    </div>
                        ";
                     } else if ($status == 1) {
                         echo "
-                        <div>
-                          <img src='../../adm/imagens/livros/$foto' alt=''>
-                          <p>$resenha</p>
-                          <p>$sinopse</p>
-                          <form action='deletar.php?id={$idResenha}' method='POST'>
-                            <input type='submit' value='REPROVADA'>
-                          </form>
+                        <div class="containR">
+                        <div class="display">
+                            <img src='../../adm/imagens/livros/$foto' alt='foto.png' class="fotos2">
+
+                            <div>
+                            <p>$titulo</p>
+                            <p class="sinopseBox2">$sinopse</p>
+                            </div>
+
+                            <form action='deletar.php?id={$idResenha}' method='POST'>
+                            <input type='submit' value='REPROVADA' class="containRBtn">
+                            </form>
+                        </div>
                         </div>
                        ";
                     }
@@ -247,10 +261,10 @@ $id =  $_SESSION['id'];
                 echo "
                         <div class='card'>
                            <div class='cont'>
-                              <img src='../../adm/imagens/livros/$foto' alt=''>
+                              <img src='../../adm/imagens/livros/$foto' alt='foto.png' style='border: 2px solid red;'>
                               <div>
-                                 <h2> $resenha</h2>
-                                 <p>$sinopse</p>
+                                 <h2 style='color: black'>$titulo</h2>
+                                 <p style='color: black'>$sinopse</p>
                               </div>
                            </div>
                            <div class='cont2'>

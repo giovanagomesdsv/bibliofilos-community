@@ -1,38 +1,47 @@
-/*Abrir.php*/
+/*ABRIR.php ----------------------------------------------------------*/
 
+/*!!utilizados na main ou em cards (background azul)*/
 .containA{
     background-color:var(--principal) ;
 }
 .fotos{
     width:20rem;
+    border: 2px solid red;
 }
+/*caixa de texto da sinopse*/
 .sinopseBox{
     background-color: white;
     width:66rem;
     height:20rem;
     overflow:scroll;
 }
+/*deixar itens alinhados*/
 .display{
     gap:20px;
     display:flex;
 }
-.titulos{
+/*alinhar titulo com box*/
+.margintitulos{
     margin-right:85rem;
 }
-.titulos2{
+/*alinhar titulo com box (tipo 2)*/
+.margintitulos2{
     margin-right:38rem;
 }
+/*caixa de texto da resenha*/
 .resenhaBox{
     background-color: white;
     width:90rem;
     height:20rem;
     overflow:scroll;
 }
+/*deixa o texto da resenha preto e ajeitar sua posição*/
 .resenhaText{
     color:black;
     align-items: flex-start;
     justify-content: left;
 }
+/*um css para o botão*/
 .btn{
     margin-top:1rem;
     background-color:var(--secundaria);
@@ -41,8 +50,8 @@
 
 }
 
-/*Atualizar.php*/
-
+/*ATUALIZAR.php ----------------------------------------------------------*/
+/*cor/css das estrelas (estrelas de avaliação)*/
 .rating {
             direction: rtl;
             unicode-bidi: bidi-override;
@@ -64,16 +73,17 @@
         .rating label:hover~label {
             color: gold;
         }
- .ratingstyle{
+        .ratingstyle{
 
- }
+        }
+        .avali{
+            margin-left:10rem;
+            margin-top:1.5rem;
+        }
 
- .avali{
-    margin-left:10rem;
-    margin-top:1.5rem;
- }
+/*M-RESENHAS.php ----------------------------------------------------------*/
 
-/*M-Resenhas.php*/
+/*css da busca*/
 .busca-container {
     display: flex;
     justify-content: space-between;
@@ -98,14 +108,12 @@
 .busca-container .contador span{
     padding: .4rem;
 }
-
 .box-card {
     display: flex;
     flex-wrap: wrap;
     border: 1px solid;
     gap: 2rem; /* espaço entre os cards */
 }
-
 .box-card > .card {
     width: calc(50% - 0.5rem); /* dois cards por linha com gap */
     margin-bottom: 2rem;
@@ -113,6 +121,7 @@
     display: flex;
     flex-direction: column;
     padding: 1rem;
+    border: 2px solid red;
     
 }
 
@@ -124,7 +133,8 @@
     }
     .card .cont img{
         width: 40%;
-        height: auto;
+        height: 60%;
+        margin: 10% 5% 0% 5%;
     }
     .card .cont p{
         text-align: justify;
@@ -133,7 +143,6 @@
         width: 60%;
         background-color: var(--bg);
     }
-
     .card .cont2 {
         border: 1px solid;
         height: 20%;
@@ -142,10 +151,63 @@
         align-items: center;
         justify-content: space-around;
     }
-
     .card .cont2 .botao{
         width: 15rem;
         height: 4rem;
     }
+    .margincard{
+        margin-left:47%;
+        column-gap: 20rem;
+    }
+    .sinopseBox2{
+    background-color: white;
+    color:black;
+    margin-top:5%;
+    width:24rem;
+    height:3rem;
+    border: 2px solid red;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+/*para fotos pequenas*/
+.fotos2{
+    margin-left:1rem;
+    width:15rem;
+    height:15rem;
+    border: 2px solid red;
+    
+}
+/*Cor do container & botão caso o post for reprovado*/
+.containR{
+    background-color:#FA8072;
+    width: 100%;
+    display: flex;
+    margin-bottom: 2rem;
+    padding: 1rem 0rem 1rem 0rem
+}
 
+.containRBtn{
+    background-color: #BB2222;
+    margin-top:8rem;
+    margin-left:100%;
+    width:25rem;
+    height:5rem;
+}
 
+/*Cor do container & botão caso necessario corrigir o post*/
+.containC{
+    background-color:#FFD700 ;
+    width: 100%;
+    display: flex;
+    margin-bottom: 2rem;
+    padding: 1rem 0rem 1rem 0rem
+}
+
+.ContainCBtn{
+    background-color:#FFA500;
+    margin-top:8rem;
+    margin-left:100%;
+    width:25rem;
+    height:5rem;
+}
