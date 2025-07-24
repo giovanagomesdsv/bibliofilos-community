@@ -72,57 +72,95 @@ main {
     border-radius: .5rem;
 }
 
-/*menu usuarios sem login*/
+/* Menu usuários sem login */
 .navbarB {
-    display: fixed;
-    align-items: center;
-    justify-content: space-around;
-    flex-direction: row;
-    padding: 10px 40px;
-    background-color: var(--principal);
-    font-size: 1.6rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
     width: 100%;
-    border: 1px solid
+    height: 80px;
+    background-color: var(--principal);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+    box-sizing: border-box;
+    font-size: 1.6rem;
+    border-bottom: 2px solid #fff; /* ou var(--secundaria), se quiser */
 }
-.navbarB > div {
-    width: 25%;
+
+/* Logo */
+.navbarB .cont {
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid
+    flex: 1; /* ocupa 1 parte */
 }
-.navbarB .cont {
+
+/* Links do meio */
+.navbarB .links {
     display: flex;
     justify-content: space-around;
-}
-.navbarB div.links {
-    display: flex;
-    justify-content: space-between;
     align-items: center;
-    flex-direction: row;
-    width: 30%;
+    flex: 2; /* ocupa mais espaço que logo e busca */
+    gap: 20px;
 }
+
+.navbarB .links a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.6rem;
+    transition: 0.3s ease-in-out;
+}
+
+.navbarB .links a:hover {
+    text-shadow: 0 0 30px #fd4b4b;
+    border-bottom: 1px solid var(--secundaria);
+    margin-bottom: 0.5rem;
+}
+
+.navbarB a.active {
+    background-color: var(--secundaria);
+    padding: 6px 10px;
+    border-radius: 5px;
+}
+
+/* Imagem logo */
 .navbarB img {
     width: 60px;
     height: 60px;
     border-radius: 50%;
 }
-.navbarB .links a {
-    color: white;
-    text-decoration: none;
-    font-size: 1.6rem;
-    transition: .3s ease-in-out;
+
+/* Campo de busca */
+.navbarB > div:last-child {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
 }
-.navbarB .links a:hover {
-    text-shadow: 0 0 30px #fd4b4b;
-    border-bottom: 1px solid;
-    margin-bottom: .5rem;
+
+.busca-container .busca-form {
+    display: flex;
+    align-items: center;
+    gap: 5px;
 }
-.navbarB a.active {
-    background-color: var(--secundaria);
-    /* azul escuro */
-    padding: 6px 10px;
+
+.busca-form input {
+    padding: 5px 10px;
+    font-size: 1rem;
     border-radius: 5px;
+    border: none;
+}
+
+.busca-form button {
+    background-color: var(--secundaria);
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 /*menu lateral-------------------------------------------------------------------------------------------------------------------------------------------------*/

@@ -19,13 +19,16 @@
     justify-content: center;
     flex-direction: column;
 }
+
 .letreiro h3 {
     font-size: 15rem;
     margin: 0;
 }
+
 .letreiro h3.nome1 {
     text-indent: -30%;
 }
+
 .letreiro h3.nome2 {
     text-indent: 30%;
 }
@@ -42,12 +45,14 @@
     display: flex;
     align-items: center;
 }
+
 .change-text h3 {
     display: inline-flex;
     margin: 0;
     font-weight: 300;
     vertical-align: top;
 }
+
 .change-text h3 .word {
     position: absolute;
     display: flex;
@@ -69,6 +74,7 @@
 .change-text h3 .word .letter.in {
     transition: .38s ease;
 }
+
 .change-text h3 .word .letter.behind {
     transform: rotateX(-90deg);
 }
@@ -79,20 +85,110 @@
     color: #ffffff;
     padding: 1rem;
 }
+
 .tela2 .carrossel-cards {
     display: flex;
     margin: 0 10%;
     height: 20%;
     background-color: var(--principal);
 }
+.destaques {
+    display: flex;
+    gap: 0.5rem;
+    padding: 1rem;
+    flex-wrap: wrap;
+    height: 70vh;
+    width: 70%;
+    margin: 2rem auto;
+}
+
+.destaques > div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    flex: 1;
+}
+
+.destaques > div > div,
+.destaques > div > a {
+    display: flex;
+    gap: 0.5rem;
+    height: 50%;
+}
+
+/* Reset dos links */
+.destaques a {
+    text-decoration: none;
+    color: inherit;
+    height: 100%;
+    width: 100%;
+}
+
+/* Estilo das caixinhas */
+.caixa {
+    position: relative;
+    color: white;
+    font-weight: bold;
+    font-size: 1.2rem;
+    padding: 1rem;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+/* Imagem de fundo usando <img> */
+.caixa img {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+    border-radius: 8px;
+}
+
+/* Escurece a imagem */
+.caixa::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+    transition: background 0.3s ease;
+}
+
+.caixa:hover {
+    transform: scale(0.97);
+}
+
+.caixa:hover::before {
+    background: rgba(0, 0, 0, 0.7);
+}
+
+/* Texto acima da imagem */
+.caixa p, .caixa span {
+    position: relative;
+    z-index: 2;
+    margin: 0;
+}
 
 /*terceira tela__________________________________________________________________________________________*/
 .tela3 {
     height: 500vh;
 }
+
 main {
     margin-top: 10%;
 }
+
 .box {
     width: 100%;
     height: 50vh;
@@ -100,71 +196,167 @@ main {
     flex-direction: row;
 }
 
-/*Clássicos*/
+/* Blocos verticais e horizontais compartilhados */
 .box .box-vert1,
 .box .box-hor1 {
     width: 50%;
     display: flex;
+    box-sizing: border-box;
 }
 
-/*vertical*/
+/* ----------- VERTICAL - tipo 1 (já está funcionando, mantido) ----------- */
 .box .box-vert1 {
     flex-direction: row;
+    gap: 1rem;
+    padding: 1rem;
 }
-.box1 .box-vert1 .vert1 {
-    width: 50%;
+
+.box1 .box-vert1 a {
+    flex: 1;
     display: flex;
-    height: 100%;
     flex-direction: column;
+    text-decoration: none;
+    transition: transform 0.3s ease-in-out;
 }
+
+.box1 .box-vert1 a:hover {
+    transform: scale(0.98);
+}
+
+.box1 .box-vert1 .vert1 {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
 .box1 .box-vert1 .vert1 .image,
 .box1 .box-vert1 .vert1 .info {
     width: 100%;
     height: 50%;
     display: flex;
     justify-content: center;
-}
-.box1 .box-vert1 .vert1 .info {
-    padding: 1rem;
-}
-.box1 .box-vert1 .vert1 .image img {
-    height: 100%;
-    margin: .5rem 0;
+    align-items: center;
 }
 
-/*horizontal*/
+.box1 .box-vert1 .vert1 .image img {
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: cover;
+}
+
+.box1 .box-vert1 .vert1 .info {
+    flex-direction: column;
+    padding: 0 1rem;
+    text-align: center;
+}
+
+.box1 .box-vert1 .vert1 .info p {
+    font-size: 0.9rem;
+}
+
+/* ----------- HORIZONTAL tipo 3 - box1.hor1 (usado em "Suspense e Mistério" e "Drama") ----------- */
 .box .box-hor1 {
     flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.box .box-hor1 a {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+    height: auto;
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out;
+}
+
+.box .box-hor1 a:hover {
+    transform: scale(0.98);
 }
 
 .box .box-hor1 .hor1 {
-    height: 50%;
     display: flex;
+    width: 100%;
     flex-direction: row;
+    border-radius: 8px;
+    overflow: hidden;
 }
+
 .box .box-hor1 .hor1 .image,
 .box .box-hor1 .hor1 .info {
     width: 50%;
     display: flex;
-    align-items: center;
     justify-content: center;
-}
-.box .box-hor1 .hor1 .image img {
-    height: 90%;
+    align-items: center;
+    padding: 1rem;
+    box-sizing: border-box;
 }
 
-/*terror*/
+.box .box-hor1 .hor1 .image img {
+    max-width: 100%;
+    max-height: 60%;
+    object-fit: contain;
+}
+
+.box .box-hor1 .hor1 .info p {
+    font-size: 0.95rem;
+    text-align: justify;
+    line-height: 1.4;
+}
+
+
+/* ----------- TIPO 2 - box2.hor2 (Terror e Aventura) ----------- */
+.box2 {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 1rem;
+    box-sizing: border-box;
+}
+
+.box2 a {
+    flex: 1 1 48%;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.3s ease-in-out;
+}
+
+.box2 a:hover {
+    transform: scale(0.98);
+}
+
 .box2 .hor2 {
     display: flex;
-    width: 50%;
+    flex-direction: row;
+    width: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+    height: 100%;
 }
+
 .box2 .hor2 .image,
 .box2 .hor2 .info {
     width: 50%;
     display: flex;
     align-items: center;
-}
-.box2 .hor2 .image img {
-    width: 100%;
+    justify-content: center;
+    padding: 1rem;
+    box-sizing: border-box;
 }
 
+.box2 .hor2 .image img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.box2 .hor2 .info p {
+    font-size: 0.95rem;
+    text-align: justify;
+    line-height: 1.4;
+}
