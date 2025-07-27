@@ -155,65 +155,10 @@ $nome = isset($_SESSION['nome']) ? $_SESSION['nome'] : 'Visitante';
                 <a href="sobre/sobre.php">Sobre</a>
             </div>
             <div>
-                <div class="busca-container">
-                    <form action="" method="GET" class="busca-form">
-                        <input type="text" name="busca" placeholder="nome do resenhista">
-                        <button type="submit"><i class='bx bx-search'></i></button>
-                    </form>
-                </div>
+
             </div>
 
         </nav>
-
-        <!--Resultado da pesquisa----------------------------------------------------------->
-        <div class="pesquisa">
-            <?php
-
-            if (!isset($_GET['busca']) || empty(trim($_GET['busca']))) {
-                echo "<div class='resultados'></div>";
-            } else {
-                // Proteção contra SQL Injection
-                $pesquisa = $conn->real_escape_string($_GET['busca']);
-
-                // Query de busca
-                $sql_code = "
-        SELECT livrarias.liv_id, liv_nome, liv_cidade, liv_estado, liv_endereco, liv_email, liv_foto, liv_telefone,
-        COUNT(livrarias_livros.liv_livro_id) AS total_livros 
-         FROM  livrarias
-    LEFT JOIN  livrarias_livros ON livrarias.liv_id = livrarias_livros.liv_id
-        WHERE  liv_nome LIKE '%$pesquisa%'
-     GROUP BY livrarias.liv_id, liv_nome, liv_cidade, liv_estado, liv_endereco, liv_email, liv_foto, liv_telefone";
-                $sql_query = $conn->query($sql_code) or die("Erro ao consultar: " . $conn->error);
-
-                if ($sql_query->num_rows == 0) {
-                    echo "<div class='resultados'><h3>Nenhum resultado encontrado!</h3></div>";
-                } else {
-                    while ($dados = $sql_query->fetch_assoc()) {
-                        $mensagem = urlencode("Olá, aqui fala a administradora do site Bibliófilos Community, gostaria de solicitar mais informações sobre sua livraria/ movimentações no nosso site!");
-
-                        $nome = htmlspecialchars($dados['liv_nome']);
-                        $email = htmlspecialchars($dados['liv_email']);
-                        $cidade = htmlspecialchars($dados['liv_cidade']);
-                        $estado = htmlspecialchars($dados['liv_estado']);
-                        $telefone = htmlspecialchars($dados['liv_telefone']);
-                        $total = (int) $dados['total_livros'];
-                        $foto = htmlspecialchars($dados['liv_foto']);
-
-                        echo "
-          <div class='card-liv'>
-              <a href=\"https://wa.me/{$telefone}?text=$mensagem\" target=\"_blank\">
-                 <img src=\"../imagens/livrarias/{$foto}\" alt=''>
-              </a>
-              <p>{$nome}</p>
-              <p>{$email}</p>
-              <p>{$cidade} ({$estado})</p>
-              <div class='input'>Total de Livros: {$total}</div>
-          </div>";
-                    }
-                }
-            }
-            ?>
-        </div>
 
         <div class="letreiro">
             <h3 class="nome1">Bibliófilos</h3>
@@ -290,10 +235,10 @@ LIMIT 7
 
         <div class="destaques">
             <div>
-                <a
-                    href="resenha-resultado/resenha.php?id=<?= isset($resenhas[0]) ? $resenhas[0]['resenha_id'] : '' ?>">
+                <a href="resenha-resultado/resenha.php?id=<?= isset($resenhas[0]) ? $resenhas[0]['resenha_id'] : '' ?>">
                     <div class="caixa destaque-grande">
-                        <img src="adm/imagens/livros/<?= isset($resenhas[0]) ? $resenhas[0]['livro_foto'] : '' ?>" alt="">
+                        <img src="adm/imagens/livros/<?= isset($resenhas[0]) ? $resenhas[0]['livro_foto'] : '' ?>"
+                            alt="">
                         <p><?= isset($resenhas[0]) ? $resenhas[0]['resenha_titulo'] : '' ?></p>
                     </div>
                 </a>
@@ -301,22 +246,25 @@ LIMIT 7
                     <a
                         href="resenha-resultado/resenha.php?id=<?= isset($resenhas[1]) ? $resenhas[1]['resenha_id'] : '' ?>">
                         <div class="caixa destaque-medio">
-                            <img src="adm/imagens/livros/<?= isset($resenhas[1]) ? $resenhas[1]['livro_foto'] : '' ?>" alt="">
+                            <img src="adm/imagens/livros/<?= isset($resenhas[1]) ? $resenhas[1]['livro_foto'] : '' ?>"
+                                alt="">
                             <p><?= isset($resenhas[1]) ? $resenhas[1]['resenha_titulo'] : '' ?></p>
                         </div>
                     </a>
-                    <div style="width: 50%;">
+                    <div style="width: 50%; display: flex; flex-direction: column; gap: 0.5rem;">
                         <a
                             href="resenha-resultado/resenha.php?id=<?= isset($resenhas[2]) ? $resenhas[2]['resenha_id'] : '' ?>">
                             <div class="caixa destaque-pequeno">
-                                <img src="adm/imagens/livros/<?= isset($resenhas[2]) ? $resenhas[2]['livro_foto'] : '' ?>" alt="">
+                                <img src="adm/imagens/livros/<?= isset($resenhas[2]) ? $resenhas[2]['livro_foto'] : '' ?>"
+                                    alt="">
                                 <p><?= isset($resenhas[2]) ? $resenhas[2]['resenha_titulo'] : '' ?></p>
                             </div>
                         </a>
                         <a
                             href="resenha-resultado/resenha.php?id=<?= isset($resenhas[3]) ? $resenhas[3]['resenha_id'] : '' ?>">
                             <div class="caixa destaque-pequeno" style="margin-top: .5rem">
-                                <img src="adm/imagens/livros/<?= isset($resenhas[3]) ? $resenhas[3]['livro_foto'] : '' ?>" alt="">
+                                <img src="adm/imagens/livros/<?= isset($resenhas[3]) ? $resenhas[3]['livro_foto'] : '' ?>"
+                                    alt="">
                                 <p><?= isset($resenhas[3]) ? $resenhas[3]['resenha_titulo'] : '' ?></p>
                             </div>
                         </a>
@@ -328,31 +276,36 @@ LIMIT 7
                     <a
                         href="resenha-resultado/resenha.php?id=<?= isset($resenhas[4]) ? $resenhas[4]['resenha_id'] : '' ?>">
                         <div class="caixa destaque-medio">
-                            <img src="adm/imagens/livros/<?= isset($resenhas[4]) ? $resenhas[4]['livro_foto'] : '' ?>" alt="">
+                            <img src="adm/imagens/livros/<?= isset($resenhas[4]) ? $resenhas[4]['livro_foto'] : '' ?>"
+                                alt="">
                             <p><?= isset($resenhas[4]) ? $resenhas[4]['resenha_titulo'] : '' ?></p>
                         </div>
                     </a>
                     <a
                         href="resenha-resultado/resenha.php?id=<?= isset($resenhas[5]) ? $resenhas[5]['resenha_id'] : '' ?>">
                         <div class="caixa destaque-medio">
-                            <img src="adm/imagens/livros/<?= isset($resenhas[5]) ? $resenhas[5]['livro_foto'] : '' ?>" alt="">
+                            <img src="adm/imagens/livros/<?= isset($resenhas[5]) ? $resenhas[5]['livro_foto'] : '' ?>"
+                                alt="">
                             <p><?= isset($resenhas[5]) ? $resenhas[5]['resenha_titulo'] : '' ?></p>
                         </div>
                     </a>
                 </div>
-                <a
-                    href="resenha-resultado/resenha.php?id=<?= isset($resenhas[6]) ? $resenhas[6]['resenha_id'] : '' ?>">
+                <a href="resenha-resultado/resenha.php?id=<?= isset($resenhas[6]) ? $resenhas[6]['resenha_id'] : '' ?>">
                     <div class="caixa destaque-grande">
-                        <img src="adm/imagens/livros/<?= isset($resenhas[6]) ? $resenhas[6]['livro_foto'] : '' ?>" alt="">
+                        <img src="adm/imagens/livros/<?= isset($resenhas[6]) ? $resenhas[6]['livro_foto'] : '' ?>"
+                            alt="">
                         <p><?= isset($resenhas[6]) ? $resenhas[6]['resenha_titulo'] : '' ?></p>
                     </div>
                 </a>
             </div>
         </div>
 
-        <div class="carrossel-cards">
-            <?php
-            $consulta = "SELECT liv_foto, liv_nome, liv_telefone FROM livrarias";
+            
+        <div class="container-slider">
+            <button id="prev-button"><i class='bx bx-chevron-left'></i></button>
+            <div class="container-images">
+                <?php
+            $consulta = "SELECT liv_foto, liv_telefone FROM livrarias";
             $stmt = $conn->prepare($consulta);
             $stmt->execute();
             $result = $stmt->get_result();
@@ -362,17 +315,15 @@ LIMIT 7
                     $mensagem = urlencode("Olá, entro em contato através do Bibliófilos Community. Gostaria de obter maiores informações!");
 
                     echo "
-                    <div>
                        <a href=\"https://wa.me/{$icon['liv_telefone']}?text=$mensagem\" target=\"_blank\">
                           <img src='adm/imagens/livrarias/{$icon['liv_foto']}' alt=''>
                        </a>
-                       <p>{$icon['liv_nome']}</p>
-                    </div>
                     ";
                 }
             }
-
             ?>
+            </div>
+            <button id="next-button"><i class='bx bx-chevron-right'></i></button>
         </div>
 
     </section>
@@ -902,6 +853,24 @@ LIMIT 7
             </div>
         </main>
     </section>
+    <footer class="site-footer">
+        <div class="footer-logo">
+            <img src="img.jpg" alt="Logo do site">
+        </div>
+
+        <div class="footer-texto">
+            <h3>Participe da nossa comunidade.</h3>
+            <p>Se torne um resenhista.</p>
+            <p>Entre em contato já!</p>
+        </div>
+
+        <div class="footer-redes">
+            <a href="#" target="_blank" aria-label="X"><i class='bx bxl-twitter'></i></a>
+            <a href="#" target="_blank" aria-label="Instagram"><i class='bx bxl-instagram'></i></a>
+            <a href="#" target="_blank" aria-label="TikTok"><i class='bx bxl-tiktok'></i></a>
+        </div>
+    </footer>
+
 
     <script>
         let words = document.querySelectorAll(".word");
@@ -963,6 +932,68 @@ LIMIT 7
                 menuContainer.classList.toggle('active');
                 sidebar.classList.toggle('abrir');
             });
+
+            // carrossel
+            const sliders = document.querySelectorAll('.slider');
+            const btnPrev = document.getElementById('prev-button');
+            const btnNext = document.getElementById('next-button');
+
+            let currentIndex = 0;
+            const itemsPerPage = 3;
+            const totalItems = sliders.length;
+
+            // Mostra 3 imagens a partir do currentIndex
+            function showImages() {
+                sliders.forEach((img, index) => {
+                    if (index >= currentIndex && index < currentIndex + itemsPerPage) {
+                        img.style.display = 'block';
+                    } else {
+                        img.style.display = 'none';
+                    }
+                });
+            }
+
+            // Próximo grupo de 3 imagens
+            function nextSlider() {
+                currentIndex += itemsPerPage;
+                if (currentIndex >= totalItems) {
+                    currentIndex = 0;
+                }
+                showImages();
+            }
+
+            // Grupo anterior de 3 imagens
+            function prevSlider() {
+                currentIndex -= itemsPerPage;
+                if (currentIndex < 0) {
+                    currentIndex = totalItems - (totalItems % itemsPerPage || itemsPerPage);
+                }
+                showImages();
+            }
+
+            // Eventos dos botões
+            btnNext.addEventListener('click', () => {
+                nextSlider();
+                restartAutoplay(); // reinicia o timer se o usuário interagir
+            });
+
+            btnPrev.addEventListener('click', () => {
+                prevSlider();
+                restartAutoplay();
+            });
+
+            // Autoplay a cada 4 segundos
+            let autoplay = setInterval(nextSlider, 4000);
+
+            // Reinicia o autoplay ao clicar em um botão
+            function restartAutoplay() {
+                clearInterval(autoplay);
+                autoplay = setInterval(nextSlider, 4000);
+            }
+
+            // Inicia mostrando as primeiras imagens
+            showImages();
+
 
 
         });

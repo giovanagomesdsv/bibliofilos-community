@@ -179,6 +179,51 @@
     z-index: 2;
     margin: 0;
 }
+/*carrossel*/
+.container-slider {
+    display: flex;
+    width: 80%;
+    margin: 0 10%;
+    height: 12rem;
+    padding: 1rem;
+    align-items: center;
+    justify-content: space-around;
+    border: 1px solid;
+    background-color: var(--principal);
+    gap: 1rem;
+}
+
+.container-images {
+    display: flex;
+    overflow: hidden;
+    width: 60%;
+    justify-content: space-between;
+    height: 100%;
+    gap: 1rem;
+}
+
+.container-images .slider {
+    flex: 0 0 calc(90% / 3 - 0.67rem); /* 3 imagens por vez */
+}
+
+#prev-button,
+#next-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    font-size: 3rem;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    transition: ease-in-out;
+}
+#prev-button:hover,
+#next-button:hover {
+    transform: scale(.8);
+}     
+
 
 /*terceira tela__________________________________________________________________________________________*/
 .tela3 {
@@ -204,7 +249,7 @@ main {
     box-sizing: border-box;
 }
 
-/* ----------- VERTICAL - tipo 1 (já está funcionando, mantido) ----------- */
+/* ----------- VERTICAL - tipo 1  ----------- */
 .box .box-vert1 {
     flex-direction: row;
     gap: 1rem;
@@ -254,6 +299,7 @@ main {
 
 .box1 .box-vert1 .vert1 .info p {
     font-size: 0.9rem;
+    margin-top: 1rem;
 }
 
 /* ----------- HORIZONTAL tipo 3 - box1.hor1 (usado em "Suspense e Mistério" e "Drama") ----------- */
@@ -302,6 +348,12 @@ main {
     object-fit: contain;
 }
 
+.box .box-hor1 .hor1 .info {
+    font-size: 0.95rem;
+    text-align: justify;
+    line-height: 1.4;
+    flex-direction: column;
+}
 .box .box-hor1 .hor1 .info p {
     font-size: 0.95rem;
     text-align: justify;
@@ -309,7 +361,7 @@ main {
 }
 
 
-/* ----------- TIPO 2 - box2.hor2 (Terror e Aventura) ----------- */
+/* ----------- TIPO 2 ----------- */
 .box2 {
     display: flex;
     flex-direction: row;
@@ -346,7 +398,10 @@ main {
     align-items: center;
     justify-content: center;
     padding: 1rem;
-    box-sizing: border-box;
+}
+.box2 .hor2 .info {
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .box2 .hor2 .image img {
@@ -359,4 +414,50 @@ main {
     font-size: 0.95rem;
     text-align: justify;
     line-height: 1.4;
+}
+
+.site-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--principal); /* ou qualquer cor escura */
+    padding: 2rem 5%;
+    color: white;
+    flex-wrap: wrap;
+    gap: 2rem;
+    border-top: 2px solid #ccc;
+    height: 50vh;
+}
+
+.footer-logo img {
+    width: 14rem;
+    height: 14rem;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.footer-texto h3 {
+    font-size: 2rem;
+    margin: 0;
+}
+
+.footer-texto p {
+    margin-top: 2rem;
+    font-size: 1.5rem;
+}
+
+.footer-redes {
+    display: flex;
+    gap: 1rem;
+    font-size: 4rem;
+}
+
+.footer-redes a {
+    color: white;
+    transition: transform 0.2s, color 0.2s;
+}
+
+.footer-redes a:hover {
+    transform: scale(1.2);
+    color: #ff4081; /* destaque ao passar o mouse */
 }
