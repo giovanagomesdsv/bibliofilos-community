@@ -300,32 +300,6 @@ LIMIT 7
             </div>
         </div>
 
-            
-        <div class="container-slider">
-            <button id="prev-button"><i class='bx bx-chevron-left'></i></button>
-            <div class="container-images">
-                <?php
-            $consulta = "SELECT liv_foto, liv_telefone FROM livrarias";
-            $stmt = $conn->prepare($consulta);
-            $stmt->execute();
-            $result = $stmt->get_result();
-
-            if ($result->num_rows > 0) {
-                while ($icon = $result->fetch_assoc()) {
-                    $mensagem = urlencode("Olá, entro em contato através do Bibliófilos Community. Gostaria de obter maiores informações!");
-
-                    echo "
-                       <a href=\"https://wa.me/{$icon['liv_telefone']}?text=$mensagem\" target=\"_blank\">
-                          <img src='adm/imagens/livrarias/{$icon['liv_foto']}' alt=''>
-                       </a>
-                    ";
-                }
-            }
-            ?>
-            </div>
-            <button id="next-button"><i class='bx bx-chevron-right'></i></button>
-        </div>
-
     </section>
 
     <!--Terceira tela______________________________________________________________________________________________________________-->
@@ -933,70 +907,6 @@ LIMIT 7
                 sidebar.classList.toggle('abrir');
             });
 
-            // carrossel
-            const sliders = document.querySelectorAll('.slider');
-            const btnPrev = document.getElementById('prev-button');
-            const btnNext = document.getElementById('next-button');
-
-            let currentIndex = 0;
-            const itemsPerPage = 3;
-            const totalItems = sliders.length;
-
-            // Mostra 3 imagens a partir do currentIndex
-            function showImages() {
-                sliders.forEach((img, index) => {
-                    if (index >= currentIndex && index < currentIndex + itemsPerPage) {
-                        img.style.display = 'block';
-                    } else {
-                        img.style.display = 'none';
-                    }
-                });
-            }
-
-            // Próximo grupo de 3 imagens
-            function nextSlider() {
-                currentIndex += itemsPerPage;
-                if (currentIndex >= totalItems) {
-                    currentIndex = 0;
-                }
-                showImages();
-            }
-
-            // Grupo anterior de 3 imagens
-            function prevSlider() {
-                currentIndex -= itemsPerPage;
-                if (currentIndex < 0) {
-                    currentIndex = totalItems - (totalItems % itemsPerPage || itemsPerPage);
-                }
-                showImages();
-            }
-
-            // Eventos dos botões
-            btnNext.addEventListener('click', () => {
-                nextSlider();
-                restartAutoplay(); // reinicia o timer se o usuário interagir
-            });
-
-            btnPrev.addEventListener('click', () => {
-                prevSlider();
-                restartAutoplay();
-            });
-
-            // Autoplay a cada 4 segundos
-            let autoplay = setInterval(nextSlider, 4000);
-
-            // Reinicia o autoplay ao clicar em um botão
-            function restartAutoplay() {
-                clearInterval(autoplay);
-                autoplay = setInterval(nextSlider, 4000);
-            }
-
-            // Inicia mostrando as primeiras imagens
-            showImages();
-
-
-
-        });
     </script>
 </body>
 
