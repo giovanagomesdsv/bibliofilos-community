@@ -88,7 +88,6 @@ main {
     padding: 0 40px;
     box-sizing: border-box;
     font-size: 1.6rem;
-    border-bottom: 2px solid #fff; /* ou var(--secundaria), se quiser */
 }
 
 /* Logo */

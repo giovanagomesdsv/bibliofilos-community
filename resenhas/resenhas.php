@@ -143,13 +143,13 @@ $nome = isset($_SESSION['nome']) ? $_SESSION['nome'] : 'Visitante';
                     ?>
                 </div>
                 <a href="#sec1">
-                    <img src="logo.png" alt="Logo do site">
+                    <img src="../logo.png" alt="Logo do site">
                 </a>
             </div>
             <div class="links">
                 <a href='login/login.php'>Login</a>
-                <a class="active" href="#">Home</a>
-                <a href="resenhas/resenhas.php">Resenhas</a>
+                <a href="#">Home</a>
+                <a class="active" href="resenhas/resenhas.php">Resenhas</a>
                 <a href="autores/autores.php">Autores</a>
                 <a href="livros/livros.php">Livros</a>
                 <a href="sobre/sobre.php">Sobre</a>
