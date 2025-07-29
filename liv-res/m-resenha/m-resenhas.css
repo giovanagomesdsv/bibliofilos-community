@@ -10,7 +10,7 @@
 }
 /*caixa de texto da sinopse*/
 .sinopseBox{
-    background-color: white;
+    background-color: rgb(245, 240, 240);
     width:66rem;
     height:20rem;
     overflow:scroll;
@@ -33,7 +33,7 @@
     background-color: white;
     width:90rem;
     height:20rem;
-    overflow:scroll;
+    overFlow: hidden; 
 }
 /*deixa o texto da resenha preto e ajeitar sua posição*/
 .resenhaText{
