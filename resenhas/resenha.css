@@ -1,3 +1,41 @@
+:root {
+    --bg: #f0f0f0;
+    --text: #f5f5f5;
+    --principal: #56070C;
+    --secundaria: #11114E;
+}
 main {
     margin-top: 10rem;
+}
+
+.generos {
+    display: flex;
+    flex-wrap: wrap; /* permite quebrar linha quando necessário */
+    gap: 3rem; /* espaçamento entre os itens */
+    padding: 1rem;
+    justify-content: center; /* centraliza os itens */
+}
+
+.generos > div {
+    background-color: var(--principal);
+    padding: 1rem;
+    border-radius: 8px;
+    min-width: 20%;
+    text-align: center;
+    transition: transform 0.2s ease;
+}
+
+.generos > div:hover {
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transform: scale(1.05);
+}
+
+.generos > div a {
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.generos > div p {
+    margin: 0;
 }
