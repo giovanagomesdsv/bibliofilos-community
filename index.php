@@ -264,8 +264,9 @@ LIMIT 7
                             <p><?= isset($resenhas[1]) ? $resenhas[1]['resenha_titulo'] : '' ?></p>
                         </div>
                     </a>
-                    <div style="width: 50%; display: flex; flex-direction: column; overflow: hidden; border-radius: 8px">
-                        <a 
+                    <div
+                        style="width: 50%; display: flex; flex-direction: column; overflow: hidden; border-radius: 8px">
+                        <a
                             href="resenha-resultado/resenha.php?id=<?= isset($resenhas[2]) ? $resenhas[2]['resenha_id'] : '' ?>">
                             <div class="caixa destaque-pequeno">
                                 <img src="adm/imagens/livros/<?= isset($resenhas[2]) ? $resenhas[2]['livro_foto'] : '' ?>"
@@ -273,7 +274,7 @@ LIMIT 7
                                 <p><?= isset($resenhas[2]) ? $resenhas[2]['resenha_titulo'] : '' ?></p>
                             </div>
                         </a>
-                        <a 
+                        <a
                             href="resenha-resultado/resenha.php?id=<?= isset($resenhas[3]) ? $resenhas[3]['resenha_id'] : '' ?>">
                             <div class="caixa destaque-pequeno" style="margin-top: .5rem">
                                 <img src="adm/imagens/livros/<?= isset($resenhas[3]) ? $resenhas[3]['livro_foto'] : '' ?>"
@@ -915,10 +916,12 @@ LIMIT 7
         setInterval(changeText, 10000);
 
 
+        /*menu lateral */
         document.addEventListener('DOMContentLoaded', () => {
             const hamburguerBtn = document.getElementById('hamburguer-btn');
             const menuContainer = document.getElementById('menu-container');
             const menuToggle = document.getElementById('menu-toggle');
+            const sidebar = document.getElementById('sidebar'); // Adicionado aqui
 
             // Abre/fecha o menu lateral (slide-in)
             hamburguerBtn.addEventListener('click', () => {
@@ -926,11 +929,12 @@ LIMIT 7
                 sidebar.classList.toggle('abrir');
             });
 
-            // Abre/fecha o menu lateral (slide-in)
             menuToggle.addEventListener('click', () => {
                 menuContainer.classList.toggle('active');
                 sidebar.classList.toggle('abrir');
             });
+        });
+
 
     </script>
 </body>

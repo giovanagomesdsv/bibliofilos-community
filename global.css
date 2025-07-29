@@ -183,6 +183,8 @@ main {
     transition: left 0.3s ease-in-out;
     z-index: 1500;
     overflow-x: hidden;
+    color: #fff;
+
 }
 
 /* Quando ativado */
@@ -196,7 +198,7 @@ main {
     background: var(--secundaria);
     padding-left: 1rem;
     transition: 0.3s ease-in-out;
-    color: white;
+    color: #fff;
 }
 
 /* Quando expandida */

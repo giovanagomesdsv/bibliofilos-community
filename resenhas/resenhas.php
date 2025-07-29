@@ -217,6 +217,11 @@ $nome = isset($_SESSION['nome']) ? $_SESSION['nome'] : 'Visitante';
 
        
     </section>
+    <main>
+        <?php
+        
+        ?>
+    </main>
 
     
 
