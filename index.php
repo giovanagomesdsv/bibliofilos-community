@@ -1,4 +1,13 @@
 <?php
+function limitarTexto($texto, $limite, $final = '...')
+{
+    if (strlen($texto) <= $limite) {
+        return $texto;
+    }
+    return substr($texto, 0, $limite) . $final;
+}
+?>
+<?php
 include "conexao.php";
 session_start();
 
@@ -422,7 +431,7 @@ LIMIT 7
                             <p><?= isset($res_horror[0]) ? $res_horror[0]['res_nome_fantasia'] : '' ?></p>
                             <h1><?= isset($res_horror[0]) ? $res_horror[0]['resenha_titulo'] : '' ?></h1>
                             <p>
-                                <?= isset($res_horror[1]) ? mb_strimwidth($res_horror[1]['livro_sinopse'], 0, 150, '...') : '' ?>
+                                <?= isset($res_horror[1]) ? limitarTexto($res_horror[1]['livro_sinopse'], 350, '...') : '' ?>
                             </p>
                         </div>
                     </div>
@@ -436,7 +445,7 @@ LIMIT 7
                             <p><?= isset($res_horror[1]) ? $res_horror[1]['res_nome_fantasia'] : '' ?></p>
                             <h1><?= isset($res_horror[1]) ? $res_horror[1]['resenha_titulo'] : '' ?></h1>
                             <p>
-                                <?= isset($res_horror[1]) ? mb_strimwidth($res_horror[1]['livro_sinopse'], 0, 150, '...') : '' ?>
+                                <?= isset($res_horror[1]) ? limitarTexto($res_horror[1]['livro_sinopse'], 350, '...') : '' ?>
                             </p>
                         </div>
                     </div>
@@ -557,7 +566,7 @@ LIMIT 7
                                 <p><?= isset($res_romance[0]) ? $res_romance[0]['res_nome_fantasia'] : '' ?></p>
                                 <h1><?= isset($res_romance[0]) ? $res_romance[0]['resenha_titulo'] : '' ?></h1>
                                 <p>
-                                    <?= isset($res_romance[0]) ? mb_strimwidth($res_romance[0]['livro_sinopse'], 0, 150, '...') : '' ?>
+                                    <?= isset($res_romance[0]) ? limitarTexto($res_romance[0]['livro_sinopse'], 350, '...') : '' ?>
                                 </p>
                             </div>
                         </div>
@@ -573,7 +582,7 @@ LIMIT 7
                                 <p><?= isset($res_romance[1]) ? $res_romance[1]['res_nome_fantasia'] : '' ?></p>
                                 <h1><?= isset($res_romance[1]) ? $res_romance[1]['resenha_titulo'] : '' ?></h1>
                                 <p>
-                                    <?= isset($res_romance[1]) ? mb_strimwidth($res_romance[1]['livro_sinopse'], 0, 150, '...') : '' ?>
+                                    <?= isset($res_romance[1]) ? limitarTexto($res_romance[1]['livro_sinopse'], 350, '...') : '' ?>
                                 </p>
                             </div>
                         </div>
@@ -591,7 +600,7 @@ LIMIT 7
                                 <p><?= isset($res_romance[2]) ? $res_romance[2]['res_nome_fantasia'] : '' ?></p>
                                 <h1><?= isset($res_romance[2]) ? $res_romance[2]['resenha_titulo'] : '' ?></h1>
                                 <p>
-                                    <?= isset($res_romance[2]) ? mb_strimwidth($res_romance[2]['livro_sinopse'], 0, 150, '...') : '' ?>
+                                    <?= isset($res_romance[2]) ? limitarTexto($res_romance[2]['livro_sinopse'], 150, '...') : '' ?>
                                 </p>
                             </div>
                         </div>
@@ -607,7 +616,7 @@ LIMIT 7
                                 <p><?= isset($res_romance[3]) ? $res_romance[3]['res_nome_fantasia'] : '' ?></p>
                                 <h1><?= isset($res_romance[3]) ? $res_romance[3]['resenha_titulo'] : '' ?></h1>
                                 <p>
-                                    <?= isset($res_romance[3]) ? mb_strimwidth($res_romance[3]['livro_sinopse'], 0, 150, '...') : '' ?>
+                                    <?= isset($res_romance[3]) ? limitarTexto($res_romance[3]['livro_sinopse'], 350, '...') : '' ?>
                                 </p>
                             </div>
                         </div>
@@ -729,7 +738,7 @@ LIMIT 7
                             <p><?= isset($res_aventura[0]) ? $res_aventura[0]['res_nome_fantasia'] : '' ?></p>
                             <h1><?= isset($res_aventura[0]) ? $res_aventura[0]['resenha_titulo'] : '' ?></h1>
                             <p>
-                                <?= isset($res_aventura[1]) ? mb_strimwidth($res_aventura[1]['livro_sinopse'], 0, 150, '...') : '' ?>
+                                <?= isset($res_aventura[1]) ? limitarTexto($res_aventura[1]['livro_sinopse'], 350, '...') : '' ?>
                             </p>
                         </div>
                     </div>
@@ -743,12 +752,13 @@ LIMIT 7
                             <p><?= isset($res_aventura[1]) ? $res_aventura[1]['res_nome_fantasia'] : '' ?></p>
                             <h1><?= isset($res_aventura[1]) ? $res_aventura[1]['resenha_titulo'] : '' ?></h1>
                             <p>
-                                <?= isset($res_aventura[1]) ? mb_strimwidth($res_aventura[1]['livro_sinopse'], 0, 150, '...') : '' ?>
+                                <?= isset($res_aventura[1]) ? limitarTexto($res_aventura[1]['livro_sinopse'], 350, '...') : '' ?>
                             </p>
                         </div>
                     </div>
                 </a>
             </div>
+
 
             <!--tipo 3-->
             <?php
@@ -783,6 +793,9 @@ LIMIT 7
                             <div class="info">
                                 <h1><?= isset($res_ficcao[0]) ? $res_ficcao[0]['resenha_titulo'] : '' ?></h1>
                                 <p><?= isset($res_ficcao[0]) ? $res_ficcao[0]['res_nome_fantasia'] : '' ?></p>
+                                <p>
+                                    <?= isset($res_ficcao[0]) ? limitarTexto($res_ficcao[0]['livro_sinopse'], 350, '...') : '' ?>
+                                </p>
                             </div>
                         </div>
                     </a>
@@ -796,6 +809,9 @@ LIMIT 7
                             <div class="info">
                                 <h1><?= isset($res_ficcao[1]) ? $res_ficcao[1]['resenha_titulo'] : '' ?></h1>
                                 <p><?= isset($res_ficcao[1]) ? $res_ficcao[1]['res_nome_fantasia'] : '' ?></p>
+                                <p>
+                                    <?= isset($res_ficcao[1]) ? limitarTexto($res_ficcao[1]['livro_sinopse'], 350, '...') : '' ?>
+                                </p>
                             </div>
                         </div>
                     </a>
@@ -811,6 +827,9 @@ LIMIT 7
                             <div class="info">
                                 <h1><?= isset($res_ficcao[2]) ? $res_ficcao[2]['resenha_titulo'] : '' ?></h1>
                                 <p><?= isset($res_ficcao[2]) ? $res_ficcao[2]['res_nome_fantasia'] : '' ?></p>
+                                <p>
+                                    <?= isset($res_ficcao[2]) ? limitarTexto($res_ficcao[2]['livro_sinopse'], 350, '...') : '' ?>
+                                </p>
                             </div>
                         </div>
                     </a>
@@ -824,6 +843,9 @@ LIMIT 7
                             <div class="info">
                                 <h1><?= isset($res_ficcao[3]) ? $res_ficcao[3]['resenha_titulo'] : '' ?></h1>
                                 <p><?= isset($res_ficcao[3]) ? $res_ficcao[3]['res_nome_fantasia'] : '' ?></p>
+                                <p>
+                                    <?= isset($res_ficcao[3]) ? limitarTexto($res_ficcao[3]['livro_sinopse'], 350, '...') : '' ?>
+                                </p>
                             </div>
                         </div>
                     </a>
