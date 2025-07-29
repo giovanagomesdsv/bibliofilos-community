@@ -147,12 +147,12 @@ $nome = isset($_SESSION['nome']) ? $_SESSION['nome'] : 'Visitante';
                 </a>
             </div>
             <div class="links">
-                <a href='login/login.php'>Login</a>
-                <a href="#">Home</a>
-                <a class="active" href="resenhas/resenhas.php">Resenhas</a>
-                <a href="autores/autores.php">Autores</a>
-                <a href="livros/livros.php">Livros</a>
-                <a href="sobre/sobre.php">Sobre</a>
+                <a href='../login/login.php'>Login</a>
+                <a href="../index.php">Home</a>
+                <a class="active" href="#">Resenhas</a>
+                <a href="../autores/autores.php">Autores</a>
+                <a href="../livros/livros.php">Livros</a>
+                <a href="../sobre/sobre.php">Sobre</a>
             </div>
             <div>
                 <div class="busca-container">
