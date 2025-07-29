@@ -24,6 +24,7 @@
 .letreiro h3 {
     font-size: 15rem;
     margin: 0;
+    color: #fff;
 }
 
 .letreiro h3.nome1 {
@@ -179,15 +180,13 @@
     position: relative;
     z-index: 2;
     margin: 0;
+    color: #fff;
+    font-size: 2rem;
 }
 
 /*terceira tela__________________________________________________________________________________________*/
 .tela3 {
     height: 500vh;
-}
-
-main {
-    margin-top: 10%;
 }
 
 .box {
@@ -377,7 +376,7 @@ main {
     align-items: center;
     background-color: var(--principal); /* ou qualquer cor escura */
     padding: 2rem 5%;
-    color: white;
+    color: #fff;
     flex-wrap: wrap;
     gap: 2rem;
     height: 50vh;
@@ -393,11 +392,15 @@ main {
 .footer-texto h3 {
     font-size: 2rem;
     margin: 0;
+        color: #fff;
+
 }
 
 .footer-texto p {
     margin-top: 2rem;
     font-size: 1.5rem;
+        color: #fff;
+
 }
 
 .footer-redes {
@@ -407,7 +410,7 @@ main {
 }
 
 .footer-redes a {
-    color: white;
+    color: #fff;
     transition: transform 0.2s, color 0.2s;
 }
 

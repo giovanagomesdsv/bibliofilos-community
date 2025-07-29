@@ -264,8 +264,8 @@ LIMIT 7
                             <p><?= isset($resenhas[1]) ? $resenhas[1]['resenha_titulo'] : '' ?></p>
                         </div>
                     </a>
-                    <div style="width: 50%; display: flex; flex-direction: column; gap: 0.5rem;">
-                        <a
+                    <div style="width: 50%; display: flex; flex-direction: column; overflow: hidden; border-radius: 8px">
+                        <a 
                             href="resenha-resultado/resenha.php?id=<?= isset($resenhas[2]) ? $resenhas[2]['resenha_id'] : '' ?>">
                             <div class="caixa destaque-pequeno">
                                 <img src="adm/imagens/livros/<?= isset($resenhas[2]) ? $resenhas[2]['livro_foto'] : '' ?>"
@@ -273,7 +273,7 @@ LIMIT 7
                                 <p><?= isset($resenhas[2]) ? $resenhas[2]['resenha_titulo'] : '' ?></p>
                             </div>
                         </a>
-                        <a
+                        <a 
                             href="resenha-resultado/resenha.php?id=<?= isset($resenhas[3]) ? $resenhas[3]['resenha_id'] : '' ?>">
                             <div class="caixa destaque-pequeno" style="margin-top: .5rem">
                                 <img src="adm/imagens/livros/<?= isset($resenhas[3]) ? $resenhas[3]['livro_foto'] : '' ?>"
@@ -758,8 +758,7 @@ LIMIT 7
                     </div>
                 </a>
             </div>
-
-
+            <br><br><br><br><br><br><br><br><br><br>
             <!--tipo 3-->
             <?php
             $ficcao = "SELECT resenha_id, resenha_titulo, livro_sinopse, livro_foto, res_nome_fantasia, gen_nome FROM RESENHAS INNER JOIN LIVROS ON RESENHAS.livro_id = LIVROS.livro_id INNER JOIN RESENHISTAS ON RESENHISTAS.res_id = RESENHAS.res_id INNER JOIN LIVRO_GENEROS ON LIVROS.livro_id = LIVRO_GENEROS.livro_id INNER JOIN GENEROS ON GENEROS.gen_id = LIVRO_GENEROS.gen_id WHERE gen_nome = ? AND resenha_status = ? ORDER BY resenha_dtpublicacao DESC LIMIT 4";
