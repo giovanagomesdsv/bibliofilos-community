@@ -854,7 +854,7 @@ LIMIT 7
     </section>
     <footer class="site-footer">
         <div class="footer-logo">
-            <img src="img.jpg" alt="Logo do site">
+            <img src="logo.png" alt="Logo do site">
         </div>
 
         <div class="footer-texto">
@@ -864,9 +864,9 @@ LIMIT 7
         </div>
 
         <div class="footer-redes">
-            <a href="#" target="_blank" aria-label="X"><i class='bx bxl-twitter'></i></a>
-            <a href="#" target="_blank" aria-label="Instagram"><i class='bx bxl-instagram'></i></a>
-            <a href="#" target="_blank" aria-label="TikTok"><i class='bx bxl-tiktok'></i></a>
+            <a href="#" target="_blank" aria-label="X"><i class='bx bxl-twitter' style="color: #fff"></i></a>
+            <a href="#" target="_blank" aria-label="Instagram"><i class='bx bxl-instagram' style="color: #fff"></i></a>
+            <a href="#" target="_blank" aria-label="TikTok"><i class='bx bxl-tiktok' style="color: #fff"></i></a>
         </div>
     </footer>
 
