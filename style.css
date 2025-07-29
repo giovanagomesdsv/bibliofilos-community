@@ -1,6 +1,5 @@
 :root {
-    --bg: #f4f4f4;
-    --bg2: #f0f0f0;
+    --bg: #f0f0f0;
     --text: #f5f5f5;
     --principal: #56070C;
     --secundaria: #11114E;
@@ -84,7 +83,7 @@
 
 /*segunda tela__________________________________________________________________________________________*/
 .tela2 {
-    background-color: var(--bg2);
+    background-color: var(--bg);
     color: #ffffff;
     padding: 1rem;
 }

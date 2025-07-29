@@ -25,7 +25,7 @@ $nome = isset($_SESSION['nome']) ? $_SESSION['nome'] : 'Visitante';
 
 <body>
     <!--Primeira tela______________________________________________________________________________________________________________-->
-    <section class="tela1" id="sec1">
+    <div class="tela1" id="sec1">
 
         <!-- Navbar principal -->
         <nav class="navbarB">
@@ -164,42 +164,45 @@ $nome = isset($_SESSION['nome']) ? $_SESSION['nome'] : 'Visitante';
             </div>
 
         </nav>
+    </div>
+    <main style="border: 1px solid red; margin-top: 10rem">
 
-        <!--Resultado da pesquisa----------------------------------------------------------->
-        <div class="pesquisa">
-            <?php
+        <div style="border: 1px solid blue; width: 100%">
+            <!--Resultado da pesquisa----------------------------------------------------------->
+            <div class="pesquisa" style="border: 1px solid blueviolet">
+                <?php
 
-            if (!isset($_GET['busca']) || empty(trim($_GET['busca']))) {
-                echo "<div class='resultados'></div>";
-            } else {
-                // Proteção contra SQL Injection
-                $pesquisa = $conn->real_escape_string($_GET['busca']);
+                if (!isset($_GET['busca']) || empty(trim($_GET['busca']))) {
+                    echo "<div class='resultados'></div>";
+                } else {
+                    // Proteção contra SQL Injection
+                    $pesquisa = $conn->real_escape_string($_GET['busca']);
 
-                // Query de busca
-                $sql_code = "
+                    // Query de busca
+                    $sql_code = "
         SELECT livrarias.liv_id, liv_nome, liv_cidade, liv_estado, liv_endereco, liv_email, liv_foto, liv_telefone,
         COUNT(livrarias_livros.liv_livro_id) AS total_livros 
          FROM  livrarias
     LEFT JOIN  livrarias_livros ON livrarias.liv_id = livrarias_livros.liv_id
         WHERE  liv_nome LIKE '%$pesquisa%'
      GROUP BY livrarias.liv_id, liv_nome, liv_cidade, liv_estado, liv_endereco, liv_email, liv_foto, liv_telefone";
-                $sql_query = $conn->query($sql_code) or die("Erro ao consultar: " . $conn->error);
+                    $sql_query = $conn->query($sql_code) or die("Erro ao consultar: " . $conn->error);
 
-                if ($sql_query->num_rows == 0) {
-                    echo "<div class='resultados'><h3>Nenhum resultado encontrado!</h3></div>";
-                } else {
-                    while ($dados = $sql_query->fetch_assoc()) {
-                        $mensagem = urlencode("Olá, aqui fala a administradora do site Bibliófilos Community, gostaria de solicitar mais informações sobre sua livraria/ movimentações no nosso site!");
+                    if ($sql_query->num_rows == 0) {
+                        echo "<div class='resultados'><h3>Nenhum resultado encontrado!</h3></div>";
+                    } else {
+                        while ($dados = $sql_query->fetch_assoc()) {
+                            $mensagem = urlencode("Olá, aqui fala a administradora do site Bibliófilos Community, gostaria de solicitar mais informações sobre sua livraria/ movimentações no nosso site!");
 
-                        $nome = htmlspecialchars($dados['liv_nome']);
-                        $email = htmlspecialchars($dados['liv_email']);
-                        $cidade = htmlspecialchars($dados['liv_cidade']);
-                        $estado = htmlspecialchars($dados['liv_estado']);
-                        $telefone = htmlspecialchars($dados['liv_telefone']);
-                        $total = (int) $dados['total_livros'];
-                        $foto = htmlspecialchars($dados['liv_foto']);
+                            $nome = htmlspecialchars($dados['liv_nome']);
+                            $email = htmlspecialchars($dados['liv_email']);
+                            $cidade = htmlspecialchars($dados['liv_cidade']);
+                            $estado = htmlspecialchars($dados['liv_estado']);
+                            $telefone = htmlspecialchars($dados['liv_telefone']);
+                            $total = (int) $dados['total_livros'];
+                            $foto = htmlspecialchars($dados['liv_foto']);
 
-                        echo "
+                            echo "
           <div class='card-liv'>
               <a href=\"https://wa.me/{$telefone}?text=$mensagem\" target=\"_blank\">
                  <img src=\"../imagens/livrarias/{$foto}\" alt=''>
@@ -209,23 +212,80 @@ $nome = isset($_SESSION['nome']) ? $_SESSION['nome'] : 'Visitante';
               <p>{$cidade} ({$estado})</p>
               <div class='input'>Total de Livros: {$total}</div>
           </div>";
+                        }
                     }
                 }
+                ?>
+            </div>
+
+            <!--FILTRO DOS GENEROS-->
+            <?php
+            $resenha = "SELECT gen_nome, livro_titulo, gen_icone, resenha_id FROM GENEROS INNER JOIN LIVRO_GENEROS ON GENEROS.gen_id = LIVRO_GENEROS.gen_id INNER JOIN LIVROS ON LIVROS.livro_id = LIVRO_GENEROS.livro_id INNER JOIN RESENHAS ON RESENHAS.livro_id = LIVROS.livro_id;";
+            $generos = "SELECT gen_nome FROM GENEROS";
+            $stmt = $conn->prepare($generos);
+            $stmt->execute();
+            $result = $stmt->get_result();
+
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    echo "
+    <div>
+        <div>
+            <a href='?genero=" . urlencode($row['gen_nome']) . "'>
+                <p>{$row['gen_nome']}</p>
+            </a>
+        </div>
+    </div>
+    ";
+                }
             }
+
+            if (isset($_GET['genero']) && !empty($_GET['genero'])) {
+                $generoSelecionado = $_GET['genero'];
+                $sqlResenhas = "SELECT gen_nome, livro_titulo, gen_icone, resenha_id 
+                    FROM GENEROS 
+                    INNER JOIN LIVRO_GENEROS ON GENEROS.gen_id = LIVRO_GENEROS.gen_id 
+                    INNER JOIN LIVROS ON LIVROS.livro_id = LIVRO_GENEROS.livro_id 
+                    INNER JOIN RESENHAS ON RESENHAS.livro_id = LIVROS.livro_id
+                    WHERE gen_nome = ?";
+
+                $stmt = $conn->prepare($sqlResenhas);
+                $stmt->bind_param("s", $generoSelecionado);
+                $stmt->execute();
+                $res = $stmt->get_result();
+
+                if ($res->num_rows > 0) {
+                    echo "<h2>Resenhas do gênero: " . htmlspecialchars($generoSelecionado) . "</h2>";
+                    while ($resenha = $res->fetch_assoc()) {
+                        echo "
+            <div class='resenha'>
+                <p><strong>Título:</strong> {$resenha['livro_titulo']}</p>
+                <p><a href='resenha-resultado/resenha.php?id={$resenha['resenha_id']}'>Ver resenha</a></p>
+            </div>
+            ";
+                    }
+                } else {
+                    echo "<p>Nenhuma resenha encontrada para esse gênero.</p>";
+                }
+            }
+            $stmt->close();
+
             ?>
         </div>
 
-       
-    </section>
-    <main>
+        <div class="titulo">
+            <p>Todas as resenhas</p>
+        </div>
         <?php
-        
+        $resenhas = "SELECT RESENHA_TEXTO, RESENHA_DTPUBLICACAO, res_nome_fantasia FROM RESENHAS INNER JOIN RESENHISTAS ON RESENHAS.res_id = RESENHAS.res_id";
         ?>
+
     </main>
 
-    
 
-    
+
+
+
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
