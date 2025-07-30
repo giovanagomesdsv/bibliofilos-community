@@ -9,6 +9,7 @@ main {
     margin-top: 10rem;
 }
 
+/*GENEROS -------------------------------------------------------*/
 .categorias-container {
     width: 100%;
     position: relative;
@@ -16,7 +17,6 @@ main {
     transition: .5s ease-in-out;
 
 }
-
 
 .categorias-toggle {
     background-color: #800000;
@@ -58,9 +58,12 @@ main {
     color: #333;
 }
 
+/*RESENHAS -------------------------------------------------------*/
+
 .resenhas-container {
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
     gap: 2rem;
     margin-top: 2rem;
 }
@@ -74,24 +77,34 @@ main {
 }
 
 /* 1º estilo: 1, 5, 9, ... */
-.resenhas-container .resenha:nth-child(4n + 1) {
+/* 2º estilo: 2, 6, 10, ... */
+.resenhas-container .resenha:nth-child(4n + 1),
+.resenhas-container .resenha:nth-child(4n + 2) {
     display: flex;
     flex-direction: column;
     width: 25%;
     height: 35vh;
-    background-color: #fce4e4;
-    /* rosa claro */
+    background-color: var(--secundaria);
 }
 
-.resenhas-container .resenha:nth-child(4n + 1) .resenha-imagem {
+.resenhas-container .resenha:nth-child(4n + 1):hover,
+.resenhas-container .resenha:nth-child(4n + 2):hover {
+    transform: scale(0.97);
+}
+
+.resenhas-container .resenha:nth-child(4n + 1) .resenha-imagem,
+.resenhas-container .resenha:nth-child(4n + 2) .resenha-imagem {
     height: 17.5vh;
     padding: .5rem;
 }
-.resenhas-container .resenha:nth-child(4n + 1) .resenha-imagem img{
+
+.resenhas-container .resenha:nth-child(4n + 1) .resenha-imagem img,
+.resenhas-container .resenha:nth-child(4n + 2) .resenha-imagem img {
     height: 100%;
 }
 
-.resenhas-container .resenha:nth-child(4n + 1) .resenha-conteudo {
+.resenhas-container .resenha:nth-child(4n + 1) .resenha-conteudo,
+.resenhas-container .resenha:nth-child(4n + 2) .resenha-conteudo {
     height: 17.5vh;
     padding: 1rem;
     display: flex;
@@ -99,57 +112,40 @@ main {
     justify-content: center;
     flex-direction: column;
 }
-.resenhas-container .resenha:nth-child(4n + 1) .resenha-conteudo h3{
+
+.resenhas-container .resenha:nth-child(4n + 1) .resenha-conteudo h3,
+.resenhas-container .resenha:nth-child(4n + 2) .resenha-conteudo h3 {
     font-size: 3rem;
     flex-wrap: wrap;
 }
-.resenhas-container .resenha:nth-child(4n + 1) .resenha-conteudo p{
+
+.resenhas-container .resenha:nth-child(4n + 1) .resenha-conteudo p,
+.resenhas-container .resenha:nth-child(4n + 2) .resenha-conteudo p {
     font-size: 1rem;
 }
 
-.resenhas-container .resenha:nth-child(4n + 1) .cont-texto {
+.resenhas-container .resenha:nth-child(4n + 1) .cont-texto,
+.resenhas-container .resenha:nth-child(4n + 2) .cont-texto {
     display: none;
-}
-
-
-
-
-
-
-
-
-/* 2º estilo: 2, 6, 10, ... */
-.resenhas-container .resenha:nth-child(4n + 2) {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    background-color: #e8f0fe;
-    /* azul claro */
 }
 
 /* 3º estilo: 3, 7, 11, ... */
 .resenhas-container .resenha:nth-child(4n + 3) {
-    flex-direction: row-reverse;
-    background-color: #e4fce4;
-    /* verde claro */
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    height: 35vh;
+    background-color: var(--secundaria);
 }
+
+
+
 
 /* 4º estilo: 4, 8, 12, ... */
 .resenhas-container .resenha:nth-child(4n) {
-    flex-direction: column-reverse;
-    align-items: center;
-    text-align: center;
-    background-color: #fff9c4;
-    /* amarelo claro */
-}
-
-.resenha-imagem img {
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
-    border-radius: 8px;
-}
-
-.resenha-conteudo {
-    flex: 1;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 35vh;
+    background-color: var(--secundaria);
 }
