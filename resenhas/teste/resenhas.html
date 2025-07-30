@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Ícones -->
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="../../global.css">
+    <link rel="stylesheet" href="../resenha.css">
+
+    <title>BIBLIÓFILOS Community - Resenhas</title>
+</head>
+
+<body>
+    <!--Primeira tela______________________________________________________________________________________________________________-->
+    <div class="tela1" id="sec1">
+
+        <!-- Navbar principal -->
+        <nav class="navbarB">
+            <div class="cont">
+
+            </div>
+            <a href="#sec1">
+                <img src="../logo.png" alt="Logo do site">
+            </a>
+    </div>
+    <div class="links">
+        <a href='../login/login.php'>Login</a>
+        <a href="../index.php">Home</a>
+        <a class="active" href="#">Resenhas</a>
+        <a href="../autores/autores.php">Autores</a>
+        <a href="../livros/livros.php">Livros</a>
+        <a href="../sobre/sobre.php">Sobre</a>
+    </div>
+    <div>
+        <div class="busca-container">
+            <form action="" method="GET" class="busca-form">
+                <input type="text" name="busca" placeholder="nome do resenhista">
+                <button type="submit"><i class='bx bx-search'></i></button>
+            </form>
+        </div>
+    </div>
+
+    </nav>
+    </div>
+    <main style="border: 1px solid red; margin-top: 10rem">
+
+        <div style="border: 1px solid blue; width: 100%">
+            <!--Resultado da pesquisa----------------------------------------------------------->
+            <div class="pesquisa" style="border: 1px solid blueviolet">
+
+            </div>
+
+            <!--FILTRO DOS GENEROS-->
+            <div class="categorias-container">
+                <button class="categorias-toggle" onclick="toggleCategorias()">Categorias ▼</button>
+                <div class="generos" id="lista-categorias">
+                    <div><a href="#">
+                            <p>Ficção</p>
+                        </a></div>
+                    <div><a href="#">
+                            <p>Romance</p>
+                        </a></div>
+                    <div><a href="#">
+                            <p>Fantasia</p>
+                        </a></div>
+                    <div><a href="#">
+                            <p>Terror</p>
+                        </a></div>
+                    <div><a href="#">
+                            <p>Suspense</p>
+                        </a></div>
+                    <div><a href="#">
+                            <p>Drama</p>
+                        </a></div>
+                    <div><a href="#">
+                            <p>Aventura</p>
+                        </a></div>
+                    <div><a href="#">
+                            <p>Clássicos</p>
+                        </a></div>
+                    <div><a href="#">
+                            <p>Poesia</p>
+                        </a></div>
+                    <!-- Adicione mais categorias aqui -->
+                </div>
+            </div>
+
+            <div class=" titulo">
+                <p>Todas as resenhas</p>
+            </div>
+
+            <a href="">
+                <div class='resenha'>
+                    <img src=''>
+                    <div class='resenha-info'>
+                        <h2>
+
+                        </h2>
+                        <p><strong>Por:</strong>
+
+                            </strong>
+
+                        </p>
+                        <p>
+
+                        </p>
+                    </div>
+                </div>
+            </a>
+
+
+    </main>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburguerBtn = document.getElementById('hamburguer-btn');
+            const menuContainer = document.getElementById('menu-container');
+            const menuToggle = document.getElementById('menu-toggle');
+
+            // Abre/fecha o menu lateral (slide-in)
+            hamburguerBtn.addEventListener('click', () => {
+                menuContainer.classList.toggle('active');
+                sidebar.classList.toggle('abrir');
+            });
+
+            // Abre/fecha o menu lateral (slide-in)
+            menuToggle.addEventListener('click', () => {
+                menuContainer.classList.toggle('active');
+                sidebar.classList.toggle('abrir');
+            });
+
+
+        });
+
+        function toggleCategorias() {
+            const lista = document.getElementById("lista-categorias");
+            lista.style.display = lista.style.display === "flex" ? "none" : "flex";
+        }
+    </script>
+</body>
+
+</html>

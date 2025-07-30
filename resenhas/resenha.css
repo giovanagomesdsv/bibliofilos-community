@@ -4,38 +4,55 @@
     --principal: #56070C;
     --secundaria: #11114E;
 }
+
 main {
     margin-top: 10rem;
 }
 
-.generos {
+.categorias-container {
+    width: 100%;
+    position: relative;
+    font-family: Arial, sans-serif;
+    border: 1px solid red;
+}
+
+
+.categorias-toggle {
+    background-color: #800000;
+    color: white;
+    padding: 1.5rem;
     display: flex;
-    flex-wrap: wrap; /* permite quebrar linha quando necessário */
-    gap: 3rem; /* espaçamento entre os itens */
-    padding: 1rem;
-    justify-content: center; /* centraliza os itens */
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: none;
+    width: 100%;
+    text-align: left;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    border-radius: 5px;
 }
 
-.generos > div {
-    background-color: var(--principal);
-    padding: 1rem;
-    border-radius: 8px;
-    min-width: 20%;
-    text-align: center;
-    transition: transform 0.2s ease;
+.generos {
+    display: none;
+    flex-direction: column;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    margin-top: 5px;
+    border-radius: 5px;
+    max-height: 300px;
+    overflow-y: auto;
 }
 
-.generos > div:hover {
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    transform: scale(1.05);
+.generos div {
+    padding: 10px;
 }
 
-.generos > div a {
+.generos div:hover {
+    background-color: #eee;
+}
+
+.generos a {
     text-decoration: none;
-    color: #ffffff;
-    font-weight: bold;
-}
-
-.generos > div p {
-    margin: 0;
+    color: #333;
 }

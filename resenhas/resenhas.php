@@ -228,7 +228,9 @@ $nome = isset($_SESSION['nome']) ? $_SESSION['nome'] : 'Visitante';
             </div>
 
             <!--FILTRO DOS GENEROS-->
-            <div class="generos">
+             <div class="categorias-container">
+                <button class="categorias-toggle" onclick="toggleCategorias()">Categorias ▼</button>
+                <div class="generos" id="lista-categorias">
                 <?php
                 $resenha = "SELECT gen_nome, livro_titulo, gen_icone, resenha_id FROM GENEROS INNER JOIN LIVRO_GENEROS ON GENEROS.gen_id = LIVRO_GENEROS.gen_id INNER JOIN LIVROS ON LIVROS.livro_id = LIVRO_GENEROS.livro_id INNER JOIN RESENHAS ON RESENHAS.livro_id = LIVROS.livro_id;";
                 $generos = "SELECT gen_nome FROM GENEROS";
@@ -339,6 +341,11 @@ $nome = isset($_SESSION['nome']) ? $_SESSION['nome'] : 'Visitante';
 
 
         });
+
+        function toggleCategorias() {
+            const lista = document.getElementById("lista-categorias");
+            lista.style.display = lista.style.display === "flex" ? "none" : "flex";
+        }
     </script>
 </body>
 
