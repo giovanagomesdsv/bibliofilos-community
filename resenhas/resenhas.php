@@ -270,7 +270,10 @@ $nome = isset($_SESSION['nome']) ? $_SESSION['nome'] : 'Visitante';
                     $res = $stmt->get_result();
 
                     if ($res->num_rows > 0) {
-                        echo "<h2>Resenhas do gênero: " . htmlspecialchars($generoSelecionado) . "</h2>";
+                        echo "
+                        <div class='titulo'>
+                          <p>$generoSelecionado</p>
+                         </div>";
 
                         while ($resenha = $res->fetch_assoc()) {
                             echo "
@@ -292,35 +295,41 @@ $nome = isset($_SESSION['nome']) ? $_SESSION['nome'] : 'Visitante';
             <div class="titulo">
                 <p>Todas as resenhas</p>
             </div>
-            <?php
+            <div class="resenhas-container">
+                <?php
 
-            $resenhas = "SELECT resenha_titulo, resenha_texto, resenha_dtpublicacao, res_nome_fantasia, livro_foto, resenha_id 
+                $resenhas = "SELECT resenha_titulo, resenha_texto, resenha_dtpublicacao, res_nome_fantasia, livro_foto, resenha_id 
              FROM RESENHAS 
              INNER JOIN RESENHISTAS ON RESENHAS.res_id = RESENHISTAS.res_id 
              INNER JOIN LIVROS ON RESENHAS.livro_id = LIVROS.livro_id ORDER BY resenha_dtpublicacao DESC";
 
-            $stmt = $conn->prepare($resenhas);
-            $stmt->execute();
-            $resp = $stmt->get_result();
+                $stmt = $conn->prepare($resenhas);
+                $stmt->execute();
+                $resp = $stmt->get_result();
 
-            if ($resp->num_rows > 0) {
-                while ($resenha = $resp->fetch_assoc()) {
-                    echo "
+                if ($resp->num_rows > 0) {
+                    while ($resenha = $resp->fetch_assoc()) {
+                        echo "
         <div class='resenha'>
-            <div class='resenha-imagem'>
-                <img src='../adm/imagens/livros/{$resenha['livro_foto']}' alt='Ícone do gênero'>
-            </div>
-            <div class='resenha-conteudo'>
-                <h3>{$resenha['resenha_titulo']}</h3>
-                <p><a href='../resenha-resultado/resenha.php?id={$resenha['resenha_id']}'>Ver resenha</a></p>
-            </div>
+           <a href='../resenha-resultado/resenha.php?id={$resenha['resenha_id']}'>
+               <div class='resenha-imagem'>
+                   <img src='../adm/imagens/livros/{$resenha['livro_foto']}' alt='Ícone do gênero'>
+               </div>
+               <div class='resenha-conteudo'>
+                   <h3>{$resenha['resenha_titulo']}</h3>
+                   <p>{$resenha['res_nome_fantasia']} - {$resenha['resenha_dtpublicacao']}</p>
+               </div>
+               <div class='cont-texto'>
+                   <p>" . limitarTexto($resenha['resenha_texto'], 350, '...') . "</p>
+               </div>
+            </a>
         </div>
         ";
+                    }
                 }
-            }
-            ?>
+                ?>
 
-            <!--
+                <!--
             <a href="../resenha-resultado/resenha.php?id=<?= isset($resenha[0]) ? $resenha[0]['resenha_id'] : '' ?>">
                 <div class='resenha'>
                     <img src='../adm/imagens/livros/<?= isset($resenha[0]) ? $resenha[0]['livro_foto'] : '' ?>'>
@@ -334,7 +343,7 @@ $nome = isset($_SESSION['nome']) ? $_SESSION['nome'] : 'Visitante';
                 </div>
             </a>
         -->
-
+            </div>
     </main>
     <script>
         document.addEventListener('DOMContentLoaded', () => {

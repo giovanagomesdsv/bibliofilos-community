@@ -68,24 +68,79 @@ main {
 .resenha {
     display: flex;
     gap: 1.5rem;
-    padding: 1.5rem;
-    border-radius: 12px;
+    border-radius: 1rem;
     transition: 0.3s ease-in-out;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* ÍMPARES: layout horizontal */
-.resenhas-container .resenha:nth-child(odd) {
-    flex-direction: row;
-    background-color: #fce4e4; /* rosa claro */
+/* 1º estilo: 1, 5, 9, ... */
+.resenhas-container .resenha:nth-child(4n + 1) {
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+    height: 35vh;
+    background-color: #fce4e4;
+    /* rosa claro */
 }
 
-/* PARES: layout vertical */
-.resenhas-container .resenha:nth-child(even) {
+.resenhas-container .resenha:nth-child(4n + 1) .resenha-imagem {
+    height: 17.5vh;
+    padding: .5rem;
+}
+.resenhas-container .resenha:nth-child(4n + 1) .resenha-imagem img{
+    height: 100%;
+}
+
+.resenhas-container .resenha:nth-child(4n + 1) .resenha-conteudo {
+    height: 17.5vh;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.resenhas-container .resenha:nth-child(4n + 1) .resenha-conteudo h3{
+    font-size: 3rem;
+    flex-wrap: wrap;
+}
+.resenhas-container .resenha:nth-child(4n + 1) .resenha-conteudo p{
+    font-size: 1rem;
+}
+
+.resenhas-container .resenha:nth-child(4n + 1) .cont-texto {
+    display: none;
+}
+
+
+
+
+
+
+
+
+/* 2º estilo: 2, 6, 10, ... */
+.resenhas-container .resenha:nth-child(4n + 2) {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    background-color: #e8f0fe; /* azul claro */
+    background-color: #e8f0fe;
+    /* azul claro */
+}
+
+/* 3º estilo: 3, 7, 11, ... */
+.resenhas-container .resenha:nth-child(4n + 3) {
+    flex-direction: row-reverse;
+    background-color: #e4fce4;
+    /* verde claro */
+}
+
+/* 4º estilo: 4, 8, 12, ... */
+.resenhas-container .resenha:nth-child(4n) {
+    flex-direction: column-reverse;
+    align-items: center;
+    text-align: center;
+    background-color: #fff9c4;
+    /* amarelo claro */
 }
 
 .resenha-imagem img {
