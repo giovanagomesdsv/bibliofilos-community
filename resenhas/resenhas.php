@@ -174,9 +174,9 @@ $nome = isset($_SESSION['nome']) ? $_SESSION['nome'] : 'Visitante';
 
         </nav>
     </div>
-    <main style="border: 1px solid red; margin-top: 10rem">
+    <main>
 
-        <div style="border: 1px solid blue; width: 100%">
+        <div style="width: 100%">
             <!--Resultado da pesquisa----------------------------------------------------------->
             <div class="pesquisa" style="border: 1px solid blueviolet">
                 <?php
@@ -228,37 +228,41 @@ $nome = isset($_SESSION['nome']) ? $_SESSION['nome'] : 'Visitante';
             </div>
 
             <!--FILTRO DOS GENEROS-->
-             <div class="categorias-container">
+            <div class="categorias-container">
                 <button class="categorias-toggle" onclick="toggleCategorias()">Categorias ▼</button>
                 <div class="generos" id="lista-categorias">
-                <?php
-                $resenha = "SELECT gen_nome, livro_titulo, gen_icone, resenha_id FROM GENEROS INNER JOIN LIVRO_GENEROS ON GENEROS.gen_id = LIVRO_GENEROS.gen_id INNER JOIN LIVROS ON LIVROS.livro_id = LIVRO_GENEROS.livro_id INNER JOIN RESENHAS ON RESENHAS.livro_id = LIVROS.livro_id;";
-                $generos = "SELECT gen_nome FROM GENEROS";
-                $stmt = $conn->prepare($generos);
-                $stmt->execute();
-                $result = $stmt->get_result();
+                    <?php
+                    $generos = "SELECT gen_nome FROM GENEROS";
+                    $stmt = $conn->prepare($generos);
+                    $stmt->execute();
+                    $result = $stmt->get_result();
 
-                if ($result->num_rows > 0) {
-                    while ($row = $result->fetch_assoc()) {
-                        echo "
-    
-        <div>
-            <a href='?genero=" . urlencode($row['gen_nome']) . "'>
-                <p>{$row['gen_nome']}</p>
-            </a>
-        </div>
-    ";
+                    if ($result->num_rows > 0) {
+                        while ($row = $result->fetch_assoc()) {
+                            echo "
+                <div>
+                    <a href='?genero=" . urlencode($row['gen_nome']) . "'>
+                        <p>{$row['gen_nome']}</p>
+                    </a>
+                </div>
+                ";
+                        }
                     }
-                }
+                    $stmt->close();
+                    ?>
+                </div>
+            </div>
 
+            <div class="resenhas-container">
+                <?php
                 if (isset($_GET['genero']) && !empty($_GET['genero'])) {
                     $generoSelecionado = $_GET['genero'];
                     $sqlResenhas = "SELECT gen_nome, livro_titulo, gen_icone, resenha_id 
-                    FROM GENEROS 
-                    INNER JOIN LIVRO_GENEROS ON GENEROS.gen_id = LIVRO_GENEROS.gen_id 
-                    INNER JOIN LIVROS ON LIVROS.livro_id = LIVRO_GENEROS.livro_id 
-                    INNER JOIN RESENHAS ON RESENHAS.livro_id = LIVROS.livro_id
-                    WHERE gen_nome = ?";
+                        FROM GENEROS 
+                        INNER JOIN LIVRO_GENEROS ON GENEROS.gen_id = LIVRO_GENEROS.gen_id 
+                        INNER JOIN LIVROS ON LIVROS.livro_id = LIVRO_GENEROS.livro_id 
+                        INNER JOIN RESENHAS ON RESENHAS.livro_id = LIVROS.livro_id
+                        WHERE gen_nome = ?";
 
                     $stmt = $conn->prepare($sqlResenhas);
                     $stmt->bind_param("s", $generoSelecionado);
@@ -267,58 +271,69 @@ $nome = isset($_SESSION['nome']) ? $_SESSION['nome'] : 'Visitante';
 
                     if ($res->num_rows > 0) {
                         echo "<h2>Resenhas do gênero: " . htmlspecialchars($generoSelecionado) . "</h2>";
+
                         while ($resenha = $res->fetch_assoc()) {
                             echo "
-            <div class='resenha'>
-                <p><strong>Título:</strong> {$resenha['livro_titulo']}</p>
-                <p><a href='resenha-resultado/resenha.php?id={$resenha['resenha_id']}'>Ver resenha</a></p>
-            </div>
-            ";
+                <div class='resenha'>
+                    <p><strong>Título:</strong> {$resenha['livro_titulo']}</p>
+                    <p><a href='resenha-resultado/resenha.php?id={$resenha['resenha_id']}'>Ver resenha</a></p>
+                </div>
+                ";
                         }
                     } else {
                         echo "<p>Nenhuma resenha encontrada para esse gênero.</p>";
                     }
-                }
-                $stmt->close();
 
+                    $stmt->close();
+                }
                 ?>
             </div>
-        </div>
+            <!--RESENHAS_______________________________________________________________________________________-->
+            <div class="titulo">
+                <p>Todas as resenhas</p>
+            </div>
+            <?php
 
-        <div class="titulo">
-            <p>Todas as resenhas</p>
-        </div>
-        <?php
-
-        $resenhas = "SELECT resenha_titulo, resenha_texto, resenha_dtpublicacao, res_nome_fantasia, livro_foto, resenha_id 
+            $resenhas = "SELECT resenha_titulo, resenha_texto, resenha_dtpublicacao, res_nome_fantasia, livro_foto, resenha_id 
              FROM RESENHAS 
              INNER JOIN RESENHISTAS ON RESENHAS.res_id = RESENHISTAS.res_id 
              INNER JOIN LIVROS ON RESENHAS.livro_id = LIVROS.livro_id ORDER BY resenha_dtpublicacao DESC";
 
-        $stmt = $conn->prepare($resenhas);
-        $stmt->execute();
-        $resp = $stmt->get_result();
-        $resenha = [];
+            $stmt = $conn->prepare($resenhas);
+            $stmt->execute();
+            $resp = $stmt->get_result();
 
-        if ($resp->num_rows > 0) {
-            while ($linha = $resp->fetch_assoc()) {
-                $resenha[] = $linha;
-            }
-        }
-        ?>
-        <a href="../resenha-resultado/resenha.php?id=<?= isset($resenha[0]) ? $resenha[0]['resenha_id'] : '' ?>">
-            <div class='resenha'>
-                <img src='../adm/imagens/livros/<?= isset($resenha[0]) ? $resenha[0]['livro_foto'] : '' ?>'>
-                <div class='resenha-info'>
-                    <h2><?= isset($resenha[0]) ? $resenha[0]['resenha_titulo'] : '' ?></h2>
-                    <p><strong>Por:</strong> <?= isset($resenha[0]) ? $resenha[0]['res_nome_fantasia'] : '' ?> -
-                        </strong>
-                        <?= isset($resenha[0]) ? $resenha[0]['resenha_dtpublicacao'] : '' ?></p>
-                    <p><?= isset($resenha[0]) ? limitarTexto($resenha[0]['resenha_texto'], 350, '...') : '' ?></p>
-                </div>
+            if ($resp->num_rows > 0) {
+                while ($resenha = $resp->fetch_assoc()) {
+                    echo "
+        <div class='resenha'>
+            <div class='resenha-imagem'>
+                <img src='../adm/imagens/livros/{$resenha['livro_foto']}' alt='Ícone do gênero'>
             </div>
-        </a>
+            <div class='resenha-conteudo'>
+                <h3>{$resenha['resenha_titulo']}</h3>
+                <p><a href='../resenha-resultado/resenha.php?id={$resenha['resenha_id']}'>Ver resenha</a></p>
+            </div>
+        </div>
+        ";
+                }
+            }
+            ?>
 
+            <!--
+            <a href="../resenha-resultado/resenha.php?id=<?= isset($resenha[0]) ? $resenha[0]['resenha_id'] : '' ?>">
+                <div class='resenha'>
+                    <img src='../adm/imagens/livros/<?= isset($resenha[0]) ? $resenha[0]['livro_foto'] : '' ?>'>
+                    <div class='resenha-info'>
+                        <h2><?= isset($resenha[0]) ? $resenha[0]['resenha_titulo'] : '' ?></h2>
+                        <p><strong>Por:</strong> <?= isset($resenha[0]) ? $resenha[0]['res_nome_fantasia'] : '' ?> -
+                            </strong>
+                            <?= isset($resenha[0]) ? $resenha[0]['resenha_dtpublicacao'] : '' ?></p>
+                        <p><?= isset($resenha[0]) ? limitarTexto($resenha[0]['resenha_texto'], 350, '...') : '' ?></p>
+                    </div>
+                </div>
+            </a>
+        -->
 
     </main>
     <script>

@@ -13,7 +13,8 @@ main {
     width: 100%;
     position: relative;
     font-family: Arial, sans-serif;
-    border: 1px solid red;
+    transition: .5s ease-in-out;
+
 }
 
 
@@ -27,7 +28,6 @@ main {
     cursor: pointer;
     border: none;
     width: 100%;
-    text-align: left;
     font-size: 1.5rem;
     text-transform: uppercase;
     border-radius: 5px;
@@ -40,12 +40,13 @@ main {
     border: 1px solid #ccc;
     margin-top: 5px;
     border-radius: 5px;
-    max-height: 300px;
+    max-height: 30rem;
     overflow-y: auto;
+
 }
 
 .generos div {
-    padding: 10px;
+    padding: 1rem;
 }
 
 .generos div:hover {
@@ -55,4 +56,45 @@ main {
 .generos a {
     text-decoration: none;
     color: #333;
+}
+
+.resenhas-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.resenha {
+    display: flex;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    border-radius: 12px;
+    transition: 0.3s ease-in-out;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* ÍMPARES: layout horizontal */
+.resenhas-container .resenha:nth-child(odd) {
+    flex-direction: row;
+    background-color: #fce4e4; /* rosa claro */
+}
+
+/* PARES: layout vertical */
+.resenhas-container .resenha:nth-child(even) {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background-color: #e8f0fe; /* azul claro */
+}
+
+.resenha-imagem img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.resenha-conteudo {
+    flex: 1;
 }
