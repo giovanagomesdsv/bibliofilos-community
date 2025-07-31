@@ -64,8 +64,10 @@ main {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: center;
     gap: 2rem;
     margin-top: 2rem;
+    border: 5px solid;
 }
 
 .resenha {
@@ -75,22 +77,22 @@ main {
     transition: 0.3s ease-in-out;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     border: 1px solid red;
+    background-color: #fff;
+
+}
+
+.resenha:hover {
+    transform: scale(0.97);
 }
 
 /* 1º estilo: 1, 5, 9, ... */
 /* 2º estilo: 2, 6, 10, ... */
 .resenhas-container .resenha:nth-child(4n + 1),
-.resenhas-container .resenha:nth-child(4n + 2) {
+.resenhas-container .resenha:nth-child(2) {
     display: flex;
     flex-direction: column;
-    width: 25%;
+    width: 24%;
     height: 35vh;
-    background-color: #fff;
-}
-
-.resenhas-container .resenha:nth-child(4n + 1):hover,
-.resenhas-container .resenha:nth-child(4n + 2):hover {
-    transform: scale(0.97);
 }
 
 .resenhas-container .resenha:nth-child(4n + 1) .resenha-imagem,
@@ -134,14 +136,19 @@ main {
 .resenhas-container .resenha:nth-child(4n + 3) {
     display: flex;
     flex-direction: column;
-    width: 50%;
+    width: 48%;
     height: 35vh;
-    background-color: var(--secundaria);
 }
+
 .resenhas-container .resenha:nth-child(4n + 3) .resenha-imagem,
 .resenhas-container .resenha:nth-child(4n + 3) .resenha-imagem {
     height: 17.5vh;
     padding: .5rem;
+    border: 1px solid;
+}
+.resenhas-container .resenha:nth-child(4n + 3) .resenha-imagem img,
+.resenhas-container .resenha:nth-child(4n + 2) .resenha-imagem img {
+    height: 100%;
 }
 
 
@@ -153,5 +160,4 @@ main {
     flex-direction: column;
     width: 100%;
     height: 35vh;
-    background-color: var(--secundaria);
 }
