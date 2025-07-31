@@ -27,7 +27,9 @@ $id =  $_SESSION['id'];
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Apenas 1 link correto para os ícones -->
-    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href='https://cdn.boxicons.com/fonts/basic/boxicons.min.css' rel='stylesheet'>
+    <link href='https://cdn.boxicons.com/fonts/brands/boxicons-brands.min.css' rel='stylesheet'>
 
     <link rel="stylesheet" href="../geral.css">
     <link rel="stylesheet" type="text/css" href="m-resenhas.css">
