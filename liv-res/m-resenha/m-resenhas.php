@@ -219,10 +219,10 @@ $id =  $_SESSION['id'];
             echo "
             <div class='card'>
                 <div class='cont'>
-                    <img src='../../adm/imagens/livros/$foto' alt='foto.png' style='border: 2px solid red;'>
-                    <div>
-                        <h2 style='color: black'>$resenha</h2>
-                        <p style='color: black'>$sinopse</p>
+                    <img src='../../adm/imagens/livros/$foto' alt='foto.png'>
+                    <div >
+                        <h2 class='text'>$resenha</h2>
+                        <p class='text'>$sinopse</p>
                     </div>
                 </div>
                 <div class='cont2'>
