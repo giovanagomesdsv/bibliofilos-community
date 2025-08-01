@@ -39,34 +39,50 @@ if ($result->num_rows > 0) {
 </head>
 
 <body>
-    <main class='containA'>
-
-        <div>
-            <h1>$titulo</h1>
-            <p class='titulos2'>Sinopse:</p>
-            <div class='display'>
-                <img src='../../adm/imagens/livros/$foto' alt='foto.png' class='fotos'>
-                <div class='sinopseBox'>
-                    <p class='resenhaText'> $sinopse</p>
-                    <p class='titulos'> $avaliacao</p>
-                    <p class='titulos'> $publicacao</p>
-                    <p class='titulos'> $atualizacaop</p>
-                    
+     <main>
+        <div class='card card1'>
+            <div class='cardimgsinopse'>
+                <div class="box-img">
+                    <img class='imagem1' src='../../adm/imagens/livros/<?php echo $foto ?>' alt=''>
+                </div>
+                <div class="sinopse">
+                    <h1>
+                        <?php echo $titulo ?>
+                    </h1>
+                    <p style="color: #fff">
+                        Sinopse:
+                        <?php echo $sinopse ?>
+                    </p>
                 </div>
             </div>
-        </div>
-        <div>
-            <p class='titulos'>Resenha:</p>
-            <div class='resenhaBox'>
-                <p class='resenhaText'>$resenha</p>
+            <div>
+                <div>
+                    <form method="POST">
+
+                        <div>
+                            <label class="resenhabox" for="resenha">Resenha:</label><br>
+                            <textarea class="resenha" name="resenha" id="resenha" rows="5" cols="60"
+                                required></textarea><br><br>
+                        </div>
+
+                        <label for="avaliacao">Avaliação do livro:</label><br>
+                        <div class="rating">
+                            <input type="radio" id="estrela5" name="avaliacao" value="5"><label for="estrela5">★</label>
+                            <input type="radio" id="estrela4" name="avaliacao" value="4"><label for="estrela4">★</label>
+                            <input type="radio" id="estrela3" name="avaliacao" value="3"><label for="estrela3">★</label>
+                            <input type="radio" id="estrela2" name="avaliacao" value="2"><label for="estrela2">★</label>
+                            <input type="radio" id="estrela1" name="avaliacao" value="1" required><label
+                                for="estrela1">★</label>
+                        </div><br><br>
+                        <input class="botao1" type="submit" value="Enviar">
+                    </form>
+                </div>
+                <a class="notas" href='m-resenhas.php'>
+                    <button class="botao1">Cancelar</button>
+                </a>
             </div>
-            <a href='m-resenhas.php'>
-                <button class='btn'Voltar</button>
-            </a>
         </div>
-
     </main>
-
 </body>
 
 </html>    ";

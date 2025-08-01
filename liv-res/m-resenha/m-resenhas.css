@@ -1,54 +1,99 @@
-/*ABRIR.php ----------------------------------------------------------*/
 
-/*!!utilizados na main ou em cards (background azul)*/
-.containA{
-    background-color:var(--principal) ;
+
+/*css abrir resenha-------------------------------------*/
+
+
+.card1 {
+    height: auto;
 }
-.fotos{
-    width:20rem;
-   
+
+.its {
+    display: flex;
+    flex-direction: row;
 }
-/*caixa de texto da sinopse*/
-.sinopseBox{
-    background-color:red;
-    width:66rem;
-    height:20rem;
-    overflow:hidden;
+
+.cardimgsinopse {
+    display: flex;
+    flex-direction: row;
+    width:100%;
+    border: solid 1px red;
 }
-/*deixar itens alinhados*/
-.display{
-    gap:20px;
-    display:flex;
+.cardimgsinopse .box-img{
+    width: 20%;
 }
-/*alinhar titulo com box*/
-.margintitulos{
-    margin-right:85rem;
+.sinopse{
+    color: #f5f5f5;
+    width: 80%;
+    margin: 0 2rem;
 }
-/*alinhar titulo com box (tipo 2)*/
-.margintitulos2{
-    margin-right:38rem;
+.imgliv {
+    width: 20%;
+    
 }
-/*caixa de texto da resenha*/
-.resenhaBox{
-    background-color: white;
-    width:90rem;
-    height:20rem;
-    overFlow: hidden; 
+
+.imagem1 {
+    width: 10rem;
+    height: 15rem;
+    margin: 2rem;
 }
-/*deixa o texto da resenha preto e ajeitar sua posição*/
-.resenhaText{
-    color:black;
-    align-items: flex-start;
-    justify-content: left;
+
+/* texto de sinopse */
+.cardimgsinopse .sinopse h1{
+    font-size: 2rem;
+    text-align: center;
+    align-items: center;
 }
-/*um css para o botão*/
-.btn{
-    margin-top:1rem;
-    background-color:var(--secundaria);
-    width:25rem;
-    height:5rem;
+
+.resenhabox {
+    display: flex;
+    text-align: start;
+    margin: 0 2rem;
+    font-size: 2rem;
 
 }
+
+.resenha {
+    height: 40rem;
+    width: 97%;
+    text-align: justify;
+    color: black;
+}
+
+.botao1 {
+    width: 98%;
+    padding: 1.2rem;
+    background-color: var(--terciaria);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.6rem;
+    cursor: pointer;
+    margin-bottom: 0.5rem;
+}
+
+.rating {
+    direction: rtl;
+    unicode-bidi: bidi-override;
+    display: inline-block;
+}
+
+.rating input {
+    display: none;
+}
+
+.rating label {
+    font-size: 2em;
+    color: #ccc;
+    cursor: pointer;
+}
+
+.rating input:checked~label,
+.rating label:hover,
+.rating label:hover~label {
+    color: gold;
+}
+
+
 
 /*ATUALIZAR.php ----------------------------------------------------------*/
 /*cor/css das estrelas (estrelas de avaliação)*/

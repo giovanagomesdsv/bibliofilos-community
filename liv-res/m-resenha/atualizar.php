@@ -90,6 +90,8 @@ if ($result->num_rows > 0) {
                         <input type="radio" id="estrela3" name="avaliacao" value="3" <?php if ($avaliacao === 3) echo 'checked'; ?><label for="estrela3">★</label>
                         <input type="radio" id="estrela2" name="avaliacao" value="2" <?php if ($avaliacao === 2) echo 'checked'; ?><label for="estrela2">★</label>
                         <input type="radio" id="estrela1" name="avaliacao" value="1" <?php if ($avaliacao === 1) echo 'checked'; ?><label for="estrela1">★</label>
+
+                        
                     </div><br><br>
                 </div>
         <div class='display'>

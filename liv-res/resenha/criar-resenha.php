@@ -1,4 +1,4 @@
-<!--<?php
+<?php
 include "../../conexao.php";
 if (!isset($_GET['id']) || empty($_GET['id'])) {
     die("ID não fornecido!");
@@ -47,7 +47,7 @@ if ($result->num_rows > 0) {
     $foto = htmlspecialchars($row['livro_foto']);
     $sinopse = htmlspecialchars($row['livro_sinopse']);
 }
-?>-->
+?>
 <!DOCTYPE html>
 <html lang='pt-br'>
 
