@@ -1,61 +1,221 @@
-<?php 
-include "../conexao.php";
+<?php
+function limitarTexto($texto, $limite, $final = '...')
+{
+    if (strlen($texto) <= $limite) {
+        return $texto;
+    }
+    return substr($texto, 0, $limite) . $final;
+}
 ?>
+<?php
+include "../conexao.php";
+session_start();
+
+$usuario = isset($_SESSION['tipo']) ? $_SESSION['tipo'] : null;
+$nome = isset($_SESSION['nome']) ? $_SESSION['nome'] : 'Visitante';
+?>
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <link rel="stylesheet" type="text/css" href="../geral.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Ícones -->
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="../global.css">
+    <link rel="stylesheet" href="sobre.css">
+
     <title>BIBLIÓFILOS Community - Sobre</title>
-
-
 </head>
 
 <body>
-    <nav>
-        <a href="../index.php">Home</a>
-        <a href="../resenhas/resenhas.php">Resenhas</a>
-        <a href="../autores/autores.php">Autores</a>
-        <a href="../livros/livros.php">Livros</a>
-        <a href="#">Sobre</a>
-    </nav>
-   
-    <main>
-        <?php 
-        $select = " SELECT 
-                ar.id_autor_resenha,
-                ar.nome,
-                ar.pseudonimo,
-                ar.email,
-                ar.path,
-                ar.pontos,
-                ar.telefone,
-                COUNT(r.id_resenha) AS total_resenhas
-            FROM 
-                autor_resenha ar
-            LEFT JOIN 
-                resenha r 
-            ON 
-                ar.id_autor_resenha = r.id_autor_resenha
-            GROUP BY 
-                ar.id_autor_resenha, ar.nome, ar.pseudonimo, ar.email, ar.path, ar.pontos ";
+    <!--Primeira tela______________________________________________________________________________________________________________-->
+    <div class="tela1" id="sec1">
 
-        if ($resp = mysqli_query($conexao, $select)) {
-            while ($resenhista = mysqli_fetch_array($resp)) {
-                echo "
-                  <div>
-                    <img src='../../administrador/resenhistas/{$resenhista['path']}' alt=''>
-                    <h3>{$resenhista['pseudonimo']}</h3>
-                    <p>Resenhas: {$resenhista['total_resenhas']}</p>
-                  </div>
-                ";
-            }
-        }
-        ?>
+        <!-- Navbar principal -->
+        <nav class="navbarB">
+            <div class="cont">
+                <?php if (isset($usuario)): ?>
+                    <div class="hamburguer-btn" id="hamburguer-btn">
+                        <i class='bx bx-menu'></i>
+                    </div>
+                <?php endif; ?>
+
+                <!-- Menu lateral controlado pelo JS -->
+                <div id="menu-container">
+                    <?php
+                    if (isset($_SESSION['tipo']) && $_SESSION['tipo'] == 2) {
+                        // Menu administrador
+                        echo "
+    <nav class='sidebar' id='sidebar'>
+    
+        <div class='nome'>
+            <li>
+                <a href='adm/perfil/perfil.php'>
+                  <br>  <span class='link_name'>" . htmlspecialchars($_SESSION['nome']) . "</span>
+                </a>
+            </li>
+            <div class='menu' id='menu-toggle'>
+              <i class='bx bx-menu'></i>
+            </div>
+        </div>
+        <ul class='nav-list'>
+            <li class='fix'>
+                <a href='adm/home.php'>
+                    <i class='bx bx-home-alt-2'></i>
+                    <span class='link_name'>Home</span>
+                </a>
+            </li>
+            <li>
+                <a href='adm/livrarias/livrarias.php'>
+                    <i class='bx bx-user'></i>
+                    <span class='link_name'>Livrarias</span>
+                </a>
+            </li>
+            <li>
+                <a href='adm/resenhistas/resenhistas.php'>
+                    <i class='bx bx-user-pin'></i>
+                    <span class='link_name'>Resenhistas</span>
+                </a>
+            </li>
+            <li>
+                <a href='adm/livro/livros.php'>
+                    <i class='bx bx-book-bookmark'></i>
+                    <span class='link_name'>Livros</span>
+                </a>
+            </li>
+            <li>
+                <a href='adm/usuarios/usuarios.php'>
+                    <i class='bx bx-book-content'></i>
+                    <span class='link_name'>Usuários</span>
+                </a>
+            </li>
+            <li class='sair'>
+                <a href='adm/logout.php'><i class='bx bx-log-out'></i></a>
+            </li>
+        </ul>
+    </nav>
+    ";
+                    } elseif (isset($_SESSION['tipo']) && ($_SESSION['tipo'] == 0 || $_SESSION['tipo'] == 1)) {
+                        $usuarioTipo = $_SESSION['tipo'];
+                        $imgCaminho = ($usuarioTipo == 0)
+                            ? "adm/imagens/resenhistas/" . htmlspecialchars($_SESSION['imagem-res'])
+                            : "adm/imagens/livrarias/" . htmlspecialchars($_SESSION['imagem-liv']);
+                        $nome = htmlspecialchars($_SESSION['nome']);
+
+                        echo "
+    <nav class='sidebar' id='sidebar'>
+        <div class='nome'>
+            <li class='logo_name'>
+                <a href='liv-res/perfil/perfil.php'>
+                    <img src='" . $imgCaminho . "' alt='Foto de perfil' style='width:100px' />
+                    <span class='link_name'>{$nome}</span>
+                </a>
+            </li>
+            <div class='menu' id='menu-toggle'>
+                <i class='bx bx-menu'></i>
+            </div>
+        </div>
+        <ul class='nav-list'>";
+                        if ($usuarioTipo == 1) {
+                            echo "
+            <li>
+                <a href='liv-res/anuncio/anuncios.php'>
+                    <i class='bx bx-user'></i>
+                    <span class='link_name'>Anúncios</span>
+                </a>
+            </li>";
+                        }
+                        echo "
+            <li>
+                <a href='liv-res/resenha/resenhas.php'>
+                    <i class='bx bx-user'></i>
+                    <span class='link_name'>Criar resenhas</span>
+                </a>
+            </li>
+            <li>
+                <a href='liv-res/m-resenha/m-resenhas.php'>
+                    <i class='bx bx-user-pin'></i>
+                    <span class='link_name'>Minhas resenhas</span>
+                </a>
+            </li>
+             <li class='sair'>
+                <a href='adm/logout.php'><i class='bx bx-log-out'></i></a>
+            </li>
+        </ul>
+    </nav>";
+                    }
+                    ?>
+                </div>
+                <a href="#sec1">
+                    <img src="../logo.png" alt="Logo do site">
+                </a>
+            </div>
+            <div class="links">
+                <a href='../login/login.php'>Login</a>
+                <a href="../index.php">Home</a>
+                <a href="../resenhas/resenhas.php">Resenhas</a>
+                <a href="../autores/autores.php">Autores</a>
+                <a href="../livros/livros.php">Livros</a>
+                <a class="active" href="#">Sobre</a>
+            </div>
+            <div>
+                
+            </div>
+
+        </nav>
+    </div>
+    <main>
+
+        
     </main>
+    <footer class="site-footer">
+        <div class="footer-logo">
+            <img src="logo.png" alt="Logo do site">
+        </div>
+
+        <div class="footer-texto">
+            <h3>Participe da nossa comunidade.</h3>
+            <p>Se torne um resenhista.</p>
+            <p>Entre em contato já!</p>
+        </div>
+
+        <div class="footer-redes">
+            <a href="#" target="_blank" aria-label="X"><i class='bx bxl-x' style="color: #fff"></i></a>
+            <a href="#" target="_blank" aria-label="Instagram"><i class='bx bxl-instagram' style="color: #fff"></i></a>
+            <a href="#" target="_blank" aria-label="TikTok"><i class='bx bxl-tiktok' style="color: #fff"></i></a>
+        </div>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburguerBtn = document.getElementById('hamburguer-btn');
+            const menuContainer = document.getElementById('menu-container');
+            const menuToggle = document.getElementById('menu-toggle');
+
+            // Abre/fecha o menu lateral (slide-in)
+            hamburguerBtn.addEventListener('click', () => {
+                menuContainer.classList.toggle('active');
+                sidebar.classList.toggle('abrir');
+            });
+
+            // Abre/fecha o menu lateral (slide-in)
+            menuToggle.addEventListener('click', () => {
+                menuContainer.classList.toggle('active');
+                sidebar.classList.toggle('abrir');
+            });
+
+
+        });
+
+        function toggleCategorias() {
+            const lista = document.getElementById("lista-categorias");
+            lista.style.display = lista.style.display === "flex" ? "none" : "flex";
+        }
+    </script>
 </body>
 
 </html>

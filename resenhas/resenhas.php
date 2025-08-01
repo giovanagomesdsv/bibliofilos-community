@@ -166,7 +166,7 @@ $nome = isset($_SESSION['nome']) ? $_SESSION['nome'] : 'Visitante';
             <div>
                 <div class="busca-container">
                     <form action="" method="GET" class="busca-form">
-                        <input type="text" name="busca" placeholder="nome do resenhista">
+                        <input type="text" name="busca" placeholder="nome da resenha">
                         <button type="submit"><i class='bx bx-search'></i></button>
                     </form>
                 </div>
@@ -178,7 +178,7 @@ $nome = isset($_SESSION['nome']) ? $_SESSION['nome'] : 'Visitante';
 
         <div style="width: 100%">
             <!--Resultado da pesquisa----------------------------------------------------------->
-            <div class="pesquisa" style="border: 1px solid blueviolet">
+            <div class="pesquisa">
                 <?php
 
                 if (!isset($_GET['busca']) || empty(trim($_GET['busca']))) {
@@ -189,38 +189,34 @@ $nome = isset($_SESSION['nome']) ? $_SESSION['nome'] : 'Visitante';
 
                     // Query de busca
                     $sql_code = "
-        SELECT livrarias.liv_id, liv_nome, liv_cidade, liv_estado, liv_endereco, liv_email, liv_foto, liv_telefone,
-        COUNT(livrarias_livros.liv_livro_id) AS total_livros 
-         FROM  livrarias
-    LEFT JOIN  livrarias_livros ON livrarias.liv_id = livrarias_livros.liv_id
-        WHERE  liv_nome LIKE '%$pesquisa%'
-     GROUP BY livrarias.liv_id, liv_nome, liv_cidade, liv_estado, liv_endereco, liv_email, liv_foto, liv_telefone";
+        SELECT resenha_titulo, resenha_texto, resenha_dtpublicacao, res_nome_fantasia, livro_foto, resenha_id 
+             FROM RESENHAS 
+             INNER JOIN RESENHISTAS ON RESENHAS.res_id = RESENHISTAS.res_id 
+             INNER JOIN LIVROS ON RESENHAS.livro_id = LIVROS.livro_id
+        WHERE  resenha_titulo LIKE '%$pesquisa%'
+     GROUP BY resenha_titulo, resenha_texto, resenha_dtpublicacao, res_nome_fantasia, livro_foto, resenha_id ";
                     $sql_query = $conn->query($sql_code) or die("Erro ao consultar: " . $conn->error);
 
                     if ($sql_query->num_rows == 0) {
                         echo "<div class='resultados'><h3>Nenhum resultado encontrado!</h3></div>";
                     } else {
                         while ($dados = $sql_query->fetch_assoc()) {
-                            $mensagem = urlencode("Olá, aqui fala a administradora do site Bibliófilos Community, gostaria de solicitar mais informações sobre sua livraria/ movimentações no nosso site!");
-
-                            $nome = htmlspecialchars($dados['liv_nome']);
-                            $email = htmlspecialchars($dados['liv_email']);
-                            $cidade = htmlspecialchars($dados['liv_cidade']);
-                            $estado = htmlspecialchars($dados['liv_estado']);
-                            $telefone = htmlspecialchars($dados['liv_telefone']);
-                            $total = (int) $dados['total_livros'];
-                            $foto = htmlspecialchars($dados['liv_foto']);
 
                             echo "
-          <div class='card-liv'>
-              <a href=\"https://wa.me/{$telefone}?text=$mensagem\" target=\"_blank\">
-                 <img src=\"../imagens/livrarias/{$foto}\" alt=''>
-              </a>
-              <p>{$nome}</p>
-              <p>{$email}</p>
-              <p>{$cidade} ({$estado})</p>
-              <div class='input'>Total de Livros: {$total}</div>
-          </div>";
+          <div class='resenha'>
+           <a href='../resenha-resultado/resenha.php?id={$dados['resenha_id']}'>
+               <div class='resenha-imagem'>
+                   <img src='../adm/imagens/livros/{$dados['livro_foto']}' alt='Ícone do gênero'>
+               </div>
+               <div class='resenha-conteudo'>
+                   <h3>{$dados['resenha_titulo']}</h3>
+                   <p>{$dados['res_nome_fantasia']} - {$dados['resenha_dtpublicacao']}</p>
+               </div>
+               <div class='cont-texto'>
+                   <p>" . limitarTexto($dados['resenha_texto'], 350, '...') . "</p>
+               </div>
+            </a>
+        </div>";
                         }
                     }
                 }
@@ -328,23 +324,25 @@ $nome = isset($_SESSION['nome']) ? $_SESSION['nome'] : 'Visitante';
                     }
                 }
                 ?>
-
-                <!--
-            <a href="../resenha-resultado/resenha.php?id=<?= isset($resenha[0]) ? $resenha[0]['resenha_id'] : '' ?>">
-                <div class='resenha'>
-                    <img src='../adm/imagens/livros/<?= isset($resenha[0]) ? $resenha[0]['livro_foto'] : '' ?>'>
-                    <div class='resenha-info'>
-                        <h2><?= isset($resenha[0]) ? $resenha[0]['resenha_titulo'] : '' ?></h2>
-                        <p><strong>Por:</strong> <?= isset($resenha[0]) ? $resenha[0]['res_nome_fantasia'] : '' ?> -
-                            </strong>
-                            <?= isset($resenha[0]) ? $resenha[0]['resenha_dtpublicacao'] : '' ?></p>
-                        <p><?= isset($resenha[0]) ? limitarTexto($resenha[0]['resenha_texto'], 350, '...') : '' ?></p>
-                    </div>
-                </div>
-            </a>
-        -->
             </div>
     </main>
+    <footer class="site-footer">
+        <div class="footer-logo">
+            <img src="logo.png" alt="Logo do site">
+        </div>
+
+        <div class="footer-texto">
+            <h3>Participe da nossa comunidade.</h3>
+            <p>Se torne um resenhista.</p>
+            <p>Entre em contato já!</p>
+        </div>
+
+        <div class="footer-redes">
+            <a href="#" target="_blank" aria-label="X"><i class='bx bxl-x' style="color: #fff"></i></a>
+            <a href="#" target="_blank" aria-label="Instagram"><i class='bx bxl-instagram' style="color: #fff"></i></a>
+            <a href="#" target="_blank" aria-label="TikTok"><i class='bx bxl-tiktok' style="color: #fff"></i></a>
+        </div>
+    </footer>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const hamburguerBtn = document.getElementById('hamburguer-btn');

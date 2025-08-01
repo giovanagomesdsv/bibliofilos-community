@@ -88,7 +88,7 @@ main {
 /* 1º estilo: 1, 5, 9, ... */
 /* 2º estilo: 2, 6, 10, ... */
 .resenhas-container .resenha:nth-child(4n + 1),
-.resenhas-container .resenha:nth-child(2) {
+.resenhas-container .resenha:nth-child(4n + 2) {
     display: flex;
     flex-direction: column;
     width: 24%;
@@ -134,30 +134,95 @@ main {
 
 /* 3º estilo: 3, 7, 11, ... */
 .resenhas-container .resenha:nth-child(4n + 3) {
-    display: flex;
     flex-direction: column;
     width: 48%;
     height: 35vh;
+    padding: 1rem;
 }
-
-.resenhas-container .resenha:nth-child(4n + 3) .resenha-imagem,
-.resenhas-container .resenha:nth-child(4n + 3) .resenha-imagem {
-    height: 17.5vh;
-    padding: .5rem;
-    border: 1px solid;
-}
-.resenhas-container .resenha:nth-child(4n + 3) .resenha-imagem img,
-.resenhas-container .resenha:nth-child(4n + 2) .resenha-imagem img {
+/* Agrupar imagem e conteúdo (imagem ao lado do título) */
+.resenhas-container .resenha:nth-child(4n + 3) > a {
+    display: flex;
+    flex-direction: column;
     height: 100%;
 }
-
-
+/* Cabeçalho em linha: imagem + conteúdo */
+.resenhas-container .resenha:nth-child(4n + 3) > a > .resenha-imagem,
+.resenhas-container .resenha:nth-child(4n + 3) > a > .resenha-conteudo {
+    display: inline-block;
+    vertical-align: top;
+}
+.resenhas-container .resenha:nth-child(4n + 3) > a > .resenha-imagem {
+    width: 30%;
+    height: auto;
+    padding: 0;
+}
+.resenhas-container .resenha:nth-child(4n + 3) > a > .resenha-imagem img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+.resenhas-container .resenha:nth-child(4n + 3) > a > .resenha-conteudo {
+    width: 70%;
+    padding-left: 1rem;
+    padding-top: 0;
+    padding-bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.resenhas-container .resenha:nth-child(4n + 3) > a > .resenha-conteudo h3 {
+    font-size: 1.5rem;
+    margin: 0;
+}
+/* Sinopse abaixo */
+.resenhas-container .resenha:nth-child(4n + 3) > a > .cont-texto {
+    padding-top: 1rem;
+}
 
 
 /* 4º estilo: 4, 8, 12, ... */
 .resenhas-container .resenha:nth-child(4n) {
     display: flex;
     flex-direction: column;
-    width: 100%;
+    width: 96%;
     height: 35vh;
+}
+/* Agrupar imagem e conteúdo (imagem ao lado do título) */
+.resenhas-container .resenha:nth-child(4n) > a {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+/* Cabeçalho em linha: imagem + conteúdo */
+.resenhas-container .resenha:nth-child(4n) > a > .resenha-imagem,
+.resenhas-container .resenha:nth-child(4n) > a > .resenha-conteudo {
+    display: inline-block;
+    vertical-align: top;
+}
+.resenhas-container .resenha:nth-child(4n) > a > .resenha-imagem {
+    width: 30%;
+    height: auto;
+    padding: 0;
+}
+.resenhas-container .resenha:nth-child(4n) > a > .resenha-imagem img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+.resenhas-container .resenha:nth-child(4n) > a > .resenha-conteudo {
+    width: 70%;
+    padding-left: 1rem;
+    padding-top: 0;
+    padding-bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.resenhas-container .resenha:nth-child(4n) > a > .resenha-conteudo h3 {
+    font-size: 1.5rem;
+    margin: 0;
+}
+/* Sinopse abaixo */
+.resenhas-container .resenha:nth-child(4n) > a > .cont-texto {
+    padding-top: 1rem;
 }
