@@ -39,6 +39,9 @@ if ($result->num_rows > 0) {
 </head>
 
 <body>
+     <header>
+        BACKSTAGE Community
+    </header>
      <main>
         <div class='card card1'>
             <div class='cardimgsinopse'>
@@ -49,7 +52,7 @@ if ($result->num_rows > 0) {
                     <h1>
                         <?php echo $titulo ?>
                     </h1>
-                    <p style="color: #fff">
+                    <p class="texto">
                         Sinopse:
                         <?php echo $sinopse ?>
                     </p>
@@ -74,11 +77,11 @@ if ($result->num_rows > 0) {
                             <input type="radio" id="estrela1" name="avaliacao" value="1" required><label
                                 for="estrela1">★</label>
                         </div><br><br>
-                        <input class="botao1" type="submit" value="Enviar">
+
                     </form>
                 </div>
                 <a class="notas" href='m-resenhas.php'>
-                    <button class="botao1">Cancelar</button>
+                    <button class="botao1">Voltar</button>
                 </a>
             </div>
         </div>

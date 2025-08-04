@@ -48,6 +48,7 @@ if ($result->num_rows > 0) {
     $sinopse = htmlspecialchars($row['livro_sinopse']);
 }
 ?>
+
 <!DOCTYPE html>
 <html lang='pt-br'>
 
