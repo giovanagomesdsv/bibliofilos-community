@@ -25,7 +25,6 @@
 }
 .sinopse{
     color: #f5f5f5;
-    width: 80%;
     margin: 0 2rem;
 }
 .imgliv {
@@ -37,6 +36,7 @@
     width: 10rem;
     height: 15rem;
     margin: 2rem;
+    border: solid 1px red;
 }
 
 /* texto de sinopse */
@@ -94,37 +94,6 @@
 .rating label:hover~label {
     color: gold;
 }
-
-
-
-/*ATUALIZAR.php ----------------------------------------------------------*/
-/*cor/css das estrelas (estrelas de avaliação)*/
-.rating {
-            direction: rtl;
-            unicode-bidi: bidi-override;
-            display: inline-block;
-        }
-
-        .rating input {
-            display: none;
-        }
-
-        .rating label {
-            font-size: 2em;
-            color: #ccc;
-            cursor: pointer;
-        }
-
-        .rating input:checked~label,
-        .rating label:hover,
-        .rating label:hover~label {
-            color: gold;
-        }
-       
-        .avali{
-            margin-left:10rem;
-            margin-top:1.5rem;
-        }
 
 /*M-RESENHAS.php ----------------------------------------------------------*/
 

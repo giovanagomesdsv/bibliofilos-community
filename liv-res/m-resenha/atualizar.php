@@ -1,4 +1,4 @@
- <!-- <?php
+<?php
 include "../../conexao.php";
 if (!isset($_GET['id']) || empty($_GET['id'])) {
     die("ID não fornecido!");
@@ -50,7 +50,7 @@ if ($result->num_rows > 0) {
     $atualizacao = htmlspecialchars($row['resenha_dtatualizacao']);
     $avaliacao = (int) ($row['resenha_avaliacao']);
 }
-?> -->
+?> 
 <!DOCTYPE html>
 <html lang='pt-br'>
 
@@ -59,50 +59,71 @@ if ($result->num_rows > 0) {
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
     <link rel="stylesheet" type="text/css" href="../geral.css">
     <link rel="stylesheet" type="text/css" href="m-resenhas.css">
-    <title>Resenha - BACKSTAGE Community
+    <title>Atualizar resenha - BACKSTAGE Community
     </title>
 </head>
 
 <body>
-    <main class='containA'>
 
-        <div>
-            <div>
-                <p class='titulos'>Publicação:<?php echo $publicacao ?></p>
-                <h1><?php echo $titulo ?></h1>
-                <div class='display'>
-                <img src='../../adm/imagens/livros/<?php echo $foto ?>' alt='foto' class='fotos'>
-                    <p class='sinopseBox'><?php echo $sinopse ?></p>
+    <header>
+        BACKSTAGE Community
+    </header>
+
+    <main>
+
+        <div class='card card1'>
+            <div class='cardimgsinopse'>
+                <div class="box-img">
+                    <img class='imagem1' src='../../adm/imagens/livros/<?php echo $foto ?>' alt='foto' class='fotos'>
                 </div>
-                <p class='titulos'>Atualizado:<?php echo $atualizacao ?></p>
-
-            </div>
-        </div>
-        <div>
-            <div>
-                <form method="POST">
-                    <textarea name="resenha" id="resenha" rows="10" cols="70" class='resenhaText'><?php echo htmlspecialchars($resenha); ?></textarea><br>
-                <div class='display'>
-                    <label for="avaliacao" class='avali'>Avaliação do livro:</label><br>
-                    <div class='rating ratingstylish'>
-                        <input type="radio" id="estrela5" name="avaliacao" value="5" <?php if ($avaliacao === 5) echo 'checked'; ?><label for="estrela5">★</label>
-                        <input type="radio" id="estrela4" name="avaliacao" value="4" <?php if ($avaliacao === 4) echo 'checked'; ?><label for="estrela4">★</label>
-                        <input type="radio" id="estrela3" name="avaliacao" value="3" <?php if ($avaliacao === 3) echo 'checked'; ?><label for="estrela3">★</label>
-                        <input type="radio" id="estrela2" name="avaliacao" value="2" <?php if ($avaliacao === 2) echo 'checked'; ?><label for="estrela2">★</label>
-                        <input type="radio" id="estrela1" name="avaliacao" value="1" <?php if ($avaliacao === 1) echo 'checked'; ?><label for="estrela1">★</label>
-
-                        
-                    </div><br><br>
+                <div class="sinopse">
+                    <h1>
+                        <?php echo $titulo ?>
+                    </h1>
+                    <p>
+                        Sinopse:
+                        <?php echo $sinopse ?>
+                    </p>
                 </div>
-        <div class='display'>
-                    <input type="submit" value="Enviar" class='btn'>
-                    <a href='m-resenhas.php'>
-                <button class='btn'>Cancelar</button>
-            </a>
-        </div>
-                </form>
             </div>
-        </div>
+            <div>
+                <div>
+                    <form method="POST">
+                        <label class="resenhabox" for="resenha">Resenha:</label><br>
+                        <textarea class="resenha" name="resenha" id="resenha" rows="10" cols="70"
+                            class='resenhaText'><?php echo htmlspecialchars($resenha); ?></textarea><br>
+                        <div class='display'>
+                            <label for="avaliacao">Avaliação do livro:</label><br>
+                            <div class="rating">
+                                <input type="radio" id="estrela5" name="avaliacao" value="5" <?php if ($avaliacao===5)
+                                    echo 'checked' ; ?><label for="estrela5">★</label>
+                                <input type="radio" id="estrela4" name="avaliacao" value="4" <?php if ($avaliacao===4)
+                                    echo 'checked' ; ?><label for="estrela4">★</label>
+                                <input type="radio" id="estrela3" name="avaliacao" value="3" <?php if ($avaliacao===3)
+                                    echo 'checked' ; ?><label for="estrela3">★</label>
+                                <input type="radio" id="estrela2" name="avaliacao" value="2" <?php if ($avaliacao===2)
+                                    echo 'checked' ; ?><label for="estrela2">★</label>
+                                <input type="radio" id="estrela1" name="avaliacao" value="1" <?php if ($avaliacao===1)
+                                    echo 'checked' ; ?><label for="estrela1">★</label>
+
+
+                            </div><br><br>
+                        </div>
+                        <p class='titulos'>Atualizado:
+                            <?php echo $atualizacao ?>
+                        </p>
+                        <div>
+
+                            <a href='m-resenhas.php'>
+                                <button class="botao1">Cancelar</button>
+                            </a>
+                            <a href='m-resenhas.php'>
+                                <button class="botao1">Atualizar resenha</button>
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
 
     </main>
 

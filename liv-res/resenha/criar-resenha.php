@@ -57,7 +57,7 @@ if ($result->num_rows > 0) {
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
     <link rel="stylesheet" href="../geral.css">
     <link rel="stylesheet" href="resenhas.css">
-    <title>Resenha - BACKSTAGE Community
+    <title>Criar resenha - BACKSTAGE Community
     </title>
 </head>
 <body>
