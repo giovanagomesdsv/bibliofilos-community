@@ -174,8 +174,7 @@ $nome = isset($_SESSION['nome']) ? $_SESSION['nome'] : 'Visitante';
 
         </nav>
     </div>
-    <main>
-
+    <section class="sec-padrao" style="border: 10px solid blue;  margin: 10rem 10% 5rem 10%; width: 80%; height: auto;">
         <div style="width: 100%">
             <!--Resultado da pesquisa----------------------------------------------------------->
             <div class="pesquisa">
@@ -325,7 +324,7 @@ $nome = isset($_SESSION['nome']) ? $_SESSION['nome'] : 'Visitante';
                 }
                 ?>
             </div>
-    </main>
+    </section>
     <footer class="site-footer">
         <div class="footer-logo">
             <img src="logo.png" alt="Logo do site">
