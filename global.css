@@ -84,7 +84,6 @@ main {
     position: fixed;
     top: 0;
     left: 0;
-
     z-index: 999;
     width: 100%;
     height: 8rem;
@@ -95,6 +94,10 @@ main {
     padding: 0 40px;
     box-sizing: border-box;
     font-size: 1.6rem;
+}
+
+.navbarB>i {
+    color: #fff;
 }
 
 /* Logo */
@@ -177,7 +180,7 @@ main {
 .hamburguer-btn {
     font-size: 2rem;
     cursor: pointer;
-    color: white;
+    color: #fff;
     margin-left: -10%;
 }
 
@@ -199,6 +202,8 @@ main {
 /* Quando ativado */
 #menu-container.active {
     left: 0;
+    color: #fff;
+
 }
 
 /* Sidebar */
@@ -214,6 +219,8 @@ main {
 #menu-container.abrir {
     width: 25rem;
     height: 100vh;
+    color: #fff;
+
 }
 
 /* Nome e botão interno */
@@ -222,10 +229,14 @@ main {
     flex-direction: column;
     align-items: center;
     margin-top: 2rem;
+    color: #fff;
+
 }
 
 .logo_name {
     list-style: none;
+    color: #fff;
+
 }
 
 .logo_name a {

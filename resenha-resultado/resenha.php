@@ -1,4 +1,3 @@
-
 <?php
 include "../conexao.php";
 
@@ -27,8 +26,14 @@ if ($result->num_rows > 0) {
         $avaliacao = (int) $linha['resenha_avaliacao'];
 
         echo "
+
+        ";
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang='pt-br'>
+
 <head>
     <meta charset='UTF-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
@@ -36,32 +41,62 @@ if ($result->num_rows > 0) {
     <link rel='stylesheet' type='text/css' href='../geral.css'>
     <title>BIBLIÓFILOS Community - RESENHA: $titulo</title>
 </head>
+
 <body>
     <header>
-       <p>$atualizado</p>
-       <p>$publicacao</p>
+        <p>Atualizado: $atualizado</p>
+        <p>Publicado: $publicacao</p>
     </header>
 
-    <img src='../adm/imagens/livros/$foto' alt=''>
-    <img src='../adm/imagens/autores/$autor' alt=''>
-
-
-    <h2>RESENHA: $titulo</h2>
-    <p>SINOPSE: $sinopse</p>
-    <p>$avaliacao</p>
-    <p>CONTEÚDO: $texto</p>
-
-    <div>
-        <img src='../adm/imagens/resenhistas/$resenhista' alt=''>
-        <p>$resenhistaPerfil</p>
+    <section>
+        <img src='../adm/imagens/livros/$foto' alt=''>
+        <img src='../adm/imagens/autores/$autor' alt=''>
+    </section>
+    <section>
         <div>
-            <a href='$resenhistaSocial'></a>
+            <h2>RESENHA: $titulo</h2>
         </div>
-    </div>
+        <main>
+            <div>
+                <p>SINOPSE: $sinopse</p>
+                <p>$avaliacao</p>
+
+            </div>
+            <div>
+                <p>CONTEÚDO: $texto</p>
+            </div>
+        </main>
+        <div>
+            <div>
+                <img src='../adm/imagens/resenhistas/$resenhista' alt=''>
+            </div>
+            <div>
+                <p>$resenhistaPerfil</p>
+            </div>
+            <div>
+                <a href='$resenhistaSocial'></a>
+            </div>
+        </div>
+    </section>
+    <footer class="site-footer">
+        <div class="footer-logo">
+            <img src="logo.png" alt="Logo do site">
+        </div>
+
+        <div class="footer-texto">
+            <h3>Participe da nossa comunidade.</h3>
+            <p>Se torne um resenhista.</p>
+            <p>Entre em contato já!</p>
+        </div>
+
+        <div class="footer-redes">
+            <a href="#" target="_blank" aria-label="X"><i class='bx bxl-xing' style="color: #fff"></i></a>
+            <a href="#" target="_blank" aria-label="Instagram"><i class='bx bxl-instagram' style="color: #fff"></i></a>
+            <a href="#" target="_blank" aria-label="TikTok"><i class='bx bxl-tiktok' style="color: #fff"></i></a>
+        </div>
+    </footer>
+
 
 </body>
+
 </html>
-        ";
-    }
-}
-?>

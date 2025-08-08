@@ -45,7 +45,7 @@ ini_set('display_errors', 1);
             <div class="cont">
                 <?php if (isset($usuario)): ?>
                     <div class="hamburguer-btn" id="hamburguer-btn">
-                        <i class='bx bx-menu'></i>
+                        <i class='bx bx-menu' style="color: #fff"></i>
                     </div>
                 <?php endif; ?>
 
@@ -865,7 +865,7 @@ LIMIT 7
         </div>
 
         <div class="footer-redes">
-            <a href="#" target="_blank" aria-label="X"><i class='bx bxl-twitter' style="color: #fff"></i></a>
+            <a href="#" target="_blank" aria-label="X"><i class='bx bxl-xing' style="color: #fff"></i></a>
             <a href="#" target="_blank" aria-label="Instagram"><i class='bx bxl-instagram' style="color: #fff"></i></a>
             <a href="#" target="_blank" aria-label="TikTok"><i class='bx bxl-tiktok' style="color: #fff"></i></a>
         </div>

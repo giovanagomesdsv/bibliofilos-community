@@ -155,7 +155,6 @@ main {
     width: 100%;
     height: 100%;
     padding: 1rem;
-    border: 1px solid red; /* remova borda de depuração */
 }
 
 /* Imagem da resenha */
@@ -199,54 +198,68 @@ main {
 
 /* 4º estilo: 4, 8, 12, ... */
 .resenhas-container .resenha:nth-child(4n) {
-    display: flex;
-    flex-direction: column;
-    width: 96%;
+    flex-direction: row;
+    width: 98%;
     height: 35vh;
+    padding: 1rem;
 }
 
-/* Agrupar imagem e conteúdo (imagem ao lado do título) */
-.resenhas-container .resenha:nth-child(4n)>a {
+/* Link da resenha com layout em linha (imagem + conteúdo) */
+.resenhas-container .resenha:nth-child(4n) > a {
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    flex-direction: row;
+    width: 100%;
     height: 100%;
 }
 
-/* Cabeçalho em linha: imagem + conteúdo */
-.resenhas-container .resenha:nth-child(4n)>a>.resenha-imagem,
-.resenhas-container .resenha:nth-child(4n)>a>.resenha-conteudo {
-    display: inline-block;
-    vertical-align: top;
+/* Container de informação (imagem + conteúdo) */
+.resenhas-container .resenha:nth-child(4n) > a > .info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    padding: 1rem;
+    border: 1px solid red;
 }
 
-.resenhas-container .resenha:nth-child(4n)>a>.resenha-imagem {
+/* Imagem da resenha */
+.resenhas-container .resenha:nth-child(4n) .resenha-imagem {
     width: 30%;
-    height: auto;
+    height: 100%;
     padding: 0;
 }
 
-.resenhas-container .resenha:nth-child(4n)>a>.resenha-imagem img {
+.resenhas-container .resenha:nth-child(4n) .resenha-imagem img {
     width: 100%;
-    height: auto;
+    height: 100%;
     object-fit: contain;
 }
 
-.resenhas-container .resenha:nth-child(4n)>a>.resenha-conteudo {
-    width: 70%;
+/* Conteúdo da resenha (ao lado da imagem) */
+.resenhas-container .resenha:nth-child(4n) .resenha-conteudo {
     padding-left: 1rem;
-    padding-top: 0;
-    padding-bottom: 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
-.resenhas-container .resenha:nth-child(4n)>a>.resenha-conteudo h3 {
-    font-size: 1.5rem;
+/* Título da resenha */
+.resenhas-container .resenha:nth-child(4n) .resenha-conteudo h3 {
+    font-size: 3rem;
     margin: 0;
 }
+.resenhas-container .resenha:nth-child(4n) .resenha-conteudo p {
+    font-size: 1rem;
+}
 
-/* Sinopse abaixo */
-.resenhas-container .resenha:nth-child(4n)>a>.cont-texto {
-    padding-top: 1rem;
+/* Sinopse ou texto abaixo do título */
+.resenhas-container .resenha:nth-child(4n) .cont-texto {
+    margin-top: 1rem;
+    padding: .5rem;
+    border-radius: 1rem;
+    text-align: justify;
+    text-indent: 1rem;
+    background-color: var(--bg);
 }

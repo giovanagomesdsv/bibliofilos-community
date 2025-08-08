@@ -164,18 +164,18 @@ $nome = isset($_SESSION['nome']) ? $_SESSION['nome'] : 'Visitante';
                 <a class="active" href="#">Sobre</a>
             </div>
             <div>
-                
+
             </div>
 
         </nav>
     </div>
     <main>
 
-        
+
     </main>
     <footer class="site-footer">
         <div class="footer-logo">
-            <img src="logo.png" alt="Logo do site">
+            <img src="../logo.png" alt="Logo do site">
         </div>
 
         <div class="footer-texto">
@@ -185,7 +185,7 @@ $nome = isset($_SESSION['nome']) ? $_SESSION['nome'] : 'Visitante';
         </div>
 
         <div class="footer-redes">
-            <a href="#" target="_blank" aria-label="X"><i class='bx bxl-x' style="color: #fff"></i></a>
+            <a href="#" target="_blank" aria-label="X"><i class='bx bxl-xing' style="color: #fff"></i></a>
             <a href="#" target="_blank" aria-label="Instagram"><i class='bx bxl-instagram' style="color: #fff"></i></a>
             <a href="#" target="_blank" aria-label="TikTok"><i class='bx bxl-tiktok' style="color: #fff"></i></a>
         </div>

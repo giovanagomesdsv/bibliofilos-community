@@ -174,7 +174,7 @@ $nome = isset($_SESSION['nome']) ? $_SESSION['nome'] : 'Visitante';
 
         </nav>
     </div>
-    <section class="sec-padrao" style="border: 10px solid blue;  margin: 10rem 10% 5rem 10%; width: 80%; height: auto;">
+    <section class="sec-padrao">
         <div style="width: 100%">
             <!--Resultado da pesquisa----------------------------------------------------------->
             <div class="pesquisa">
@@ -207,15 +207,17 @@ $nome = isset($_SESSION['nome']) ? $_SESSION['nome'] : 'Visitante';
                <div class='resenha-imagem'>
                    <img src='../adm/imagens/livros/{$dados['livro_foto']}' alt='Ícone do gênero'>
                </div>
-               <div class='resenha-conteudo'>
-                   <h3>{$dados['resenha_titulo']}</h3>
-                   <p>{$dados['res_nome_fantasia']} - {$dados['resenha_dtpublicacao']}</p>
-               </div>
-               <div class='cont-texto'>
-                   <p>" . limitarTexto($dados['resenha_texto'], 350, '...') . "</p>
+               <div clas='info'>
+                   <div class='resenha-conteudo'>
+                       <h3>{$dados['resenha_titulo']}</h3>
+                       <p>{$dados['res_nome_fantasia']} - {$dados['resenha_dtpublicacao']}</p>
+                   </div>
+                   <div class='cont-texto'>
+                       <p>" . limitarTexto($dados['resenha_texto'], 350, '...') . "</p>
+                   </div>
                </div>
             </a>
-        </div>";
+          </div>";
                         }
                     }
                 }
@@ -310,15 +312,17 @@ $nome = isset($_SESSION['nome']) ? $_SESSION['nome'] : 'Visitante';
                <div class='resenha-imagem'>
                    <img src='../adm/imagens/livros/{$resenha['livro_foto']}' alt='Ícone do gênero'>
                </div>
-               <div class='resenha-conteudo'>
-                   <h3>{$resenha['resenha_titulo']}</h3>
-                   <p>{$resenha['res_nome_fantasia']} - {$resenha['resenha_dtpublicacao']}</p>
-               </div>
-               <div class='cont-texto'>
-                   <p>" . limitarTexto($resenha['resenha_texto'], 350, '...') . "</p>
+               <div clas='info'>
+                   <div class='resenha-conteudo'>
+                       <h3>{$resenha['resenha_titulo']}</h3>
+                       <p>{$resenha['res_nome_fantasia']} - {$resenha['resenha_dtpublicacao']}</p>
+                   </div>
+                   <div class='cont-texto'>
+                       <p>" . limitarTexto($resenha['resenha_texto'], 350, '...') . "</p>
+                   </div>
                </div>
             </a>
-        </div>
+          </div>
         ";
                     }
                 }
@@ -327,7 +331,7 @@ $nome = isset($_SESSION['nome']) ? $_SESSION['nome'] : 'Visitante';
     </section>
     <footer class="site-footer">
         <div class="footer-logo">
-            <img src="logo.png" alt="Logo do site">
+            <img src="../logo.png" alt="Logo do site">
         </div>
 
         <div class="footer-texto">
@@ -337,7 +341,7 @@ $nome = isset($_SESSION['nome']) ? $_SESSION['nome'] : 'Visitante';
         </div>
 
         <div class="footer-redes">
-            <a href="#" target="_blank" aria-label="X"><i class='bx bxl-x' style="color: #fff"></i></a>
+            <a href="#" target="_blank" aria-label="X"><i class='bx bxl-xing' style="color: #fff"></i></a>
             <a href="#" target="_blank" aria-label="Instagram"><i class='bx bxl-instagram' style="color: #fff"></i></a>
             <a href="#" target="_blank" aria-label="TikTok"><i class='bx bxl-tiktok' style="color: #fff"></i></a>
         </div>
