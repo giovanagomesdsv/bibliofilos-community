@@ -1,0 +1,41 @@
+:root {
+    --bg: #f0f0f0;
+    --text: #f5f5f5;
+    --principal: #56070C;
+    --secundaria: #11114E;
+}
+
+header{
+    border: 1px solid;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: var(--principal);
+}
+
+header p {
+    color: var(--text);
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+}
+.container .sec1,
+.container .sec2{
+    border: 1px solid red;
+}
+
+.sec1 {
+    width: 15%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    position: fixed;
+}
+.sec2 {
+    width: 85;
+}

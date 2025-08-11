@@ -178,30 +178,31 @@ $nome = isset($_SESSION['nome']) ? $_SESSION['nome'] : 'Visitante';
         <div style="width: 100%">
             <!--Resultado da pesquisa----------------------------------------------------------->
             <div class="pesquisa">
-                <?php
+                <div class="resenhas-container">
+                    <?php
 
-                if (!isset($_GET['busca']) || empty(trim($_GET['busca']))) {
-                    echo "<div class='resultados'></div>";
-                } else {
-                    // Proteção contra SQL Injection
-                    $pesquisa = $conn->real_escape_string($_GET['busca']);
+                    if (!isset($_GET['busca']) || empty(trim($_GET['busca']))) {
+                        echo "<div class='resultados'></div>";
+                    } else {
+                        // Proteção contra SQL Injection
+                        $pesquisa = $conn->real_escape_string($_GET['busca']);
 
-                    // Query de busca
-                    $sql_code = "
+                        // Query de busca
+                        $sql_code = "
         SELECT resenha_titulo, resenha_texto, resenha_dtpublicacao, res_nome_fantasia, livro_foto, resenha_id 
              FROM RESENHAS 
              INNER JOIN RESENHISTAS ON RESENHAS.res_id = RESENHISTAS.res_id 
              INNER JOIN LIVROS ON RESENHAS.livro_id = LIVROS.livro_id
         WHERE  resenha_titulo LIKE '%$pesquisa%'
      GROUP BY resenha_titulo, resenha_texto, resenha_dtpublicacao, res_nome_fantasia, livro_foto, resenha_id ";
-                    $sql_query = $conn->query($sql_code) or die("Erro ao consultar: " . $conn->error);
+                        $sql_query = $conn->query($sql_code) or die("Erro ao consultar: " . $conn->error);
 
-                    if ($sql_query->num_rows == 0) {
-                        echo "<div class='resultados'><h3>Nenhum resultado encontrado!</h3></div>";
-                    } else {
-                        while ($dados = $sql_query->fetch_assoc()) {
+                        if ($sql_query->num_rows == 0) {
+                            echo "<div class='resultados'><h3>Nenhum resultado encontrado!</h3></div>";
+                        } else {
+                            while ($dados = $sql_query->fetch_assoc()) {
 
-                            echo "
+                                echo "
           <div class='resenha'>
            <a href='../resenha-resultado/resenha.php?id={$dados['resenha_id']}'>
                <div class='resenha-imagem'>
@@ -218,10 +219,11 @@ $nome = isset($_SESSION['nome']) ? $_SESSION['nome'] : 'Visitante';
                </div>
             </a>
           </div>";
+                            }
                         }
                     }
-                }
-                ?>
+                    ?>
+                </div>
             </div>
 
             <!--FILTRO DOS GENEROS-->
@@ -254,11 +256,11 @@ $nome = isset($_SESSION['nome']) ? $_SESSION['nome'] : 'Visitante';
                 <?php
                 if (isset($_GET['genero']) && !empty($_GET['genero'])) {
                     $generoSelecionado = $_GET['genero'];
-                    $sqlResenhas = "SELECT gen_nome, livro_titulo, gen_icone, resenha_id 
+                    $sqlResenhas = "SELECT gen_nome, resenha_titulo, gen_icone, resenha_id, livro_foto, res_nome_fantasia, resenha_dtpublicacao, resenha_texto
                         FROM GENEROS 
                         INNER JOIN LIVRO_GENEROS ON GENEROS.gen_id = LIVRO_GENEROS.gen_id 
                         INNER JOIN LIVROS ON LIVROS.livro_id = LIVRO_GENEROS.livro_id 
-                        INNER JOIN RESENHAS ON RESENHAS.livro_id = LIVROS.livro_id
+                        INNER JOIN RESENHAS ON RESENHAS.livro_id = LIVROS.livro_id INNER JOIN RESENHISTAS ON RESENHAS.res_id = RESENHISTAS.res_id
                         WHERE gen_nome = ?";
 
                     $stmt = $conn->prepare($sqlResenhas);
@@ -274,11 +276,22 @@ $nome = isset($_SESSION['nome']) ? $_SESSION['nome'] : 'Visitante';
 
                         while ($resenha = $res->fetch_assoc()) {
                             echo "
-                <div class='resenha'>
-                    <p><strong>Título:</strong> {$resenha['livro_titulo']}</p>
-                    <p><a href='resenha-resultado/resenha.php?id={$resenha['resenha_id']}'>Ver resenha</a></p>
-                </div>
-                ";
+          <div class='resenha'>
+           <a href='../resenha-resultado/resenha.php?id={$resenha['resenha_id']}'>
+               <div class='resenha-imagem'>
+                   <img src='../adm/imagens/livros/{$resenha['livro_foto']}' alt='Ícone do gênero'>
+               </div>
+               <div clas='info'>
+                   <div class='resenha-conteudo'>
+                       <h3>{$resenha['resenha_titulo']}</h3>
+                       <p>{$resenha['res_nome_fantasia']} - {$resenha['resenha_dtpublicacao']}</p>
+                   </div>
+                   <div class='cont-texto'>
+                       <p>" . limitarTexto($resenha['resenha_texto'], 350, '...') . "</p>
+                   </div>
+               </div>
+            </a>
+          </div>";
                         }
                     } else {
                         echo "<p>Nenhuma resenha encontrada para esse gênero.</p>";

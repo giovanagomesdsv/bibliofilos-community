@@ -26,19 +26,19 @@ if ($result->num_rows > 0) {
         $avaliacao = (int) $linha['resenha_avaliacao'];
 
         echo "
-
-        ";
-    }
-}
-?>
-<!DOCTYPE html>
+        <!DOCTYPE html>
 <html lang='pt-br'>
 
 <head>
     <meta charset='UTF-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
 
-    <link rel='stylesheet' type='text/css' href='../geral.css'>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+
+    <link rel='stylesheet' href='../global.css'>
+    <link rel='stylesheet' href='resenha.css'>
+
     <title>BIBLIÓFILOS Community - RESENHA: $titulo</title>
 </head>
 
@@ -78,21 +78,21 @@ if ($result->num_rows > 0) {
             </div>
         </div>
     </section>
-    <footer class="site-footer">
-        <div class="footer-logo">
-            <img src="logo.png" alt="Logo do site">
+    <footer class='site-footer'>
+        <div class='footer-logo'>
+            <img src='../logo.png' alt='Logo do site'>
         </div>
 
-        <div class="footer-texto">
+        <div class='footer-texto'>
             <h3>Participe da nossa comunidade.</h3>
             <p>Se torne um resenhista.</p>
             <p>Entre em contato já!</p>
         </div>
 
-        <div class="footer-redes">
-            <a href="#" target="_blank" aria-label="X"><i class='bx bxl-xing' style="color: #fff"></i></a>
-            <a href="#" target="_blank" aria-label="Instagram"><i class='bx bxl-instagram' style="color: #fff"></i></a>
-            <a href="#" target="_blank" aria-label="TikTok"><i class='bx bxl-tiktok' style="color: #fff"></i></a>
+        <div class='footer-redes'>
+            <a href='#' target='_blank' aria-label='X'><i class='bx bxl-xing' style='color: #fff'></i></a>
+            <a href='#' target='_blank' aria-label='Instagram'><i class='bx bxl-instagram' style='color: #fff'></i></a>
+            <a href='#' target='_blank' aria-label='TikTok'><i class='bx bxl-tiktok' style='color: #fff'></i></a>
         </div>
     </footer>
 
@@ -100,3 +100,7 @@ if ($result->num_rows > 0) {
 </body>
 
 </html>
+        ";
+    }
+}
+?>

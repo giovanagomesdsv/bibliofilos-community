@@ -15,6 +15,7 @@ main {
     position: relative;
     font-family: Arial, sans-serif;
     transition: .5s ease-in-out;
+    margin-top: 1rem;
 
 }
 
@@ -26,7 +27,6 @@ main {
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    border: none;
     width: 100%;
     font-size: 1.5rem;
     text-transform: uppercase;
@@ -152,10 +152,12 @@ main {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 100%;
+    width: 70%;
     height: 100%;
     padding: 1rem;
+    margin: 0 1rem;
 }
+
 
 /* Imagem da resenha */
 .resenhas-container .resenha:nth-child(4n + 3) .resenha-imagem {
@@ -176,7 +178,6 @@ main {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    border: 4px solid red;
 }
 
 /* Título da resenha */
@@ -190,16 +191,17 @@ main {
 
 /* Sinopse ou texto abaixo do título */
 .resenhas-container .resenha:nth-child(4n + 3) .cont-texto {
-    padding-top: 1rem;
+    margin-top: 1rem;
+    padding: .5rem;
+    border-radius: 1rem;
     text-align: justify;
     text-indent: 1rem;
+    background-color: var(--bg);
 }
-
-
 /* 4º estilo: 4, 8, 12, ... */
 .resenhas-container .resenha:nth-child(4n) {
     flex-direction: row;
-    width: 98%;
+    width: 98.5%;
     height: 35vh;
     padding: 1rem;
 }
@@ -209,7 +211,7 @@ main {
     display: flex;
     align-items: center;
     flex-direction: row;
-    width: 100%;
+    width: 98%;
     height: 100%;
 }
 
@@ -218,15 +220,14 @@ main {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 100%;
+    width: 60%;
     height: 100%;
     padding: 1rem;
-    border: 1px solid red;
 }
 
 /* Imagem da resenha */
 .resenhas-container .resenha:nth-child(4n) .resenha-imagem {
-    width: 30%;
+    width: 40%;
     height: 100%;
     padding: 0;
 }
