@@ -6,7 +6,6 @@
 }
 
 header{
-    border: 1px solid;
     height: 3rem;
     display: flex;
     align-items: center;
@@ -18,23 +17,73 @@ header p {
     color: var(--text);
 }
 
+/*corpo da página*/
 .container {
     display: flex;
     flex-direction: row;
+    margin: 0 5%;
 }
 .container .sec1,
 .container .sec2{
-    border: 1px solid rgb(0, 255, 34);
+    display: flex;
+    flex-direction: column;
 }
 
 .sec1 {
     width: 15%;
     height: 100vh;
-    display: flex;
-    flex-direction: column;
     justify-content: space-around;
     align-items: center;
 }
 .sec2 {
-    width: 85;
+    width: 85%;
+    border: 1px solid red;
+}
+.sec2 .cabecalho{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.sec2 .cabecalho p{
+    font-size: 1.2rem;
+}
+.sec2 .conteudo{
+    border: 1px solid yellow;
+    display: flex;
+    flex-direction: column;
+}
+.sec2 .conteudo > div{
+    border: 1px solid;
+    display: flex;
+    flex-direction: column;
+    text-align: justify;
+    text-indent: 2rem;
+    padding: 2rem;
+}
+.sec2 .conteudo .sinopse{
+    margin-bottom: 3rem;
+}
+.sec2 .conteudo > div p{
+    line-height: 2;
+}
+.sec2 .conteudo > div p > span{
+    font-size: 1.2rem;
+}
+/*box resenhista*/
+.sec2 .resenhista{
+    background-color: var(--principal);
+    height: 20rem;
+    flex-direction: column;
+    padding: 5%;
+    color: var(--text);
+}
+.sec2 .resenhista > div{
+    border: 1px solid;
+}
+.sec2 .resenhista .imagem{
+    border: 1px solid;
+    width: 20%;
+}
+.sec2 .resenhista .imagem img{
+    width: 100%;
 }

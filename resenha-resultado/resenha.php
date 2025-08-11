@@ -37,7 +37,7 @@ if ($result->num_rows > 0) {
 
 
     <link rel='stylesheet' href='../global.css'>
-    <link rel='stylesheet' href='resenha.css'>
+    <link rel='stylesheet' href='result-resenha.css'>
 
     <title>BIBLIÓFILOS Community - RESENHA: $titulo</title>
 </head>
