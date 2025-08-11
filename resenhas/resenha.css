@@ -164,6 +164,7 @@ main {
     width: 30%;
     height: 100%;
     padding: 0;
+    border: 1px solid red;
 }
 
 .resenhas-container .resenha:nth-child(4n + 3) .resenha-imagem img {

@@ -24,7 +24,7 @@ header p {
 }
 .container .sec1,
 .container .sec2{
-    border: 1px solid red;
+    border: 1px solid rgb(0, 255, 34);
 }
 
 .sec1 {
@@ -34,7 +34,6 @@ header p {
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    position: fixed;
 }
 .sec2 {
     width: 85;
