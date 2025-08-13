@@ -169,27 +169,36 @@ $nome = isset($_SESSION['nome']) ? $_SESSION['nome'] : 'Visitante';
 
         </nav>
     </div>
-    <main>
+     <section class="sec-padrao">
+        <div style="width: 100%">
+           
 
-
-    </main>
-    <footer class="site-footer">
-        <div class="footer-logo">
-            <img src="../logo.png" alt="Logo do site">
+            <div class="titulo">
+                <p>Todos os livros</p>
+            </div>
+            
         </div>
+    </section>
+    <div>
+        <footer class="site-footer">
+            <div class="footer-logo">
+                <img src="../logo.png" alt="Logo do site">
+            </div>
 
-        <div class="footer-texto">
-            <h3>Participe da nossa comunidade.</h3>
-            <p>Se torne um resenhista.</p>
-            <p>Entre em contato já!</p>
-        </div>
+            <div class="footer-texto">
+                <h3>Participe da nossa comunidade.</h3>
+                <p>Se torne um resenhista.</p>
+                <p>Entre em contato já!</p>
+            </div>
 
-        <div class="footer-redes">
-            <a href="#" target="_blank" aria-label="X"><i class='bx bxl-xing' style="color: #fff"></i></a>
-            <a href="#" target="_blank" aria-label="Instagram"><i class='bx bxl-instagram' style="color: #fff"></i></a>
-            <a href="#" target="_blank" aria-label="TikTok"><i class='bx bxl-tiktok' style="color: #fff"></i></a>
-        </div>
-    </footer>
+            <div class="footer-redes">
+                <a href="#" target="_blank" aria-label="X"><i class='bx bxl-xing' style="color: #fff"></i></a>
+                <a href="#" target="_blank" aria-label="Instagram"><i class='bx bxl-instagram'
+                        style="color: #fff"></i></a>
+                <a href="#" target="_blank" aria-label="TikTok"><i class='bx bxl-tiktok' style="color: #fff"></i></a>
+            </div>
+        </footer>
+    </div>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const hamburguerBtn = document.getElementById('hamburguer-btn');

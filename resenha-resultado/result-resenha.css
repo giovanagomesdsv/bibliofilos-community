@@ -1,0 +1,100 @@
+:root {
+    --bg: #f0f0f0;
+    --text: #f5f5f5;
+    --principal: #56070C;
+    --secundaria: #11114E;
+}
+
+header{
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: var(--principal);
+}
+
+header p {
+    color: var(--text);
+}
+
+/*corpo da página*/
+.container {
+    display: flex;
+    flex-direction: row;
+    margin: 0 5%;
+}
+.container .sec1,
+.container .sec2{
+    display: flex;
+    flex-direction: column;
+}
+
+.sec1 {
+    width: 15%;
+    height: 100vh;
+    justify-content: space-around;
+    align-items: center;
+}
+.sec2 {
+    width: 85%;
+    border: 1px solid red;
+}
+.sec2 .cabecalho{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.sec2 .cabecalho p{
+    font-size: 1.2rem;
+}
+.sec2 .conteudo{
+    border: 1px solid yellow;
+    display: flex;
+    flex-direction: column;
+}
+.sec2 .conteudo > div{
+    border: 1px solid;
+    display: flex;
+    flex-direction: column;
+    text-align: justify;
+    text-indent: 2rem;
+    padding: 2rem;
+}
+.sec2 .conteudo .sinopse{
+    margin-bottom: 3rem;
+}
+.sec2 .conteudo > div p{
+    line-height: 2;
+}
+.sec2 .conteudo > div p > span{
+    font-size: 1.2rem;
+}
+/*box resenhista*/
+.sec2 .resenhista {
+    display: flex; /* importante para aplicar flexbox */
+    flex-direction: row; /* garante que os filhos fiquem lado a lado */
+    background-color: var(--principal);
+    height: 20rem;
+    padding: 5%;
+    color: var(--text);
+    gap: 2rem; /* opcional: adiciona espaçamento entre os elementos */
+    align-items: center; /* opcional: alinha verticalmente no centro */
+}
+
+
+.sec2 .resenhista .imagem {
+    width: 20%;
+}
+
+.sec2 .resenhista .imagem img {
+    width: 100%;
+}
+.sec2 .resenhista .resumo {
+    width: 80%;
+    border: 1px solid var(--text);
+    border-radius: .5rem;
+    height: 100%;
+}
+.sec2 .resenhista .resumo p{
+    color: var(--text);
+}

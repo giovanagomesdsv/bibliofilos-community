@@ -139,7 +139,7 @@ main {
 }
 
 /* Link da resenha com layout em linha (imagem + conteúdo) */
-.resenhas-container .resenha:nth-child(4n + 3) > a {
+.resenhas-container .resenha:nth-child(4n + 3)>a {
     display: flex;
     align-items: center;
     flex-direction: row;
@@ -148,7 +148,7 @@ main {
 }
 
 /* Container de informação (imagem + conteúdo) */
-.resenhas-container .resenha:nth-child(4n + 3) > a > .info {
+.resenhas-container .resenha:nth-child(4n + 3)>a>.info {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -161,7 +161,8 @@ main {
 
 /* Imagem da resenha */
 .resenhas-container .resenha:nth-child(4n + 3) .resenha-imagem {
-    width: 40%;
+    width: 60%;
+    object-fit: cover; 
     height: 100%;
     padding: 0;
     border: 1px solid red;
@@ -186,6 +187,7 @@ main {
     font-size: 3rem;
     margin: 0;
 }
+
 .resenhas-container .resenha:nth-child(4n + 3) .resenha-conteudo p {
     font-size: 1rem;
 }
@@ -199,6 +201,7 @@ main {
     text-indent: 1rem;
     background-color: var(--bg);
 }
+
 /* 4º estilo: 4, 8, 12, ... */
 .resenhas-container .resenha:nth-child(4n) {
     flex-direction: row;
@@ -208,7 +211,7 @@ main {
 }
 
 /* Link da resenha com layout em linha (imagem + conteúdo) */
-.resenhas-container .resenha:nth-child(4n) > a {
+.resenhas-container .resenha:nth-child(4n)>a {
     display: flex;
     align-items: center;
     flex-direction: row;
@@ -217,7 +220,7 @@ main {
 }
 
 /* Container de informação (imagem + conteúdo) */
-.resenhas-container .resenha:nth-child(4n) > a > .info {
+.resenhas-container .resenha:nth-child(4n)>a>.info {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -253,6 +256,7 @@ main {
     font-size: 3rem;
     margin: 0;
 }
+
 .resenhas-container .resenha:nth-child(4n) .resenha-conteudo p {
     font-size: 1rem;
 }

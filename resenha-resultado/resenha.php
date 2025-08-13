@@ -3,7 +3,7 @@ include "../conexao.php";
 
 $dado = $_GET['id'];
 
-$select = "SELECT resenha_titulo,resenha_texto,resenha_avaliacao,resenha_dtpublicacao,resenha_dtatualizacao, livro_foto, livro_sinopse, aut_foto, res_nome_fantasia, res_foto, res_perfil, res_social FROM resenhas INNER JOIN LIVROS ON RESENHAS.livro_id = LIVROS.livro_id INNER JOIN LIVRO_AUTORES ON LIVRO_AUTORES.livro_id = LIVROS.livro_id INNER JOIN AUTORES ON LIVRO_AUTORES.aut_id = AUTORES.aut_id INNER JOIN RESENHISTAS ON RESENHAS.res_id = RESENHISTAS.res_id
+$select = "SELECT resenha_titulo,resenha_texto,resenha_avaliacao, resenha_dtpublicacao,resenha_dtatualizacao, livro_foto, livro_sinopse, aut_foto, res_nome_fantasia, res_foto, res_perfil, res_social, livro_titulo FROM resenhas INNER JOIN LIVROS ON RESENHAS.livro_id = LIVROS.livro_id INNER JOIN LIVRO_AUTORES ON LIVRO_AUTORES.livro_id = LIVROS.livro_id INNER JOIN AUTORES ON LIVRO_AUTORES.aut_id = AUTORES.aut_id INNER JOIN RESENHISTAS ON RESENHAS.res_id = RESENHISTAS.res_id
  WHERE resenha_id = ?";
 $stmt = $conn->prepare($select);
 $stmt->bind_param("i", $dado);
@@ -15,6 +15,7 @@ if ($result->num_rows > 0) {
         $publicacao = htmlspecialchars($linha['resenha_dtpublicacao']);
         $atualizado = htmlspecialchars($linha['resenha_dtatualizacao']);
         $titulo = htmlspecialchars($linha['resenha_titulo']);
+        $livro = htmlspecialchars($linha['livro_titulo']);
         $foto = htmlspecialchars($linha['livro_foto']);
         $sinopse = htmlspecialchars($linha['livro_sinopse']);
         $texto = htmlspecialchars($linha['resenha_texto']);
@@ -25,8 +26,8 @@ if ($result->num_rows > 0) {
         $resenhistaSocial = htmlspecialchars($linha['res_social']);
         $avaliacao = (int) $linha['resenha_avaliacao'];
 
-        echo "
-        <!DOCTYPE html>
+        echo "     
+<!DOCTYPE html>
 <html lang='pt-br'>
 
 <head>
@@ -48,33 +49,34 @@ if ($result->num_rows > 0) {
         <p>Publicado: $publicacao</p>
     </header>
 
-    <section>
+    <section class='sec1'>
         <img src='../adm/imagens/livros/$foto' alt=''>
         <img src='../adm/imagens/autores/$autor' alt=''>
     </section>
-    <section>
-        <div>
-            <h2>RESENHA: $titulo</h2>
+    <section class='sec2'>
+        <div class='cabecalho'>
+            <h2>$titulo</h2>
+            <p>Livro:  $livro</p>
         </div>
-        <main>
-            <div>
-                <p>SINOPSE: $sinopse</p>
+        <div class='conteudo'>
+            <div class='sinopse'>
+                <p><span>SINOPSE:</span> $sinopse</p>
                 <p>$avaliacao</p>
-
             </div>
-            <div>
-                <p>CONTEÚDO: $texto</p>
+            <div class='resenha'>
+                <p><span>CONTEÚDO:</span> $texto</p>
             </div>
-        </main>
-        <div>
-            <div>
+        </div>
+        <div class='resenhista'>
+            <div class='imagem'>
                 <img src='../adm/imagens/resenhistas/$resenhista' alt=''>
             </div>
-            <div>
+            <div class='resumo'>
                 <p>$resenhistaPerfil</p>
             </div>
-            <div>
-                <a href='$resenhistaSocial'></a>
+            <div class='footer-redes'>
+                <a href='$resenhistaSocial' target='_blank' aria-label='Instagram'><i class='bx bxl-instagram'
+                        style='color: #fff'></i></a>
             </div>
         </div>
     </section>
@@ -100,7 +102,7 @@ if ($result->num_rows > 0) {
 </body>
 
 </html>
-        ";
+ ";
     }
 }
 ?>

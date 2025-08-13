@@ -70,20 +70,31 @@ header p {
     font-size: 1.2rem;
 }
 /*box resenhista*/
-.sec2 .resenhista{
+.sec2 .resenhista {
+    display: flex; /* importante para aplicar flexbox */
+    flex-direction: row; /* garante que os filhos fiquem lado a lado */
     background-color: var(--principal);
     height: 20rem;
-    flex-direction: column;
     padding: 5%;
     color: var(--text);
+    gap: 2rem; /* opcional: adiciona espaçamento entre os elementos */
+    align-items: center; /* opcional: alinha verticalmente no centro */
 }
-.sec2 .resenhista > div{
-    border: 1px solid;
-}
-.sec2 .resenhista .imagem{
-    border: 1px solid;
+
+
+.sec2 .resenhista .imagem {
     width: 20%;
 }
-.sec2 .resenhista .imagem img{
+
+.sec2 .resenhista .imagem img {
     width: 100%;
+}
+.sec2 .resenhista .resumo {
+    width: 80%;
+    border: 1px solid var(--text);
+    border-radius: .5rem;
+    height: 100%;
+}
+.sec2 .resenhista .resumo p{
+    color: var(--text);
 }

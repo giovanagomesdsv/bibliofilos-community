@@ -199,9 +199,18 @@ $nome = isset($_SESSION['nome']) ? $_SESSION['nome'] : 'Visitante';
                         while ($dados = $sql_query->fetch_assoc()) {
 
                             echo "
-          <div class='card-aut'>
-              <p>{$dados['aut_nome']}</p>
-          </div>";
+<div class='card-aut'>
+    <div class='card-inner'>
+        <div class='card-front'>
+            <img src='{$dados['aut_foto']}' alt='Foto de {$dados['aut_nome']}'>
+            <p>{$dados['aut_nome']}</p>
+        </div>
+        <div class='card-back'>
+            <p>{$dados['aut_nome']}</p>
+            <a href='autor.php?nome=" . urlencode($dados['aut_nome']) . "' class='info-button'>Mais informações</a>
+        </div>
+    </div>
+</div>";
                         }
                     }
                 }
@@ -223,9 +232,18 @@ $nome = isset($_SESSION['nome']) ? $_SESSION['nome'] : 'Visitante';
                 if ($resp->num_rows > 0) {
                     while ($aut = $resp->fetch_assoc()) {
                         echo "
-         <div class='card-aut'>
-              <p>{$aut['aut_nome']}</p>
-          </div>";
+<div class='card-aut'>
+    <div class='card-inner'>
+        <div class='card-front'>
+            <img src='{$dados['aut_foto']}' alt='Foto de {$dados['aut_nome']}'>
+            <p>{$dados['aut_nome']}</p>
+        </div>
+        <div class='card-back'>
+            <p>{$dados['aut_nome']}</p>
+            <a href='autor.php?nome=" . urlencode($dados['aut_nome']) . "' class='info-button'>Mais informações</a>
+        </div>
+    </div>
+</div>";
                     }
                 }
                 ?>
