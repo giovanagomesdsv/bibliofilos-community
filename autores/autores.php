@@ -202,7 +202,7 @@ $nome = isset($_SESSION['nome']) ? $_SESSION['nome'] : 'Visitante';
 <div class='card-aut'>
     <div class='card-inner'>
         <div class='card-front'>
-            <img src='{$dados['aut_foto']}' alt='Foto de {$dados['aut_nome']}'>
+            <img src='../adm/imagens/autores/{$dados['aut_foto']}' alt='Foto de {$dados['aut_nome']}'>
             <p>{$dados['aut_nome']}</p>
         </div>
         <div class='card-back'>
@@ -220,6 +220,7 @@ $nome = isset($_SESSION['nome']) ? $_SESSION['nome'] : 'Visitante';
             <div class="titulo">
                 <p>Todos os autores</p>
             </div>
+
             <div class="resenhas-container">
                 <?php
 
@@ -235,12 +236,12 @@ $nome = isset($_SESSION['nome']) ? $_SESSION['nome'] : 'Visitante';
 <div class='card-aut'>
     <div class='card-inner'>
         <div class='card-front'>
-            <img src='{$dados['aut_foto']}' alt='Foto de {$dados['aut_nome']}'>
-            <p>{$dados['aut_nome']}</p>
+            <img src='../adm/imagens/autores/{$aut['aut_foto']}' alt='Foto de {$aut['aut_nome']}'>
+            <p>{$aut['aut_nome']}</p>
         </div>
         <div class='card-back'>
-            <p>{$dados['aut_nome']}</p>
-            <a href='autor.php?nome=" . urlencode($dados['aut_nome']) . "' class='info-button'>Mais informações</a>
+            <p>{$aut['aut_nome']}</p>
+            <a href='autor.php?nome=" . urlencode($aut['aut_nome']) . "' class='info-button'>Mais informações</a>
         </div>
     </div>
 </div>";

@@ -35,9 +35,16 @@ header p {
     justify-content: space-around;
     align-items: center;
     border-right: 1px solid;
+    margin: 5% 0;
+}
+.sec1 img{
+    width: auto;
+    height: 18rem;
+    
 }
 .sec2 {
     width: 85%;
+    padding-left: 2rem;
 }
 .sec2 .cabecalho{
     display: flex;
@@ -53,7 +60,6 @@ header p {
     flex-direction: column;
 }
 .sec2 .conteudo > div{
-    border: 1px solid;
     display: flex;
     flex-direction: column;
     text-align: justify;
@@ -69,10 +75,11 @@ header p {
 .sec2 .conteudo > div p > span{
     font-size: 1.2rem;
 }
+
 /*box resenhista*/
 .sec2 .resenhista {
-    display: flex; /* importante para aplicar flexbox */
-    flex-direction: row; /* garante que os filhos fiquem lado a lado */
+    display: flex; 
+    flex-direction: row; 
     background-color: var(--principal);
     height: 20rem;
     padding: 5%;
@@ -88,13 +95,14 @@ header p {
 }
 
 .sec2 .resenhista .imagem img {
-    width: 100%;
+    width: auto;
+    height: 15rem;
 }
 .sec2 .resenhista .resumo {
     width: 80%;
     border: 1px solid var(--text);
     border-radius: .5rem;
-    height: 100%;
+    height: auto;
 }
 .sec2 .resenhista .resumo p{
     color: var(--text);

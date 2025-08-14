@@ -145,6 +145,7 @@ main {
     flex-direction: row;
     width: 100%;
     height: 100%;
+    gap: 1rem;
 }
 
 /* Container de informação (imagem + conteúdo) */
@@ -161,22 +162,25 @@ main {
 
 /* Imagem da resenha */
 .resenhas-container .resenha:nth-child(4n + 3) .resenha-imagem {
-    width: 60%;
+    width: 10rem;
     object-fit: cover; 
     height: 100%;
     padding: 0;
-    border: 1px solid red;
 }
 
 .resenhas-container .resenha:nth-child(4n + 3) .resenha-imagem img {
-    width: 100%;
-    height: 100%;
+    width: 10rem;
+    height: auto;
     object-fit: contain;
 }
 
 /* Conteúdo da resenha (ao lado da imagem) */
+.resenhas-container .resenha:nth-child(4n + 3) .info {
+    padding: 2rem;
+}
+/* Conteúdo da resenha (ao lado da imagem) */
 .resenhas-container .resenha:nth-child(4n + 3) .resenha-conteudo {
-    padding-left: 1rem;
+    padding: 1rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
