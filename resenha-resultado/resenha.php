@@ -26,7 +26,7 @@ if ($result->num_rows > 0) {
         $resenhistaSocial = htmlspecialchars($linha['res_social']);
         $avaliacao = (int) $linha['resenha_avaliacao'];
 
-        echo "     
+        echo "      
 <!DOCTYPE html>
 <html lang='pt-br'>
 
@@ -49,37 +49,39 @@ if ($result->num_rows > 0) {
         <p>Publicado: $publicacao</p>
     </header>
 
-    <section class='sec1'>
-        <img src='../adm/imagens/livros/$foto' alt=''>
-        <img src='../adm/imagens/autores/$autor' alt=''>
-    </section>
-    <section class='sec2'>
-        <div class='cabecalho'>
-            <h2>$titulo</h2>
-            <p>Livro:  $livro</p>
-        </div>
-        <div class='conteudo'>
-            <div class='sinopse'>
-                <p><span>SINOPSE:</span> $sinopse</p>
-                <p>$avaliacao</p>
+    <div class='.container'>
+        <section class='sec1'>
+            <img src='../adm/imagens/livros/$foto' alt=''>
+            <img src='../adm/imagens/autores/$autor' alt=''>
+        </section>
+        <section class='sec2'>
+            <div class='cabecalho'>
+                <h2>$titulo</h2>
+                <p>Livro: $livro</p>
             </div>
-            <div class='resenha'>
-                <p><span>CONTEÚDO:</span> $texto</p>
+            <div class='conteudo'>
+                <div class='sinopse'>
+                    <p><span>SINOPSE:</span> $sinopse</p>
+                    <p>$avaliacao</p>
+                </div>
+                <div class='resenha'>
+                    <p><span>CONTEÚDO:</span> $texto</p>
+                </div>
             </div>
-        </div>
-        <div class='resenhista'>
-            <div class='imagem'>
-                <img src='../adm/imagens/resenhistas/$resenhista' alt=''>
+            <div class='resenhista'>
+                <div class='imagem'>
+                    <img src='../adm/imagens/resenhistas/$resenhista' alt=''>
+                </div>
+                <div class='resumo'>
+                    <p>$resenhistaPerfil</p>
+                </div>
+                <div class='footer-redes'>
+                    <a href='$resenhistaSocial' target='_blank' aria-label='Instagram'><i class='bx bxl-instagram'
+                            style='color: #fff'></i></a>
+                </div>
             </div>
-            <div class='resumo'>
-                <p>$resenhistaPerfil</p>
-            </div>
-            <div class='footer-redes'>
-                <a href='$resenhistaSocial' target='_blank' aria-label='Instagram'><i class='bx bxl-instagram'
-                        style='color: #fff'></i></a>
-            </div>
-        </div>
-    </section>
+        </section>
+    </div>
     <footer class='site-footer'>
         <div class='footer-logo'>
             <img src='../logo.png' alt='Logo do site'>
@@ -101,8 +103,7 @@ if ($result->num_rows > 0) {
 
 </body>
 
-</html>
- ";
+</html>";
     }
 }
 ?>

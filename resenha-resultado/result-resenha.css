@@ -34,10 +34,10 @@ header p {
     height: 100vh;
     justify-content: space-around;
     align-items: center;
+    border-right: 1px solid;
 }
 .sec2 {
     width: 85%;
-    border: 1px solid red;
 }
 .sec2 .cabecalho{
     display: flex;
@@ -48,7 +48,7 @@ header p {
     font-size: 1.2rem;
 }
 .sec2 .conteudo{
-    border: 1px solid yellow;
+    border-bottom: 1px solid;
     display: flex;
     flex-direction: column;
 }
@@ -84,6 +84,7 @@ header p {
 
 .sec2 .resenhista .imagem {
     width: 20%;
+    height: 15rem;
 }
 
 .sec2 .resenhista .imagem img {
