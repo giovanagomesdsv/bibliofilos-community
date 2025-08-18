@@ -24,62 +24,51 @@ if ($result->num_rows > 0) {
     $atualizacao = htmlspecialchars($row['resenha_dtatualizacao']);
     $avaliacao = (int) ($row['resenha_avaliacao']);
 
-    echo "
-    <!DOCTYPE html>
+   echo "
+<!DOCTYPE html>
 <html lang='pt-br'>
-
 <head>
     <meta charset='UTF-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
     <link rel='stylesheet' type='text/css' href='../geral.css'>
     <link rel='stylesheet' type='text/css' href='m-resenhas.css'>
-    <title>Resenha - BACKSTAGE Community
-    </title>
-
+    <title>Resenha - BACKSTAGE Community</title>
 </head>
-
 <body>
-     <header>
+    <header>
         BACKSTAGE Community
     </header>
-     <main>
+    <main>
         <div class='card card1'>
             <div class='cardimgsinopse'>
                 <div class='box-img'>
-                    <img class='imagem1' src='../../adm/imagens/livros/<?php echo $foto ?>' alt=''>
+                    <img class='imagem1' src='../../adm/imagens/livros/{$foto}' alt=''>
                 </div>
                 <div class='sinopse'>
-                    <h1>
-                        <?php echo $titulo ?>
-                    </h1>
+                    <h1>{$titulo}</h1>
                     <p class='texto'>
-                        Sinopse:
-                        <?php echo $sinopse ?>
+                        Sinopse: {$sinopse}
                     </p>
                 </div>
             </div>
-            <div>
-                <div>
-                    <form method='POST'>
+            <div class='conteudo-resenha'>
+                <h2>Resenha</h2>
+                <p class='texto-resenha'>{$resenha}</p>
 
-                        <div>
-                            <label class='resenhabox' for='resenha'>Resenha:</label><br>
-                            <textarea class='resenha' name='resenha' id='resenha' rows='5' cols='60'
-                                required></textarea><br><br>
-                        </div>
+                <h3>Avaliação</h3>
+                <p class='estrelas'>";
+                
+                // Geração de estrelas preenchidas e vazias
+                for ($i = 1; $i <= 5; $i++) {
+                    echo ($i <= $avaliacao) ? "★" : "☆";
+                }
 
-                        <label for='avaliacao'>Avaliação do livro:</label><br>
-                        <div class='rating'>
-                            <input type='radio' id='estrela5' name='avaliacao' value='5'><label for='estrela5'>★</label>
-                            <input type='radio' id='estrela4' name='avaliacao' value='4'><label for='estrela4'>★</label>
-                            <input type='radio' id='estrela3' name='avaliacao' value='3'><label for='estrela3'>★</label>
-                            <input type='radio' id='estrela2' name='avaliacao' value='2'><label for='estrela2'>★</label>
-                            <input type='radio' id='estrela1' name='avaliacao' value='1' required><label
-                                for='estrela1'>★</label>
-                        </div><br><br>
+    echo "</p>
+                <p class='datas'>
+                    Publicado em: {$publicacao}<br>
+                    Atualizado em: {$atualizacao}
+                </p>
 
-                    </form>
-                </div>
                 <a class='notas' href='m-resenhas.php'>
                     <button class='botao1'>Voltar</button>
                 </a>
@@ -87,7 +76,9 @@ if ($result->num_rows > 0) {
         </div>
     </main>
 </body>
+</html>
+";
 
-</html>    ";
+
 }
 ?>
