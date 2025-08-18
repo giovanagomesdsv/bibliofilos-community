@@ -24,7 +24,7 @@ if ($result->num_rows > 0) {
     $atualizacao = htmlspecialchars($row['resenha_dtatualizacao']);
     $avaliacao = (int) ($row['resenha_avaliacao']);
 
-   echo "
+    echo "
 <!DOCTYPE html>
 <html lang='pt-br'>
 <head>
@@ -33,6 +33,18 @@ if ($result->num_rows > 0) {
     <link rel='stylesheet' type='text/css' href='../geral.css'>
     <link rel='stylesheet' type='text/css' href='m-resenhas.css'>
     <title>Resenha - BACKSTAGE Community</title>
+    <style>
+        .estrelas {
+            font-size: 24px;
+            color: gold;
+            margin: 10px 0;
+        }
+        .texto-resenha {
+            font-size: 16px;
+            line-height: 1.6;
+            white-space: pre-wrap;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -47,7 +59,7 @@ if ($result->num_rows > 0) {
                 <div class='sinopse'>
                     <h1>{$titulo}</h1>
                     <p class='texto'>
-                        Sinopse: {$sinopse}
+                        <strong>Sinopse:</strong> {$sinopse}
                     </p>
                 </div>
             </div>
@@ -56,19 +68,18 @@ if ($result->num_rows > 0) {
                 <p class='texto-resenha'>{$resenha}</p>
 
                 <h3>Avaliação</h3>
-                <p class='estrelas'>";
+                <div class='estrelas'>";
                 
-                // Geração de estrelas preenchidas e vazias
+                // Estrelas estáticas (preenchidas/vazias)
                 for ($i = 1; $i <= 5; $i++) {
-                    echo ($i <= $avaliacao) ? "★" : "☆";
+                    echo $i <= $avaliacao ? "★" : "☆";
                 }
 
-    echo "</p>
+    echo "</div>
                 <p class='datas'>
-                    Publicado em: {$publicacao}<br>
-                    Atualizado em: {$atualizacao}
+                    <strong>Publicado em:</strong> {$publicacao}<br>
+                    <strong>Atualizado em:</strong> {$atualizacao}
                 </p>
-
                 <a class='notas' href='m-resenhas.php'>
                     <button class='botao1'>Voltar</button>
                 </a>
