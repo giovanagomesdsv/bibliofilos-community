@@ -89,11 +89,11 @@ if ($result->num_rows > 0) {
             <div>
                 <div>
                     <form method="POST">
-                        <label class="resenhabox" for="resenha">Resenha:</label><br>
+                        <label class="resenhabox" for="resenha"></label><br>
                         <textarea class="resenha" name="resenha" id="resenha" rows="10" cols="70"
                             class='resenhaText'><?php echo htmlspecialchars($resenha); ?></textarea><br>
                         <div class='display'>
-                            <label for="avaliacao">Avaliação do livro:</label><br>
+                            <label for="avaliacao"></label><br>
                             <div class="rating">
                                 <input type="radio" id="estrela5" name="avaliacao" value="5" <?php if ($avaliacao===5)
                                     echo 'checked' ; ?><label for="estrela5">★</label>

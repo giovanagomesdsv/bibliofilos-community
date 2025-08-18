@@ -117,6 +117,7 @@ $id =  $_SESSION['id'];
     </div>
 
     <div class="pesquisa">
+        <div class="box-card">
         <?php
         if (isset($_GET['busca']) && !empty($_GET['busca'])) {
             $pesquisa = "%" . $_GET['busca'] . "%";
@@ -153,6 +154,7 @@ $id =  $_SESSION['id'];
             $stmt->close();
         }
         ?>
+        </div> 
     </div>
 
     <!-- Resenhas reprovadas ou para corrigir -->
