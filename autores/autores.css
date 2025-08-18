@@ -58,6 +58,9 @@ main {
     background-color: var(--principal); 
     color: var(--text);
 }
+.card-back p{
+    color: var(--text);
+}
 
 .info-button {
     margin-top: 1rem;

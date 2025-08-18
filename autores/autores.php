@@ -177,7 +177,7 @@ $nome = isset($_SESSION['nome']) ? $_SESSION['nome'] : 'Visitante';
     <section class="sec-padrao">
         <div style="width: 100%">
             <!--Resultado da pesquisa----------------------------------------------------------->
-            <div class="pesquisa">
+            <div class="resenhas-container">
                 <?php
 
                 if (!isset($_GET['busca']) || empty(trim($_GET['busca']))) {
@@ -188,7 +188,7 @@ $nome = isset($_SESSION['nome']) ? $_SESSION['nome'] : 'Visitante';
 
                     // Query de busca
                     $sql_code = "
-     SELECT aut_foto, aut_nome FROM AUTORES
+    SELECT aut_foto, aut_nome, aut_bio, aut_id FROM AUTORES
         WHERE  aut_nome LIKE '%$pesquisa%'
      GROUP BY aut_foto, aut_nome";
                     $sql_query = $conn->query($sql_code) or die("Erro ao consultar: " . $conn->error);
@@ -198,16 +198,16 @@ $nome = isset($_SESSION['nome']) ? $_SESSION['nome'] : 'Visitante';
                     } else {
                         while ($dados = $sql_query->fetch_assoc()) {
 
-                            echo "
+                           echo "
 <div class='card-aut'>
     <div class='card-inner'>
         <div class='card-front'>
-            <img src='../adm/imagens/autores/{$dados['aut_foto']}' alt='Foto de {$dados['aut_nome']}'>
-            <p>{$dados['aut_nome']}</p>
+            <img src='../adm/imagens/autores/{$aut['aut_foto']}' alt='Foto de {$aut['aut_nome']}'>
+            <p>{$aut['aut_nome']}</p>
         </div>
         <div class='card-back'>
-            <p>{$dados['aut_nome']}</p>
-            <a href='autor.php?nome=" . urlencode($dados['aut_nome']) . "' class='info-button'>Mais informações</a>
+            <p>" . limitarTexto($aut['aut_bio'], 100, '...') . "</p>
+            <a href='autor.php?id={$aut['aut_id']}' class='info-button'>Mais informações</a>
         </div>
     </div>
 </div>";
@@ -224,7 +224,7 @@ $nome = isset($_SESSION['nome']) ? $_SESSION['nome'] : 'Visitante';
             <div class="resenhas-container">
                 <?php
 
-                $autores = "SELECT aut_foto, aut_nome FROM AUTORES";
+                $autores = "SELECT aut_foto, aut_nome, aut_bio, aut_id FROM AUTORES";
 
                 $stmt = $conn->prepare($autores);
                 $stmt->execute();
@@ -240,8 +240,8 @@ $nome = isset($_SESSION['nome']) ? $_SESSION['nome'] : 'Visitante';
             <p>{$aut['aut_nome']}</p>
         </div>
         <div class='card-back'>
-            <p>{$aut['aut_nome']}</p>
-            <a href='autor.php?nome=" . urlencode($aut['aut_nome']) . "' class='info-button'>Mais informações</a>
+            <p>" . limitarTexto($aut['aut_bio'], 100, '...') . "</p>
+            <a href='autor.php?id={$aut['aut_id']}' class='info-button'>Mais informações</a>
         </div>
     </div>
 </div>";

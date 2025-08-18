@@ -21,21 +21,21 @@ header p {
 .container {
     display: flex;
     flex-direction: row;
-    margin: 0 5%;
+    margin: 2% 5%;
 }
 .container .sec1,
 .container .sec2{
     display: flex;
     flex-direction: column;
+    height: auto;
 }
 
 .sec1 {
     width: 15%;
-    height: 100vh;
     justify-content: space-around;
     align-items: center;
     border-right: 1px solid;
-    margin: 5% 0;
+    gap: 5%
 }
 .sec1 img{
     width: auto;
@@ -50,6 +50,9 @@ header p {
     display: flex;
     align-items: center;
     flex-direction: column;
+}
+.sec2 .cabecalho h2{
+    font-size: 3.5rem;
 }
 .sec2 .cabecalho p{
     font-size: 1.2rem;
@@ -69,6 +72,12 @@ header p {
 .sec2 .conteudo .sinopse{
     margin-bottom: 3rem;
 }
+.sec2 .conteudo .estrelas {
+    font-size: 24px;
+    color: gold;
+    margin: 10px 0;
+    text-align: center;
+}
 .sec2 .conteudo > div p{
     line-height: 2;
 }
@@ -83,6 +92,7 @@ header p {
     background-color: var(--principal);
     height: 20rem;
     padding: 5%;
+    margin-bottom: 5%;
     color: var(--text);
     gap: 2rem; /* opcional: adiciona espaçamento entre os elementos */
     align-items: center; /* opcional: alinha verticalmente no centro */
@@ -95,11 +105,11 @@ header p {
 }
 
 .sec2 .resenhista .imagem img {
-    width: auto;
+    max-width: 100%;
     height: 15rem;
 }
 .sec2 .resenhista .resumo {
-    width: 80%;
+    width: 70%;
     border: 1px solid var(--text);
     border-radius: .5rem;
     height: auto;

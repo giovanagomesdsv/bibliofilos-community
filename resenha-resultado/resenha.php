@@ -49,26 +49,30 @@ if ($result->num_rows > 0) {
         <p>Publicado: $publicacao</p>
     </header>
 
-    <div class='.container'>
+    <div class='container' style='height: auto; border: 1px;'>
         <section class='sec1'>
             <img src='../adm/imagens/livros/$foto' alt=''>
             <img src='../adm/imagens/autores/$autor' alt=''>
         </section>
-        <section class='sec2'>
+        <section class='sec2' style='height: auto; border: 1px'>
             <div class='cabecalho'>
                 <h2>$titulo</h2>
                 <p>Livro: $livro</p>
             </div>
             <div class='conteudo'>
                 <div class='sinopse'>
-                    <p><span>SINOPSE:</span> $sinopse</p>
-                    <p>$avaliacao</p>
+                  <p><span>SINOPSE:</span> $sinopse</p>
+                  <div class='estrelas'>";
+        for ($i = 1; $i <= 5; $i++) {
+            echo $i <= $avaliacao ? "★" : "☆";
+        }
+            echo "</div>
                 </div>
                 <div class='resenha'>
                     <p><span>CONTEÚDO:</span> $texto</p>
                 </div>
             </div>
-            <div class='resenhista'>
+            <div class='resenhista' style='margin: 3rem'>
                 <div class='imagem'>
                     <img src='../adm/imagens/resenhistas/$resenhista' alt=''>
                 </div>
