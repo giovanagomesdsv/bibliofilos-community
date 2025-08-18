@@ -65,7 +65,7 @@ if ($result->num_rows > 0) {
             </div>
             <div class='conteudo-resenha'>
                 <h2>Resenha</h2>
-                <p class='texto-resenha'>{$resenha}</p>
+                <textarea class='resenha' name='resenha' id='resenha' rows='10' cols='70' class='resenhaText'>{$resenha}</textarea><br>
 
                 <h3>Avaliação</h3>
                 <div class='estrelas'>";
