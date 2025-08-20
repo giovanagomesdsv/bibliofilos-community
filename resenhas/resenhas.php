@@ -277,7 +277,7 @@ $nome = isset($_SESSION['nome']) ? $_SESSION['nome'] : 'Visitante';
                         while ($resenha = $res->fetch_assoc()) {
                             echo "
           <div class='resenha'>
-           <a href='../resenha-resultado/resenha.php?id={$resenha['resenha_id']}'>
+           <a href='../resenha-resultado/resenha.php?id={$resenha['resenha_id']}' target='_blank'>
                <div class='resenha-imagem'>
                    <img src='../adm/imagens/livros/{$resenha['livro_foto']}' alt='Ícone do gênero'>
                </div>
@@ -321,7 +321,7 @@ $nome = isset($_SESSION['nome']) ? $_SESSION['nome'] : 'Visitante';
                     while ($resenha = $resp->fetch_assoc()) {
                         echo "
         <div class='resenha'>
-           <a href='../resenha-resultado/resenha.php?id={$resenha['resenha_id']}'>
+           <a href='../resenha-resultado/resenha.php?id={$resenha['resenha_id']}' target='_blank'>
                <div class='resenha-imagem'>
                    <img src='../adm/imagens/livros/{$resenha['livro_foto']}' alt='Ícone do gênero'>
                </div>

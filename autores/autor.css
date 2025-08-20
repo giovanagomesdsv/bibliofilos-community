@@ -1,0 +1,25 @@
+:root {
+    --bg: #f0f0f0;
+    --text: #f5f5f5;
+    --principal: #56070C;
+    --secundaria: #11114E;
+}
+
+header{
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: var(--principal);
+}
+
+header p {
+    color: var(--text);
+}
+
+/*corpo da página*/
+.container {
+    display: flex;
+    flex-direction: row;
+    margin: 2% 5%;
+}
