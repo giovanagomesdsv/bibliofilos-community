@@ -5,6 +5,7 @@
 .texto {
     color: #fff;
     text-align: justify;
+    
 }
 .card1 {
     height: auto;
@@ -83,7 +84,7 @@
 }
 
 .rating label {
-    font-size: 2em;
+    font-size: 2rem;
     color: #ccc;
     cursor: pointer;
 }
@@ -93,6 +94,14 @@
 .rating label:hover~label {
     color: gold;
 }
+
+.box-resenha {
+    background-color: #f5f5f5;
+    margin: 1rem;
+    display: flex  center ;
+    
+}
+
 
 /*M-RESENHAS.php ----------------------------------------------------------*/
 
@@ -229,3 +238,7 @@
     width:25rem;
     height:5rem;
 }
+
+
+
+

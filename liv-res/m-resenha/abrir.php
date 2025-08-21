@@ -64,9 +64,9 @@ if ($result->num_rows > 0) {
                 </div>
             </div>
             <div class='conteudo-resenha'>
-                <textarea class='resenha' name='resenha' id='resenha' rows='10' cols='70' class='resenhaText'>{$resenha}</textarea><br>
-
-           
+                <div class='box-resenha'>
+                    <p class='resenha' class='resenhaText'>{$resenha}</p>
+                </div>
                 <div class='estrelas'>";
                 
                 // Estrelas estáticas (preenchidas/vazias)
