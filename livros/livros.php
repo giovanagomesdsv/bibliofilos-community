@@ -174,46 +174,72 @@ $nome = isset($_SESSION['nome']) ? $_SESSION['nome'] : 'Visitante';
 
         </nav>
     </div>
-    <section class="sec-padrao">
-        <div style="width: 100%">
-            <!--Resultado da pesquisa----------------------------------------------------------->
-            <div class="pesquisa">
-                <?php
+    <!--Resultado da pesquisa----------------------------------------------------------->
+    <div class="pesquisa">
+        <?php
 
-                if (!isset($_GET['busca']) || empty(trim($_GET['busca']))) {
-                    echo "<div class='resultados'></div>";
-                } else {
-                    // Proteção contra SQL Injection
-                    $pesquisa = $conn->real_escape_string($_GET['busca']);
+        if (!isset($_GET['busca']) || empty(trim($_GET['busca']))) {
+            echo "<div class='resultados'></div>";
+        } else {
+            // Proteção contra SQL Injection
+            $pesquisa = $conn->real_escape_string($_GET['busca']);
 
-                    // Query de busca
-                    $sql_code = "
+            // Query de busca
+            $sql_code = "
      SELECT aut_foto, aut_nome FROM AUTORES
         WHERE  aut_nome LIKE '%$pesquisa%'
      GROUP BY aut_foto, aut_nome";
-                    $sql_query = $conn->query($sql_code) or die("Erro ao consultar: " . $conn->error);
+            $sql_query = $conn->query($sql_code) or die("Erro ao consultar: " . $conn->error);
 
-                    if ($sql_query->num_rows == 0) {
-                        echo "<div class='resultados'><h3>Nenhum resultado encontrado!</h3></div>";
-                    } else {
-                        while ($dados = $sql_query->fetch_assoc()) {
+            if ($sql_query->num_rows == 0) {
+                echo "<div class='resultados'><h3>Nenhum resultado encontrado!</h3></div>";
+            } else {
+                while ($dados = $sql_query->fetch_assoc()) {
 
-                            echo "
+                    echo "
 <div class='card-aut'>
    
 </div>";
-                        }
-                    }
                 }
-                ?>
-            </div>
+            }
+        }
+        ?>
+    </div>
+    <div class="container" style="height: auto; border: 5px solid red; display: flex; flex-direction: row; margin-top: 14rem;">
+        <section style="border: 1px solid blue; width: 15%; height: 100%;">
+        
+        </section>
+        <section style="height: auto; border: 1px solid; width: 75%; display: flex; flex-direction: row; flex-wrap: wrap; gap: 3rem; padding: 1rem;">
+            <?php
+            $status = 1;
+            $livros = "SELECT livro_titulo, livro_classidd, livro_foto, liv_livro_preco, liv_livro_tipo  FROM LIVROS INNER JOIN LIVRARIAS_LIVROS ON LIVROS.livro_id = LIVRARIAS_LIVROS.livro_id WHERE liv_livro_status = ?";                             
+            $stmt = $conn->prepare($livros);
+            $stmt->bind_param("i", $status);
+            $stmt->execute();
+            $result = $stmt->get_result();
 
-            <div class="titulo">
-                <p>Todos os livros</p>
-            </div>
+            if ($result->num_rows > 0) {
+                while ($dados = $result->fetch_assoc()) {
+                    echo "
+                    <div class='card-livro'>
+                       <div class='imagem'>
+                          <img src='../adm/imagens/livros/{$dados['livro_foto']}' alt=''>
+                       </div>
+                       <div class='info'>
+                          <p></p>
+                          <h1></h1>
+                          <h2></h2>
+                          <p></p>
+                          <p></p>
+                       </div>
+                    </div>
+                    ";
+                }
+            }
+            ?>
             
-        </div>
-    </section>
+        </section>
+    </div>
     <div>
         <footer class="site-footer">
             <div class="footer-logo">

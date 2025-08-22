@@ -1,13 +1,4 @@
 <?php
-function limitarTexto($texto, $limite, $final = '...')
-{
-    if (strlen($texto) <= $limite) {
-        return $texto;
-    }
-    return substr($texto, 0, $limite) . $final;
-}
-?>
-<?php
 include "../conexao.php";
 session_start();
 
@@ -169,16 +160,55 @@ $nome = isset($_SESSION['nome']) ? $_SESSION['nome'] : 'Visitante';
 
         </nav>
     </div>
-     <section class="sec-padrao">
+    <section class="sec-padrao">
         <div style="width: 100%">
-           
-
             <div class="titulo">
-                <p>Todos os livros</p>
+                <p>Resenhistas</p>
             </div>
-            
+            <div class="box-resenhista" style="">
+                <?php
+                $resenhista = "SELECT 
+  RESENHISTAS.res_nome_fantasia, 
+  RESENHISTAS.res_foto, 
+  RESENHISTAS.res_social, 
+  COUNT(RESENHAS.res_id) AS total_resenhas
+FROM 
+  RESENHISTAS
+INNER JOIN 
+  RESENHAS ON RESENHAS.res_id = RESENHISTAS.res_id
+GROUP BY 
+  RESENHISTAS.res_nome_fantasia, 
+  RESENHISTAS.res_foto, 
+  RESENHISTAS.res_social
+  ORDER BY total_resenhas DESC";
+                $stmt = $conn->prepare($resenhista);
+                $stmt->execute();
+                $result = $stmt->get_result();
+
+                if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+                        echo "
+                          <div class='card-res'>
+                             <div class='imagem'>
+                                <img src='../adm/imagens/resenhistas/{$row['res_foto']}' alt=''>
+                             </div>
+                             <div class='info'>
+                                <h1>{$row['res_nome_fantasia']}</h1>
+                                <h2>{$row['total_resenhas']}</h2>
+                             </div>
+                             <div class='footer-redes'>
+                                <a href='{$row['res_social']}' target='_blank' aria-label='Instagram'><i class='bx bxl-instagram' style='color: #fff'></i></a>
+                             </div>
+                          </div>
+                        ";
+                    }
+                }
+
+                ?>
+            </div>
         </div>
     </section>
+    
     <div>
         <footer class="site-footer">
             <div class="footer-logo">

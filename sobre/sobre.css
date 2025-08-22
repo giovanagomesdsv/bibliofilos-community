@@ -1,3 +1,46 @@
-main {
-    margin-top: 9rem;
+:root {
+    --bg: #f0f0f0;
+    --text: #f5f5f5;
+    --principal: #56070C;
+    --secundaria: #11114E;
+}
+
+.box-resenhista {
+    border: 5px solid red;
+    display: flex;
+    flex-direction: column;
+    margin-top: 2rem;
+    gap: 3rem;
+}
+
+.box-resenhista .card-res {
+    display: flex;
+    flex-direction: row;
+    background-color: var(--principal);
+    height: 15rem;
+    width: 100%;
+    padding: 1rem 5%;
+}
+.box-resenhista > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.box-resenhista .card-res .imagem{
+    height: 100%;
+    width: 25%;
+}
+.box-resenhista .card-res .imagem img{
+    height: 100%;
+    object-fit: cover;
+}
+.box-resenhista .card-res .info{
+    height: 100%;
+    width: 40%;
+}
+
+.box-resenhista .card-res .footer-redes{
+    height: 100%;
+    width: 25%;
 }
