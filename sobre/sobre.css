@@ -6,7 +6,6 @@
 }
 
 .box-resenhista {
-    border: 5px solid red;
     display: flex;
     flex-direction: column;
     margin-top: 2rem;
@@ -38,13 +37,17 @@
 .box-resenhista .card-res .info{
     height: 100%;
     width: 40%;
+}
+.box-resenhista .card-res .info h1,
+.box-resenhista .card-res .info h2{
     color: #fff;
 }
-.box-resenhista .card-res .info{
-    height: 100%;
-    width: 40%;
-    color: #fff;
+.box-resenhista .card-res .info h2 {
+    color: #fff; 
+    font-weight: 200; 
+    font-size: 1.5rem
 }
+
 
 .box-resenhista .card-res .footer-redes{
     height: 100%;

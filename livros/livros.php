@@ -205,14 +205,16 @@ $nome = isset($_SESSION['nome']) ? $_SESSION['nome'] : 'Visitante';
         }
         ?>
     </div>
-    <div class="container" style="height: auto; border: 5px solid red; display: flex; flex-direction: row; margin-top: 14rem;">
+    <div class="container"
+        style="height: auto; border: 5px solid red; display: flex; flex-direction: row; margin-top: 14rem;">
         <section style="border: 1px solid blue; width: 15%; height: 100%;">
-        
+
         </section>
-        <section style="height: auto; border: 1px solid; width: 75%; display: flex; flex-direction: row; flex-wrap: wrap; gap: 3rem; padding: 1rem;">
+        <section
+            style="height: auto; border: 1px solid; width: 75%; display: flex; flex-direction: row; flex-wrap: wrap; gap: 3rem; padding: 1rem;">
             <?php
             $status = 1;
-            $livros = "SELECT livro_titulo, livro_classidd, livro_foto, liv_livro_preco, liv_livro_tipo  FROM LIVROS INNER JOIN LIVRARIAS_LIVROS ON LIVROS.livro_id = LIVRARIAS_LIVROS.livro_id WHERE liv_livro_status = ?";                             
+            $livros = "SELECT livro_titulo, livro_classidd, livro_foto, liv_livro_preco, liv_livro_tipo  FROM LIVROS INNER JOIN LIVRARIAS_LIVROS ON LIVROS.livro_id = LIVRARIAS_LIVROS.livro_id WHERE liv_livro_status = ?";
             $stmt = $conn->prepare($livros);
             $stmt->bind_param("i", $status);
             $stmt->execute();
@@ -221,23 +223,22 @@ $nome = isset($_SESSION['nome']) ? $_SESSION['nome'] : 'Visitante';
             if ($result->num_rows > 0) {
                 while ($dados = $result->fetch_assoc()) {
                     echo "
-                    <div class='card-livro'>
-                       <div class='imagem'>
-                          <img src='../adm/imagens/livros/{$dados['livro_foto']}' alt=''>
-                       </div>
-                       <div class='info'>
-                          <p></p>
-                          <h1></h1>
-                          <h2></h2>
-                          <p></p>
-                          <p></p>
-                       </div>
-                    </div>
+                    <div class='card-livro' style='border: 1px solid #ccc; padding: 1rem; width: 200px;'>
+   <div class='imagem'>
+      <img src='../adm/imagens/livros/{$dados['livro_foto']}' alt='Imagem do livro' style='width: 100%; height: auto;'>
+   </div>
+   <div class='info'>
+      <h1>{$dados['livro_titulo']}</h1>
+      <h2>R$ {$dados['liv_livro_preco']}</h2>
+      <p>Tipo: {$dados['liv_livro_tipo']}</p>
+      <p> {$dados['livro_classidd']}</p>
+   </div>
+</div>
                     ";
                 }
             }
             ?>
-            
+
         </section>
     </div>
     <div>

@@ -194,7 +194,7 @@ GROUP BY
                              </div>
                              <div class='info'>
                                 <h1>{$row['res_nome_fantasia']}</h1>
-                                <h2 style='color: #fff; font-weight: 200; font-size: 1.5rem'>Resenhas: {$row['total_resenhas']}</h2>
+                                <h2>Resenhas: {$row['total_resenhas']}</h2>
                              </div>
                              <div class='footer-redes'>
                                 <a href='{$row['res_social']}' target='_blank' aria-label='Instagram'><i class='bx bxl-instagram' style='color: #fff'></i></a>

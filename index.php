@@ -229,10 +229,22 @@ ini_set('display_errors', 1);
 
         // Buscar as 7 resenhas com maior avaliação (ativas)
         $sql = "
-SELECT resenha_id, resenha_titulo, resenha_status, livro_foto
-FROM resenhas INNER JOIN LIVROS ON RESENHAS.livro_id = LIVROS.livro_id
-WHERE resenha_status = 0 
-ORDER BY resenha_avaliacao DESC
+SELECT 
+    resenha_id, 
+    resenha_titulo, 
+    resenha_status, 
+    livro_foto, 
+    resenha_dtpublicacao, 
+    resenha_avaliacao
+FROM 
+    resenhas 
+INNER JOIN 
+    livros ON resenhas.livro_id = livros.livro_id
+WHERE 
+    resenha_status = 0 
+ORDER BY 
+    resenha_avaliacao DESC, 
+    resenha_dtpublicacao DESC
 LIMIT 7
 "; // MUDAR RESENHA_STATUS 
         $result = $conn->query($sql);
