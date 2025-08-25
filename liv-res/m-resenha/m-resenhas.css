@@ -61,6 +61,7 @@
     width: 97%;
     text-align: justify;
     color: black;
+    overflow: scroll;
 }
 
 .botao1 {
@@ -99,9 +100,9 @@
 
 .box-resenha {
     background-color: #f5f5f5;
-    margin: 1rem;
+    margin: 2rem;
     padding-left: 4rem;  
-   height: auto;
+    height: auto;
 }
 
 
