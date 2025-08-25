@@ -38,9 +38,17 @@
 .box-resenhista .card-res .info{
     height: 100%;
     width: 40%;
+    color: #fff;
+}
+.box-resenhista .card-res .info{
+    height: 100%;
+    width: 40%;
+    color: #fff;
 }
 
 .box-resenhista .card-res .footer-redes{
     height: 100%;
     width: 25%;
+    align-items: center; 
+    justify-content: center
 }
