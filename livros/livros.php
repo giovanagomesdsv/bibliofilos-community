@@ -175,40 +175,42 @@ $nome = isset($_SESSION['nome']) ? $_SESSION['nome'] : 'Visitante';
         </nav>
     </div>
     <!--Resultado da pesquisa----------------------------------------------------------->
-    <div class="pesquisa" style="border: 2px solid red; margin-top: 10rem">
-        <div class="box-livros">
+    <div class="pesquisa" style="margin-top: 10rem;">
+        <div class="box-livros" style="display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center;">
             <?php
-
             if (!isset($_GET['busca']) || empty(trim($_GET['busca']))) {
                 echo "<div class='resultados'></div>";
             } else {
-                // Proteção contra SQL Injection
-                $pesquisa = $conn->real_escape_string($_GET['busca']);
-
-                // Query de busca
-                $sql_code = "SELECT livro_titulo, livro_classidd, livro_foto, liv_livro_preco, liv_livro_tipo  FROM LIVROS INNER JOIN LIVRARIAS_LIVROS ON LIVROS.livro_id = LIVRARIAS_LIVROS.livro_id WHERE liv_livro_status = 1 AND livro_titulo LIKE '%$pesquisa%'
-     GROUP BY livro_titulo, livro_classidd, livro_foto, liv_livro_preco, liv_livro_tipo";
-                $sql_query = $conn->query($sql_code) or die("Erro ao consultar: " . $conn->error);
+                $pesquisa = "%" . $_GET['busca'] . "%";
+                $sql_code = "SELECT livro_titulo, livro_classidd, livro_foto, liv_livro_preco, liv_livro_tipo, LIVROS.livro_id  
+                         FROM LIVROS 
+                         INNER JOIN LIVRARIAS_LIVROS 
+                         ON LIVROS.livro_id = LIVRARIAS_LIVROS.livro_id 
+                         WHERE liv_livro_status = 1 AND livro_titulo LIKE ?
+                         GROUP BY livro_titulo, livro_classidd, livro_foto, liv_livro_preco, liv_livro_tipo";
+                $stmt = $conn->prepare($sql_code);
+                $stmt->bind_param("s", $pesquisa);
+                $stmt->execute();
+                $sql_query = $stmt->get_result();
 
                 if ($sql_query->num_rows == 0) {
                     echo "<div class='resultados'><h3>Nenhum resultado encontrado!</h3></div>";
                 } else {
                     while ($dados = $sql_query->fetch_assoc()) {
-
                         echo "
-    <div class='card-livro'>
-        <a href='compra.php?id={$dados['livro_id']}' style='text-decoration: none; color: inherit;' target='_blank'>
-           <div class='imagem'>
-               <img src='../adm/imagens/livros/{$dados['livro_foto']}' alt='Imagem do livro'>
-           </div>
-        </a>
-        <div class='info'>
-            <h1>{$dados['livro_titulo']}</h1>
-            <h2>R$ {$dados['liv_livro_preco']}</h2>
-            <p>Tipo: {$dados['liv_livro_tipo']}</p>
-            <p>{$dados['livro_classidd']}</p>
+<div style='width: 250px; border: 1px solid #ccc; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1); background-color: #fff;'>
+    <a href='compra.php?id={$dados['livro_id']}' style='text-decoration: none; color: inherit;' target='_blank'>
+        <div style='height: 300px; overflow: hidden;'>
+            <img src='../adm/imagens/livros/{$dados['livro_foto']}' alt='Imagem do livro' style='width: 100%; height: 100%; object-fit: cover;'>
         </div>
+    </a>
+    <div style='padding: 1rem; text-align: center;'>
+        <h1 style='font-size: 1.1rem; margin: 0 0 0.5rem;'>" . htmlspecialchars($dados['livro_titulo']) . "</h1>
+        <h2 style='color: green; font-size: 1rem; margin: 0.5rem 0;'>R$ " . number_format($dados['liv_livro_preco'], 2, ',', '.') . "</h2>
+        <p style='margin: 0.2rem 0;'>Tipo: " . htmlspecialchars($dados['liv_livro_tipo']) . "</p>
+        <p style='margin: 0.2rem 0;'>Classificação: " . htmlspecialchars($dados['livro_classidd']) . "</p>
     </div>
+</div>
 ";
                     }
                 }
@@ -216,14 +218,19 @@ $nome = isset($_SESSION['nome']) ? $_SESSION['nome'] : 'Visitante';
             ?>
         </div>
     </div>
-    <div class="container">
-        <section class="box-filter">
+    <div class="container" style="display: flex; flex-direction: row; border: 5px solid; height: 100%">
+        <section class="box-filter" style="border: 3px solid red; width: 15%">
 
         </section>
-        <section class="box-livros">
+        <section class="box-livros"
+            style="display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center; padding: 2rem; width: 80%">
             <?php
             $status = 1;
-            $livros = "SELECT livro_titulo, livro_classidd, livro_foto, liv_livro_preco, liv_livro_tipo  FROM LIVROS INNER JOIN LIVRARIAS_LIVROS ON LIVROS.livro_id = LIVRARIAS_LIVROS.livro_id WHERE liv_livro_status = ?";
+            $livros = "SELECT livro_titulo, livro_classidd, livro_foto, liv_livro_preco, liv_livro_tipo, LIVROS.livro_id  
+               FROM LIVROS 
+               INNER JOIN LIVRARIAS_LIVROS 
+               ON LIVROS.livro_id = LIVRARIAS_LIVROS.livro_id 
+               WHERE liv_livro_status = ?";
             $stmt = $conn->prepare($livros);
             $stmt->bind_param("i", $status);
             $stmt->execute();
@@ -233,15 +240,15 @@ $nome = isset($_SESSION['nome']) ? $_SESSION['nome'] : 'Visitante';
                 while ($dados = $result->fetch_assoc()) {
                     echo "
 <a href='compra.php?id={$dados['livro_id']}' style='text-decoration: none; color: inherit;'>
-    <div class='card-livro'>
-        <div class='imagem'>
-            <img src='../adm/imagens/livros/{$dados['livro_foto']}' alt='Imagem do livro'>
+    <div style='width: 250px; border: 1px solid #ccc; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1); background-color: #fff;'>
+        <div style='height: 300px; overflow: hidden;'>
+            <img src='../adm/imagens/livros/{$dados['livro_foto']}' alt='Imagem do livro' style='width: 100%; height: 100%; object-fit: cover;'>
         </div>
-        <div class='info'>
-            <h1>{$dados['livro_titulo']}</h1>
-            <h2>R$ {$dados['liv_livro_preco']}</h2>
-            <p>Tipo: {$dados['liv_livro_tipo']}</p>
-            <p>{$dados['livro_classidd']}</p>
+        <div style='padding: 1rem; text-align: center;'>
+            <h1 style='font-size: 1.1rem; margin: 0 0 0.5rem;'>" . htmlspecialchars($dados['livro_titulo']) . "</h1>
+            <h2 style='color: green; font-size: 1rem; margin: 0.5rem 0;'>R$ " . number_format($dados['liv_livro_preco'], 2, ',', '.') . "</h2>
+            <p style='margin: 0.2rem 0;'>Tipo: " . htmlspecialchars($dados['liv_livro_tipo']) . "</p>
+            <p style='margin: 0.2rem 0;'>Classificação: " . htmlspecialchars($dados['livro_classidd']) . "</p>
         </div>
     </div>
 </a>
@@ -249,8 +256,8 @@ $nome = isset($_SESSION['nome']) ? $_SESSION['nome'] : 'Visitante';
                 }
             }
             ?>
-
         </section>
+
     </div>
     <div>
         <footer class="site-footer">
