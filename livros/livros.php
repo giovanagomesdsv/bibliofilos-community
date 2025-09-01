@@ -176,7 +176,7 @@ $nome = isset($_SESSION['nome']) ? $_SESSION['nome'] : 'Visitante';
     </div>
     <!--Resultado da pesquisa----------------------------------------------------------->
     <div class="pesquisa" style="margin-top: 10rem;">
-        <div class="box-livros" style="display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center;">
+        <div class="box-livros">
             <?php
             if (!isset($_GET['busca']) || empty(trim($_GET['busca']))) {
                 echo "<div class='resultados'></div>";
@@ -198,19 +198,19 @@ $nome = isset($_SESSION['nome']) ? $_SESSION['nome'] : 'Visitante';
                 } else {
                     while ($dados = $sql_query->fetch_assoc()) {
                         echo "
-<div style='width: 250px; border: 1px solid #ccc; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1); background-color: #fff;'>
-    <a href='compra.php?id={$dados['livro_id']}' style='text-decoration: none; color: inherit;' target='_blank'>
-        <div style='height: 300px; overflow: hidden;'>
-            <img src='../adm/imagens/livros/{$dados['livro_foto']}' alt='Imagem do livro' style='width: 100%; height: 100%; object-fit: cover;'>
+<a href='compra.php?id={$dados['livro_id']}'>
+    <div class='card-livro'>
+        <div class='imagem'>
+            <img src='../adm/imagens/livros/{$dados['livro_foto']}' alt='Imagem do livro'>
         </div>
-    </a>
-    <div style='padding: 1rem; text-align: center;'>
-        <h1 style='font-size: 1.1rem; margin: 0 0 0.5rem;'>" . htmlspecialchars($dados['livro_titulo']) . "</h1>
-        <h2 style='color: green; font-size: 1rem; margin: 0.5rem 0;'>R$ " . number_format($dados['liv_livro_preco'], 2, ',', '.') . "</h2>
-        <p style='margin: 0.2rem 0;'>Tipo: " . htmlspecialchars($dados['liv_livro_tipo']) . "</p>
-        <p style='margin: 0.2rem 0;'>Classificação: " . htmlspecialchars($dados['livro_classidd']) . "</p>
+        <div class='info'>
+            <h1>" . htmlspecialchars($dados['livro_titulo']) . "</h1>
+            <h2>R$ " . number_format($dados['liv_livro_preco'], 2, ',', '.') . "</h2>
+            <p class='tipo'>Tipo: " . htmlspecialchars($dados['liv_livro_tipo']) . "</p>
+            <p>" . htmlspecialchars($dados['livro_classidd']) . "</p>
+        </div>
     </div>
-</div>
+</a>
 ";
                     }
                 }
@@ -218,12 +218,11 @@ $nome = isset($_SESSION['nome']) ? $_SESSION['nome'] : 'Visitante';
             ?>
         </div>
     </div>
-    <div class="container" style="display: flex; flex-direction: row; border: 5px solid; height: 100%">
-        <section class="box-filter" style="border: 3px solid red; width: 15%">
+    <div class="container">
+        <section class="box-filter">
 
         </section>
-        <section class="box-livros"
-            style="display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center; padding: 2rem; width: 80%">
+        <section class="box-livros">
             <?php
             $status = 1;
             $livros = "SELECT livro_titulo, livro_classidd, livro_foto, liv_livro_preco, liv_livro_tipo, LIVROS.livro_id  
@@ -239,16 +238,16 @@ $nome = isset($_SESSION['nome']) ? $_SESSION['nome'] : 'Visitante';
             if ($result->num_rows > 0) {
                 while ($dados = $result->fetch_assoc()) {
                     echo "
-<a href='compra.php?id={$dados['livro_id']}' style='text-decoration: none; color: inherit;'>
-    <div style='width: 250px; border: 1px solid #ccc; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1); background-color: #fff;'>
-        <div style='height: 300px; overflow: hidden;'>
-            <img src='../adm/imagens/livros/{$dados['livro_foto']}' alt='Imagem do livro' style='width: 100%; height: 100%; object-fit: cover;'>
+<a href='compra.php?id={$dados['livro_id']}'>
+    <div class='card-livro'>
+        <div class='imagem'>
+            <img src='../adm/imagens/livros/{$dados['livro_foto']}' alt='Imagem do livro'>
         </div>
-        <div style='padding: 1rem; text-align: center;'>
-            <h1 style='font-size: 1.1rem; margin: 0 0 0.5rem;'>" . htmlspecialchars($dados['livro_titulo']) . "</h1>
-            <h2 style='color: green; font-size: 1rem; margin: 0.5rem 0;'>R$ " . number_format($dados['liv_livro_preco'], 2, ',', '.') . "</h2>
-            <p style='margin: 0.2rem 0;'>Tipo: " . htmlspecialchars($dados['liv_livro_tipo']) . "</p>
-            <p style='margin: 0.2rem 0;'>Classificação: " . htmlspecialchars($dados['livro_classidd']) . "</p>
+        <div class='info'>
+            <h1>" . htmlspecialchars($dados['livro_titulo']) . "</h1>
+            <h2>R$ " . number_format($dados['liv_livro_preco'], 2, ',', '.') . "</h2>
+            <p class='tipo'>Tipo: " . htmlspecialchars($dados['liv_livro_tipo']) . "</p>
+            <p>" . htmlspecialchars($dados['livro_classidd']) . "</p>
         </div>
     </div>
 </a>
