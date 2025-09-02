@@ -1,8 +1,7 @@
 .container {
     display: flex;
     flex-direction: row;
-    height: 100%;
-    /*se quebrar é 'auto'*/
+    height: auto;
 }
 
 .container .box-filter {
@@ -19,50 +18,52 @@
     width: 80%;
 }
 
-.container .box-livros a .card-livro {
+.box-livros a .card-livro {
     width: 25rem;
     height: 50vh;
     border: 1px solid #ccc;
     overflow: hidden;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     background-color: #fff;
+    transition: .5s ease-in-out;
 }
 
-.container .box-livros a .card-livro:hover {
+.box-livros a .card-livro:hover {
     transform: scale(.9);
 }
 
-.container .box-livros a .card-livro .imagem {
+.box-livros a .card-livro .imagem {
     height: 30rem;
     overflow: hidden;
 }
 
-.container .box-livros a .card-livro .imagem img {
+.box-livros a .card-livro .imagem img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
-.container .box-livros a .card-livro .info {
+.box-livros a .card-livro .info {
     padding: 1rem;
     text-align: center;
 }
 
-.container .box-livros a .card-livro .info h1 {
+.box-livros a .card-livro .info h1 {
     font-size: 2rem;
     margin: 0 0 0.5rem;
     font-weight: 500
 }
 
-.container .box-livros a .card-livro .info h2 {
+.box-livros a .card-livro .info h2 {
     color: green;
     font-size: 3rem;
     margin: 1rem;
 }
 
-.container .box-livros a .card-livro .info p {
+.box-livros a .card-livro .info p {
     margin: 0.2rem 0;
 }
-.container .box-livros a .card-livro .info .tipo {
+
+.box-livros a .card-livro .info .tipo {
     font-size: 1rem
 }

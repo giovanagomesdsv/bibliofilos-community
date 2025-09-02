@@ -1,6 +1,6 @@
 <?php
 include("conexao.php");
-$dado = $_GET['id'];
+$dado = isset($_GET['id']) ? (int) $_GET['id'] : 0;
 
 $select = "SELECT liv_livro_idioma,
                   liv_livro_pag,
@@ -28,61 +28,36 @@ $select = "SELECT liv_livro_idioma,
            FROM livrarias_livros 
            LEFT JOIN livrarias ON livrarias.liv_id = livrarias_livros.liv_id 
            LEFT JOIN livros ON livros.livro_id = livrarias_livros.livro_id 
-           LEFT JOIN resenhas on resenhas.liv_id = resenhas.liv_id
+           LEFT JOIN resenhas on resenhas.livro_id = livros.livro_id
            LEFT JOIN livro_autores ON livro_autores.livro_id = livros.livro_id 
            LEFT JOIN autores ON autores.aut_id = livro_autores.aut_id 
            WHERE livros.livro_id = ?";
 
 $stmt = $conn->prepare($select);
-$stmt->bind_param("s", $dado);
+$stmt->bind_param("i", $dado);
 $stmt->execute();
 $result = $stmt->get_result();
 
 if ($result->num_rows > 0) {
-    $row = $result->fetch_assoc();
-
-    // Criação das variáveis individuais
-    $livro_idioma       = $row['liv_livro_idioma'];
-    $livro_paginas      = $row['liv_livro_pag'];
-    $livro_tipo         = $row['liv_livro_tipo'];
-    $livro_preco        = $row['liv_livro_preco'];
-    $livro_obs          = $row['liv_livro_obsadicionais'];
-    $livro_data_pub     = $row['liv_livro_dtpublicacao'];
-
-    $nome      = $row['liv_nome'];
-    $cidade    = $row['liv_cidade'];
-    $estado    = $row['liv_estado'];
-    $endereco  = $row['liv_endereco'];
-    $telefone  = $row['liv_telefone'];
-    $email     = $row['liv_email'];
-    $foto      = $row['liv_foto'];
-    $perfil    = $row['liv_perfil'];
-    $social    = $row['liv_social'];
-
-    $titulo             = $row['livro_titulo'];
-    $sinopse            = $row['livro_sinopse'];
-    $editora            = $row['livro_editora'];
-    $isbn               = $row['livro_isbn'];
-    $ano                = $row['livro_ano'];
-    $classificacao      = $row['livro_classidd'];
-    $livro_foto         = $row['livro_foto'];
-
-    $autor              = $row['aut_nome'];
-} else {
-    $titulo = null;
-}
-?>
-<!DOCTYPE html>
-<html lang="pt-br">
+    while($row = $result->fetch_assoc()) {
+        echo"
+        <!DOCTYPE html>
+<html lang='pt-br'>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RESENHA: <?php echo $titulo?> - </title>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>RESENHA:</title>
 </head>
 
 <body>
-
+    <h1>{$row['livro_titulo']}</h1>
 </body>
 
 </html>
+        ";
+    }
+
+  
+} 
+?>

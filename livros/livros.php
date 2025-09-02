@@ -166,7 +166,7 @@ $nome = isset($_SESSION['nome']) ? $_SESSION['nome'] : 'Visitante';
             <div>
                 <div class="busca-container">
                     <form action="" method="GET" class="busca-form">
-                        <input type="text" name="busca" placeholder="nome do resenhista">
+                        <input type="text" name="busca" placeholder="nome da resenha">
                         <button type="submit"><i class='bx bx-search'></i></button>
                     </form>
                 </div>
@@ -175,8 +175,8 @@ $nome = isset($_SESSION['nome']) ? $_SESSION['nome'] : 'Visitante';
         </nav>
     </div>
     <!--Resultado da pesquisa----------------------------------------------------------->
-    <div class="pesquisa" style="margin-top: 10rem;">
-        <div class="box-livros">
+    <div class="pesquisa" style="margin-top: 10rem; border: 1px solid; display: flex; justify-content: center">
+        <div class="box-livros" style="margin: 0 10%">
             <?php
             if (!isset($_GET['busca']) || empty(trim($_GET['busca']))) {
                 echo "<div class='resultados'></div>";
@@ -295,6 +295,7 @@ $nome = isset($_SESSION['nome']) ? $_SESSION['nome'] : 'Visitante';
                 menuContainer.classList.toggle('active');
                 sidebar.classList.toggle('abrir');
             });
+
 
 
         });
