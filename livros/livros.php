@@ -177,87 +177,151 @@ $nome = isset($_SESSION['nome']) ? $_SESSION['nome'] : 'Visitante';
     <!--Resultado da pesquisa----------------------------------------------------------->
     <div class="pesquisa" style="margin-top: 10rem; border: 1px solid; display: flex; justify-content: center">
         <div class="box-livros" style="margin: 0 10%">
-            <?php
-            if (!isset($_GET['busca']) || empty(trim($_GET['busca']))) {
+            <?php if (!isset($_GET['busca']) || empty(trim($_GET['busca']))) {
                 echo "<div class='resultados'></div>";
             } else {
                 $pesquisa = "%" . $_GET['busca'] . "%";
-                $sql_code = "SELECT livro_titulo, livro_classidd, livro_foto, liv_livro_preco, liv_livro_tipo, LIVROS.livro_id  
-                         FROM LIVROS 
-                         INNER JOIN LIVRARIAS_LIVROS 
-                         ON LIVROS.livro_id = LIVRARIAS_LIVROS.livro_id 
-                         WHERE liv_livro_status = 1 AND livro_titulo LIKE ?
-                         GROUP BY livro_titulo, livro_classidd, livro_foto, liv_livro_preco, liv_livro_tipo";
+                $sql_code = "SELECT livro_titulo, livro_classidd, livro_foto, liv_livro_preco, liv_livro_tipo, LIVROS.livro_id FROM LIVROS INNER JOIN LIVRARIAS_LIVROS ON LIVROS.livro_id = LIVRARIAS_LIVROS.livro_id WHERE liv_livro_status = 1 AND livro_titulo LIKE ? GROUP BY livro_titulo, livro_classidd, livro_foto, liv_livro_preco, liv_livro_tipo";
                 $stmt = $conn->prepare($sql_code);
                 $stmt->bind_param("s", $pesquisa);
                 $stmt->execute();
                 $sql_query = $stmt->get_result();
-
                 if ($sql_query->num_rows == 0) {
                     echo "<div class='resultados'><h3>Nenhum resultado encontrado!</h3></div>";
                 } else {
                     while ($dados = $sql_query->fetch_assoc()) {
-                        echo "
-<a href='compra.php?id={$dados['livro_id']}'>
-    <div class='card-livro'>
-        <div class='imagem'>
-            <img src='../adm/imagens/livros/{$dados['livro_foto']}' alt='Imagem do livro'>
-        </div>
-        <div class='info'>
-            <h1>" . htmlspecialchars($dados['livro_titulo']) . "</h1>
-            <h2>R$ " . number_format($dados['liv_livro_preco'], 2, ',', '.') . "</h2>
-            <p class='tipo'>Tipo: " . htmlspecialchars($dados['liv_livro_tipo']) . "</p>
-            <p>" . htmlspecialchars($dados['livro_classidd']) . "</p>
-        </div>
-    </div>
-</a>
-";
+                        echo " <a href='compra.php?id={$dados['livro_id']}'> <div class='card-livro'> <div class='imagem'> <img src='../adm/imagens/livros/{$dados['livro_foto']}' alt='Imagem do livro'> </div> <div class='info'> <h1>" . htmlspecialchars($dados['livro_titulo']) . "</h1> <h2>R$ " . number_format($dados['liv_livro_preco'], 2, ',', '.') . "</h2> <p class='tipo'>Tipo: " . htmlspecialchars($dados['liv_livro_tipo']) . "</p> <p>" . htmlspecialchars($dados['livro_classidd']) . "</p> </div> </div> </a> ";
                     }
                 }
-            }
-            ?>
+            } ?>
         </div>
     </div>
-    <div class="container">
-        <section class="box-filter">
 
+    <div class="container">
+        <!-- FILTROS -->
+        <section class="box-filter" style="background-color: #fff">
+            <form method="GET" action="">
+                <h3>Preço</h3>
+                <label><input type="radio" name="preco" value="0-20"> Até R$20</label><br>
+                <label><input type="radio" name="preco" value="20-40"> R$20 a R$40</label><br>
+                <label><input type="radio" name="preco" value="40-60"> R$40 a R$60</label><br>
+                <label><input type="radio" name="preco" value="60-80"> R$60 a R$80</label><br>
+                <label><input type="radio" name="preco" value="80-100"> R$80 a R$100</label><br>
+                <label><input type="radio" name="preco" value="100-9999"> Mais de R$100</label><br><br>
+
+                <h3>Classificação</h3>
+                <label><input type="checkbox" name="classidd[]" value="livre"> Livre</label><br>
+                <label><input type="checkbox" name="classidd[]" value="10+"> 10+</label><br>
+                <label><input type="checkbox" name="classidd[]" value="12+"> 12+</label><br>
+                <label><input type="checkbox" name="classidd[]" value="16+"> 16+</label><br>
+                <label><input type="checkbox" name="classidd[]" value="18+"> 18+</label><br><br>
+
+                <button type="submit">Filtrar</button>
+            </form>
         </section>
+
+        <!-- RESULTADOS -->
         <section class="box-livros">
             <?php
             $status = 1;
-            $livros = "SELECT livro_titulo, livro_classidd, livro_foto, liv_livro_preco, liv_livro_tipo, LIVROS.livro_id  
-               FROM LIVROS 
-               INNER JOIN LIVRARIAS_LIVROS 
-               ON LIVROS.livro_id = LIVRARIAS_LIVROS.livro_id 
-               WHERE liv_livro_status = ?";
-            $stmt = $conn->prepare($livros);
-            $stmt->bind_param("i", $status);
+            $where = ["liv_livro_status = ?"];
+            $params = [$status];
+            $types = "i";
+
+            // Busca por título
+            if (!empty($_GET['busca'])) {
+                $pesquisa = "%" . $_GET['busca'] . "%";
+                $where[] = "livro_titulo LIKE ?";
+                $params[] = $pesquisa;
+                $types .= "s";
+            }
+
+            // Filtro de preço
+            if (!empty($_GET['preco'])) {
+                list($min, $max) = explode("-", $_GET['preco']);
+                $where[] = "liv_livro_preco BETWEEN ? AND ?";
+                $params[] = (float) $min;
+                $params[] = (float) $max;
+                $types .= "dd";
+            }
+
+            // Filtro por classificação
+            if (!empty($_GET['classidd'])) {
+                $in = str_repeat('?,', count($_GET['classidd']) - 1) . '?';
+                $where[] = "livro_classidd IN ($in)";
+                foreach ($_GET['classidd'] as $s) {
+                    $params[] = $s;
+                    $types .= "s";
+                }
+            }
+
+            // Montar SQL filtrada
+            $sql = "SELECT livro_titulo, livro_classidd, livro_foto, liv_livro_preco, liv_livro_tipo, LIVROS.livro_id  
+                FROM LIVROS 
+                INNER JOIN LIVRARIAS_LIVROS 
+                ON LIVROS.livro_id = LIVRARIAS_LIVROS.livro_id 
+                WHERE " . implode(" AND ", $where);
+
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param($types, ...$params);
             $stmt->execute();
             $result = $stmt->get_result();
 
-            if ($result->num_rows > 0) {
+            if ($result->num_rows == 0) {
+                echo "<div class='resultados'><h3>Nenhum resultado encontrado!</h3></div>";
+            } else {
                 while ($dados = $result->fetch_assoc()) {
                     echo "
-<a href='compra.php?id={$dados['livro_id']}'>
-    <div class='card-livro'>
-        <div class='imagem'>
-            <img src='../adm/imagens/livros/{$dados['livro_foto']}' alt='Imagem do livro'>
-        </div>
-        <div class='info'>
-            <h1>" . htmlspecialchars($dados['livro_titulo']) . "</h1>
-            <h2>R$ " . number_format($dados['liv_livro_preco'], 2, ',', '.') . "</h2>
-            <p class='tipo'>Tipo: " . htmlspecialchars($dados['liv_livro_tipo']) . "</p>
-            <p>" . htmlspecialchars($dados['livro_classidd']) . "</p>
-        </div>
-    </div>
-</a>
-";
+                <a href='compra.php?id={$dados['livro_id']}'>
+                    <div class='card-livro'>
+                        <div class='imagem'>
+                            <img src='../adm/imagens/livros/{$dados['livro_foto']}' alt='Imagem do livro'>
+                        </div>
+                        <div class='info'>
+                            <h1>" . htmlspecialchars($dados['livro_titulo']) . "</h1>
+                            <h2>R$ " . number_format($dados['liv_livro_preco'], 2, ',', '.') . "</h2>
+                            <p class='tipo'>Tipo: " . htmlspecialchars($dados['liv_livro_tipo']) . "</p>
+                            <p>" . htmlspecialchars($dados['livro_classidd']) . "</p>
+                        </div>
+                    </div>
+                </a>";
                 }
             }
             ?>
-        </section>
 
+            <hr style="width:100%; margin:2rem 0;">
+
+            <?php
+            // SEMPRE mostrar todos os livros abaixo
+            
+            $sqlAll = "SELECT livro_titulo, livro_classidd, livro_foto, liv_livro_preco, liv_livro_tipo, LIVROS.livro_id  
+                   FROM LIVROS 
+                   INNER JOIN LIVRARIAS_LIVROS 
+                   ON LIVROS.livro_id = LIVRARIAS_LIVROS.livro_id 
+                   WHERE liv_livro_status = 1";
+
+            $resultAll = $conn->query($sqlAll);
+
+            while ($dados = $resultAll->fetch_assoc()) {
+                echo "
+            <a href='compra.php?id={$dados['livro_id']}'>
+                <div class='card-livro'>
+                    <div class='imagem'>
+                        <img src='../adm/imagens/livros/{$dados['livro_foto']}' alt='Imagem do livro'>
+                    </div>
+                    <div class='info'>
+                        <h1>" . htmlspecialchars($dados['livro_titulo']) . "</h1>
+                        <h2>R$ " . number_format($dados['liv_livro_preco'], 2, ',', '.') . "</h2>
+                        <p class='tipo'>Tipo: " . htmlspecialchars($dados['liv_livro_tipo']) . "</p>
+                        <p>" . htmlspecialchars($dados['livro_classidd']) . "</p>
+                    </div>
+                </div>
+            </a>";
+            }
+            ?>
+        </section>
     </div>
+
     <div>
         <footer class="site-footer">
             <div class="footer-logo">
