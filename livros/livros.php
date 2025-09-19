@@ -175,7 +175,7 @@ $nome = isset($_SESSION['nome']) ? $_SESSION['nome'] : 'Visitante';
         </nav>
     </div>
     <!--Resultado da pesquisa----------------------------------------------------------->
-    <div class="pesquisa" style="margin-top: 10rem; border: 1px solid; display: flex; justify-content: center">
+    <div class="pesquisa" style="margin-top: 10rem; display: flex; justify-content: center">
         <div class="box-livros" style="margin: 0 10%">
             <?php if (!isset($_GET['busca']) || empty(trim($_GET['busca']))) {
                 echo "<div class='resultados'></div>";
@@ -256,11 +256,11 @@ $nome = isset($_SESSION['nome']) ? $_SESSION['nome'] : 'Visitante';
             }
 
             // Montar SQL filtrada
-            $sql = "SELECT livro_titulo, livro_classidd, livro_foto, liv_livro_preco, liv_livro_tipo, LIVROS.livro_id  
-                FROM LIVROS 
-                INNER JOIN LIVRARIAS_LIVROS 
-                ON LIVROS.livro_id = LIVRARIAS_LIVROS.livro_id 
-                WHERE " . implode(" AND ", $where);
+            $sql = "SELECT livro_titulo, livro_classidd, livro_foto, liv_livro_preco, liv_livro_tipo, LIVROS.livro_id, liv_livro_id 
+                   FROM LIVROS 
+                   INNER JOIN LIVRARIAS_LIVROS 
+                   ON LIVROS.livro_id = LIVRARIAS_LIVROS.livro_id 
+                   WHERE " . implode(" AND ", $where);
 
             $stmt = $conn->prepare($sql);
             $stmt->bind_param($types, ...$params);
@@ -272,19 +272,19 @@ $nome = isset($_SESSION['nome']) ? $_SESSION['nome'] : 'Visitante';
             } else {
                 while ($dados = $result->fetch_assoc()) {
                     echo "
-                <a href='compra.php?id={$dados['livro_id']}'>
-                    <div class='card-livro'>
-                        <div class='imagem'>
-                            <img src='../adm/imagens/livros/{$dados['livro_foto']}' alt='Imagem do livro'>
-                        </div>
-                        <div class='info'>
-                            <h1>" . htmlspecialchars($dados['livro_titulo']) . "</h1>
-                            <h2>R$ " . number_format($dados['liv_livro_preco'], 2, ',', '.') . "</h2>
-                            <p class='tipo'>Tipo: " . htmlspecialchars($dados['liv_livro_tipo']) . "</p>
-                            <p>" . htmlspecialchars($dados['livro_classidd']) . "</p>
-                        </div>
+                 <a href='compra.php?id={$dados['liv_livro_id']}' target='_blank'>
+                <div class='card-livro'>
+                    <div class='imagem'>
+                        <img src='../adm/imagens/livros/{$dados['livro_foto']}' alt='Imagem do livro'>
                     </div>
-                </a>";
+                    <div class='info'>
+                        <h1>" . htmlspecialchars($dados['livro_titulo']) . "</h1>
+                        <h2>R$ " . number_format($dados['liv_livro_preco'], 2, ',', '.') . "</h2>
+                        <p class='tipo'>Tipo: " . htmlspecialchars($dados['liv_livro_tipo']) . "</p>
+                        <p>" . htmlspecialchars($dados['livro_classidd']) . "</p>
+                    </div>
+                </div>
+            </a>";
                 }
             }
             ?>
@@ -294,7 +294,7 @@ $nome = isset($_SESSION['nome']) ? $_SESSION['nome'] : 'Visitante';
             <?php
             // SEMPRE mostrar todos os livros abaixo
             
-            $sqlAll = "SELECT livro_titulo, livro_classidd, livro_foto, liv_livro_preco, liv_livro_tipo, LIVROS.livro_id  
+            $sqlAll = "SELECT livro_titulo, livro_classidd, livro_foto, liv_livro_preco, liv_livro_tipo, LIVROS.livro_id, liv_livro_id 
                    FROM LIVROS 
                    INNER JOIN LIVRARIAS_LIVROS 
                    ON LIVROS.livro_id = LIVRARIAS_LIVROS.livro_id 
@@ -304,7 +304,7 @@ $nome = isset($_SESSION['nome']) ? $_SESSION['nome'] : 'Visitante';
 
             while ($dados = $resultAll->fetch_assoc()) {
                 echo "
-            <a href='compra.php?id={$dados['livro_id']}'>
+            <a href='compra.php?id={$dados['liv_livro_id']}' target='_blank'>
                 <div class='card-livro'>
                     <div class='imagem'>
                         <img src='../adm/imagens/livros/{$dados['livro_foto']}' alt='Imagem do livro'>

@@ -1,5 +1,5 @@
 <?php
-include("conexao.php");
+include("../conexao.php");
 $dado = isset($_GET['id']) ? (int) $_GET['id'] : 0;
 
 $select = "SELECT liv_livro_idioma,
@@ -31,7 +31,7 @@ $select = "SELECT liv_livro_idioma,
            LEFT JOIN resenhas on resenhas.livro_id = livros.livro_id
            LEFT JOIN livro_autores ON livro_autores.livro_id = livros.livro_id 
            LEFT JOIN autores ON autores.aut_id = livro_autores.aut_id 
-           WHERE livros.livro_id = ?";
+           WHERE livrarias_livros.liv_livro_id = ?";
 
 $stmt = $conn->prepare($select);
 $stmt->bind_param("i", $dado);
@@ -39,25 +39,36 @@ $stmt->execute();
 $result = $stmt->get_result();
 
 if ($result->num_rows > 0) {
-    while($row = $result->fetch_assoc()) {
-        echo"
-        <!DOCTYPE html>
+    while ($row = $result->fetch_assoc()) {
+        echo "
+
+        ";
+    }
+
+
+}
+?>
+<!DOCTYPE html>
 <html lang='pt-br'>
 
 <head>
     <meta charset='UTF-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <title>RESENHA:</title>
+    <title>RESENHA: {$row['livro_titulo']}</title>
 </head>
 
 <body>
+    <header></header>
+    <div>
+        <section>
+            <img src='' alt=''>
+            <p></p>
+            <p></p>
+            <button></button>
+        </section>
+        <section></section>
+    </div>
     <h1>{$row['livro_titulo']}</h1>
 </body>
 
 </html>
-        ";
-    }
-
-  
-} 
-?>
