@@ -113,7 +113,7 @@ include "../../protecao.php";
                     echo "<div class='resultados'><h3>Nenhum resultado encontrado!</h3></div>";
                 } else {
                     while ($dados = $sql_query->fetch_assoc()) {
-                        $mensagem = urlencode("Olá, aqui fala a administradora do site Bibliófilos Community, gostaria de solicitar mais informações sobre sua livraria/ movimentações no nosso site!");
+                        $mensagem = urlencode("Olá, aqui fala a administradora do site Bibliófilos Community, gostaria de solicitar mais informações sobre sua livraria/movimentações no nosso site!");
 
                         $nome = htmlspecialchars($dados['liv_nome']);
                         $email = htmlspecialchars($dados['liv_email']);
