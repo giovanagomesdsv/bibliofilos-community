@@ -46,6 +46,21 @@ if ($result->num_rows > 0) {
         $autor = htmlspecialchars($row['aut_nome']);
         $mensagem = urlencode("Olá, vim pelo site Bibliófilos Community. Gostaria de saber mais/adquirir o livro $titulo, do autor $autor que está sendo anunciado pelo valor de R$ $preco.");
         $telefone = htmlspecialchars($row['liv_telefone']);
+        $foto = htmlspecialchars($row['livro_foto']);
+        $ano = htmlspecialchars($row['livro_ano']);
+        $editora = htmlspecialchars($row['livro_editora']);
+        $sinopse = htmlspecialchars($row['livro_sinopse']);
+        $nome_liv = htmlspecialchars($row['liv_nome']);
+        $endereco_liv = htmlspecialchars($row['liv_endereco']);
+        $cidade_liv = htmlspecialchars($row['liv_cidade']);
+        $estado_liv = htmlspecialchars($row['liv_estado']);
+        $isbn = htmlspecialchars($row['livro_isbn']);
+        $pag = htmlspecialchars($row['liv_livro_pag']);
+        $obs = htmlspecialchars($row['liv_livro_obsadicionais']);
+        $tipo = htmlspecialchars($row['liv_livro_tipo']);
+        $idioma = htmlspecialchars($row['liv_livro_idioma']);
+        $idd = htmlspecialchars($row['livro_classidd']);
+
 
         echo "
         <!DOCTYPE html>
@@ -59,16 +74,15 @@ if ($result->num_rows > 0) {
 
 <body>
     <header>
-        <p>Atualizado: </p>
     </header>
     <div>
         <section>
             <div>
-                <img src='' alt=''>
+                <img src='../adm/imagens/livros/$foto' alt=''>
             </div>
             <div>
-                <p></p>
-                <p></p>
+                <p>$ano</p>
+                <p>$editora</p>
             </div>
             <a href='https://wa.me/{$telefone}?text=$mensagem' target='_blank'>
                 <button>
@@ -78,27 +92,26 @@ if ($result->num_rows > 0) {
         </section>
         <section>
             <div>
-                <h1>{$row['livro_titulo']}</h1>
-                <p></p>
-                <h2></h2>
+                <h1>$titulo</h1>
+                <p>$autor</p>
+                <h2>RS $preco</h2>
             </div>
             <div>
-                <p></p>
+                <p>$sinopse</p>
             </div>
             <div>
-                <p><span></span></p>
-                <p></p>
+                <p><span>ANUNCIADO POR:</span>  $nome_liv</p>
+                <p>$endereco_liv. $cidade_liv, ($estado_liv)</p>
             </div>
             <div>
                 <h3>Detalhes do produto:</h3>
                 <div>
-                    <p><span>isbn: </span></p>
-                    <p><span>dimensões: </span></p>
-                    <p></p>
-                    <p></p>
-                    <p></p>
-                    <p></p>
-                    <p></p>
+                    <p><span>isbn:</span> $isbn</p>
+                    <p>$pag páginas</p>
+                    <p>$obs</p>
+                    <p>$tipo</p>
+                    <p>$idioma</p>
+                    <p>$idd</p>
                 </div>
             </div>
         </section>
@@ -112,3 +125,4 @@ if ($result->num_rows > 0) {
 
 }
 ?>
+
