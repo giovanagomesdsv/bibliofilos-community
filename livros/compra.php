@@ -69,14 +69,20 @@ if ($result->num_rows > 0) {
 <head>
     <meta charset='UTF-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <link rel='stylesheet' href='../global.css'>
+    <link rel='stylesheet' href='livros.css'>
+
     <title>RESENHA: $titulo</title>
 </head>
 
 <body>
     <header>
     </header>
-    <div>
-        <section>
+    <div class='box'>
+        <section class='l1'>
             <div>
                 <img src='../adm/imagens/livros/$foto' alt=''>
             </div>
@@ -90,7 +96,7 @@ if ($result->num_rows > 0) {
                 </button>
             </a>
         </section>
-        <section>
+        <section class='l2'>
             <div>
                 <h1>$titulo</h1>
                 <p>$autor</p>
@@ -115,6 +121,26 @@ if ($result->num_rows > 0) {
                 </div>
             </div>
         </section>
+    </div>
+    <div>
+        <footer class='site-footer'>
+            <div class='footer-logo'>
+                <img src='../logo.png' alt='Logo do site'>
+            </div>
+
+            <div class='footer-texto'>
+                <h3>Participe da nossa comunidade.</h3>
+                <p>Se torne um resenhista.</p>
+                <p>Entre em contato já!</p>
+            </div>
+
+            <div class='footer-redes'>
+                <a href='#' target='_blank' aria-label='X'><i class='bx bxl-xing' style='color: #fff'></i></a>
+                <a href='#' target='_blank' aria-label='Instagram'><i class='bx bxl-instagram'
+                        style='color: #fff'></i></a>
+                <a href='#' target='_blank' aria-label='TikTok'><i class='bx bxl-tiktok' style='color: #fff'></i></a>
+            </div>
+        </footer>
     </div>
 </body>
 

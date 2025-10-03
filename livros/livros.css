@@ -69,3 +69,24 @@
 .box-livros a .card-livro .info .tipo {
     font-size: 1rem
 }
+
+
+/*--------------------compra-----------------*/
+.box {
+    display: flex;
+    flex-direction: row;
+}
+
+.box .l1,
+.box .l2 {
+    display: flex;
+    border: 1px solid red;
+}
+
+.box .l1 {
+    width: 15%;
+}
+
+.box .l2 {
+    width: 80%;
+}
