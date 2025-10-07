@@ -3,6 +3,7 @@
     flex-direction: row;
     height: auto;
     margin-bottom: 1rem;
+   
 }
 
 .container .box-filter {
@@ -72,21 +73,163 @@
 
 
 /*--------------------compra-----------------*/
-.box {
-    display: flex;
-    flex-direction: row;
+
+/*  LAYOUT GERAL  */
+
+.box{
+  display:flex;
+  flex-direction:row;
+  align-items:stretch;
+  max-width:1500px;
+  margin:60px auto;
+  background:rgb(85,83,83);
+  border-radius:7px;
+  overflow:hidden;
+  box-shadow:0 0 25px rgba(0,0,0,.6);
 }
 
-.box .l1,
-.box .l2 {
-    display: flex;
-    border: 1px solid red;
+/* COLUNA ESQUERDA (.l1) */
+
+.l1{
+  width:26%;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:10px;
+  padding:25px;
+  background:hsl(0,17%,95%);
+  color:#1c1c1c;
+  border-right:1px solid #bdbdbd; /* separador vertical */
 }
 
-.box .l1 {
-    width: 15%;
+.l1 img{
+  display:block;
+  width:110%;          /* efeito bleed (cortado pelo .box) */
+  height:auto;
+  border-radius:10px;
+  margin-bottom:10px;
 }
 
-.box .l2 {
-    width: 80%;
+.l1 p{
+  margin:2px 0;
+  font-size:14px;
+  color:#080808;
+  text-align:center;
 }
+
+/* Botão/CTA (use <a class="btn">Obter agora</a>) */
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:15px 20px;
+  border-radius:6px;
+  background:#2e5bff; /* azul do botão */
+  color:#fff;
+  font:700 14px/1 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  text-decoration:none;
+  transition:background-color .3s ease, transform .2s ease;
+}
+.btn:hover{ background:#1b3eff; transform:scale(1.05); }
+.btn:focus-visible{ outline:2px solid #fff; outline-offset:2px; }
+
+/*  COLUNA DIREITA (.l2)  */
+
+.l2{
+  width:74%;
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+  padding:25px 30px;
+  color:#000;
+}
+
+.l2 h1{
+  font-size:30px;      /* título maior */
+  line-height:1.2;
+  margin-bottom:6px;
+  text-decoration:underline;
+}
+.l2 h2{
+  font-size:24px;
+  margin-top:8px;
+  color:#080707;
+}
+.l2 p{
+  font-size:16px;      /* texto maior */
+  line-height:1.6;
+  font-weight:700;     /* negrito */
+  color:inherit;
+}
+
+/*  BLOCOS (por ordem atual)  */
+
+/* 2º bloco: sinopse */
+.l2 > div:nth-child(2) p{
+  background:rgb(175,173,173);
+  color:#050505;
+  border-radius:10px;
+  padding:15px;
+  text-align:justify;
+}
+
+/* 3º bloco: anunciante (sem fundo, só borda, lado a lado) */
+.l2 > div:nth-child(3){
+  display:flex;
+  align-items:center;
+  gap:12px;
+  flex-wrap:wrap;
+  border:1px solid #bdbdbd;
+  border-radius:10px;
+  padding:10px 12px;
+  background:transparent;
+  color:#000;
+  margin-top:8px;
+}
+.l2 > div:nth-child(3) p{ margin:0; }
+.l2 > div:nth-child(3) span{ font-weight:800; }
+
+/* 4º bloco: detalhes (fundo claro; pares lado a lado) */
+.l2 > div:nth-child(4){
+  background:rgb(175,173,173);
+  border-radius:10px;
+  padding:15px;
+}
+.l2 > div:nth-child(4) h3{
+  margin-bottom:10px;
+  font-size:16px;
+  color:#020202;
+  font-weight:700;
+}
+.l2 > div:nth-child(4) > div{
+  display:grid;
+  grid-template-columns:repeat(2, minmax(0,1fr)); /* pares */
+  column-gap:10px;
+  row-gap:6px;
+}
+.l2 > div:nth-child(4) p{
+  margin:2px 0;
+  color:#000;
+  overflow-wrap:anywhere;  /* evita cortar infos longas */
+  word-break:break-word;
+}
+.l2 > div:nth-child(4) p span{ font-weight:800; }
+
+/* ============== RESPONSIVO ============== */
+
+@media (max-width:850px){
+  .box{ flex-direction:column; align-items:center; }
+  .l1,.l2{ width:100%; }
+  .l2{ padding:20px; }
+  .l1 img{ width:100%; }          /* neutraliza bleed no mobile */
+  .l1{
+    border-right:0;               /* separador vira horizontal */
+    border-bottom:1px solid #bdbdbd;
+  }
+}
+
+@media (max-width:480px){
+  .l2 > div:nth-child(4) > div{ grid-template-columns:1fr; } /* detalhes: 1 col */
+}
+
+
