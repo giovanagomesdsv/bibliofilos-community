@@ -74,7 +74,7 @@
 
 /*--------------------compra-----------------*/
 
-/*  LAYOUT GERAL  */
+/* LAYOUT GERAL */
 
 .box{
   display:flex;
@@ -99,12 +99,12 @@
   padding:25px;
   background:hsl(0,17%,95%);
   color:#1c1c1c;
-  border-right:1px solid #bdbdbd; /* separador vertical */
+  border-right:1px solid #bdbdbd; 
 }
 
 .l1 img{
   display:block;
-  width:110%;          /* efeito bleed (cortado pelo .box) */
+  width:110%;          
   height:auto;
   border-radius:10px;
   margin-bottom:10px;
@@ -117,7 +117,7 @@
   text-align:center;
 }
 
-/* Botão/CTA (use <a class="btn">Obter agora</a>) */
+/* Botão/CTA  */
 .btn{
   display:inline-flex;
   align-items:center;
@@ -145,7 +145,7 @@
 }
 
 .l2 h1{
-  font-size:30px;      /* título maior */
+  font-size:30px;      
   line-height:1.2;
   margin-bottom:6px;
   text-decoration:underline;
@@ -156,9 +156,9 @@
   color:#080707;
 }
 .l2 p{
-  font-size:16px;      /* texto maior */
+  font-size:16px;      
   line-height:1.6;
-  font-weight:700;     /* negrito */
+  font-weight:700;    
   color:inherit;
 }
 
@@ -173,7 +173,7 @@
   text-align:justify;
 }
 
-/* 3º bloco: anunciante (sem fundo, só borda, lado a lado) */
+/* 3º bloco: anunciante  */
 .l2 > div:nth-child(3){
   display:flex;
   align-items:center;
@@ -189,7 +189,7 @@
 .l2 > div:nth-child(3) p{ margin:0; }
 .l2 > div:nth-child(3) span{ font-weight:800; }
 
-/* 4º bloco: detalhes (fundo claro; pares lado a lado) */
+/* 4º bloco: detalhes */
 .l2 > div:nth-child(4){
   background:rgb(175,173,173);
   border-radius:10px;
@@ -203,33 +203,17 @@
 }
 .l2 > div:nth-child(4) > div{
   display:grid;
-  grid-template-columns:repeat(2, minmax(0,1fr)); /* pares */
+  grid-template-columns:repeat(2, minmax(0,1fr)); 
   column-gap:10px;
   row-gap:6px;
 }
 .l2 > div:nth-child(4) p{
   margin:2px 0;
   color:#000;
-  overflow-wrap:anywhere;  /* evita cortar infos longas */
+  overflow-wrap:anywhere;  
   word-break:break-word;
 }
 .l2 > div:nth-child(4) p span{ font-weight:800; }
 
-/* ============== RESPONSIVO ============== */
-
-@media (max-width:850px){
-  .box{ flex-direction:column; align-items:center; }
-  .l1,.l2{ width:100%; }
-  .l2{ padding:20px; }
-  .l1 img{ width:100%; }          /* neutraliza bleed no mobile */
-  .l1{
-    border-right:0;               /* separador vira horizontal */
-    border-bottom:1px solid #bdbdbd;
-  }
-}
-
-@media (max-width:480px){
-  .l2 > div:nth-child(4) > div{ grid-template-columns:1fr; } /* detalhes: 1 col */
-}
 
 
