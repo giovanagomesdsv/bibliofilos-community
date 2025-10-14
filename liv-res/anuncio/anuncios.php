@@ -26,6 +26,7 @@ $fotoLiv = $_SESSION['imagem-liv'];
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href='https://cdn.boxicons.com/fonts/basic/boxicons.min.css' rel='stylesheet'>
 
     <link rel="stylesheet" href="../geral.css">
     <title>Anúncios - BACKSTAGE Community</title>
