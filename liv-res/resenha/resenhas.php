@@ -1,7 +1,7 @@
+
 <?php
 include "../../conexao.php";
 include "../protecao.php";
-
 
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
@@ -25,10 +25,11 @@ $fotoLiv = $_SESSION['imagem-liv'];
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href='https://cdn.boxicons.com/fonts/basic/boxicons.min.css' rel='stylesheet'>
     <link href='https://cdn.boxicons.com/fonts/basic/boxicons.min.css' rel='stylesheet'>
 
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="../geral.css">
     <link rel="stylesheet" href="resenhas.css">
     <title>Criar resenhas - BACKSTAGE Community</title>
@@ -38,24 +39,28 @@ $fotoLiv = $_SESSION['imagem-liv'];
     <header>
         BACKSTAGE Community
     </header>
+
     <nav class='sidebar' id='sidebar'>
         <ul class='nav-list'>
             <div class='nome'>
 
                 <li>
                     <a href='../perfil/perfil.php' class="perfil">
-
                         <?php
                         if ($usuario == 0) {
                             $imgCaminho = "../../adm/imagens/resenhistas/" . $fotoRes;
                         } else if ($usuario == 1) {
                             $imgCaminho = "../../adm/imagens/livrarias/" . $fotoLiv;
                         }
-                        ?>
 
-                        <img src="<?php echo $imgCaminho; ?>" alt="" class="img-perfil">
+                        // Teste se a imagem existe
+                        if (!file_exists($imgCaminho) || empty($imgCaminho)) {
+                            $imgCaminho = "../../adm/imagens/default.png"; // imagem padrão caso não exista
+                        }
+                        ?>
+                        <img src="<?php echo $imgCaminho; ?>" alt="Foto de perfil" class="img-perfil">
                         <span class='link_name'>
-                            <?php echo $nome ?>
+                            <?php echo htmlspecialchars($nome); ?>
                         </span>
                     </a>
                 </li>
@@ -64,12 +69,14 @@ $fotoLiv = $_SESSION['imagem-liv'];
                     <i class='bx bx-menu'></i>
                 </div>
             </div>
+
             <li>
                 <a href='../../index.php'>
-                    <i class='bx  bx-reply-stroke'></i>
+                    <i class='bx bx-reply-stroke'></i>
                     <span class='link_name'>BIBLIÓFILOS Community</span>
                 </a>
             </li>
+
             <!-- Apenas para livrarias -->
             <?php if ($usuario == 1): ?>
             <li>
@@ -79,12 +86,14 @@ $fotoLiv = $_SESSION['imagem-liv'];
                 </a>
             </li>
             <?php endif; ?>
+
             <li class="fix">
-                <a href='#' class="#">
-                    <i class='bx  bx-pencil-circle'></i>
+                <a href='#'>
+                    <i class='bx bx-pencil-circle'></i>
                     <span class='link_name'>CRIAR RESENHAS</span>
                 </a>
             </li>
+
             <li>
                 <a href='../m-resenha/m-resenhas.php'>
                     <i class='bx bx-book-bookmark'></i>
@@ -97,16 +106,16 @@ $fotoLiv = $_SESSION['imagem-liv'];
             </li>
         </ul>
     </nav>
+
     <main>
         <div class="busca-container">
-
             <form action="" method="GET" class="busca-form">
                 <input type="text" name="busca" placeholder="nome do usuário">
                 <button type="submit"><i class='bx bx-search'></i></button>
             </form>
         </div>
-        <div class="pesquisa"> <!-- DIV DA CAIXA ONDE DENTRO APARECERÁ OS CARDS DO RESULTADO DA BUSCA-->
-            
+
+        <div class="pesquisa">
             <?php
             if (!isset($_GET['busca']) || empty($_GET['busca'])) {
                 echo "<div class='resultados'></div>";
@@ -114,7 +123,9 @@ $fotoLiv = $_SESSION['imagem-liv'];
                 $pesquisa = $_GET['busca'];
                 $pesquisa_como_like = "%$pesquisa%";
 
-                $sql_code = "SELECT livro_id, livro_foto, livro_titulo, livro_sinopse FROM LIVROS WHERE livro_titulo LIKE ?";
+                $sql_code = "SELECT livro_id, livro_foto, livro_titulo, livro_sinopse 
+                             FROM LIVROS 
+                             WHERE livro_titulo LIKE ?";
 
                 $stmt = $conn->prepare($sql_code) or die("Erro ao preparar: " . $conn->error);
 
@@ -123,31 +134,37 @@ $fotoLiv = $_SESSION['imagem-liv'];
                 $result = $stmt->get_result();
 
                 if ($result->num_rows > 0) {
-
                     while ($row = $result->fetch_assoc()) {
                         $titulo = htmlspecialchars($row['livro_titulo']);
                         $foto = htmlspecialchars($row['livro_foto']);
+                        $sinopseCompleta = htmlspecialchars($row['livro_sinopse']);
                         $sinopse = mb_strimwidth($sinopseCompleta, 0, 150, '...');
                         $idLivro = (int) $row['livro_id'];
-                         echo "
+
+                        $caminhoImgLivro = "../../adm/imagens/livros/" . $foto;
+                        if (!file_exists($caminhoImgLivro) || empty($foto)) {
+                            $caminhoImgLivro = "../../adm/imagens/default-livro.png";
+                        }
+
+                        echo "
                         <div class='card'>
-                           <div class='cont'>
-                            <img src='../../adm/imagens/livros/$foto' alt=''>
+                            <div class='cont'>
+                                <img src='$caminhoImgLivro' alt='Capa do livro'>
                                 <div>
                                    <h2>$titulo</h2>
                                    <p>$sinopse</p>
                                 </div>
-                           </div>
-                           <div>
-                              <a href='criar-resenha.php?id={$idLivro}'> 
-                                 <button>Criar Resenha</button>
-                              </a>
-                           </div>
+                            </div>
+                            <div>
+                                <a href='criar-resenha.php?id={$idLivro}'> 
+                                   <button>Criar Resenha</button>
+                                </a>
+                            </div>
                         </div>
                         ";
                     }
                 } else {
-                     echo "
+                    echo "
                     <p>Livro não encontrado! <a href='cadastro-livro.php'>Cadastre agora.</a></p>
                     ";
                 }
@@ -157,7 +174,9 @@ $fotoLiv = $_SESSION['imagem-liv'];
 
             <div class="box-card">
                 <?php
-                $select = "SELECT livro_id, livro_foto, livro_titulo, livro_sinopse FROM LIVROS order by livro_dtpublicacao desc";
+                $select = "SELECT livro_id, livro_foto, livro_titulo, livro_sinopse 
+                           FROM LIVROS 
+                           ORDER BY livro_dtpublicacao DESC";
                 $stmt = $conn->prepare($select);
                 $stmt->execute();
                 $result = $stmt->get_result();
@@ -169,20 +188,26 @@ $fotoLiv = $_SESSION['imagem-liv'];
                         $sinopseCompleta = htmlspecialchars($row['livro_sinopse']);
                         $sinopse = mb_strimwidth($sinopseCompleta, 0, 150, '...');
                         $idLivro = (int) $row['livro_id'];
-                         echo "
+
+                        $caminhoImgLivro = "../../adm/imagens/livros/" . $foto;
+                        if (!file_exists($caminhoImgLivro) || empty($foto)) {
+                            $caminhoImgLivro = "../../adm/imagens/default-livro.png";
+                        }
+
+                        echo "
                         <div class='card'>
-                           <div class='cont'>
-                            <img src='../../adm/imagens/livros/$foto' alt=''>
+                            <div class='cont'>
+                                <img src='$caminhoImgLivro' alt='Capa do livro'>
                                 <div>
                                    <h2>$titulo</h2>
                                    <p>$sinopse</p>
                                 </div>
-                           </div>
-                           <div>
-                              <a href='criar-resenha.php?id={$idLivro}'> 
-                                 <button class='button1'>Criar Resenha</button>
-                              </a>
-                           </div>
+                            </div>
+                            <div>
+                                <a href='criar-resenha.php?id={$idLivro}'> 
+                                   <button class='button1'>Criar Resenha</button>
+                                </a>
+                            </div>
                         </div>
                         ";
                     }
@@ -191,7 +216,7 @@ $fotoLiv = $_SESSION['imagem-liv'];
             </div>
         </div>
     </main>
+
     <script src="../script.js"></script>
 </body>
-
 </html>
