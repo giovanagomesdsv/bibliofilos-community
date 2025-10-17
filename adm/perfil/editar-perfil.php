@@ -1,4 +1,4 @@
-<!--<?php
+<?php
     session_start();
     include "../../conexao.php";
     include "../../protecao.php";
@@ -50,7 +50,6 @@
     $usuario = $result->fetch_assoc();
     $stmt->close();
     ?>
--->
 
 <!DOCTYPE html>
 <html lang="pt-BR">
