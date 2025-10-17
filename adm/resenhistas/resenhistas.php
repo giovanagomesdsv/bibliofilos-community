@@ -183,7 +183,7 @@ include "../protecao.php";
                     <div class='card resenhista-box'>
                         <div class='resenhista-info'>
                             <a href='https://wa.me/{$telefone}?text={$mensagem}' target='_blank'>
-                              <img class='imagem' src='../imagens/resenhistas/$foto' alt=''>
+                              <img class='imagem imgres' src='../imagens/resenhistas/$foto' alt=''>
                             </a>
                         </div>
                         <div class='cardtext'>

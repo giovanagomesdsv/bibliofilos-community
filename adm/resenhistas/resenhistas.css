@@ -41,3 +41,9 @@
 .resenha-contador p {
     color: #000;
 }
+
+.imgres{
+ overflow: hidden;
+ object-fit: cover; /* mantém proporção e corta o excesso */
+  object-position: center; /* centraliza o corte */
+}
