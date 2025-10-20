@@ -87,7 +87,6 @@ include "../protecao.php";
                 <button type="submit"><i class='bx bx-search'></i></button>
             </form>
         </div>
-        <div class="pesquisa">
             <?php
             if (!isset($_GET['busca']) || empty($_GET['busca'])) {
                 echo "<div class='resultados'></div>";
@@ -143,7 +142,6 @@ include "../protecao.php";
                 }
             }
             ?>
-        </div>
 
         <?php
         // Consulta de resenhistas com contagem de resenhas

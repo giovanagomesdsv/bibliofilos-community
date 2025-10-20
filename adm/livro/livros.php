@@ -23,22 +23,22 @@ include "../protecao.php";
         BACKSTAGE Community
     </header>
     <nav class="sidebar" id="sidebar">
-    <ul class="nav-list">
-        <div class="nome">
-            <li>
-                <a href="../perfil/perfil.php">
-                    <span class="link_name">
-                        <?php echo $_SESSION['nome']; ?>
-                    </span>
-                </a>
-            </li>
-            <div class="menu" id="menu">
-                <i class="bx bx-menu"></i>
+        <ul class="nav-list">
+            <div class="nome">
+                <li>
+                    <a href="../perfil/perfil.php">
+                        <span class="link_name">
+                            <?php echo $_SESSION['nome']; ?>
+                        </span>
+                    </a>
+                </li>
+                <div class="menu" id="menu">
+                    <i class="bx bx-menu"></i>
+                </div>
             </div>
-        </div>
-        <li>
+            <li>
                 <a href="../../index.php">
-                <i class='bx  bx-reply-stroke'></i> 
+                    <i class='bx  bx-reply-stroke'></i>
                     <span class="link_name">Bibliófilos Community</span>
                 </a>
             </li>
@@ -80,11 +80,10 @@ include "../protecao.php";
     <main>
         <div class="busca-container">
             <form action="" method="GET" class="busca-form">
-                <input type="text" name="busca" placeholder="nome do usuário">
+                <input type="text" name="busca" placeholder="nome do livro">
                 <button type="submit"><i class='bx bx-search'></i></button>
             </form>
         </div>
-        <div class="pesquisa">
             <?php
         if (!isset($_GET['busca']) || empty($_GET['busca'])) {
             echo "<div class='resultados'></div>";
@@ -131,6 +130,8 @@ include "../protecao.php";
             }
         }
         ?>
+          
+
             <?php
 // Consulta segura utilizando Prepared Statements
 $sql_code = "
@@ -175,6 +176,7 @@ if ($result-> num_rows > 0) {
     }
 
 ?>
+
     </main>
     <script src="../script.js"></script>
 </body>
