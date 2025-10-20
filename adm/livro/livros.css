@@ -14,16 +14,20 @@
     padding: 1rem;
     box-sizing: border-box;
 }
+
 .card-livro .informacoes {
     text-align: left;
     width: 100%;
-    margin:0 1rem 0 1rem;
-align-items: flex-end;}
+    margin: 0 1rem 0 1rem;
+    align-items: flex-end;
+}
+
 .card-livro .imagem {
     flex: 0 0 auto;
     width: 12rem;
     height: 18rem;
 }
+
 .card-livro .informacoes .input {
     width: 95%;
     padding: 1rem;

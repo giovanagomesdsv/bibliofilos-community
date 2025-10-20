@@ -1,5 +1,3 @@
-
-
 /*CSS DA SEARCH BAR*/
 
 .busca-container {
@@ -7,7 +5,7 @@
     justify-content: space-between;
     float: right;
     padding-top: 1rem;
-    width:100%;
+    width: 100%;
 }
 
 /* card*/
@@ -16,40 +14,52 @@
     justify-content: center;
     align-items: center;
     padding: 1rem;
-    width: 151.5rem;
+    width: 100%;
 }
+
+.linha .input {
+    margin: 0 1rem 0 1rem;
+    width: 100%;
+}
+
 
 /*Input da contagem de usúarios*/
 
 .linha {
     display: flex;
     align-items: center;
-    gap: 8px; /* Espaçamento entre o texto e o input */
-    margin-bottom: 8px; /* Espaço entre as linhas */
+    gap: 8px;
+    /* Espaçamento entre o texto e o input */
+    margin-bottom: 8px;
+    /* Espaço entre as linhas */
 }
 
 
 .inativo {
     background-color: rgba(119, 136, 153, .6);
 }
+
 .inputID {
-    width: 70%; /* Largura total do input */
+    width: 70%;
+    /* Largura total do input */
     padding: 1rem;
     border: none;
-    border-radius: 4px; 
+    border-radius: 4px;
     margin-bottom: 15px;
-    background-color: white; /* Cor de fundo do input */
+    background-color: white;
+    /* Cor de fundo do input */
     color: #000;
 }
+
 p {
-     color: #000;
+    color: #000;
 }
+
 .containerBtnInput {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 1rem;
-    
 }
 
 /*CSS DO EDITAR USUARIO --------------------------------------------------------------*/
@@ -73,14 +83,17 @@ label {
 }
 
 /* Estilos do select e input */
-select, input[type="submit"] {
+select,
+input[type="submit"] {
     width: 98%;
     padding: 10px;
-    margin: 10px 0 15px 0; /* Espaço inferior entre os elementos */
+    margin: 10px 0 15px 0;
+    /* Espaço inferior entre os elementos */
     background-color: #2A4A64;
     color: white;
     border: 1px solid #406E96;
-    border-radius: 2%; /* Border-radius aplicado a todos os inputs e select */
+    border-radius: 2%;
+    /* Border-radius aplicado a todos os inputs e select */
     font-size: 14px;
 }
 
@@ -91,7 +104,8 @@ input[type="submit"] {
     border: none;
     cursor: pointer;
     transition: background-color 0.3s;
-    width:101%;
+    width: 101%;
+
 }
 
 /* Efeito de hover no botão */
@@ -120,30 +134,45 @@ label {
 }
 
 /* Estilos dos inputs e select <-- Está sendo utilizado no Cadastrar usuário & Cadastrar resenhista para otimizar o código*/
-select, .inputEditar2[type="text"], .inputConfirmar[type="submit"], .inputEditar2[type="number"], .inputEditar2[type="email"], .inputEditar2[type="password"], .inputEditar2[type="url"], textarea {
+select,
+.inputEditar2[type="text"],
+.inputConfirmar[type="submit"],
+.inputEditar2[type="number"],
+.inputEditar2[type="email"],
+.inputEditar2[type="password"],
+.inputEditar2[type="url"],
+textarea {
     width: 98%;
     padding: 10px;
-    margin: 10px 0 15px 0; /* Aumentei o espaço inferior entre os inputs */
+    margin: 10px 0 15px 0;
+    /* Aumentei o espaço inferior entre os inputs */
     background-color: var(--secundaria);
     color: white;
     border: 1px solid #406E96;
-    border-radius: 2%; /* Border-radius aplicado a todos os inputs */
+    border-radius: 2%;
+    /* Border-radius aplicado a todos os inputs */
     font-size: 14px;
-    
+
 }
+
 /*Para deixar todos os inputs do mesmo tamanho (Foi necessario implementar esse width de forma separada no select)*/
 select {
     width: 101.5%;
 }
+
 .inputConfirmar[type="submit"] {
     width: 101.5%;
 }
-.inputEditar2[type="password"], textarea {
+
+.inputEditar2[type="password"],
+textarea {
     width: 98%;
 }
+
 .selectResenhista {
     width: 101%;
 }
+
 .tamanhoSubmit {
     width: 21%;
 }
@@ -172,7 +201,13 @@ select {
         font-size: 14px;
     }
 
-    select, .inputConfirmar[type="submit"], .inputEditar2[type="text"], .inputEditar2[type="number"], .inputEditar2[type="email"], .inputEditar2[type="url"], textarea {
+    select,
+    .inputConfirmar[type="submit"],
+    .inputEditar2[type="text"],
+    .inputEditar2[type="number"],
+    .inputEditar2[type="email"],
+    .inputEditar2[type="url"],
+    textarea {
         font-size: 14px;
         padding: 8px;
     }

@@ -90,7 +90,6 @@ include "../protecao.php";
                 <button type="submit"><i class='bx bx-search'></i></button>
             </form>
         </div>
-        <div class="pesquisa"> <!-- DIV DA CAIXA ONDE DENTRO APARECERÁ OS CARDS DO RESULTADO DA BUSCA-->
             <?php
             if (!isset($_GET['busca']) || empty($_GET['busca'])) {
                 echo "<div class='resultados'></div>";
@@ -188,9 +187,7 @@ include "../protecao.php";
                 }
             }
             ?>
-        </div>
         <!--CONTAGEM DE USUÁRIOS-------------------------------------------------------------->
-        <div>
             <?php
             $sql = "SELECT usu_tipo_usuario, COUNT(*) AS quantidade
             FROM usuarios
@@ -226,9 +223,7 @@ include "../protecao.php";
             }
             $stmt->close();
             ?>
-        </div>
 
-        <div>
             <?php
             $consulta = "SELECT usu_nome, usu_id, usu_status, usu_tipo_usuario 
                          FROM usuarios 
@@ -250,7 +245,9 @@ include "../protecao.php";
                             echo "
                         <div class='card containerInput inativo'>
                         <text>USUARIO</text>
+                        <div class='linha'>
                          <p class='input'>$nomeUsuario</p>
+                          </div>
                         <div class='containerBtnInput'>
                             <p class='inputID'>RESENHISTA</p>
                           <a href='editarusuario.php?id=$id'><div class='botao'>ATUALIZAR</div></a>
@@ -261,7 +258,9 @@ include "../protecao.php";
                             echo "
                         <div class='card containerInput inativo'>
                         <text>USUARIO</text>
+                         <div class='linha'>
                          <p class='input'>$nomeUsuario</p>
+                           </div>
                         <div class='containerBtnInput'>
                          <p class='inputID'>LIVRARIA</p>
                           <a href='editarusuario.php?id=$id'><div class='botao'>ATUALIZAR</div></a>
@@ -272,7 +271,9 @@ include "../protecao.php";
                             echo "
                             <div class='card containerInput inativo'>
                             <text>USUARIO</text>
+                            <div class='linha'>
                              <p class='input'>$nomeUsuario</p>
+                               </div>
                             <div class='containerBtnInput'>
                              <p class='inputID'>ADMINISTRADOR</p>
                               <a href='editarusuario.php?id=$id'><div class='botao'>ATUALIZAR</div></a>
@@ -285,7 +286,9 @@ include "../protecao.php";
                             echo "
                         <div class='card containerInput'>
                         <text>USUARIO</text>
+                         <div class='linha'>
                          <p class='input'>$nomeUsuario</p>
+                         </div>
                         <div class='containerBtnInput'>
                             <p class='inputID'>RESENHISTA</p>
                           <a href='editarusuario.php?id=$id'><div class='botao'>ATUALIZAR</div></a>
@@ -296,7 +299,9 @@ include "../protecao.php";
                             echo "
                         <div class='card containerInput'>
                         <text>USUARIO</text>
+                        <div class='linha'>
                          <p class='input'>$nomeUsuario</p>
+                         </div>
                         <div class='containerBtnInput'>
                          <p class='inputID'>LIVRARIA</p>
                           <a href='editarusuario.php?id=$id'><div class='botao'>ATUALIZAR</div></a>
@@ -307,7 +312,9 @@ include "../protecao.php";
                             echo "
                         <div class='card containerInput'>
                             <text>USUARIO</text>
+                            <div class='linha'>
                             <p class='input'>$nomeUsuario</p>
+                            </div>
                          <div class='containerBtnInput'>
                              <p class='inputID'>ADMINISTRADOR</p>
                               <a href='editarusuario.php?id=$id'><div class='botao'>ATUALIZAR</div></a>
@@ -320,7 +327,6 @@ include "../protecao.php";
             }
             $stmt->close();
             ?>
-        </div>
     </main>
 
     <script src="../script.js"></script>
