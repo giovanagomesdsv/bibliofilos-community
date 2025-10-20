@@ -85,7 +85,7 @@ include "../../protecao.php";
         <!--EXIBE OS CARDS DAS LIVRARIAS-->
         <div class="busca-container">
             <form action="" method="GET" class="busca-form">
-                <input type="text" name="busca" placeholder="nome do resenhista">
+                <input type="text" name="busca" placeholder="nome da livraria">
                 <button type="submit"><i class='bx bx-search'></i></button>
             </form>
         </div>

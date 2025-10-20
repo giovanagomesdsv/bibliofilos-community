@@ -13,6 +13,7 @@
     flex-direction: column;
     width: 45rem;
     flex-wrap: wrap;
+
 }
 
 /* Informações alinhadas à esquerda */
@@ -21,6 +22,7 @@
     align-items: center;
     flex-direction: row;
     gap: 2rem;
+
 }
 
 /* Contador de resenhas à direita */
@@ -31,19 +33,20 @@
     justify-content: center;
     background-color: var(--bg);
     color: #000;
-
     border-radius: 4px;
     font-weight: bold;
     height: 50%;
-
+    margin: 1rem;
 }
-
 .resenha-contador p {
     color: #000;
 }
 
-.imgres{
- overflow: hidden;
- object-fit: cover; /* mantém proporção e corta o excesso */
-  object-position: center; /* centraliza o corte */
+.imgres {
+    overflow: hidden;
+    object-fit: cover;
+    /* mantém proporção e corta o excesso */
+    object-position: center;
+    /* centraliza o corte */
+    margin: 1rem;
 }
