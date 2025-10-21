@@ -102,7 +102,7 @@ if ($result->num_rows > 0) {
                         <input class="botao1" type="submit" value="Enviar">
                     </form>
                 </div>
-                <a class="notas" href='m-resenhas.php'>
+                <a class="notas" href='resenhas.php'>
                     <button class="botao1">Cancelar</button>
                 </a>
             </div>
