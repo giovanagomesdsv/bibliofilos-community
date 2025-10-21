@@ -205,8 +205,14 @@
     margin-left:1rem;
     width:15rem;
     height:15rem;
-  
+     overflow: hidden;
+    object-fit: cover;
+    /* mantém proporção e corta o excesso */
+    object-position: center;
+    /* centraliza o corte */
+    margin: 1rem;  
 }
+
 /*Cor do container & botão caso o post for reprovado*/
 .containR{
     background-color:#FA8072;

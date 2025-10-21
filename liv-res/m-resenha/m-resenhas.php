@@ -120,39 +120,42 @@ $id =  $_SESSION['id'];
         <div class="box-card">
         <?php
         if (isset($_GET['busca']) && !empty($_GET['busca'])) {
-            $pesquisa = "%" . $_GET['busca'] . "%";
-            $stmt = $conn->prepare("SELECT livro_foto, resenha_titulo, livro_sinopse, resenha_id FROM RESENHAS INNER JOIN LIVROS ON LIVROS.livro_id = RESENHAS.livro_id WHERE resenha_titulo LIKE ? AND res_id = ?");
-            $stmt->bind_param("si", $pesquisa, $id);
-            $stmt->execute();
-            $result = $stmt->get_result();
+    $pesquisa = "%" . $_GET['busca'] . "%";
+    $stmt = $conn->prepare("SELECT livro_foto, resenha_titulo, livro_sinopse, resenha_id 
+                            FROM RESENHAS 
+                            INNER JOIN LIVROS ON LIVROS.livro_id = RESENHAS.livro_id 
+                            WHERE resenha_titulo LIKE ? AND res_id = ?");
+    $stmt->bind_param("si", $pesquisa, $id);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
-            if ($result->num_rows === 0) {
-                echo "<div class='resultados'><h3>Nenhum resultado encontrado!</h3></div>";
-            } else {
-                while ($row = $result->fetch_assoc()) {
-                    $resenha = htmlspecialchars($row['resenha_titulo']);
-                    $foto = htmlspecialchars($row['livro_foto']);
-                    $sinopse = htmlspecialchars($row['livro_sinopse']);
-                    $idResenha = (int) $row['resenha_id'];
+    if ($result->num_rows === 0) {
+        echo "<div class='resultados'><h3>Nenhum resultado encontrado!</h3></div>";
+    } else {
+        while ($row = $result->fetch_assoc()) {
+            $resenha = htmlspecialchars($row['resenha_titulo']);
+            $foto = htmlspecialchars($row['livro_foto']);
+            $sinopse = htmlspecialchars($row['livro_sinopse']);
+            $idResenha = (int)$row['resenha_id'];
 
-                    echo "
-                    <div class='card'>
-                        <div class='cont'>
-                            <img src='../../adm/imagens/livros/$foto' alt='foto.png'>
-                            <div>
-                                <h2 style='color: black'>$resenha</h2>
-                                <p style='color: black'>$sinopse</p>
-                            </div>
-                        </div>
-                        <div class='cont2'>
-                            <a href='abrir.php?id=$idResenha'><button class='botao'>ABRIR</button></a>
-                            <a href='atualizar.php?id=$idResenha'><button class='botao'>ATUALIZAR</button></a>
-                        </div>
-                    </div>";
-                }
-            }
-            $stmt->close();
+            echo "
+            <div class='card'>
+                <div class='cont'>
+                    <img src='../../adm/imagens/livros/$foto' alt='foto.png' class='fotos2'>
+                    <div>
+                        <h2 class='text'>$resenha</h2>
+                        <p class='text'>$sinopse</p>
+                    </div>
+                </div>
+                <div class='cont2'>
+                    <a href='abrir.php?id=$idResenha'><button class='botao'>ABRIR</button></a>
+                    <a href='atualizar.php?id=$idResenha'><button class='botao'>ATUALIZAR</button></a>
+                </div>
+            </div>";
         }
+    }
+    $stmt->close();
+}
         ?>
         </div> 
     </div>
@@ -221,7 +224,7 @@ $id =  $_SESSION['id'];
             echo "
             <div class='card'>
                 <div class='cont'>
-                    <img src='../../adm/imagens/livros/$foto' alt='foto.png'>
+                    <img src='../../adm/imagens/livros/$foto' alt='foto.png' class='fotos2'>
                     <div >
                         <h2 class='text'>$resenha</h2>
                         <p class='text'>$sinopse</p>
