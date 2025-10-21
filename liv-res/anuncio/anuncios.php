@@ -29,6 +29,9 @@ $fotoLiv = $_SESSION['imagem-liv'];
     <link href='https://cdn.boxicons.com/fonts/basic/boxicons.min.css' rel='stylesheet'>
 
     <link rel="stylesheet" href="../geral.css">
+    <link rel="stylesheet" href="../resenha/resenhas.css">
+    <link rel="stylesheet" href="anuncios.css">
+    
     <title>Anúncios - BACKSTAGE Community</title>
 </head>
 
