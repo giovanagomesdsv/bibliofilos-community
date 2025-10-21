@@ -9,11 +9,12 @@ $id = (int) $_GET['id'];
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $novaresenha = $_POST['resenha'];
+    $titulo = $_POST['titulo'];
     $avaliacao = (int) $_POST['avaliacao']; // garante que seja inteiro
 
-    $update = "UPDATE RESENHAS SET resenha_texto = ?, resenha_avaliacao = ? WHERE resenha_id = ?";
+    $update = "UPDATE RESENHAS SET resenha_titulo = ? ,resenha_texto = ?, resenha_avaliacao = ? WHERE resenha_id = ?";
     $stmt  = $conn->prepare($update);
-    $stmt->bind_param("sii", $novaresenha, $avaliacao, $id);
+    $stmt->bind_param("ssii", $titulo, $novaresenha, $avaliacao, $id);
 
     if ($stmt->execute()) {
         echo "
@@ -87,6 +88,10 @@ if ($result->num_rows > 0) {
 
             <div>
                 <form method="POST">
+
+                <label class="resenhabox" for="titulo">Título da resenha:</label><br>
+                         <input class="resenha1" type="text" name="titulo" id="titulo" required><br><br>
+ 
                     <label class="resenhabox" for="resenha">Resenha:</label><br>
                     <textarea class="resenha" name="resenha" id="resenha" rows="10" cols="70"><?php echo $resenha; ?></textarea><br>
 

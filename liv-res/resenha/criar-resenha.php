@@ -11,7 +11,7 @@ $idLivro = (int) $_GET['id'];
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $tituloResenha = $_POST["titulo"];
     $resenha = $_POST["resenha"];
-    $avaliacao = $_POST["avaliacao"];
+    $avaliacao =$_POST["avaliacao"];
 
     $update = "INSERT INTO RESENHAS (res_id, livro_id, resenha_titulo, resenha_texto, resenha_avaliacao) VALUES (?, ?, ?, ?, ?)";
     $stmt = $conn->prepare($update);
@@ -83,6 +83,8 @@ if ($result->num_rows > 0) {
             <div>
                 <div>
                     <form method="POST">
+                         <label class="resenhabox" for="titulo">Título da resenha:</label><br>
+                         <input class="resenha1" type="text" name="titulo" id="titulo" required><br><br>
 
                         <div>
                             <label class="resenhabox" for="resenha">Resenha:</label><br>

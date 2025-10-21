@@ -210,7 +210,7 @@ $id =  $_SESSION['id'];
     <!-- Todas as resenhas -->
     <div class="box-card">
         <?php
-        $stmt = $conn->prepare("SELECT livro_foto, resenha_titulo, livro_sinopse, resenha_id FROM RESENHAS INNER JOIN LIVROS ON LIVROS.livro_id = RESENHAS.livro_id WHERE res_id = ? ORDER BY resenha_dtpublicacao DESC");
+        $stmt = $conn->prepare("SELECT livro_foto, resenha_titulo, livro_sinopse, resenha_id, resenha_status FROM RESENHAS INNER JOIN LIVROS ON LIVROS.livro_id = RESENHAS.livro_id WHERE res_id = ? ORDER BY resenha_dtpublicacao DESC");
         $stmt->bind_param("i", $id);
         $stmt->execute();
         $result = $stmt->get_result();

@@ -121,11 +121,9 @@ $id =  $_SESSION['id'];
         <?php
         if (isset($_GET['busca']) && !empty($_GET['busca'])) {
     $pesquisa = "%" . $_GET['busca'] . "%";
-    $stmt = $conn->prepare("SELECT livro_foto, resenha_titulo, livro_sinopse, resenha_id 
-                            FROM RESENHAS 
-                            INNER JOIN LIVROS ON LIVROS.livro_id = RESENHAS.livro_id 
-                            WHERE resenha_titulo LIKE ? AND res_id = ?");
-    $stmt->bind_param("si", $pesquisa, $id);
+    $stmt = $conn->prepare("SELECT livro_foto, livro_titulo, livro_sinopse, livro_id FROM LIVROS 
+                            WHERE livro_titulo LIKE ?");
+    $stmt->bind_param("s", $pesquisa);
     $stmt->execute();
     $result = $stmt->get_result();
 
@@ -133,22 +131,23 @@ $id =  $_SESSION['id'];
         echo "<div class='resultados'><h3>Nenhum resultado encontrado!</h3></div>";
     } else {
         while ($row = $result->fetch_assoc()) {
-            $resenha = htmlspecialchars($row['resenha_titulo']);
+            $livro = htmlspecialchars($row['livro_titulo']);
             $foto = htmlspecialchars($row['livro_foto']);
             $sinopse = htmlspecialchars($row['livro_sinopse']);
-            $idResenha = (int)$row['resenha_id'];
+            $idLivro = (int)$row['livro_id'];
 
             echo "
             <div class='card'>
                 <div class='cont'>
                     <img src='../../adm/imagens/livros/$foto' alt='foto.png' class='fotos2'>
-                    <div>
-                        <h2 class='text'>$resenha</h2>
+                    <div >
+                        <h2 class='text'>$livro</h2>
                         <p class='text'>$sinopse</p>
                     </div>
                 </div>
                 <div class='cont2'>
-                    <a href='criar-resenha.php?id=$idResenha'><button class='botao'>CRIAR RESENHA</button></a>
+                                        <a href='criar-resenha.php?id=$idLivro'><button class='botao'>CRIAR RESENHA</button></a>
+
                 </div>
             </div>";
         }
@@ -209,28 +208,27 @@ $id =  $_SESSION['id'];
     <!-- Todas as resenhas -->
     <div class="box-card">
         <?php
-        $stmt = $conn->prepare("SELECT livro_foto, resenha_titulo, livro_sinopse, resenha_id FROM RESENHAS INNER JOIN LIVROS ON LIVROS.livro_id = RESENHAS.livro_id WHERE res_id = ? ORDER BY resenha_dtpublicacao DESC");
-        $stmt->bind_param("i", $id);
+        $stmt = $conn->prepare("SELECT livro_foto, livro_titulo, livro_sinopse, livro_id FROM LIVROS");
         $stmt->execute();
         $result = $stmt->get_result();
 
         while ($row = $result->fetch_assoc()) {
-            $resenha = htmlspecialchars($row['resenha_titulo']);
+            $livro = htmlspecialchars($row['livro_titulo']);
             $foto = htmlspecialchars($row['livro_foto']);
             $sinopse = htmlspecialchars($row['livro_sinopse']);
-            $idResenha = (int)$row['resenha_id'];
+            $idLivro = (int)$row['livro_id'];
 
             echo "
             <div class='card'>
                 <div class='cont'>
                     <img src='../../adm/imagens/livros/$foto' alt='foto.png' class='fotos2'>
                     <div >
-                        <h2 class='text'>$resenha</h2>
+                        <h2 class='text'>$livro</h2>
                         <p class='text'>$sinopse</p>
                     </div>
                 </div>
                 <div class='cont2'>
-                                        <a href='criar-resenha.php?id=$idResenha'><button class='botao'>CRIAR RESENHA</button></a>
+                                        <a href='criar-resenha.php?id=$idLivro'><button class='botao'>CRIAR RESENHA</button></a>
 
                 </div>
             </div>";

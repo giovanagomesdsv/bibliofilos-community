@@ -386,6 +386,13 @@
 
 
 }
+.resenha1 {
+    height: 4rem;
+    width: 97%;
+    text-align: justify;
+    color: black;
+    overflow: scroll;
+}
 
 .resenha {
     height: 40rem;
@@ -394,6 +401,7 @@
     color: black;
     overflow: scroll;
 }
+
 
 .botao1 {
     width: 98%;
