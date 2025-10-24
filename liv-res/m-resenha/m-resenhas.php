@@ -150,6 +150,8 @@ $id =  $_SESSION['id'];
                 <div class='cont2'>
                     <a href='abrir.php?id=$idResenha'><button class='botao'>ABRIR</button></a>
                     <a href='atualizar.php?id=$idResenha'><button class='botao'>ATUALIZAR</button></a>
+
+                    <a href='atualizar.php?id=$idResenha'><button class='botao'>ATUALIZAR</button></a>
                 </div>
             </div>";
         }
@@ -232,6 +234,13 @@ $id =  $_SESSION['id'];
                 </div>
                 <div class='cont2'>
                     <a href='abrir.php?id=$idResenha'><button class='botao'>ABRIR</button></a>
+                <div class='botao'>
+                <p>STATUS: 
+                <span class='sinopseBox2'>
+                </span>
+                </p>
+                </div>
+
                     <a href='atualizar.php?id=$idResenha'><button class='botao'>ATUALIZAR</button></a>
                 </div>
             </div>";
