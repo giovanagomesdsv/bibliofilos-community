@@ -116,7 +116,7 @@
                 </a>
             </li>
             <li class="../sair">
-                <a href="logout.php"><i class='bx bx-log-out'></i></a>
+                <a href="../logout.php"><i class='bx bx-log-out'></i></a>
             </li>
         </ul>
     </nav>
