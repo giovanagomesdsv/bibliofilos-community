@@ -195,10 +195,12 @@
 }
 
 .box {
-    width: 100%;
-    height: 50vh;
+   width: 100%;
+    min-height: 50vh;
+    height: auto; /* cresce conforme o conteúdo */
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap; /* importante para permitir quebra em telas menores */
 }
 
 /* Blocos verticais e horizontais compartilhados */
@@ -318,11 +320,10 @@
 }
 
 .box .box-hor1 .hor1 .image img {
-    width: 100%;
+   width: 23rem;
     height: 100%;
 object-fit: cover;
  aspect-ratio:3 / 4;
-
 }
 
 .box .box-hor1 .hor1 .info {
