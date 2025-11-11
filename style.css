@@ -21,7 +21,7 @@
 }
 
 .letreiro h3 {
-    font-size: 15rem;
+    font-size: clamp(2rem, 10vw, 15rem);
     margin: 0;
     color: #fff;
 }
