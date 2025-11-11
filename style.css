@@ -271,11 +271,13 @@
 }
 
 /* ----------- HORIZONTAL tipo 3 - box1.hor1 (usado em "Suspense e Mistério" e "Drama") ----------- */
+
 .box .box-hor1 {
-    flex-direction: row;
-    display: flex;
-    flex-wrap: wrap;
-    /* permite quebrar linha quando não couber */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: stretch; /* garante que todas as caixas tenham a mesma altura */
+  gap: 1rem; /* espaço entre elas */
 }
 
 .box .box-hor1 a {
@@ -292,14 +294,15 @@
 .box .box-hor1 a:hover {
     transform: scale(0.98);
 }
-
+.hor1 > * {
+  flex: 1; /* faz cada filho ocupar a mesma largura */
+}
 .box .box-hor1 .hor1 {
-    display: flex;
-    width: 100%;
-    flex-direction: row;
-    border-radius: 8px;
-    overflow: hidden;
- border: solid 1px red;
+  flex: 1 1 48%; /* duas por linha */
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+
 }
 @media (max-width: 768px) {
     .box .box-hor1 .hor1 {
@@ -316,14 +319,17 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
 
 }
 
 .box .box-hor1 .hor1 .image img {
-   width: 23rem;
-    height: 100%;
-object-fit: cover;
- aspect-ratio:3 / 4;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+      overflow: hidden;
+
 }
 
 .box .box-hor1 .hor1 .info {
@@ -363,7 +369,6 @@ object-fit: cover;
     display: flex;
     flex-direction: row;
     width: 100%;
-    border-radius: 8px;
     overflow: hidden;
     height: 100%;
 }
