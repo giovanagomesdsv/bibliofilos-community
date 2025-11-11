@@ -254,6 +254,7 @@
     max-height: 100%;
     max-width: 100%;
     object-fit: cover;
+    
 }
 
 .box1 .box-vert1 .vert1 .info {
@@ -298,21 +299,30 @@
     overflow: hidden;
  border: solid 1px red;
 }
+@media (max-width: 768px) {
+    .box .box-hor1 .hor1 {
+        flex-direction: column;
+      
+       font-size: clamp(1rem, 10vw, 1.1rem);
+    }
+}
 
 .box .box-hor1 .hor1 .image,
 .box .box-hor1 .hor1 .info {
-    width: 50%;
+    width: 100%;
+    height: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 1rem;
+
 }
 
 .box .box-hor1 .hor1 .image img {
-    width: 25rem;
-    height: auto;
+    width: 100%;
+    height: 100%;
 object-fit: cover;
-    border-radius: 8px;
+ aspect-ratio:3 / 4;
+
 }
 
 .box .box-hor1 .hor1 .info {
