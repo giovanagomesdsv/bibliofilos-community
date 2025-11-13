@@ -211,8 +211,8 @@ if ($result->num_rows > 0) {
     }
 }
 ?>
-
-<?php foreach ($disponiveis as $livro): ?>
+<div class="anuncios-lista">
+    <?php foreach ($disponiveis as $livro): ?>
     <div class='ativo'>
         <div>
             <div>
@@ -237,7 +237,11 @@ if ($result->num_rows > 0) {
     </div>
 <?php endforeach; ?>
 
+</div>
+
 <h2 id="indisponivel">Livros sem estoque</h2>
+<div class="anuncios-lista">
+
 <?php foreach ($indisponiveis as $livro): ?>
     <div class='inativo'>
         <div>

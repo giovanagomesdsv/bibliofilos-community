@@ -28,6 +28,7 @@ ini_set('display_errors', 1);
 
     <!-- Ícones -->
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    
 
     <!-- Estilos -->
     <link rel="stylesheet" href="global.css">
