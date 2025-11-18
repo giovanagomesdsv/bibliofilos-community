@@ -68,7 +68,7 @@ ini_set('display_errors', 1);
             </div>
         </div>
         <ul class='nav-list'>
-            <li class='fix'>
+            <li>
                 <a href='adm/home.php'>
                     <i class='bx bx-home-alt-2'></i>
                     <span class='link_name'>Home</span>
@@ -116,7 +116,7 @@ ini_set('display_errors', 1);
         <div class='nome'>
             <li class='logo_name'>
                 <a href='liv-res/perfil/perfil.php'>
-                    <img src='" . $imgCaminho . "' alt='Foto de perfil' style='width:100px' />
+                    <img src='" . $imgCaminho . "' alt='Foto de perfil' class='img-perfil' />
                     <span class='link_name'>{$nome}</span>
                 </a>
             </li>

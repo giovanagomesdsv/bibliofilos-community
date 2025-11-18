@@ -196,7 +196,6 @@ main {
     z-index: 1500;
     overflow-x: hidden;
     color: #fff;
-
 }
 
 /* Quando ativado */
@@ -256,10 +255,12 @@ main {
 .nav-list {
     padding: 2rem 0;
     list-style: none;
+
 }
 
 .nav-list li {
     margin: 3rem 0;
+color: #fff;
 }
 
 .nav-list li a {
@@ -275,10 +276,24 @@ main {
 .nav-list li a:hover {
     background-color: var(--principal);
     border-radius: 8px;
+
 }
 
 .link_name {
     font-size: 1.4rem;
+    color: #fff;
+}
+
+.sidebar .nav-list li a .img-perfil {
+    display: none;
+    width: 15rem;
+    height: 15rem; /* força a imagem a ser quadrada */
+    object-fit: cover; /* garante que a imagem preencha o quadrado sem distorcer */
+    border-radius: 100rem; /* borda redonda */
+} 
+
+i{
+    color: #fff;
 }
 
 /* Fixado */
