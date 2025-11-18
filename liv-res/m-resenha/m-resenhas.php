@@ -221,6 +221,7 @@ $id =  $_SESSION['id'];
             $resenha = htmlspecialchars($row['resenha_titulo']);
             $foto = htmlspecialchars($row['livro_foto']);
             $sinopse = htmlspecialchars($row['livro_sinopse']);
+            $status = (int)$row['resenha_status'];
             $idResenha = (int)$row['resenha_id'];
 
             echo "
@@ -234,13 +235,25 @@ $id =  $_SESSION['id'];
                 </div>
                 <div class='cont2'>
                     <a href='abrir.php?id=$idResenha'><button class='botao'>ABRIR</button></a>
-                <div class='botao'>
-                <p>STATUS: 
-                <span class='sinopseBox2'>
-                </span>
-                </p>
-                </div>
+                <div class='botao'>";
 
+            if ($status == 2) {
+                echo "
+                <p> 
+                    <span class='sinopseBox2'>
+                    PUBLICADA
+                    </span>
+                </p>";
+            } else {
+                echo "
+                <p>
+                    <span class='sinopseBox2'>
+                    EM ANDAMENTO
+                    </span>
+                </p>";
+            }
+
+            echo "</div>
                     <a href='atualizar.php?id=$idResenha'><button class='botao'>ATUALIZAR</button></a>
                 </div>
             </div>";
