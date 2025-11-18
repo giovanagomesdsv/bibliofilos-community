@@ -75,7 +75,7 @@ $id =  $_SESSION['id'];
 
         <li class="fix">
             <a href='#'>
-                <i class='bx bx-pencil-circle'></i>
+                 <i class='bx bx-user'></i>
                 <span class='link_name'>CRIAR RESENHAS</span>
             </a>
         </li>

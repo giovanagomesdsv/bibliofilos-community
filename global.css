@@ -229,7 +229,6 @@ main {
     align-items: center;
     margin-top: 2rem;
     color: #fff;
-
 }
 
 .logo_name {
@@ -284,15 +283,18 @@ main {
 }
 
 .sidebar .nav-list .nome li a .img-perfil {
-    display: none;
-    width: 15rem;
-    height: 15rem;
-    /* força a imagem a ser quadrada */
-    object-fit: cover;
-    /* garante que a imagem preencha o quadrado sem distorcer */
-    border-radius: 100rem;
-    /* borda redonda */
-}
+   display: none;
+    width: 10rem;
+    height: 10rem; /* força a imagem a ser quadrada */
+    object-fit: cover; /* garante que a imagem preencha o quadrado sem distorcer */
+    border-radius: 100rem; /* borda redonda */
+} 
+.logo_name a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+} 
 
 i {
     color: #fff;
