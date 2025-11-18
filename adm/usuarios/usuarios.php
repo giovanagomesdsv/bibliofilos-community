@@ -12,6 +12,8 @@ include "../protecao.php";
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href='https://cdn.boxicons.com/fonts/basic/boxicons.min.css' rel='stylesheet'>
     <link href='https://cdn.boxicons.com/fonts/brands/boxicons-brands.min.css' rel='stylesheet'>
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+
     <link rel="stylesheet" href="../geral.css">
     <link rel="stylesheet" href="usuarios.css">
     <title>Usuarios - BACKSTAGE Community</title>

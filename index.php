@@ -28,6 +28,9 @@ ini_set('display_errors', 1);
 
     <!-- Ícones -->
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href='https://cdn.boxicons.com/fonts/basic/boxicons.min.css' rel='stylesheet'>
+    <link href='https://cdn.boxicons.com/fonts/brands/boxicons-brands.min.css' rel='stylesheet'>
 
     <!-- Estilos -->
     <link rel="stylesheet" href="global.css">
@@ -68,7 +71,7 @@ ini_set('display_errors', 1);
             </div>
         </div>
         <ul class='nav-list'>
-            <li class='fix'>
+            <li>
                 <a href='adm/home.php'>
                     <i class='bx bx-home-alt-2'></i>
                     <span class='link_name'>Home</span>
@@ -115,8 +118,8 @@ ini_set('display_errors', 1);
     <nav class='sidebar' id='sidebar'>
         <div class='nome'>
             <li class='logo_name'>
-                <a href='liv-res/perfil/perfil.php'>
-                    <img src='" . $imgCaminho . "' alt='Foto de perfil' style='width:100px' />
+                <a class='perfil' href='liv-res/perfil/perfil.php'>
+                    <img src='" . $imgCaminho . "' alt='Foto de perfil' class='img-perfil' />
                     <span class='link_name'>{$nome}</span>
                 </a>
             </li>
