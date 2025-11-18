@@ -188,41 +188,39 @@ include "../protecao.php";
             }
             ?>
         <!--CONTAGEM DE USUÁRIOS-------------------------------------------------------------->
-            <?php
-            $sql = "SELECT usu_tipo_usuario, COUNT(*) AS quantidade
-            FROM usuarios
-            GROUP BY usu_tipo_usuario";
-
-            $stmt = $conn->prepare($sql);
-            $stmt->execute();
-            $result = $stmt->get_result();
-
-            if ($result->num_rows > 0) {
-                // Array para mapear tipo para nome
-                $tipos = [
-                    0 => "Resenhistas",
-                    1 => "Livrarias",
-                    2 => "Administradores"
-                ];
-                while ($row = $result->fetch_assoc()) { // percorre cada linha de resultado retornada pela consulta SQL
-                    $tipo = $row['usu_tipo_usuario'];
-                    $quantidade = $row['quantidade'];
-
-                    // Cria um card para cada tipo encontrado no banco
-                    echo "
-                    <div class='card containerInput'>
-                        <div class='linha'>
-                            <h3>{$tipos[$tipo]}</h3>
+            <div class="box-contagem">
+                <?php
+                $sql = "SELECT usu_tipo_usuario, COUNT(*) AS quantidade
+                FROM usuarios
+                GROUP BY usu_tipo_usuario";
+                $stmt = $conn->prepare($sql);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                if ($result->num_rows > 0) {
+                    // Array para mapear tipo para nome
+                    $tipos = [
+                        0 => "Resenhistas",
+                        1 => "Livrarias",
+                        2 => "Administradores"
+                    ];
+                    while ($row = $result->fetch_assoc()) { // percorre cada linha de resultado retornada pela consulta SQL
+                        $tipo = $row['usu_tipo_usuario'];
+                        $quantidade = $row['quantidade'];
+                        echo "
+                        <div class='card containerInput'>
+                            <div class='linha'>
+                                <h3>{$tipos[$tipo]}</h3>
+                            </div>
+                            <div class='linha'>
+                                <p class='input'>$quantidade</p>
+                            </div>
                         </div>
-                        <div class='linha'>
-                            <p class='input'>$quantidade</p>
-                        </div>
-                    </div>
-                    ";
+                        ";
+                    }
                 }
-            }
-            $stmt->close();
-            ?>
+                $stmt->close();
+                ?>
+            </div>
 
             <?php
             $consulta = "SELECT usu_nome, usu_id, usu_status, usu_tipo_usuario 
