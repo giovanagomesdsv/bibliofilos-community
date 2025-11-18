@@ -260,7 +260,7 @@ main {
 
 .nav-list li {
     margin: 3rem 0;
-color: #fff;
+    color: #fff;
 }
 
 .nav-list li a {
@@ -276,7 +276,6 @@ color: #fff;
 .nav-list li a:hover {
     background-color: var(--principal);
     border-radius: 8px;
-
 }
 
 .link_name {
@@ -284,15 +283,18 @@ color: #fff;
     color: #fff;
 }
 
-.sidebar .nav-list li a .img-perfil {
+.sidebar .nav-list .nome li a .img-perfil {
     display: none;
     width: 15rem;
-    height: 15rem; /* força a imagem a ser quadrada */
-    object-fit: cover; /* garante que a imagem preencha o quadrado sem distorcer */
-    border-radius: 100rem; /* borda redonda */
-} 
+    height: 15rem;
+    /* força a imagem a ser quadrada */
+    object-fit: cover;
+    /* garante que a imagem preencha o quadrado sem distorcer */
+    border-radius: 100rem;
+    /* borda redonda */
+}
 
-i{
+i {
     color: #fff;
 }
 
