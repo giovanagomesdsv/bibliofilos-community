@@ -29,6 +29,8 @@ $fotoLiv = $_SESSION['imagem-liv'];
     <link href='https://cdn.boxicons.com/fonts/basic/boxicons.min.css' rel='stylesheet'>
 
     <link rel="stylesheet" href="../geral.css">
+    <link rel="stylesheet" href="anuncios.css">
+    
     <title>Anúncios - BACKSTAGE Community</title>
 </head>
 
@@ -41,7 +43,7 @@ $fotoLiv = $_SESSION['imagem-liv'];
             <div class='nome'>
 
                 <li>
-                    <a href='../perfil/perfil.php' class="perfil">
+                    <a href='../perfil/perfil.php' class='perfil'>
 
                         <?php
                         if ($usuario == 0) {
@@ -51,7 +53,7 @@ $fotoLiv = $_SESSION['imagem-liv'];
                         }
                         ?>
 
-                        <img src="<?php echo $imgCaminho; ?>" alt="" class="img-perfil">
+                        <img src="<?php echo $imgCaminho; ?>" alt="" class='img-perfil'>
                         <span class='link_name'><?php echo $nome ?></span>
                     </a>
                 </li>
@@ -68,7 +70,7 @@ $fotoLiv = $_SESSION['imagem-liv'];
             </li>
             <!-- Apenas para livrarias -->
             <?php if ($usuario == 1): ?>
-                <li class="fix">
+                <li class='fix'>
                     <a href='#'>
                         <i class='bx bx-user'></i>
                         <span class='link_name'>Anúncios</span>
@@ -110,10 +112,9 @@ $fotoLiv = $_SESSION['imagem-liv'];
                 <button type="submit"><i class='bx bx-search'></i></button>
             </form>
         </div>
-        <div class="pesquisa"> <!-- DIV DA CAIXA ONDE DENTRO APARECERÁ OS CARDS DO RESULTADO DA BUSCA-->
             <?php
             if (!isset($_GET['busca']) || empty($_GET['busca'])) {
-                echo "<div class='resultados'></div>";
+                echo "<div></div>";
             } else {
                 $pesquisa = $_GET['busca'];
                 $pesquisa_como_like = "%$pesquisa%";
@@ -126,7 +127,7 @@ $fotoLiv = $_SESSION['imagem-liv'];
                 $result = $stmt->get_result();
 
                 if ($result->num_rows == 0) {
-                    echo "<div class='resultados'><h3>Nenhum resultado encontrado!</h3></div>";
+                    echo "<div'><h3>Nenhum resultado encontrado!</h3></div>";
                 } else {
                     while ($row = $result->fetch_assoc()) {
                         $titulo = htmlspecialchars($row['livro_titulo']);
@@ -171,7 +172,6 @@ $fotoLiv = $_SESSION['imagem-liv'];
                 }
             }
             ?>
-        </div>
 
         <?php
 $select = "SELECT liv_livro_id, liv_livro_idioma, liv_livro_pag, liv_livro_tipo, liv_livro_preco, liv_livro_obsadicionais, liv_livro_status, livro_titulo, livro_dtpublicacao, livro_foto 
@@ -211,9 +211,9 @@ if ($result->num_rows > 0) {
     }
 }
 ?>
-
-<?php foreach ($disponiveis as $livro): ?>
-    <div class="ativo">
+<div class="anuncios-lista">
+    <?php foreach ($disponiveis as $livro): ?>
+    <div class='ativo'>
         <div>
             <div>
                 <img src='../../adm/imagens/livros/<?= $livro['foto'] ?>' alt=''>
@@ -237,9 +237,13 @@ if ($result->num_rows > 0) {
     </div>
 <?php endforeach; ?>
 
+</div>
+
 <h2 id="indisponivel">Livros sem estoque</h2>
+<div class="anuncios-lista">
+
 <?php foreach ($indisponiveis as $livro): ?>
-    <div class="inativo">
+    <div class='inativo'>
         <div>
             <div>
                 <img src='../../adm/imagens/livros/<?= $livro['foto'] ?>' alt=''>

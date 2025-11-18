@@ -1,63 +1,181 @@
 /* Estilo geral do formulário */
-.busca-form {
-    background-color: #406E96;
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    max-width: 600px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-  }
+/* --- BASE GERAL PARA ANÚNCIOS --- */
 
-.margin{
-    margin-top:10rem;
+
+p {
+  color: #000;
+  text-align: justify;
+  margin: 0.5rem 0;
 }
-  
-  /* Agrupamento dos campos */
-  .form-group {
+
+h2 {
+  color: #000;
+  margin-top: 2rem;
+}
+
+button {
+  width: auto;
+  padding: 1rem 1.5rem;
+  background-color: var(--principal);
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: var(--secundaria);
+}
+ 
+.busca-container {
     display: flex;
-    flex-direction: column;
-  }
-  
-  /* Linha com dois campos lado a lado */
-  .form-row {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-  }
-  
-  .form-row .form-group {
-    flex: 1;
-    min-width: 150px;
-  }
-  
-  /* Estilo geral dos inputs */
-  .busca-form input {
-    padding: 0.8rem;
-    border-radius: 6px;
-    border: 1px solid white;
-    font-size: 1rem;
-    margin-top: 0.3rem;
-  }
-  
-  /* Botão */
-  .busca-form button {
-    margin-top:1.4rem;
-    background-color: #2A4A64;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 1rem;
-    cursor: pointer;
+    justify-content: space-between;
+    float: right;
+    padding-top: 1rem;
+    width: 100%;
+}
+.busca-form {
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    transition: background 0.3s ease;
-    padding: 0.9rem;
-    flex: 1;
-    min-width: 150px;
-    height: 100%; /* Garante alinhamento vertical com os inputs */
-  }
+    border-radius: 0.5rem;
+    justify-content: flex-end;
+    background-color: var(--pesquisa);
+    margin-bottom: 2rem;
+    gap: 1rem;
+    border: 1px solid #000;
+}
+.busca-form input[type="text"] {
+    border: none;
+    /* remove a borda preta */
+    outline: none;
+    /* remove o contorno ao focar */
+    padding: 0.8rem 1rem;
+    font-size: 1rem;
+    background-color: var(--pesquisa);
+    border-radius: 0.5rem 0 0 0.5rem;
+    /* arredonda o lado esquerdo */
+    color: #000;
+}
+.busca-form button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+.busca-form button i {
+    padding: 0 1rem;
+    font-size: 1.4rem;
+    cursor: pointer;
+    color: #000000;
+}
+
+
+.margin {
+  margin-top: 10rem;
+}
+
+/* Agrupamento dos campos */
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Linha com dois campos lado a lado */
+.form-row {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.form-row .form-group {
+  flex: 1;
+  min-width: 150px;
+}
+
+.anuncios-lista {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+} 
+
+
+/*  Estilo para os cards de livros disponíveis */
+.ativo, .inativo {
+  width: 20rem;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.5rem;
+  border: 2px solid var(--principal);
+  border-radius: 10px;
+  background-color: #e6f7ff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+}
+
+.ativo img {
+  max-width: 100%;
+  border-radius: 5px;
+}
+
+.ativo p {
+  margin: 0.5rem 0;
+  font-size: 1.4rem;
+  color: var(--secundaria);
+}
+
+.ativo button {
+  background-color: var(--principal);
+  color: white;
+  border: none;
+  padding: 0.8rem 1.2rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.ativo button:hover {
+  background-color: var(--secundaria);
+}
+
+/* Estilo para os cards de livros indisponíveis */
+.inativo {
+  display: flex;
+  padding: 1.5rem;
+  border: 2px solid #ffcccc;
+  border-radius: 10px;
+  background-color: #fff0f0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+}
+
+.inativo img {
+  max-width: 100%;
+  border-radius: 5px;
+}
+
+.inativo p {
+  margin: 0.5rem 0;
+  font-size: 1.4rem;
+  color: #cc0000;
+}
+
+.inativo button {
+  background-color: #ff6666;
+  color: white;
+  border: none;
+  padding: 0.8rem 1.2rem;
+  border-radius: 5px;
+  cursor: not-allowed;
+}
+
+/* Ajustes gerais para o layout */
+.pesquisa {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
