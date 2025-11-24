@@ -1,12 +1,11 @@
-
-
 /*css abrir resenha-------------------------------------*/
 
 .texto {
     color: #fff;
     text-align: justify;
-    
+
 }
+
 .card1 {
     height: auto;
 }
@@ -19,18 +18,21 @@
 .cardimgsinopse {
     display: flex;
     flex-direction: row;
-    width:100%;
+    width: 100%;
 }
-.cardimgsinopse .box-img{
+
+.cardimgsinopse .box-img {
     width: 20%;
 }
-.sinopse{
+
+.sinopse {
     color: #f5f5f5;
     margin: 0 2rem;
 }
+
 .imgliv {
     width: 20%;
-    
+
 }
 
 .imagem1 {
@@ -40,7 +42,7 @@
 }
 
 /* texto de sinopse */
-.cardimgsinopse .sinopse h1{
+.cardimgsinopse .sinopse h1 {
     font-size: 2rem;
     text-align: center;
     align-items: center;
@@ -97,10 +99,11 @@
 .rating label:hover~label {
     color: gold;
 }
+
 .box-resenha {
     background-color: #f5f5f5;
     margin: 2rem;
-    padding-left: 4rem;  
+    padding-left: 4rem;
     height: auto;
 }
 
@@ -117,11 +120,12 @@
     padding: 1rem;
     box-sizing: border-box;
 }
-.busca-container > form{
+
+.busca-container>form {
     margin-top: 2rem;
 }
 
-.busca-container .contador{
+.busca-container .contador {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -129,15 +133,19 @@
     height: 3rem;
     background-color: var(--principal);
 }
-.busca-container .contador span{
+
+.busca-container .contador span {
     padding: .4rem;
 }
+
 .box-card {
     display: flex;
     flex-wrap: wrap;
-   
-    gap: 2rem; /* espaço entre os cards */
+
+    gap: 2rem;
+    /* espaço entre os cards */
 }
+
 .box-card>.card {
     flex: 1 1 calc(50% - 1rem);
     /* dois cards por linha com gap */
@@ -146,12 +154,12 @@
     display: flex;
     flex-direction: column;
 }
-   
+
 .card .cont {
     height: 80%;
     display: flex;
     flex-direction: row;
-    
+
 }
 
 .card .cont img {
@@ -166,103 +174,147 @@
     height: auto;
     margin: 1rem;
     overflow: hidden;
-    
+
 
 }
-.text{
+
+.text {
     color: black;
     text-align: justify;
     margin: 1rem;
 }
-    .card .cont2 {
-      
-        height: 20%;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-around;
-    }
-    .card .cont2 .botao{
-        width: 15rem;
-        height: 4rem;
-    }
-    .margincard{
-        margin-left:47%;
-        column-gap: 20rem;
-    }
-    .sinopseBox2{
+
+.card .cont2 {
+
+    height: 20%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.card .cont2 .botao {
+    width: 15rem;
+    height: 4rem;
+}
+
+.margincard {
+    margin-left: 47%;
+    column-gap: 20rem;
+}
+
+.sinopseBox2 {
     background-color: white;
-    color:black;
-    margin-top:5%;
-    width:24rem;
-    height:3rem;
+    color: black;
+    margin-top: 5%;
+    width: 24rem;
+    height: 3rem;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
 /*para fotos pequenas*/
-.fotos2{
-    margin-left:1rem;
-    width:15rem;
-    height:15rem;
-     overflow: hidden;
+.fotos2 {
+    margin-left: 1rem;
+    width: 15rem;
+    height: 15rem;
+    overflow: hidden;
     object-fit: cover;
     /* mantém proporção e corta o excesso */
     object-position: center;
     /* centraliza o corte */
-    margin: 1rem;  
+    margin: 1rem;
 }
 
 /*Cor do container & botão caso o post for reprovado*/
-.containR{
-    background-color:#FA8072;
-    width: 100%;
+.containR {
+    background-color: #FA8072;
+  width: 100%;
     display: flex;
     margin-bottom: 2rem;
-    padding: 1rem 0rem 1rem 0rem
+    padding: 1rem 0rem 1rem 0rem;
+    align-items: space-around;
+    flex-direction: row;
+    height: auto;
+        border-color: #FA8072;
+
 }
 
-.containRBtn{
+.containRBtn {
     background-color: #BB2222;
-    margin-top:8rem;
-    margin-left:100%;
-    width:25rem;
-    height:5rem;
+    width: 25rem;
+    height: 5rem;
+    flex-direction: row;
+    border-color: #BB2222;
+    color: #FFF;
+    padding: 0 2rem 0 0.5rem;
 }
 
 /*Cor do container & botão caso necessario corrigir o post*/
-.containC{
-    background-color:#FFD700 ;
+.corrigir {
+    margin: 1rem 0 0 0;
+    width: 100%;
+}
+
+.containC {
+    background-color: #FFD700;
     width: 100%;
     display: flex;
     margin-bottom: 2rem;
-    padding: 1rem 0rem 1rem 0rem
-}
-
-.ContainCBtn{
-    background-color:#FFA500;
-    margin-top:8rem;
-    margin-left:100%;
-    width:25rem;
-    height:5rem;
-}
-
-
-.resenhabox {
-    display: flex;
-    text-align: start;
-    margin: 0 2rem;
-    font-size: 2rem;
+    padding: 1rem 0rem 1rem 0rem;
+    align-items: space-around;
+    flex-direction: row;
     height: auto;
-
-
+    border-color: #FFD700;
 }
+
+.ContainCBtn {
+    background-color: #FFA500;
+    width: 25rem;
+    height: 5rem;
+    flex-direction: row;
+    border-color: #FFA500;
+    color: black;
+    padding: 0 2rem 0 0.5rem;
+ 
+}
+
 .resenha1 {
     height: 4rem;
-    width: 97%;
+    width: 100%;
     text-align: justify;
     color: black;
     overflow: scroll;
 }
 
+.display {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+}
 
+.text {
+    color: black;
+}
+
+@media (max-width: 768px) {
+    .display {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 1rem; /* opcional */
+    }
+
+    .ContainCBtn,
+    .containRBtn {
+        width: 80%; /* botão maior e responsivo */
+        margin-top: 1rem;
+    }
+
+    .img1 {
+        width: 60%; /* imagem menor no mobile */
+        height: auto;
+    }
+}
