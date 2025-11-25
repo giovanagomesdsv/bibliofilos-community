@@ -72,7 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 
 <body style="background-color:#DEDEDE">
-    <form class="form-container" action="" method="POST" enctype="multipart/form-data">
+    <form class="form-container3" action="" method="POST" enctype="multipart/form-data">
         
         <input type="hidden" name="id_usuario" value="<?php echo htmlspecialchars($id_usuario); ?>">
 
