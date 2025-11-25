@@ -76,39 +76,39 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
         <input type="hidden" name="id_usuario" value="<?php echo htmlspecialchars($id_usuario); ?>">
 
-        <label class="form-label" for="nome">Nome da livraria:</label>
-        <input class="form-input" type="text" name="nome" required>
+        <label class="form-label3" for="nome">Nome da livraria:</label>
+        <input class="form-input3" type="text" name="nome" required>
 
-        <label class="form-label" for="cidade">Cidade:</label>
-        <input class="form-input" type="text" name="cidade" required>
+        <label class="form-label3" for="cidade">Cidade:</label>
+        <input class="form-input3" type="text" name="cidade" required>
 
-        <label class="form-label" for="estado">Estado:</label>
-        <select class="form-input select-input" name="estado" required>
+        <label class="form-label3" for="estado">Estado:</label>
+        <select class="form-input3 select-input3" name="estado" required>
             <option value="">Selecione...</option>
             <option value="SP">SP</option>
             <option value="MG">MG</option>
             <option value="RJ">RJ</option>
         </select>
 
-        <label class="form-label" for="endereco">Endereço:</label>
-        <input class="form-input" type="text" name="endereco" required>
+        <label class="form-label3" for="endereco">Endereço:</label>
+        <input class="form-input3" type="text" name="endereco" required>
 
-        <label class="form-label" for="telefone">Telefone:</label>
-        <input class="form-input" type="text" name="telefone" placeholder="DDD + número" required>
+        <label class="form-label3" for="telefone">Telefone:</label>
+        <input class="form-input3" type="text" name="telefone" placeholder="DDD + número" required>
 
-        <label class="form-label" for="email">E-mail da livraria:</label>
-        <input class="form-input" type="email" name="email" required>
+        <label class="form-label3" for="email">E-mail da livraria:</label>
+        <input class="form-input3" type="email" name="email" required>
 
-        <label class="form-label" for="arquivo">Selecione uma imagem:</label>
-        <input class="form-input file-input" type="file" name="arquivo" accept=".jpg,.png" required>
+        <label class="form-label3" for="arquivo">Selecione uma imagem:</label>
+        <input class="form-input3 file-input3" type="file" name="arquivo" accept=".jpg,.png" required>
 
-        <label class="form-label" for="perfil">Perfil:</label>
-        <input class="form-input" type="text" name="perfil" required>
+        <label class="form-label3" for="perfil">Perfil:</label>
+        <input class="form-input3" type="text" name="perfil" required>
 
-        <label class="form-label" for="instagram">Instagram:</label>
-        <input class="form-input" type="text" name="instagram" placeholder="URL" required>
+        <label class="form-label3" for="instagram">Instagram:</label>
+        <input class="form-input3" type="text" name="instagram" placeholder="URL" required>
 
-        <input class="btn-submit" type="submit" value="Cadastrar livraria">
+        <input class="btn-submit3" type="submit" value="Cadastrar livraria">
     </form>
 </body>
 

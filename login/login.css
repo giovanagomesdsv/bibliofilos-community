@@ -260,13 +260,13 @@ div a:hover{
 }
 
 /* Labels */
-.form-label {
+.form-label3 {
     font-size: 24px;
     color:white;
 }
 
 /* Inputs gerais */
-.form-input {
+.form-input3 {
     padding: 10px;
     width:50%;
     background-color:#2A4A64;
@@ -276,25 +276,25 @@ div a:hover{
     transition: 0.2s;
 }
 
-.form-input:focus {
+.form-input3:focus {
     border-color: #333;
     outline: none;
 }
 
 /* Input file */
-.file-input {
+.file-input3 {
     border: none;
     padding: 5px 0;
     color:white;
 }
 
 /* Select */
-.select-input {
+.select-input3 {
     cursor: pointer;
 }
 
 /* Botão */
-.btn-submit {
+.btn-submit3 {
     margin-top: 15px;
     padding: 12px;
     font-size: 16px;
@@ -306,7 +306,7 @@ div a:hover{
     transition: 0.2s;
 }
 
-.btn-submit:hover {
+.btn-submit3:hover {
     background-color: #406E96;
 }
 
