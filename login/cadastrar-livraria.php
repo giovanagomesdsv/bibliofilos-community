@@ -59,6 +59,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 
+
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -66,48 +68,47 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastrar Livraria</title>
-    <link rel="stylesheet" href="administrador/usuarios/cadastrarusuario.css">
-    <link rel="stylesheet" type="text/css" href="../geral.css">
-
+    <link rel="stylesheet" href="logins.css">
 </head>
 
 <body style="background-color:#DEDEDE">
-    <form action="" method="POST" enctype="multipart/form-data">
+    <form class="form-container" action="" method="POST" enctype="multipart/form-data">
+        
         <input type="hidden" name="id_usuario" value="<?php echo htmlspecialchars($id_usuario); ?>">
 
-        <label for="nome">Nome da livraria:</label>
-        <input type="text" name="nome" required>
+        <label class="form-label" for="nome">Nome da livraria:</label>
+        <input class="form-input" type="text" name="nome" required>
 
-        <label for="cidade">Cidade:</label>
-        <input type="text" name="cidade" required>
+        <label class="form-label" for="cidade">Cidade:</label>
+        <input class="form-input" type="text" name="cidade" required>
 
-        <label for="estado">Estado:</label>
-        <select name="estado" required>
+        <label class="form-label" for="estado">Estado:</label>
+        <select class="form-input select-input" name="estado" required>
             <option value="">Selecione...</option>
             <option value="SP">SP</option>
             <option value="MG">MG</option>
             <option value="RJ">RJ</option>
         </select>
 
-        <label for="endereco">Endereço:</label>
-        <input type="text" name="endereco" required>
+        <label class="form-label" for="endereco">Endereço:</label>
+        <input class="form-input" type="text" name="endereco" required>
 
-        <label for="telefone">Telefone:</label>
-        <input type="text" name="telefone" placeholder="DDD + numero" required>
+        <label class="form-label" for="telefone">Telefone:</label>
+        <input class="form-input" type="text" name="telefone" placeholder="DDD + número" required>
 
-        <label for="email">E-mail da livraria:</label>
-        <input type="email" name="email" required>
+        <label class="form-label" for="email">E-mail da livraria:</label>
+        <input class="form-input" type="email" name="email" required>
 
-        <label for="arquivo">Selecione uma imagem:</label>
-        <input type="file" name="arquivo" accept=".jpg,.png" required>
+        <label class="form-label" for="arquivo">Selecione uma imagem:</label>
+        <input class="form-input file-input" type="file" name="arquivo" accept=".jpg,.png" required>
 
-        <label for="perfil">Perfil:</label>
-        <input type="text" name="perfil" required>
+        <label class="form-label" for="perfil">Perfil:</label>
+        <input class="form-input" type="text" name="perfil" required>
 
-        <label for="instagram">Instagram:</label>
-        <input type="text" name="instagram" placeholder="URL" required>
+        <label class="form-label" for="instagram">Instagram:</label>
+        <input class="form-input" type="text" name="instagram" placeholder="URL" required>
 
-        <input type="submit" value="Cadastrar livraria">
+        <input class="btn-submit" type="submit" value="Cadastrar livraria">
     </form>
 </body>
 
