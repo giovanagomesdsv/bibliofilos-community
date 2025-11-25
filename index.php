@@ -337,7 +337,7 @@ LIMIT 7
             <!--tipo 1-->
             <?php
             $classicos = "SELECT resenha_id, resenha_titulo, resenha_texto, livro_foto, res_nome_fantasia, gen_nome FROM RESENHAS INNER JOIN LIVROS ON RESENHAS.livro_id = LIVROS.livro_id INNER JOIN RESENHISTAS ON RESENHISTAS.res_id = RESENHAS.res_id INNER JOIN LIVRO_GENEROS ON LIVROS.livro_id = LIVRO_GENEROS.livro_id INNER JOIN GENEROS ON GENEROS.gen_id = LIVRO_GENEROS.gen_id WHERE gen_nome = ? AND resenha_status = ? ORDER BY resenha_dtpublicacao DESC LIMIT 4"; // mudar resenha_status
-            $status = 0;
+            $status = 2;
             $genero = "Clássicos";
             $stmt = $conn->prepare($classicos);
             $stmt->bind_param("si", $genero, $status);
@@ -416,7 +416,7 @@ LIMIT 7
             <!--tipo 3-->
             <?php
             $misterio = "SELECT resenha_id, resenha_titulo, livro_sinopse, livro_foto, res_nome_fantasia, gen_nome FROM RESENHAS INNER JOIN LIVROS ON RESENHAS.livro_id = LIVROS.livro_id INNER JOIN RESENHISTAS ON RESENHISTAS.res_id = RESENHAS.res_id INNER JOIN LIVRO_GENEROS ON LIVROS.livro_id = LIVRO_GENEROS.livro_id INNER JOIN GENEROS ON GENEROS.gen_id = LIVRO_GENEROS.gen_id WHERE gen_nome = ? AND resenha_status = ? ORDER BY resenha_dtpublicacao DESC LIMIT 4";
-            $status = 0;  // mudar resenha_status
+            $status = 2;  // mudar resenha_status
             $genero = "Mistério e Suspense";
             $stmt = $conn->prepare($misterio);
             $stmt->bind_param("si", $genero, $status);
@@ -495,7 +495,7 @@ LIMIT 7
 <!--tipo 1-->
             <?php
             $fantasia = "SELECT resenha_id, resenha_titulo, resenha_texto, livro_foto, res_nome_fantasia, gen_nome FROM RESENHAS INNER JOIN LIVROS ON RESENHAS.livro_id = LIVROS.livro_id INNER JOIN RESENHISTAS ON RESENHISTAS.res_id = RESENHAS.res_id INNER JOIN LIVRO_GENEROS ON LIVROS.livro_id = LIVRO_GENEROS.livro_id INNER JOIN GENEROS ON GENEROS.gen_id = LIVRO_GENEROS.gen_id WHERE gen_nome = ? AND resenha_status = ? ORDER BY resenha_dtpublicacao DESC LIMIT 4"; // mudar resenha_status
-            $status = 0;
+            $status = 2;
             $genero = "Fantasia";
             $stmt = $conn->prepare($fantasia);
             $stmt->bind_param("si", $genero, $status);
