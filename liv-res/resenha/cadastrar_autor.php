@@ -129,7 +129,7 @@ if (isset($_GET['busca'])) {
         BACKSTAGE Community
     </header>
  <main>
-        <h2>Selecione um autor para o livro</h2>
+        <h2 style="color: #000">Selecione um autor para o livro</h2>
 
         <?php if ($mensagem): ?>
         <p class="mensagem-sucesso">

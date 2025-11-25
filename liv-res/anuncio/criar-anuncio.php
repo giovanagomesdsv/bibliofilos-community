@@ -35,7 +35,7 @@ include "../../conexao.php";
       <button type="submit"><i class='bx bx-search'></i>PROCURAR LIVRO</button>
     </div>
   </form>
-<!--
+
     <?php
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $nome = trim($_POST['nome']);
@@ -63,7 +63,7 @@ include "../../conexao.php";
                 $foto = htmlspecialchars($row['livro_foto']);
                 $id = (int) $row['livro_id'];
 
-                echo
+                echo"
              <div>
               <div>
                 <img src='../../adm/imagens/livros/$foto' alt='Capa do livro'>
@@ -89,7 +89,7 @@ include "../../conexao.php";
 
         $stmt->close();
     }
-    ?> -->
+    ?> 
 
 </body>
 
