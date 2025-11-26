@@ -97,20 +97,22 @@ $fotoLiv = $_SESSION['imagem-liv'];
     </nav>
     <main>
         
-        <div class="busca-container">
-            <div class="botoes-container">
-                <a href="criar-anuncio.php">
-                    <button class='btnCriarAeEstoque'>Criar Anúncio</button>
+        <div class="busca-container" style="display; flex; height: 4rem; margin-bottom: 1rem">
+            <div class="botoes-container" style="width: 50%; display: flex; justify-content: space-around ">
+                <a href="criar-anuncio.php" >
+                    <button class='btnCriarAeEstoque' style="height: auto">Criar Anúncio</button>
                 </a>
                 <a href="#indisponivel">
                     <button class='btnCriarAeEstoque'>Livros sem estoque</button>
                 </a>
             </div>
 
-            <form action="" method="GET" class="busca-form">
-                <input type="text" name="busca" placeholder="nome do usuário">
-                <button type="submit"><i class='bx bx-search'></i></button>
-            </form>
+            <div style="width: 50%; display: flex; align-items: right;">
+                <form action="" method="GET" class="busca-form" style="width: 30%; height: 100%; margin-left: 50%">
+                    <input type="text" name="busca" placeholder="nome do usuário">
+                    <button type="submit"><i class='bx bx-search'></i></button>
+                </form>
+            </div>
         </div>
             <div class='anuncios-lista'>
                 <?php

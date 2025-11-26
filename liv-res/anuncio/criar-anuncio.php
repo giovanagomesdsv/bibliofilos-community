@@ -26,7 +26,7 @@ include "../../conexao.php";
 
 <body>
 
-  <form action="" method="POST" class="busca-form margin busca-anuncio">
+  <form action="" method="POST" class="buscar-form margin busca-anuncio">
     <div class="form-group full-width">
       <label for="nome" class='Textlabel'>Nome do livro:</label>
       <input type="text" name="nome" style='color:black;' required>
@@ -89,7 +89,7 @@ include "../../conexao.php";
             }
         } else {
             echo "
-        <div>
+        <div style='display:flex; justify-content:center; flex-direction:column; align-items:center;'>
           <p>Nenhum resultado encontrado! Cadastre o livro.</p>
           <a href='../resenha/cadastro-livro.php'>Cadastrar</a>
         </div>";

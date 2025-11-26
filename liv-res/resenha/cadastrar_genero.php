@@ -111,7 +111,7 @@ if (isset($_GET['busca'])) {
             <?php endif; ?>
 
             <br><br>
-            <input type="submit" value="Relacionar Gênero" style='padding:4rem 5rem 4rem 5rem; color:white; font-size:1.5rem; background-color:#406E96;border-radius:10px;'>
+            <input type="submit" value="Relacionar Gênero" style='padding:2rem 5rem 2rem 5rem; color:white; font-size:1.5rem; background-color:#1F3A50;border-radius:10px;font-family:bold;'>
         </form>
 </body>
 </html>

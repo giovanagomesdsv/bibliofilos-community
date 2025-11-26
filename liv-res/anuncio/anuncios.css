@@ -10,10 +10,7 @@ h2 {
   margin-top: 2rem;
 }
 
-.botoes-container{
-  width:auto;
-  margin-right:85rem;
-  padding: 1rem 5rem;
+.botoes-container {
   color: #fff;
   border: none;
   border-radius: 5px;
@@ -22,9 +19,8 @@ h2 {
   transition: background-color 0.3s;
 }
 
-.btnCriarAeEstoque{
-  padding: 2rem 5rem 2rem 5rem;
-  font-size:1.5rem;
+.btnCriarAeEstoque {
+  font-size: 1.5rem;
 }
 
 button {
@@ -39,18 +35,27 @@ button {
   transition: background-color 0.3s;
 }
 
+.buscar-form {
+  width: 80%;
+  margin: 0 10%;
+}
+
+.buscar-form > div {
+  margin: 1rem;
+}
+
 button:hover {
   background-color: var(--secundaria);
 }
 
-/* --- FORMULÁRIO DE BUSCA --- */
+/* --- FORMULÁRIO DE BUSCA----------------------------------------------------------------------- --- */
 .margin {
-  padding:1rem 0rem 1rem 0rem;
+  padding: 1rem 0rem 1rem 0rem;
   margin-top: 10rem;
 }
 
 .busca-form {
-  padding-left:3rem;
+  padding-left: 3rem;
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -71,13 +76,13 @@ button:hover {
   color: #000;
 }
 
-.busca-form button {
+.buscar-form button {
   background: none;
   border: none;
   cursor: pointer;
 }
 
-.busca-form button i {
+.buscar-form button i {
   padding: 0 1rem;
   font-size: 1.4rem;
   color: #000;
@@ -120,12 +125,10 @@ button:hover {
   border: 2px solid var(--principal);
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  height: 100%;
 }
 
-.ativo > div:first-child,
-.inativo > div:first-child {
+.ativo>div:first-child,
+.inativo>div:first-child {
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -140,8 +143,8 @@ button:hover {
   border-radius: 5px;
 }
 
-.ativo > div:last-child,
-.inativo > div:last-child {
+.ativo>div:last-child,
+.inativo>div:last-child {
   margin-top: auto;
   display: flex;
   gap: 1rem;
@@ -242,7 +245,7 @@ textarea {
 .inputEditar3[type="submit"] {
   width: 101.5%;
   padding: 2rem 0rem 2rem 0rem;
-  border-radius:5px;
+  border-radius: 5px;
   background-color: #406E96;
   color: white;
   border: none;
@@ -278,20 +281,20 @@ textarea {
 
 /*CRIAR ANUNCIO.PHP*/
 
-.busca-anuncio{
- background-color: #406E96;
- justify-content:center;
+.busca-anuncio {
+  background-color: #406E96;
+  justify-content: center;
 }
 
-.busca-anuncio{
- background-color: #406E96;
+.busca-anuncio {
+  background-color: #406E96;
 }
 
-.Textlabel{
-  color:white
+.Textlabel {
+  color: white
 }
 
-.InputsAnuncio{
+.InputsAnuncio {
   color: #000;
   background-color: #fff;
   border: 1px solid #ddd;
@@ -312,19 +315,58 @@ textarea {
 .livro-result-container {
   display: flex;
   flex-direction: column;
-  align-items: center; /* centraliza os cards dentro do container */
+  align-items: center;
+  /* centraliza os cards dentro do container */
 }
 
-.livro-card{
+.livro-card {
   width: 90%;
-  max-width: 760px; /* limita largura para telas largas */
-  display:flex;
-  background-color:#2A4A64;
+  width: 100%;
+  max-width: 760px;
+  /* limita largura para telas largas */
+  display: flex;
+  background-color: #2A4A64;
   flex-direction: row;
   align-items: center;
 }
 
 /* ANUNCIOS */
+
+.busca-form {
+  margin-right: 1rem
+}
+
+button:hover {
+  background-color: var(--secundaria);
+}
+
+/* --- FORMULÁRIO DE BUSCA --- */
+.margin {
+  padding: 1rem 0rem 1rem 0rem;
+  margin-top: 10rem;
+}
+
+.busca-form input[type="text"],
+.busca-form input[type="number"] {
+  padding: 1rem;
+  font-size: 1rem;
+  background-color: var(--pesquisa);
+  border-radius: 0.5rem;
+  color: #000;
+}
+
+.busca-form button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.busca-form button i {
+  padding: 0 1rem;
+  font-size: 1.4rem;
+  color: #000;
+  cursor: pointer;
+}
 
 /* Estilos do formulário de editar anúncio */
 .format4 {
@@ -409,4 +451,3 @@ textarea {
     padding: 8px;
   }
 }
-
