@@ -9,7 +9,7 @@ include "../../conexao.php";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Anúncio - BACKSTAGE Community</title>
     <link rel="stylesheet" href="../geral.css">
-    <link rel="stylesheet" href="usuarios.css">
+    <link rel="stylesheet" href="anuncios.css">
 </head>
 <body>
 
@@ -40,35 +40,35 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
             $statusLabels = [1 => 'Ativo', 2 => 'Inativo'];
 
             echo "
-            <form action='atualizar-anuncio.php?id=$id' method='POST' class='format'>
+            <form action='atualizar-anuncio.php?id=$id' method='POST' class='format3'>
                 <h1>Editar Anúncio</h1>
 
                 <label for='idioma'>Idioma:</label>
-                <input type='text' name='idioma' value='$idioma' required class='inputEditar2'>
+                <input type='text' name='idioma' value='$idioma' required class='inputEditar3'>
 
                 <label for='paginas'>Páginas:</label>
-                <input type='number' name='paginas' value='$paginas' required class='inputEditar2'>
+                <input type='number' name='paginas' value='$paginas' required class='inputEditar3'>
 
                 <label for='tipo'>Tipo:</label>
-                <select name='tipo' required class='selectResenhista'>
+                <select name='tipo' required class='selectResenhista3'>
                     <option value=''>Selecione...</option>
                     <option value='Físico' ".($tipo === 'Físico' ? 'selected' : '').">Físico</option>
                     <option value='Digital' ".($tipo === 'Digital' ? 'selected' : '').">Digital</option>
                 </select>
 
                 <label for='preco'>Preço:</label>
-                <input type='number' name='preco' step='0.01' value='$preco' required class='inputEditar2'>
+                <input type='number' name='preco' step='0.01' value='$preco' required class='inputEditar3'>
 
                 <label for='obs'>Observações:</label>
-                <input type='text' name='obs' value='$obs' class='inputEditar2'>
+                <input type='text' name='obs' value='$obs' class='inputEditar3'>
 
                 <label for='status'>Disponibilidade:</label>
-                <select name='status' required class='selectResenhista'>
+                <select name='status' required class='selectResenhista3'>
                     <option value='1' ".($statusAtual === 1 ? 'selected' : '').">Disponível</option>
                     <option value='0' ".($statusAtual === 0 ? 'selected' : '').">Indisponível</option>
                 </select>
 
-                <input type='submit' value='Atualizar Anúncio' class='inputEditar'>
+                <input type='submit' value='Atualizar Anúncio' class='inputEditar3'>
                 <a href='anuncios.php'>Voltar</a>
             </form>";
         } else {

@@ -96,14 +96,14 @@ $fotoLiv = $_SESSION['imagem-liv'];
         </ul>
     </nav>
     <main>
+        
         <div class="busca-container">
-
-            <div>
+            <div class="botoes-container">
                 <a href="criar-anuncio.php">
-                    <button>Criar Anúncio</button>
+                    <button class='btnCriarAeEstoque'>Criar Anúncio</button>
                 </a>
                 <a href="#indisponivel">
-                    <button>Livros sem estoque</button>
+                    <button class='btnCriarAeEstoque'>Livros sem estoque</button>
                 </a>
             </div>
 
@@ -238,7 +238,7 @@ if ($result->num_rows > 0) {
 <?php endforeach; ?>
 
 </div>
-
+<br><br>
 <h2 id="indisponivel">Livros sem estoque</h2>
 <div class="anuncios-lista">
 
