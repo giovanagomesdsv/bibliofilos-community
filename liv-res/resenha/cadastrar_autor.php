@@ -21,29 +21,39 @@ $erro = "";
 
 // Processa o POST ao enviar o formulário
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Primeiro, relacionar autor existente se selecionado
+    // Relacionar autores existentes se selecionados
     if (!empty($_POST['autor_existente'])) {
-        $autor_id = (int)$_POST['autor_existente'];
-
-        // Verifica se já existe esse relacionamento para evitar duplicidade
-        $check = $conn->prepare("SELECT * FROM livro_autores WHERE livro_id = ? AND aut_id = ?");
-        $check->bind_param("ii", $id_livro, $autor_id);
-        $check->execute();
-        $check->store_result();
-
-        if ($check->num_rows === 0) {
-            $stmt = $conn->prepare("INSERT INTO livro_autores (livro_id, aut_id) VALUES (?, ?)");
-            $stmt->bind_param("ii", $id_livro, $autor_id);
-            if ($stmt->execute()) {
-                header("Location: cadastrar_genero.php?id_livro=$id_livro");
-            } else {
-                $erro = "Erro ao relacionar autor.";
-            }
-        } else {
-            $erro = "Este autor já está relacionado a esse livro.";
+        $autores = $_POST['autor_existente'];
+        if (!is_array($autores)) {
+            $autores = [$autores];
         }
-        $check->close();
-    } 
+        $sucesso = false;
+        foreach ($autores as $autor_id) {
+            $autor_id = (int)$autor_id;
+            // Verifica se já existe esse relacionamento para evitar duplicidade
+            $check = $conn->prepare("SELECT * FROM livro_autores WHERE livro_id = ? AND aut_id = ?");
+            $check->bind_param("ii", $id_livro, $autor_id);
+            $check->execute();
+            $check->store_result();
+            if ($check->num_rows === 0) {
+                $stmt = $conn->prepare("INSERT INTO livro_autores (livro_id, aut_id) VALUES (?, ?)");
+                $stmt->bind_param("ii", $id_livro, $autor_id);
+                if ($stmt->execute()) {
+                    $sucesso = true;
+                } else {
+                    $erro = "Erro ao relacionar autor.";
+                }
+                $stmt->close();
+            } else {
+                $erro = "Um ou mais autores já estão relacionados a esse livro.";
+            }
+            $check->close();
+        }
+        if ($sucesso) {
+            header("Location: cadastrar_genero.php?id_livro=$id_livro");
+            exit();
+        }
+    }
     // Se não, cadastra novo autor e relaciona
     else if (!empty($_POST['novo_nome'])) {
         $novo_nome = $_POST['novo_nome'];
@@ -142,7 +152,7 @@ if (isset($_GET['busca'])) {
         </p>
         <?php endif; ?>
         <div class="pesquisa">
-          <form method="GET" style="margin-bottom: 20px;"
+          <form method="GET" style="margin-bottom: 20px;">
               <input type="hidden" name="id_livro" value="<?= esc($id_livro) ?>" />
               <input type="text" name="busca" placeholder="Pesquisar autor pelo nome" value="<?= esc($busca) ?>" />
               <button class="botao" type="submit">Buscar</button>
@@ -155,10 +165,10 @@ if (isset($_GET['busca'])) {
             <?php if ($result && $result->num_rows > 0): ?>
             <div class="autor-container">
     <?php while ($row = $result->fetch_assoc()): ?>
-        <div class="autor-card">
-            <input type="radio" name="autor_existente" value="<?= esc($row['aut_id']) ?>"
+        <div class="autor-card" style="cursor:pointer;">
+            <input type="checkbox" name="autor_existente[]" value="<?= esc($row['aut_id']) ?>"
                 id="autor_<?= esc($row['aut_id']) ?>">
-            <label for="autor_<?= esc($row['aut_id']) ?>">
+            <label for="autor_<?= esc($row['aut_id']) ?>" style="width:100%;display:block;">
                 <img src="../../adm/imagens/autores/<?= esc($row['aut_foto']) ?>"
                     alt="<?= esc($row['aut_nome']) ?>">
                 <?= esc($row['aut_nome']) ?>
@@ -191,9 +201,10 @@ if (isset($_GET['busca'])) {
 
 
                 <br><br>
-                <input class="botao1" type="submit" value="Cadastrar Autor ou Relacionar Autor Existente">
+                <input class="botao1" type="submit" value="Cadastrar Autor ou Relacionar existente">
             </div>
         </form>
+        <!-- Removido script de submit automático -->
     </main>
 </body>
 

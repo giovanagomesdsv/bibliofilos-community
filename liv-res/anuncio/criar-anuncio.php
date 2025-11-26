@@ -4,8 +4,18 @@ include "../../conexao.php";
 <!DOCTYPE html>
 <html lang="pt-br">
 
-    <link rel="stylesheet" href="anuncios.css">
-    <link rel="stylesheet" href="geral.css">
+  <link rel="stylesheet" href="anuncios.css">
+  <link rel="stylesheet" href="geral.css">
+  <style>
+  .livro-card {
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+  .livro-card:hover {
+    box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+    transform: translateY(-6px) scale(1.02);
+    background: #f8f8f8;
+  }
+  </style>
 
 <head>
     <meta charset="UTF-8">
@@ -57,6 +67,7 @@ include "../../conexao.php";
         $result = $stmt->get_result();
 
         if ($result->num_rows > 0) {
+            echo '<div class="livro-result-container">';
             while ($row = $result->fetch_assoc()) {
                 $titulo = htmlspecialchars($row['livro_titulo']);
                 $isbn = htmlspecialchars($row['livro_isbn']);
@@ -64,20 +75,18 @@ include "../../conexao.php";
                 $id = (int) $row['livro_id'];
 
                 echo"
-             <div>
-              <div>
-                <img src='../../adm/imagens/livros/$foto' alt='Capa do livro'>
-              </div>
-              <div>
-                <p>$titulo</p>
-                <p>$isbn</p>
-              </div>
-              <div>
-                <a href='publicar.php?id=$id'>
-                   <button>Usar</button>
-                </a>
-              </div>
-            </div>";
+                <div class='livro-card' onclick=\"window.location.href='publicar.php?id=$id'\" style='cursor:pointer; border:1px solid #ccc; border-radius:8px; padding:16px; margin:12px 0; display:flex; align-items:center; transition:box-shadow 0.2s;'>
+                  <img src='../../adm/imagens/livros/$foto' alt='Capa do livro' style='width:80px;height:120px;object-fit:cover;margin-right:16px;border-radius:4px;'>
+                  <div style='flex:1;'>
+                    <p style='font-weight:bold;'>$titulo</p>
+                    <p style='color:#555;'>ISBN: $isbn</p>
+                  </div>
+                  <div>
+                    <button style='padding:8px 16px;'>Usar</button>
+                  </div>
+                </div>";
+            }
+            echo '</div>';
             }
         } else {
             echo "
@@ -88,7 +97,7 @@ include "../../conexao.php";
         }
 
         $stmt->close();
-    }
+    
     ?> 
 
 </body>

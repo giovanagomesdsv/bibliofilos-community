@@ -128,7 +128,10 @@ $id =  $_SESSION['id'];
     $result = $stmt->get_result();
 
     if ($result->num_rows === 0) {
-        echo "<div class='resultados'><h3>Nenhum resultado encontrado!</h3></div>";
+        echo "<div class='resultados'>
+          <h3 style='color: #000'>Nenhum resultado encontrado!</h3>
+          <a href='cadastro-livro.php'><p style='color: #ff0000ff; text-decoration: underline'>Cadastre o livro aqui!</p></a>
+        </div>";
     } else {
         while ($row = $result->fetch_assoc()) {
             $livro = htmlspecialchars($row['livro_titulo']);

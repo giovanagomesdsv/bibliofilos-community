@@ -339,6 +339,11 @@
     text-align: justify;
     
 }
+
+.resultados{
+    color:black;
+}
+
 .card1 {
     height: auto;
 }
