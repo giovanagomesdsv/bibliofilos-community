@@ -168,7 +168,7 @@ if (isset($_GET['busca'])) {
         <div class="autor-card" style="cursor:pointer;">
             <input type="checkbox" name="autor_existente[]" value="<?= esc($row['aut_id']) ?>"
                 id="autor_<?= esc($row['aut_id']) ?>">
-            <label for="autor_<?= esc($row['aut_id']) ?>" style="width:100%;display:block;">
+            <label for="autor_<?= esc($row['aut_id']) ?>" style='width:100%;display:block;'>
                 <img src="../../adm/imagens/autores/<?= esc($row['aut_foto']) ?>"
                     alt="<?= esc($row['aut_nome']) ?>">
                 <?= esc($row['aut_nome']) ?>

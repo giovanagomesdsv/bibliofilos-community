@@ -112,66 +112,63 @@ $fotoLiv = $_SESSION['imagem-liv'];
                 <button type="submit"><i class='bx bx-search'></i></button>
             </form>
         </div>
-            <?php
-            if (!isset($_GET['busca']) || empty($_GET['busca'])) {
-                echo "<div></div>";
-            } else {
-                $pesquisa = $_GET['busca'];
-                $pesquisa_como_like = "%$pesquisa%";
-
-                $sql_code = "SELECT liv_livro_id,liv_livro_idioma,liv_livro_pag,liv_livro_tipo,liv_livro_preco,liv_livro_obsadicionais,liv_livro_status, livro_titulo, livro_dtpublicacao, livro_foto FROM livrarias_livros INNER JOIN LIVROS ON livros.livro_id = livrarias_livros.livro_id WHERE livro_titulo LIKE ? AND liv_id = ?";
-
-                $stmt = $conn->prepare($sql_code) or die("Erro ao preparar: " . $conn->error);
-                $stmt->bind_param("si", $pesquisa_como_like, $id);
-                $stmt->execute();
-                $result = $stmt->get_result();
-
-                if ($result->num_rows == 0) {
-                    echo "<div'><h3>Nenhum resultado encontrado!</h3></div>";
+            <div class='anuncios-lista'>
+                <?php
+                if (!isset($_GET['busca']) || empty($_GET['busca'])) {
+                    echo "<div></div>";
                 } else {
-                    while ($row = $result->fetch_assoc()) {
-                        $titulo = htmlspecialchars($row['livro_titulo']);
-                        $idioma = htmlspecialchars($row['liv_livro_idioma']);
-                        $tipo = htmlspecialchars($row['liv_livro_tipo']);
-                        $preco = htmlspecialchars($row['liv_livro_preco']);
-                        $obs = htmlspecialchars($row['liv_livro_obsadicionais']);
-                        $data = htmlspecialchars($row['livro_dtpublicacao']);
-                        $foto = htmlspecialchars($row['livro_foto']);
-                        $id = (int) $row['liv_livro_id'];
-                        $pag = (int) $row['liv_livro_pag'];
-                        $status = (int) $row['liv_livro_status'];
-
-                        $statusTexto = $status === 1 ? "Disponível" : "Indisponível";
-                        $statusClasse = $status === 1 ? "ativo" : "inativo";
-
-                        echo "
-            <div class='$statusClasse'>
-              <div>
-                <div>
-                  <img src='../../adm/imagens/livros/$foto' alt=''>
-                  <p>Publicado: $data</p>
-                </div>
-                <div>
-                  <p>$titulo</p>
-                  <p>$idioma</p>
-                  <p>Páginas: $pag</p>
-                  <p>$tipo</p>
-                  <p>R$ $preco</p>
-                  <p>$obs</p>
-                  <p>$statusTexto</p>  
-                </div>
-              </div>
-              <div>
-                <a href='editar-anuncio.php?id=$id'>
-                  <button>Atualizar</button>
-                </a>
-              </div>
-            </div>";
+                    $pesquisa = $_GET['busca'];
+                    $pesquisa_como_like = "%$pesquisa%";
+                    $sql_code = "SELECT liv_livro_id,liv_livro_idioma,liv_livro_pag,liv_livro_tipo,liv_livro_preco,liv_livro_obsadicionais,liv_livro_status, livro_titulo, livro_dtpublicacao, livro_foto FROM livrarias_livros INNER JOIN LIVROS ON livros.livro_id = livrarias_livros.livro_id WHERE livro_titulo LIKE ? AND liv_id = ?";
+                    $stmt = $conn->prepare($sql_code) or die("Erro ao preparar: " . $conn->error);
+                    $stmt->bind_param("si", $pesquisa_como_like, $id);
+                    $stmt->execute();
+                    $result = $stmt->get_result();
+                    if ($result->num_rows == 0) {
+                        echo "<div'><h3>Nenhum resultado encontrado!</h3></div>";
+                    } else {
+                        while ($row = $result->fetch_assoc()) {
+                            $titulo = htmlspecialchars($row['livro_titulo']);
+                            $idioma = htmlspecialchars($row['liv_livro_idioma']);
+                            $tipo = htmlspecialchars($row['liv_livro_tipo']);
+                            $preco = htmlspecialchars($row['liv_livro_preco']);
+                            $obs = htmlspecialchars($row['liv_livro_obsadicionais']);
+                            $data = htmlspecialchars($row['livro_dtpublicacao']);
+                            $foto = htmlspecialchars($row['livro_foto']);
+                            $id = (int) $row['liv_livro_id'];
+                            $pag = (int) $row['liv_livro_pag'];
+                            $status = (int) $row['liv_livro_status'];
+                            $statusTexto = $status === 1 ? "Disponível" : "Indisponível";
+                            $statusClasse = $status === 1 ? "ativo" : "inativo";
+                            echo "
+                <div class='$statusClasse'>
+                  <div>
+                    <div>
+                      <img src='../../adm/imagens/livros/$foto' alt=''>
+                      <p>Publicado: $data</p>
+                    </div>
+                    <div>
+                      <p>$titulo</p>
+                      <p>$idioma</p>
+                      <p>Páginas: $pag</p>
+                      <p>$tipo</p>
+                      <p>R$ </p>
+                      <p>$obs</p>
+                      <p>$statusTexto</p>
+                    </div>
+                  </div>
+                  <div>
+                    <a href='editar-anuncio.php?id=$id'>
+                      <button>Atualizar</button>
+                    </a>
+                  </div>
+                </div>";
+                        }
+                        $stmt->close();
                     }
-                    $stmt->close();
                 }
-            }
-            ?>
+                ?>
+            </div>
 
         <?php
 $select = "SELECT liv_livro_id, liv_livro_idioma, liv_livro_pag, liv_livro_tipo, liv_livro_preco, liv_livro_obsadicionais, liv_livro_status, livro_titulo, livro_dtpublicacao, livro_foto 
