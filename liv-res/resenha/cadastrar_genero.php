@@ -72,7 +72,7 @@ if (isset($_GET['busca'])) {
     <link rel="stylesheet" href="resenhas.css">
 </head>
 <body>
-    <h2>Relacionar Gênero ao Livro</h2>
+    <h2 style='color:black'>Relacionar Gênero ao Livro</h2>
 
     <?php if ($mensagem): ?>
         <p class="mensagem-sucesso"><?= esc($mensagem) ?></p>
@@ -111,7 +111,7 @@ if (isset($_GET['busca'])) {
             <?php endif; ?>
 
             <br><br>
-            <input type="submit" value="Relacionar Gênero">
+            <input type="submit" value="Relacionar Gênero" style='padding:4rem 5rem 4rem 5rem; color:white; font-size:1.5rem; background-color:#406E96;border-radius:10px;'>
         </form>
 </body>
 </html>

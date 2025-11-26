@@ -191,7 +191,7 @@ if (isset($_GET['busca'])) {
 
                     <div class="input-wrapper">
                         <label for="novo_nome">Nome:</label>
-                        <input type="text" name="novo_nome" id="novo_nome">
+                        <input type="text" name="novo_nome" id="novo_nome" style='color:black'>
                     </div>
                 </div>
                 <div class="input-wrapper">
