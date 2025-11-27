@@ -161,53 +161,6 @@ $id =  $_SESSION['id'];
         </div> 
     </div>
 
-    <!-- Resenhas reprovadas ou para corrigir -->
-    <div>
-        <?php
-        $stmt = $conn->prepare("SELECT livro_foto, resenha_titulo, livro_sinopse, resenha_id, resenha_status FROM RESENHAS INNER JOIN LIVROS ON LIVROS.livro_id = RESENHAS.livro_id WHERE res_id = ?");
-        $stmt->bind_param("i", $id);
-        $stmt->execute();
-        $result = $stmt->get_result();
-
-        while ($row = $result->fetch_assoc()) {
-            $resenha = htmlspecialchars($row['resenha_titulo']);
-            $foto = htmlspecialchars($row['livro_foto']);
-            $sinopse = htmlspecialchars($row['livro_sinopse']);
-            $status = (int)$row['resenha_status'];
-            $idResenha = (int)$row['resenha_id'];
-
-            if ($status == 3) {
-                echo "
-                <div class='containC'>
-                    <div class='display'>
-                        <img src='../../adm/imagens/livros/$foto' alt='foto.png' class='fotos2'>
-                        <div>
-                            <p>$resenha</p>
-                            <p class='sinopseBox2'>$sinopse</p>
-                        </div>
-                        <a href='atualizar.php?id=$idResenha'><button class='ContainCBtn'>CORRIGIR</button></a>
-                    </div>
-                </div>";
-            } elseif ($status == 1) {
-                echo "
-                <div class='containR'>
-                    <div class='display'>
-                        <img src='../../adm/imagens/livros/$foto' alt='foto.png' class='fotos2'>
-                        <div>
-                            <p>$resenha</p>
-                            <p class='sinopseBox2'>$sinopse</p>
-                        </div>
-                        <form action='deletar.php?id=$idResenha' method='POST'>
-                            <input type='submit' value='REPROVADA' class='containRBtn'>
-                        </form>
-                    </div>
-                </div>";
-            }
-        }
-        $stmt->close();
-        ?>
-    </div>
-
     <!-- Todas as resenhas -->
     <div class="box-card">
         <?php
