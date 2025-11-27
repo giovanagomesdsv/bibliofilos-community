@@ -96,82 +96,81 @@ $fotoLiv = $_SESSION['imagem-liv'];
         </ul>
     </nav>
     <main>
-        <div class="busca-container">
-
-            <div>
-                <a href="criar-anuncio.php">
-                    <button>Criar Anúncio</button>
+        
+        <div class="busca-container" style="display; flex; height: 4rem; margin-bottom: 1rem">
+            <div class="botoes-container" style="width: 50%; display: flex; justify-content: space-around ">
+                <a href="criar-anuncio.php" >
+                    <button class='btnCriarAeEstoque' style="height: auto">Criar Anúncio</button>
                 </a>
                 <a href="#indisponivel">
-                    <button>Livros sem estoque</button>
+                    <button class='btnCriarAeEstoque'>Livros sem estoque</button>
                 </a>
             </div>
 
-            <form action="" method="GET" class="busca-form">
-                <input type="text" name="busca" placeholder="nome do usuário">
-                <button type="submit"><i class='bx bx-search'></i></button>
-            </form>
+            <div style="width: 50%; display: flex; align-items: right;">
+                <form action="" method="GET" class="busca-form" style="width: 30%; height: 100%; margin-left: 50%">
+                    <input type="text" name="busca" placeholder="nome do usuário">
+                    <button type="submit"><i class='bx bx-search'></i></button>
+                </form>
+            </div>
         </div>
-            <?php
-            if (!isset($_GET['busca']) || empty($_GET['busca'])) {
-                echo "<div></div>";
-            } else {
-                $pesquisa = $_GET['busca'];
-                $pesquisa_como_like = "%$pesquisa%";
-
-                $sql_code = "SELECT liv_livro_id,liv_livro_idioma,liv_livro_pag,liv_livro_tipo,liv_livro_preco,liv_livro_obsadicionais,liv_livro_status, livro_titulo, livro_dtpublicacao, livro_foto FROM livrarias_livros INNER JOIN LIVROS ON livros.livro_id = livrarias_livros.livro_id WHERE livro_titulo LIKE ? AND liv_id = ?";
-
-                $stmt = $conn->prepare($sql_code) or die("Erro ao preparar: " . $conn->error);
-                $stmt->bind_param("si", $pesquisa_como_like, $id);
-                $stmt->execute();
-                $result = $stmt->get_result();
-
-                if ($result->num_rows == 0) {
-                    echo "<div'><h3>Nenhum resultado encontrado!</h3></div>";
+            <div class='anuncios-lista'>
+                <?php
+                if (!isset($_GET['busca']) || empty($_GET['busca'])) {
+                    echo "<div></div>";
                 } else {
-                    while ($row = $result->fetch_assoc()) {
-                        $titulo = htmlspecialchars($row['livro_titulo']);
-                        $idioma = htmlspecialchars($row['liv_livro_idioma']);
-                        $tipo = htmlspecialchars($row['liv_livro_tipo']);
-                        $preco = htmlspecialchars($row['liv_livro_preco']);
-                        $obs = htmlspecialchars($row['liv_livro_obsadicionais']);
-                        $data = htmlspecialchars($row['livro_dtpublicacao']);
-                        $foto = htmlspecialchars($row['livro_foto']);
-                        $id = (int) $row['liv_livro_id'];
-                        $pag = (int) $row['liv_livro_pag'];
-                        $status = (int) $row['liv_livro_status'];
-
-                        $statusTexto = $status === 1 ? "Disponível" : "Indisponível";
-                        $statusClasse = $status === 1 ? "ativo" : "inativo";
-
-                        echo "
-            <div class='$statusClasse'>
-              <div>
-                <div>
-                  <img src='../../adm/imagens/livros/$foto' alt=''>
-                  <p>Publicado: $data</p>
-                </div>
-                <div>
-                  <p>$titulo</p>
-                  <p>$idioma</p>
-                  <p>Páginas: $pag</p>
-                  <p>$tipo</p>
-                  <p>R$ $preco</p>
-                  <p>$obs</p>
-                  <p>$statusTexto</p>  
-                </div>
-              </div>
-              <div>
-                <a href='editar-anuncio.php?id=$id'>
-                  <button>Atualizar</button>
-                </a>
-              </div>
-            </div>";
+                    $pesquisa = $_GET['busca'];
+                    $pesquisa_como_like = "%$pesquisa%";
+                    $sql_code = "SELECT liv_livro_id,liv_livro_idioma,liv_livro_pag,liv_livro_tipo,liv_livro_preco,liv_livro_obsadicionais,liv_livro_status, livro_titulo, livro_dtpublicacao, livro_foto FROM livrarias_livros INNER JOIN LIVROS ON livros.livro_id = livrarias_livros.livro_id WHERE livro_titulo LIKE ? AND liv_id = ?";
+                    $stmt = $conn->prepare($sql_code) or die("Erro ao preparar: " . $conn->error);
+                    $stmt->bind_param("si", $pesquisa_como_like, $id);
+                    $stmt->execute();
+                    $result = $stmt->get_result();
+                    if ($result->num_rows == 0) {
+                        echo "<div'><h3>Nenhum resultado encontrado!</h3></div>";
+                    } else {
+                        while ($row = $result->fetch_assoc()) {
+                            $titulo = htmlspecialchars($row['livro_titulo']);
+                            $idioma = htmlspecialchars($row['liv_livro_idioma']);
+                            $tipo = htmlspecialchars($row['liv_livro_tipo']);
+                            $preco = htmlspecialchars($row['liv_livro_preco']);
+                            $obs = htmlspecialchars($row['liv_livro_obsadicionais']);
+                            $data = htmlspecialchars($row['livro_dtpublicacao']);
+                            $foto = htmlspecialchars($row['livro_foto']);
+                            $id = (int) $row['liv_livro_id'];
+                            $pag = (int) $row['liv_livro_pag'];
+                            $status = (int) $row['liv_livro_status'];
+                            $statusTexto = $status === 1 ? "Disponível" : "Indisponível";
+                            $statusClasse = $status === 1 ? "ativo" : "inativo";
+                            echo "
+                <div class='$statusClasse'>
+                  <div>
+                    <div>
+                      <img src='../../adm/imagens/livros/$foto' alt=''>
+                      <p>Publicado: $data</p>
+                    </div>
+                    <div>
+                      <p>$titulo</p>
+                      <p>$idioma</p>
+                      <p>Páginas: $pag</p>
+                      <p>$tipo</p>
+                      <p>R$ </p>
+                      <p>$obs</p>
+                      <p>$statusTexto</p>
+                    </div>
+                  </div>
+                  <div>
+                    <a href='editar-anuncio.php?id=$id'>
+                      <button>Atualizar</button>
+                    </a>
+                  </div>
+                </div>";
+                        }
+                        $stmt->close();
                     }
-                    $stmt->close();
                 }
-            }
-            ?>
+                ?>
+            </div>
 
         <?php
 $select = "SELECT liv_livro_id, liv_livro_idioma, liv_livro_pag, liv_livro_tipo, liv_livro_preco, liv_livro_obsadicionais, liv_livro_status, livro_titulo, livro_dtpublicacao, livro_foto 
@@ -238,7 +237,7 @@ if ($result->num_rows > 0) {
 <?php endforeach; ?>
 
 </div>
-
+<br><br>
 <h2 id="indisponivel">Livros sem estoque</h2>
 <div class="anuncios-lista">
 

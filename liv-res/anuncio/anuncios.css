@@ -10,10 +10,7 @@ h2 {
   margin-top: 2rem;
 }
 
-button {
-  width: auto;
-  padding: 1rem 1.5rem;
-  background-color: var(--principal);
+.botoes-container {
   color: #fff;
   border: none;
   border-radius: 5px;
@@ -22,47 +19,70 @@ button {
   transition: background-color 0.3s;
 }
 
+.btnCriarAeEstoque {
+  font-size: 1.5rem;
+}
+
+button {
+  width: auto;
+  padding: 1rem 1.5rem;
+  background-color: var(--secundaria);
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.buscar-form {
+  width: 80%;
+  margin: 0 10%;
+}
+
+.buscar-form > div {
+  margin: 1rem;
+}
+
 button:hover {
   background-color: var(--secundaria);
 }
 
-/* --- FORMULÁRIO DE BUSCA --- */
+/* --- FORMULÁRIO DE BUSCA----------------------------------------------------------------------- --- */
 .margin {
+  padding: 1rem 0rem 1rem 0rem;
   margin-top: 10rem;
 }
 
 .busca-form {
+  padding-left: 3rem;
   display: flex;
   align-items: center;
   justify-content: flex-end;
   gap: 1rem;
-
   background-color: var(--pesquisa);
   border: 1px solid #000;
   border-radius: 0.5rem;
-  width: 80%;
   margin: 0 10%;
-
-  padding: 1rem;
   margin-bottom: 2rem;
 }
 
 .busca-form input[type="text"],
 .busca-form input[type="number"] {
-  padding: 0.8rem 1rem;
+  padding: 1rem;
   font-size: 1rem;
   background-color: var(--pesquisa);
   border-radius: 0.5rem;
   color: #000;
 }
 
-.busca-form button {
+.buscar-form button {
   background: none;
   border: none;
   cursor: pointer;
 }
 
-.busca-form button i {
+.buscar-form button i {
   padding: 0 1rem;
   font-size: 1.4rem;
   color: #000;
@@ -105,13 +125,29 @@ button:hover {
   border: 2px solid var(--principal);
   display: flex;
   flex-direction: column;
+}
+
+.ativo>div:first-child,
+.inativo>div:first-child {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
   gap: 1rem;
 }
 
 .ativo img,
 .inativo img {
   max-width: 100%;
+  height: 250px;
+  object-fit: cover;
   border-radius: 5px;
+}
+
+.ativo>div:last-child,
+.inativo>div:last-child {
+  margin-top: auto;
+  display: flex;
+  gap: 1rem;
 }
 
 /* --- Texto do card --- */
@@ -155,4 +191,263 @@ button:hover {
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
   margin-top: 2rem;
+}
+
+/*EDITAR-ANUNCIOS.PHP*/
+
+/* Estilos do formulário de editar anúncio */
+.format3 {
+  background-color: #1F3A50;
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Labels do formulário */
+.format3 label {
+  color: #fff;
+  font-size: 16px;
+  margin-bottom: 8px;
+  display: block;
+}
+
+/* Estilos dos inputs e selects */
+.inputEditar3[type="text"],
+.inputEditar3[type="number"],
+.inputEditar3[type="email"],
+.inputEditar3[type="password"],
+.inputEditar3[type="url"],
+.selectResenhista3,
+textarea {
+  width: 98%;
+  padding: 10px;
+  margin: 10px 0 15px 0;
+  background-color: #2A4A64;
+  color: white;
+  border: 1px solid #406E96;
+  border-radius: 2%;
+  font-size: 14px;
+}
+
+/* Para deixar todos os inputs do mesmo tamanho */
+.selectResenhista3 {
+  width: 101.5%;
+}
+
+.inputEditar3[type="password"],
+textarea {
+  width: 98%;
+}
+
+/* Botão de submit */
+.inputEditar3[type="submit"] {
+  width: 101.5%;
+  padding: 2rem 0rem 2rem 0rem;
+  border-radius: 5px;
+  background-color: #406E96;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+/* Efeito de hover no botão */
+.inputEditar3[type="submit"]:hover {
+  background-color: #1b354d;
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+  .format3 {
+    padding: 15px;
+  }
+
+  .format3 label {
+    font-size: 14px;
+  }
+
+  .inputEditar3[type="text"],
+  .inputEditar3[type="number"],
+  .inputEditar3[type="email"],
+  .inputEditar3[type="url"],
+  .selectResenhista3,
+  textarea {
+    font-size: 14px;
+    padding: 8px;
+  }
+}
+
+/*CRIAR ANUNCIO.PHP*/
+
+.busca-anuncio {
+  background-color: #406E96;
+  justify-content: center;
+}
+
+.busca-anuncio {
+  background-color: #406E96;
+}
+
+.Textlabel {
+  color: white
+}
+
+.InputsAnuncio {
+  color: #000;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 0.5rem;
+  padding: 0.8rem 1rem;
+}
+
+.busca-anuncio input[type="text"],
+.busca-anuncio input[type="number"],
+.busca-anuncio input[type="email"] {
+  background-color: #fff;
+  color: #ebdcdc;
+  border: 1px solid #ddd;
+  border-radius: 0.5rem;
+  padding: 0.8rem 1rem;
+}
+
+.livro-result-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* centraliza os cards dentro do container */
+}
+
+.livro-card {
+  width: 90%;
+  width: 100%;
+  max-width: 760px;
+  /* limita largura para telas largas */
+  display: flex;
+  background-color: #2A4A64;
+  flex-direction: row;
+  align-items: center;
+}
+
+/* ANUNCIOS */
+
+.busca-form {
+  margin-right: 1rem
+}
+
+button:hover {
+  background-color: var(--secundaria);
+}
+
+/* --- FORMULÁRIO DE BUSCA --- */
+.margin {
+  padding: 1rem 0rem 1rem 0rem;
+  margin-top: 10rem;
+}
+
+.busca-form input[type="text"],
+.busca-form input[type="number"] {
+  padding: 1rem;
+  font-size: 1rem;
+  background-color: var(--pesquisa);
+  border-radius: 0.5rem;
+  color: #000;
+}
+
+.busca-form button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.busca-form button i {
+  padding: 0 1rem;
+  font-size: 1.4rem;
+  color: #000;
+  cursor: pointer;
+}
+
+/* Estilos do formulário de editar anúncio */
+.format4 {
+  background-color: #1F3A50;
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Labels do formulário */
+.format4 label {
+  color: #fff;
+  font-size: 16px;
+  margin-bottom: 8px;
+  display: block;
+}
+
+/* Estilos dos inputs e selects */
+.inputEditar4[type="text"],
+.inputEditar4[type="number"],
+.inputEditar4[type="email"],
+.inputEditar4[type="password"],
+.inputEditar4[type="url"],
+.selectResenhista4,
+textarea {
+  width: 98%;
+  padding: 10px;
+  margin: 10px 0 15px 0;
+  background-color: #2A4A64;
+  color: white;
+  border: 1px solid #406E96;
+  border-radius: 2%;
+  font-size: 14px;
+}
+
+/* Para deixar todos os inputs do mesmo tamanho */
+.selectResenhista4 {
+  width: 101.5%;
+}
+
+.inputEditar4[type="password"],
+textarea {
+  width: 98%;
+}
+
+/* Botão de submit */
+.inputEditar4[type="submit"] {
+  width: 101.5%;
+  padding: 2rem 0rem 2rem 0rem;
+  border-radius: 5px;
+  background-color: #406E96;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+/* Efeito de hover no botão */
+.inputEditar4[type="submit"]:hover {
+  background-color: #1b354d;
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+  .format4 {
+    padding: 15px;
+  }
+
+  .format4 label {
+    font-size: 14px;
+  }
+
+  .inputEditar4[type="text"],
+  .inputEditar4[type="number"],
+  .inputEditar4[type="email"],
+  .inputEditar4[type="url"],
+  .selectResenhista4,
+  textarea {
+    font-size: 14px;
+    padding: 8px;
+  }
 }

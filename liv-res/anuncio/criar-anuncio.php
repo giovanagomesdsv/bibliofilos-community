@@ -26,20 +26,20 @@ include "../../conexao.php";
 
 <body>
 
-  <form action="" method="POST" class="busca-form margin">
+  <form action="" method="POST" class="buscar-form margin busca-anuncio">
     <div class="form-group full-width">
-      <label for="nome">Nome do livro:</label>
-      <input type="text" name="nome" required>
+      <label for="nome" class='Textlabel'>Nome do livro:</label>
+      <input type="text" name="nome" style='color:black;' required>
     </div>
   
     <div class="form-row">
       <div class="form-group half-width">
-        <label for="editora">Editora:</label>
-        <input type="text" name="editora" required>
+        <label for="editora" class='Textlabel'>Editora:</label>
+        <input type="text" name="editora" style='color:black;' required>
       </div>
       <div class="form-group half-width">
-        <label for="ano">Ano de publicação:</label>
-        <input type="number" name="ano" required>
+        <label for="ano" class='Textlabel'>Ano de publicação:</label>
+        <input type="number" name="ano" style='color:black;' required>
       </div>
       
       <button type="submit"><i class='bx bx-search'></i>PROCURAR LIVRO</button>
@@ -75,14 +75,13 @@ include "../../conexao.php";
                 $id = (int) $row['livro_id'];
 
                 echo"
-                <div class='livro-card' onclick=\"window.location.href='publicar.php?id=$id'\" style='cursor:pointer; border:1px solid #ccc; border-radius:8px; padding:16px; margin:12px 0; display:flex; align-items:center; transition:box-shadow 0.2s;'>
+                <div class='livro-card' onclick=\"window.location.href='publicar.php?id=$id'\" style='cursor:pointer; border:1px solid #2A4A64; border-radius:8px; background-color:#2A4A64; padding:16px; margin:12px 0; display:flex; align-items:center; transition:box-shadow 0.2s;'>
                   <img src='../../adm/imagens/livros/$foto' alt='Capa do livro' style='width:80px;height:120px;object-fit:cover;margin-right:16px;border-radius:4px;'>
                   <div style='flex:1;'>
-                    <p style='font-weight:bold;'>$titulo</p>
-                    <p style='color:#555;'>ISBN: $isbn</p>
+                    <p style='font-weight:bold; color:white;'>$titulo</p>
+                    <p style='color:#fff;'>ISBN: $isbn</p>
                   </div>
                   <div>
-                    <button style='padding:8px 16px;'>Usar</button>
                   </div>
                 </div>";
             }
@@ -90,7 +89,7 @@ include "../../conexao.php";
             }
         } else {
             echo "
-        <div>
+        <div style='display:flex; justify-content:center; flex-direction:column; align-items:center;'>
           <p>Nenhum resultado encontrado! Cadastre o livro.</p>
           <a href='../resenha/cadastro-livro.php'>Cadastrar</a>
         </div>";
