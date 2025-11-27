@@ -244,7 +244,7 @@ FROM
 INNER JOIN 
     livros ON resenhas.livro_id = livros.livro_id
 WHERE 
-    resenha_status = 0 
+    resenha_status = 2
 ORDER BY 
     resenha_avaliacao DESC, 
     resenha_dtpublicacao DESC
@@ -576,7 +576,7 @@ LIMIT 7
             <!--tipo 2-->
             <?php
             $aventura = "SELECT resenha_id, resenha_titulo, livro_sinopse, livro_foto, res_nome_fantasia, gen_nome FROM RESENHAS INNER JOIN LIVROS ON RESENHAS.livro_id = LIVROS.livro_id INNER JOIN RESENHISTAS ON RESENHISTAS.res_id = RESENHAS.res_id INNER JOIN LIVRO_GENEROS ON LIVROS.livro_id = LIVRO_GENEROS.livro_id INNER JOIN GENEROS ON GENEROS.gen_id = LIVRO_GENEROS.gen_id WHERE gen_nome = ? AND resenha_status = ? ORDER BY resenha_dtpublicacao DESC LIMIT 2";
-            $status = 0;  // mudar resenha_status
+            $status = 2;  // mudar resenha_status
             $genero = "Aventura";
             $stmt = $conn->prepare($aventura);
             $stmt->bind_param("si", $genero, $status);
@@ -630,7 +630,7 @@ LIMIT 7
             <!--tipo 3-->
             <?php
             $ficcao = "SELECT resenha_id, resenha_titulo, livro_sinopse, livro_foto, res_nome_fantasia, gen_nome FROM RESENHAS INNER JOIN LIVROS ON RESENHAS.livro_id = LIVROS.livro_id INNER JOIN RESENHISTAS ON RESENHISTAS.res_id = RESENHAS.res_id INNER JOIN LIVRO_GENEROS ON LIVROS.livro_id = LIVRO_GENEROS.livro_id INNER JOIN GENEROS ON GENEROS.gen_id = LIVRO_GENEROS.gen_id WHERE gen_nome = ? AND resenha_status = ? ORDER BY resenha_dtpublicacao DESC LIMIT 4";
-            $status = 0;  // mudar resenha_status
+            $status = 2;  // mudar resenha_status
             $genero = "Ficção";
             $stmt = $conn->prepare($ficcao);
             $stmt->bind_param("si", $genero, $status);
