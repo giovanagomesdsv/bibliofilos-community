@@ -196,7 +196,7 @@ $nome = isset($_SESSION['nome']) ? $_SESSION['nome'] : 'Visitante';
                     if ($sql_query->num_rows == 0) {
                         echo "<div class='resultados'><h3>Nenhum resultado encontrado!</h3></div>";
                     } else {
-                        while ($dados = $sql_query->fetch_assoc()) {
+                        while ($aut = $sql_query->fetch_assoc()) {
 
                            echo "
 <div class='card-aut'>
