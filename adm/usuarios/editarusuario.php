@@ -102,7 +102,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
                 <select name='status' id='status' required>
                     <option value=''>-- Selecione novo status --</option>
                     <option value='1' " . ($statusAtual === 1 ? "selected" : "") . ">ATIVO</option>
-                    <option value='2' " . ($statusAtual === 2 ? "selected" : "") . ">DESATIVADO</option>
+                    <option value='0' " . ($statusAtual === 0 ? "selected" : "") . ">DESATIVADO</option>
                 </select><br><br>
 
                 <input type='submit' value='Atualizar' class='inputEditar'>

@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['email'], $_POST['tipo
 
             if ($stmtUpdate->execute()) {
                 $mensagem = "<p style='color:green;'>Senha redefinida com sucesso!</p>
-                             <p style='color:blue;'>Sua nova senha temporária é: <strong>$novaSenha</strong></p>
+                             <p style='color:000;'>Sua nova senha temporária é: <strong>$novaSenha</strong></p>
                              <p style='color:orange;'>Por favor, faça login e altere sua senha imediatamente.</p>";
             } else {
                 $mensagem = "<p style='color:red;'>Erro ao atualizar a senha. Tente novamente.</p>";

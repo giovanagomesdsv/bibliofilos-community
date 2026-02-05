@@ -40,10 +40,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <body style="background-color:#DEDEDE">
     <form action="" method="post" class="form-cadastro-usuario">
-        <label for="email" class="form-label">E-mail do administrador:</label>
+        <label for="email" class="form-label">E-mail da Livraria:</label>
         <input type="email" name="email" required class="form-input">
     
-        <label for="nome" class="form-label">Nome do administrador:</label>
+        <label for="nome" class="form-label">Nome da Livraria:</label>
         <input type="text" name="nome" required class="form-input">
     
         <label for="senha" class="form-label">Senha:</label>

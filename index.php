@@ -28,6 +28,9 @@ ini_set('display_errors', 1);
 
     <!-- Ícones -->
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href='https://cdn.boxicons.com/fonts/basic/boxicons.min.css' rel='stylesheet'>
+    <link href='https://cdn.boxicons.com/fonts/brands/boxicons-brands.min.css' rel='stylesheet'>
 
     <!-- Estilos -->
     <link rel="stylesheet" href="global.css">
@@ -68,7 +71,7 @@ ini_set('display_errors', 1);
             </div>
         </div>
         <ul class='nav-list'>
-            <li class='fix'>
+            <li>
                 <a href='adm/home.php'>
                     <i class='bx bx-home-alt-2'></i>
                     <span class='link_name'>Home</span>
@@ -115,8 +118,8 @@ ini_set('display_errors', 1);
     <nav class='sidebar' id='sidebar'>
         <div class='nome'>
             <li class='logo_name'>
-                <a href='liv-res/perfil/perfil.php'>
-                    <img src='" . $imgCaminho . "' alt='Foto de perfil' style='width:100px' />
+                <a class='perfil' href='liv-res/perfil/perfil.php'>
+                    <img src='" . $imgCaminho . "' alt='Foto de perfil' class='img-perfil' />
                     <span class='link_name'>{$nome}</span>
                 </a>
             </li>
@@ -241,7 +244,7 @@ FROM
 INNER JOIN 
     livros ON resenhas.livro_id = livros.livro_id
 WHERE 
-    resenha_status = 0 
+    resenha_status = 2
 ORDER BY 
     resenha_avaliacao DESC, 
     resenha_dtpublicacao DESC
@@ -334,7 +337,7 @@ LIMIT 7
             <!--tipo 1-->
             <?php
             $classicos = "SELECT resenha_id, resenha_titulo, resenha_texto, livro_foto, res_nome_fantasia, gen_nome FROM RESENHAS INNER JOIN LIVROS ON RESENHAS.livro_id = LIVROS.livro_id INNER JOIN RESENHISTAS ON RESENHISTAS.res_id = RESENHAS.res_id INNER JOIN LIVRO_GENEROS ON LIVROS.livro_id = LIVRO_GENEROS.livro_id INNER JOIN GENEROS ON GENEROS.gen_id = LIVRO_GENEROS.gen_id WHERE gen_nome = ? AND resenha_status = ? ORDER BY resenha_dtpublicacao DESC LIMIT 4"; // mudar resenha_status
-            $status = 0;
+            $status = 2;
             $genero = "Clássicos";
             $stmt = $conn->prepare($classicos);
             $stmt->bind_param("si", $genero, $status);
@@ -410,65 +413,10 @@ LIMIT 7
                     </a>
                 </div>
             </div>
-
-            <!--tipo 2-->
-            <?php
-            $horror = "SELECT resenha_id, resenha_titulo, livro_sinopse, livro_foto, res_nome_fantasia, gen_nome FROM RESENHAS INNER JOIN LIVROS ON RESENHAS.livro_id = LIVROS.livro_id INNER JOIN RESENHISTAS ON RESENHISTAS.res_id = RESENHAS.res_id INNER JOIN LIVRO_GENEROS ON LIVROS.livro_id = LIVRO_GENEROS.livro_id INNER JOIN GENEROS ON GENEROS.gen_id = LIVRO_GENEROS.gen_id WHERE gen_nome = ? AND resenha_status = ? ORDER BY resenha_dtpublicacao DESC LIMIT 2";
-            $status = 0;  // mudar resenha_status
-            $genero = "Horror";
-            $stmt = $conn->prepare($horror);
-            $stmt->bind_param("si", $genero, $status);
-            $stmt->execute();
-            $result = $stmt->get_result();
-            $res_horror = [];
-
-            if ($result->num_rows > 0) {
-                while ($linha = $result->fetch_assoc()) {
-                    $res_horror[] = $linha;
-                }
-            }
-            $stmt->close();
-            ?>
-            <div class="titulo">
-                <p>Horror</p>
-            </div>
-            <div class="box box2">
-                <a
-                    href="resenha-resultado/resenha.php?id=<?= isset($res_horror[0]) ? $res_horror[0]['resenha_id'] : '' ?>">
-                    <div class="hor2">
-                        <div class="image">
-                            <img src="adm/imagens/livros/<?= isset($res_horror[0]) ? $res_horror[0]['livro_foto'] : '' ?>"
-                                alt="">
-                        </div>
-                        <div class="info">
-                            <p><?= isset($res_horror[0]) ? $res_horror[0]['res_nome_fantasia'] : '' ?></p>
-                            <h1><?= isset($res_horror[0]) ? $res_horror[0]['resenha_titulo'] : '' ?></h1>
-                            <p>
-                                <?= isset($res_horror[1]) ? limitarTexto($res_horror[1]['livro_sinopse'], 350, '...') : '' ?>
-                            </p>
-                        </div>
-                    </div>
-                </a>
-                <a
-                    href="resenha-resultado/resenha.php?id=<?= isset($res_horror[1]) ? $res_horror[1]['resenha_id'] : '' ?>">
-                    <div class="hor2">
-                        <img src="adm/imagens/livros/<?= isset($res_horror[1]) ? $res_horror[1]['livro_foto'] : '' ?>"
-                            alt="">
-                        <div class="info">
-                            <p><?= isset($res_horror[1]) ? $res_horror[1]['res_nome_fantasia'] : '' ?></p>
-                            <h1><?= isset($res_horror[1]) ? $res_horror[1]['resenha_titulo'] : '' ?></h1>
-                            <p>
-                                <?= isset($res_horror[1]) ? limitarTexto($res_horror[1]['livro_sinopse'], 350, '...') : '' ?>
-                            </p>
-                        </div>
-                    </div>
-                </a>
-            </div>
-
             <!--tipo 3-->
             <?php
             $misterio = "SELECT resenha_id, resenha_titulo, livro_sinopse, livro_foto, res_nome_fantasia, gen_nome FROM RESENHAS INNER JOIN LIVROS ON RESENHAS.livro_id = LIVROS.livro_id INNER JOIN RESENHISTAS ON RESENHISTAS.res_id = RESENHAS.res_id INNER JOIN LIVRO_GENEROS ON LIVROS.livro_id = LIVRO_GENEROS.livro_id INNER JOIN GENEROS ON GENEROS.gen_id = LIVRO_GENEROS.gen_id WHERE gen_nome = ? AND resenha_status = ? ORDER BY resenha_dtpublicacao DESC LIMIT 4";
-            $status = 0;  // mudar resenha_status
+            $status = 2;  // mudar resenha_status
             $genero = "Mistério e Suspense";
             $stmt = $conn->prepare($misterio);
             $stmt->bind_param("si", $genero, $status);
@@ -544,103 +492,10 @@ LIMIT 7
                     </a>
                 </div>
             </div>
-
-            <!--tipo 4-->
-            <?php
-            $romance = "SELECT resenha_id, resenha_titulo, livro_sinopse, livro_foto, res_nome_fantasia, gen_nome FROM RESENHAS INNER JOIN LIVROS ON RESENHAS.livro_id = LIVROS.livro_id INNER JOIN RESENHISTAS ON RESENHISTAS.res_id = RESENHAS.res_id INNER JOIN LIVRO_GENEROS ON LIVROS.livro_id = LIVRO_GENEROS.livro_id INNER JOIN GENEROS ON GENEROS.gen_id = LIVRO_GENEROS.gen_id WHERE gen_nome = ? AND resenha_status = ? ORDER BY resenha_dtpublicacao DESC LIMIT 4";
-            $status = 0;  // mudar resenha_status
-            $genero = "Romance";
-            $stmt = $conn->prepare($romance);
-            $stmt->bind_param("si", $genero, $status);
-            $stmt->execute();
-            $result = $stmt->get_result();
-            $res_romance = [];
-
-            if ($result->num_rows > 0) {
-                while ($linha = $result->fetch_assoc()) {
-                    $res_romance[] = $linha;
-                }
-            }
-            $stmt->close();
-            ?>
-            <div class="titulo">
-                <p>Romance</p>
-            </div>
-            <div class="box box1">
-                <div class="box-vert1">
-                    <a
-                        href="resenha-resultado/resenha.php?id=<?= isset($res_romance[0]) ? $res_romance[0]['resenha_id'] : '' ?>">
-                        <div class="vert1">
-                            <div class="image">
-                                <img src="adm/imagens/livros/<?= isset($res_romance[0]) ? $res_romance[0]['livro_foto'] : '' ?>"
-                                    alt="">
-                            </div>
-                            <div class="info">
-                                <p><?= isset($res_romance[0]) ? $res_romance[0]['res_nome_fantasia'] : '' ?></p>
-                                <h1><?= isset($res_romance[0]) ? $res_romance[0]['resenha_titulo'] : '' ?></h1>
-                                <p>
-                                    <?= isset($res_romance[0]) ? limitarTexto($res_romance[0]['livro_sinopse'], 350, '...') : '' ?>
-                                </p>
-                            </div>
-                        </div>
-                    </a>
-                    <a
-                        href="resenha-resultado/resenha.php?id=<?= isset($res_romance[1]) ? $res_romance[1]['resenha_id'] : '' ?>">
-                        <div class="vert1">
-                            <div class="image">
-                                <img src="adm/imagens/livros/<?= isset($res_romance[1]) ? $res_romance[1]['livro_foto'] : '' ?>"
-                                    alt="">
-                            </div>
-                            <div class="info">
-                                <p><?= isset($res_romance[1]) ? $res_romance[1]['res_nome_fantasia'] : '' ?></p>
-                                <h1><?= isset($res_romance[1]) ? $res_romance[1]['resenha_titulo'] : '' ?></h1>
-                                <p>
-                                    <?= isset($res_romance[1]) ? limitarTexto($res_romance[1]['livro_sinopse'], 350, '...') : '' ?>
-                                </p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="box-vert1">
-                    <a
-                        href="resenha-resultado/resenha.php?id=<?= isset($res_romance[2]) ? $res_romance[2]['resenha_id'] : '' ?>">
-                        <div class="vert1">
-                            <div class="image">
-                                <img src="adm/imagens/livros/<?= isset($res_romance[2]) ? $res_romance[2]['livro_foto'] : '' ?>"
-                                    alt="">
-                            </div>
-                            <div class="info">
-                                <p><?= isset($res_romance[2]) ? $res_romance[2]['res_nome_fantasia'] : '' ?></p>
-                                <h1><?= isset($res_romance[2]) ? $res_romance[2]['resenha_titulo'] : '' ?></h1>
-                                <p>
-                                    <?= isset($res_romance[2]) ? limitarTexto($res_romance[2]['livro_sinopse'], 150, '...') : '' ?>
-                                </p>
-                            </div>
-                        </div>
-                    </a>
-                    <a
-                        href="resenha-resultado/resenha.php?id=<?= isset($res_romance[3]) ? $res_romance[3]['resenha_id'] : '' ?>">
-                        <div class="vert1">
-                            <div class="image">
-                                <img src="adm/imagens/livros/<?= isset($res_romance[3]) ? $res_romance[3]['livro_foto'] : '' ?>"
-                                    alt="">
-                            </div>
-                            <div class="info">
-                                <p><?= isset($res_romance[3]) ? $res_romance[3]['res_nome_fantasia'] : '' ?></p>
-                                <h1><?= isset($res_romance[3]) ? $res_romance[3]['resenha_titulo'] : '' ?></h1>
-                                <p>
-                                    <?= isset($res_romance[3]) ? limitarTexto($res_romance[3]['livro_sinopse'], 350, '...') : '' ?>
-                                </p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-
-            <!--tipo 1-->
+<!--tipo 1-->
             <?php
             $fantasia = "SELECT resenha_id, resenha_titulo, resenha_texto, livro_foto, res_nome_fantasia, gen_nome FROM RESENHAS INNER JOIN LIVROS ON RESENHAS.livro_id = LIVROS.livro_id INNER JOIN RESENHISTAS ON RESENHISTAS.res_id = RESENHAS.res_id INNER JOIN LIVRO_GENEROS ON LIVROS.livro_id = LIVRO_GENEROS.livro_id INNER JOIN GENEROS ON GENEROS.gen_id = LIVRO_GENEROS.gen_id WHERE gen_nome = ? AND resenha_status = ? ORDER BY resenha_dtpublicacao DESC LIMIT 4"; // mudar resenha_status
-            $status = 0;
+            $status = 2;
             $genero = "Fantasia";
             $stmt = $conn->prepare($fantasia);
             $stmt->bind_param("si", $genero, $status);
@@ -721,7 +576,7 @@ LIMIT 7
             <!--tipo 2-->
             <?php
             $aventura = "SELECT resenha_id, resenha_titulo, livro_sinopse, livro_foto, res_nome_fantasia, gen_nome FROM RESENHAS INNER JOIN LIVROS ON RESENHAS.livro_id = LIVROS.livro_id INNER JOIN RESENHISTAS ON RESENHISTAS.res_id = RESENHAS.res_id INNER JOIN LIVRO_GENEROS ON LIVROS.livro_id = LIVRO_GENEROS.livro_id INNER JOIN GENEROS ON GENEROS.gen_id = LIVRO_GENEROS.gen_id WHERE gen_nome = ? AND resenha_status = ? ORDER BY resenha_dtpublicacao DESC LIMIT 2";
-            $status = 0;  // mudar resenha_status
+            $status = 2;  // mudar resenha_status
             $genero = "Aventura";
             $stmt = $conn->prepare($aventura);
             $stmt->bind_param("si", $genero, $status);
@@ -775,7 +630,7 @@ LIMIT 7
             <!--tipo 3-->
             <?php
             $ficcao = "SELECT resenha_id, resenha_titulo, livro_sinopse, livro_foto, res_nome_fantasia, gen_nome FROM RESENHAS INNER JOIN LIVROS ON RESENHAS.livro_id = LIVROS.livro_id INNER JOIN RESENHISTAS ON RESENHISTAS.res_id = RESENHAS.res_id INNER JOIN LIVRO_GENEROS ON LIVROS.livro_id = LIVRO_GENEROS.livro_id INNER JOIN GENEROS ON GENEROS.gen_id = LIVRO_GENEROS.gen_id WHERE gen_nome = ? AND resenha_status = ? ORDER BY resenha_dtpublicacao DESC LIMIT 4";
-            $status = 0;  // mudar resenha_status
+            $status = 2;  // mudar resenha_status
             $genero = "Ficção";
             $stmt = $conn->prepare($ficcao);
             $stmt->bind_param("si", $genero, $status);
@@ -790,79 +645,7 @@ LIMIT 7
             }
             $stmt->close();
             ?>
-            <div class="titulo">
-                <p>Ficção</p>
-            </div>
-            <div class="box box1">
-                <div class="box-hor1">
-                    <a
-                        href="resenha-resultado/resenha.php?id=<?= isset($res_ficcao[0]) ? $res_ficcao[0]['resenha_id'] : '' ?>">
-                        <div class="hor1">
-                            <div class="image">
-                                <img src="adm/imagens/livros/<?= isset($res_ficcao[0]) ? $res_ficcao[0]['livro_foto'] : '' ?>"
-                                    alt="">
-                            </div>
-                            <div class="info">
-                                <h1><?= isset($res_ficcao[0]) ? $res_ficcao[0]['resenha_titulo'] : '' ?></h1>
-                                <p><?= isset($res_ficcao[0]) ? $res_ficcao[0]['res_nome_fantasia'] : '' ?></p>
-                                <p>
-                                    <?= isset($res_ficcao[0]) ? limitarTexto($res_ficcao[0]['livro_sinopse'], 350, '...') : '' ?>
-                                </p>
-                            </div>
-                        </div>
-                    </a>
-                    <a
-                        href="resenha-resultado/resenha.php?id=<?= isset($res_ficcao[1]) ? $res_ficcao[1]['resenha_id'] : '' ?>">
-                        <div class="hor1">
-                            <div class="image">
-                                <img src="adm/imagens/livros/<?= isset($res_ficcao[1]) ? $res_ficcao[1]['livro_foto'] : '' ?>"
-                                    alt="">
-                            </div>
-                            <div class="info">
-                                <h1><?= isset($res_ficcao[1]) ? $res_ficcao[1]['resenha_titulo'] : '' ?></h1>
-                                <p><?= isset($res_ficcao[1]) ? $res_ficcao[1]['res_nome_fantasia'] : '' ?></p>
-                                <p>
-                                    <?= isset($res_ficcao[1]) ? limitarTexto($res_ficcao[1]['livro_sinopse'], 350, '...') : '' ?>
-                                </p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="box-hor1">
-                    <a
-                        href="resenha-resultado/resenha.php?id=<?= isset($res_ficcao[2]) ? $res_ficcao[2]['resenha_id'] : '' ?>">
-                        <div class="hor1">
-                            <div class="image">
-                                <img src="adm/imagens/livros/<?= isset($res_ficcao[2]) ? $res_ficcao[2]['livro_foto'] : '' ?>"
-                                    alt="">
-                            </div>
-                            <div class="info">
-                                <h1><?= isset($res_ficcao[2]) ? $res_ficcao[2]['resenha_titulo'] : '' ?></h1>
-                                <p><?= isset($res_ficcao[2]) ? $res_ficcao[2]['res_nome_fantasia'] : '' ?></p>
-                                <p>
-                                    <?= isset($res_ficcao[2]) ? limitarTexto($res_ficcao[2]['livro_sinopse'], 350, '...') : '' ?>
-                                </p>
-                            </div>
-                        </div>
-                    </a>
-                    <a
-                        href="resenha-resultado/resenha.php?id=<?= isset($res_ficcao[3]) ? $res_ficcao[3]['resenha_id'] : '' ?>">
-                        <div class="hor1">
-                            <div class="image">
-                                <img src="adm/imagens/livros/<?= isset($res_ficcao[3]) ? $res_ficcao[3]['livro_foto'] : '' ?>"
-                                    alt="">
-                            </div>
-                            <div class="info">
-                                <h1><?= isset($res_ficcao[3]) ? $res_ficcao[3]['resenha_titulo'] : '' ?></h1>
-                                <p><?= isset($res_ficcao[3]) ? $res_ficcao[3]['res_nome_fantasia'] : '' ?></p>
-                                <p>
-                                    <?= isset($res_ficcao[3]) ? limitarTexto($res_ficcao[3]['livro_sinopse'], 350, '...') : '' ?>
-                                </p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
+            
         </main>
     </section>
     <footer class="site-footer">

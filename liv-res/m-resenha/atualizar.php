@@ -11,10 +11,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $novaresenha = $_POST['resenha'];
     $titulo = $_POST['titulo'];
     $avaliacao = (int) $_POST['avaliacao']; // garante que seja inteiro
+    $status = 0;
 
-    $update = "UPDATE RESENHAS SET resenha_titulo = ? ,resenha_texto = ?, resenha_avaliacao = ? WHERE resenha_id = ?";
+    $update = "UPDATE RESENHAS SET resenha_titulo = ? ,resenha_texto = ?, resenha_avaliacao = ?, resenha_status = ? WHERE resenha_id = ?";
     $stmt  = $conn->prepare($update);
-    $stmt->bind_param("ssii", $titulo, $novaresenha, $avaliacao, $id);
+    $stmt->bind_param("ssiii", $titulo, $novaresenha, $avaliacao, $status, $id);
 
     if ($stmt->execute()) {
         echo "
@@ -35,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 // Seleciona os dados da resenha
 $SELECT = "SELECT resenha_titulo, resenha_texto, resenha_avaliacao, resenha_dtpublicacao,
-resenha_dtatualizacao, livro_foto, livro_sinopse 
+resenha_dtatualizacao, livro_foto, livro_sinopse
 FROM RESENHAS 
 INNER JOIN LIVROS ON RESENHAS.livro_id = LIVROS.livro_id 
 WHERE resenha_id = ?";
@@ -90,7 +91,7 @@ if ($result->num_rows > 0) {
                 <form method="POST">
 
                 <label class="resenhabox" for="titulo">Título da resenha:</label><br>
-                         <input class="resenha1" type="text" name="titulo" id="titulo" required><br><br>
+                         <input class="resenha1" type="text" name="titulo" id="titulo" required value="<?php echo $titulo; ?>"><br><br>
  
                     <label class="resenhabox" for="resenha">Resenha:</label><br>
                     <textarea class="resenha" name="resenha" id="resenha" rows="10" cols="70"><?php echo $resenha; ?></textarea><br>

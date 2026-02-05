@@ -74,7 +74,7 @@ if ($result->num_rows > 0) {
                     <h1>
                         <?php echo $titulo ?>
                     </h1>
-                    <p style="color: #fff">
+                    <p style="color: #fff; text-align:justify">
                         Sinopse:
                         <?php echo $sinopse ?>
                     </p>

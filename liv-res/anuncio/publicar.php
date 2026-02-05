@@ -85,35 +85,35 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Publicar Anúncios - BACKSTAGE Community</title>
     <link rel="stylesheet" href="../geral.css">
-    <link rel="stylesheet" href="usuarios.css">
+    <link rel="stylesheet" href="anuncios.css">
 </head>
 
 <body>
-    <form action="publicar.php?id=<?= htmlspecialchars($livro_id) ?>" method="POST" class="format2">
-        <h1>Publicar Anúncio</h1>
+    <form action="publicar.php?id=<?= htmlspecialchars($livro_id) ?>" method="POST" class="format4">
+    <h1>Publicar Anúncio</h1>
 
-        <label for="idioma">Idioma:</label>
-        <input type="text" name="idioma" required class="inputEditar2">
+    <label for="idioma">Idioma:</label>
+    <input type="text" name="idioma" required class="inputEditar4">
 
-        <label for="pagina">Páginas:</label>
-        <input type="number" name="pagina" required class="inputEditar2">
+    <label for="pagina">Páginas:</label>
+    <input type="number" name="pagina" required class="inputEditar4">
 
-        <label for="tipo">Tipo do livro:</label>
-        <select name="tipo" required class="selectResenhista">
-            <option value="">Selecione...</option>
-            <option value="Físico">Físico</option>
-            <option value="Digital">Digital</option>
-        </select>
+    <label for="tipo">Tipo do livro:</label>
+    <select name="tipo" required class="selectResenhista4">
+        <option value="">Selecione...</option>
+        <option value="Físico">Físico</option>
+        <option value="Digital">Digital</option>
+    </select>
 
-        <label for="preco">Preço:</label>
-        <input type="number" step="0.01" name="preco" required class="inputEditar2">
+    <label for="preco">Preço:</label>
+    <input type="number" step="0.01" name="preco" required class="inputEditar4">
 
-        <label for="obs">Observações adicionais:</label>
-        <input type="text" name="obs" class="inputEditar2">
+    <label for="obs">Observações adicionais:</label>
+    <input type="text" name="obs" class="inputEditar4">
 
-        <input type="submit" value="Publicar" class="inputConfirmar">
-        <a href="anuncios.php">Voltar</a>
-    </form>
+    <input type="submit" value="Publicar" class="inputEditar4">
+    <a href="anuncios.php" style="color:white;">Voltar</a>
+</form>
 </body>
 
 </html>

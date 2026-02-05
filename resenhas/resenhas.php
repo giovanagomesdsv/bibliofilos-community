@@ -103,8 +103,8 @@ $nome = isset($_SESSION['nome']) ? $_SESSION['nome'] : 'Visitante';
                     } elseif (isset($_SESSION['tipo']) && ($_SESSION['tipo'] == 0 || $_SESSION['tipo'] == 1)) {
                         $usuarioTipo = $_SESSION['tipo'];
                         $imgCaminho = ($usuarioTipo == 0)
-                            ? "adm/imagens/resenhistas/" . htmlspecialchars($_SESSION['imagem-res'])
-                            : "adm/imagens/livrarias/" . htmlspecialchars($_SESSION['imagem-liv']);
+                            ? "../adm/imagens/resenhistas/" . htmlspecialchars($_SESSION['imagem-res'])
+                            : "../adm/imagens/livrarias/" . htmlspecialchars($_SESSION['imagem-liv']);
                         $nome = htmlspecialchars($_SESSION['nome']);
 
                         echo "

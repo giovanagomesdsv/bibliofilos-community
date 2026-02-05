@@ -9,6 +9,18 @@
 }
 
 /* card*/
+.box-contagem {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    width: 100%;
+}
+.box-contagem > .containerInput{
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
 .containerInput {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     justify-content: center;

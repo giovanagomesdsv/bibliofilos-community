@@ -75,7 +75,7 @@ $id =  $_SESSION['id'];
 
         <li class="fix">
             <a href='#'>
-                <i class='bx bx-pencil-circle'></i>
+                 <i class='bx bx-user'></i>
                 <span class='link_name'>CRIAR RESENHAS</span>
             </a>
         </li>
@@ -128,7 +128,10 @@ $id =  $_SESSION['id'];
     $result = $stmt->get_result();
 
     if ($result->num_rows === 0) {
-        echo "<div class='resultados'><h3>Nenhum resultado encontrado!</h3></div>";
+        echo "<div class='resultados'>
+          <h3 style='color: #000'>Nenhum resultado encontrado!</h3>
+          <a href='cadastro-livro.php'><p style='color: #ff0000ff; text-decoration: underline'>Cadastre o livro aqui!</p></a>
+        </div>";
     } else {
         while ($row = $result->fetch_assoc()) {
             $livro = htmlspecialchars($row['livro_titulo']);
@@ -156,53 +159,6 @@ $id =  $_SESSION['id'];
 }
         ?>
         </div> 
-    </div>
-
-    <!-- Resenhas reprovadas ou para corrigir -->
-    <div>
-        <?php
-        $stmt = $conn->prepare("SELECT livro_foto, resenha_titulo, livro_sinopse, resenha_id, resenha_status FROM RESENHAS INNER JOIN LIVROS ON LIVROS.livro_id = RESENHAS.livro_id WHERE res_id = ?");
-        $stmt->bind_param("i", $id);
-        $stmt->execute();
-        $result = $stmt->get_result();
-
-        while ($row = $result->fetch_assoc()) {
-            $resenha = htmlspecialchars($row['resenha_titulo']);
-            $foto = htmlspecialchars($row['livro_foto']);
-            $sinopse = htmlspecialchars($row['livro_sinopse']);
-            $status = (int)$row['resenha_status'];
-            $idResenha = (int)$row['resenha_id'];
-
-            if ($status == 3) {
-                echo "
-                <div class='containC'>
-                    <div class='display'>
-                        <img src='../../adm/imagens/livros/$foto' alt='foto.png' class='fotos2'>
-                        <div>
-                            <p>$resenha</p>
-                            <p class='sinopseBox2'>$sinopse</p>
-                        </div>
-                        <a href='atualizar.php?id=$idResenha'><button class='ContainCBtn'>CORRIGIR</button></a>
-                    </div>
-                </div>";
-            } elseif ($status == 1) {
-                echo "
-                <div class='containR'>
-                    <div class='display'>
-                        <img src='../../adm/imagens/livros/$foto' alt='foto.png' class='fotos2'>
-                        <div>
-                            <p>$resenha</p>
-                            <p class='sinopseBox2'>$sinopse</p>
-                        </div>
-                        <form action='deletar.php?id=$idResenha' method='POST'>
-                            <input type='submit' value='REPROVADA' class='containRBtn'>
-                        </form>
-                    </div>
-                </div>";
-            }
-        }
-        $stmt->close();
-        ?>
     </div>
 
     <!-- Todas as resenhas -->

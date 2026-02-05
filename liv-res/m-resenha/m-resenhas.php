@@ -75,7 +75,7 @@ $id =  $_SESSION['id'];
 
         <li>
             <a href='../resenha/resenhas.php'>
-                <i class='bx bx-pencil-circle'></i>
+             <i class='bx bx-user'></i>
                 <span class='link_name'>CRIAR RESENHAS</span>
             </a>
         </li>
@@ -163,7 +163,7 @@ $id =  $_SESSION['id'];
     </div>
 
     <!-- Resenhas reprovadas ou para corrigir -->
-    <div>
+    <div class="corrigir">
         <?php
         $stmt = $conn->prepare("SELECT livro_foto, resenha_titulo, livro_sinopse, resenha_id, resenha_status FROM RESENHAS INNER JOIN LIVROS ON LIVROS.livro_id = RESENHAS.livro_id WHERE res_id = ?");
         $stmt->bind_param("i", $id);
@@ -181,9 +181,9 @@ $id =  $_SESSION['id'];
                 echo "
                 <div class='containC'>
                     <div class='display'>
-                        <img src='../../adm/imagens/livros/$foto' alt='foto.png' class='fotos2'>
+                        <img class='img1' src='../../adm/imagens/livros/$foto' alt='foto.png' class='fotos2'>
                         <div>
-                            <p>$resenha</p>
+                            <p class='text'>$resenha</p>
                             <p class='sinopseBox2'>$sinopse</p>
                         </div>
                         <a href='atualizar.php?id=$idResenha'><button class='ContainCBtn'>CORRIGIR</button></a>
@@ -193,9 +193,9 @@ $id =  $_SESSION['id'];
                 echo "
                 <div class='containR'>
                     <div class='display'>
-                        <img src='../../adm/imagens/livros/$foto' alt='foto.png' class='fotos2'>
+                        <img class='img1'src='../../adm/imagens/livros/$foto' alt='foto.png' class='fotos2'>
                         <div>
-                            <p>$resenha</p>
+                            <p class='text'>$resenha</p>
                             <p class='sinopseBox2'>$sinopse</p>
                         </div>
                         <form action='deletar.php?id=$idResenha' method='POST'>
@@ -221,6 +221,7 @@ $id =  $_SESSION['id'];
             $resenha = htmlspecialchars($row['resenha_titulo']);
             $foto = htmlspecialchars($row['livro_foto']);
             $sinopse = htmlspecialchars($row['livro_sinopse']);
+            $status = (int)$row['resenha_status'];
             $idResenha = (int)$row['resenha_id'];
 
             echo "
@@ -234,13 +235,25 @@ $id =  $_SESSION['id'];
                 </div>
                 <div class='cont2'>
                     <a href='abrir.php?id=$idResenha'><button class='botao'>ABRIR</button></a>
-                <div class='botao'>
-                <p>STATUS: 
-                <span class='sinopseBox2'>
-                </span>
-                </p>
-                </div>
+                <div class='botao'>";
 
+            if ($status == 2) {
+                echo "
+                <p> 
+                    <span class='sinopseBox2'>
+                    PUBLICADA
+                    </span>
+                </p>";
+            } else {
+                echo "
+                <p>
+                    <span class='sinopseBox2'>
+                    EM ANDAMENTO
+                    </span>
+                </p>";
+            }
+
+            echo "</div>
                     <a href='atualizar.php?id=$idResenha'><button class='botao'>ATUALIZAR</button></a>
                 </div>
             </div>";
